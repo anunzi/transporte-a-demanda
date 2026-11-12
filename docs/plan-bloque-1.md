@@ -62,7 +62,7 @@ Solución (sin cambiar cómo se ve la paleta; se **agregan** tonos, no se reempl
 - Agregar tonos oscuros **solo para texto**: `--tad-orange-800`, `--tad-yellow-800`, `--tad-teal-800`, `--tad-green-800`, `--tad-red-800`, `--tad-purple-800`, y `--ink-600` para texto secundario. Agregar los fondos suaves que faltan: `--tad-teal-100`, `--tad-purple-100`.
 - Cada acento de módulo define su pareja: `--accent` (fondo) y `--on-accent` (color del texto encima). Naranja y amarillo llevan texto `--ink-900`; verde, rojo, morado y los azules 700/900 llevan blanco; teal lleva blanco solo si se oscurece a un tono que pase, o `--ink-900` si no.
 - Los badges usan fondo `-100` + texto `-800`.
-- **Verificar con un script** (no a ojo) todas las parejas texto/fondo que usa el sistema y pegar la tabla de resultados en el informe final. Elegir los valores exactos de los tonos nuevos para que pasen 4.5:1.
+- **Verificar con un script** (`herramientas/contraste.py`; y `herramientas/colores_sueltos.py` para los colores escritos a mano — ver `docs/plan.md`) todas las parejas texto/fondo que usa el sistema y pegar la tabla de resultados en el informe final. Elegir los valores exactos de los tonos nuevos para que pasen 4.5:1.
 
 ## `tokens.css`
 
@@ -130,7 +130,7 @@ Abre la página de muestra y contesta:
 ## Mensaje de arranque para la sesión de Opus
 
 ```
-Lee CLAUDE.md, docs/punto-de-partida.md completo y docs/plan-bloque-1.md.
+Lee CLAUDE.md, docs/punto-de-partida.md completo, docs/plan.md y docs/plan-bloque-1.md.
 Construye el bloque 1 (sistema de diseño) siguiendo el plan al pie de la letra,
 dentro de tad-mockup/. No generes ninguna pantalla del inventario.
 Verifica en el navegador local y con el script de contrastes antes de dar nada por terminado.

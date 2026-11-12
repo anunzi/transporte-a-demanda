@@ -41,8 +41,10 @@ Es un proyecto **aparte del panel de Anunzi**: no comparte código, base de dato
 - **Vehículo 9951 KZD**: pasa a «En servicio (sustitución)» porque reemplaza al 6604 LBC; ajustar los conteos de flota (5 en servicio, 1 en mantenimiento, 0 en reserva) en todas las pantallas.
 - **«Acceder con Cl@ve»**: lleva el logo de Cl@ve. Es la única excepción a la regla de «sin logos reales».
 
-## Planes por bloque
-- Bloque 1 (sistema de diseño): `docs/plan-bloque-1.md`.
+## Plan de trabajo
+- Plan general, orden de sesiones, reglas comunes y decisiones: `docs/plan.md`. **Leerlo siempre.**
+- Un plan por bloque: `docs/plan-bloque-1.md` … `docs/plan-bloque-7.md`. Cada sesión construye solo lo de su plan y para.
+- Las comprobaciones automáticas viven en `herramientas/` (no se suben al hosting).
 
 ## Pendiente de definir
 - **«IA responsable»**: tiene color de módulo en el brief pero no pantalla propia. Si va o no en el menú lateral se decide más adelante; mientras tanto, no ponerla en el menú.

@@ -13,7 +13,10 @@
 
 - 2026-11-12 · publicación · Corrección: la maqueta va en la **raíz** del sitio nuevo, no en una subcarpeta `tad/`. Matías.
 - 2026-11-12 · plan bloque 1 · Escrito `docs/plan-bloque-1.md` (sistema de diseño). Incluye un hallazgo: varios colores del brief no llegan al contraste AA con texto blanco; se resuelve agregando tonos oscuros para texto, sin cambiar la paleta. Matías pidió el plan.
+- 2026-11-12 · plan completo · Escritos el plan general (`docs/plan.md`) y los planes de los bloques 2 a 7: 11 sesiones en total. Decisiones tomadas al planificar: dos momentos del día (09:40 en backoffice y conductor, 10:08 en el seguimiento del viajero), reservas de grupo para que cierren los 23 viajeros a bordo, rutas y límites municipales dibujados a mano, miniaturas del índice en esquema. Matías pidió el plan del proyecto entero.
 
 ## Pendientes y dudas abiertas (2026-11-12)
 
 - **«IA responsable»**: tiene color de módulo, pero no pantalla propia. Se ve más adelante; por ahora no va en el menú lateral.
+- **Logo de Cl@ve**: para el bloque 6 hace falta el archivo, o el OK para redibujarlo.
+- **Miniaturas del índice**: ¿esquemas o capturas reales? Se decide en el bloque 6.
