@@ -33,6 +33,9 @@ a:hover { color: var(--color-primary-hover); }
 
 img, svg { max-width: 100%; }
 
+/* Lo oculto con el atributo hidden queda oculto, aunque el componente defina su display */
+[hidden] { display: none !important; }
+
 .c-icon {
   width: var(--icon-size);
   height: var(--icon-size);

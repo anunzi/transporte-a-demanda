@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Recogida de viajeros · App del conductor · Plataforma Digital TAD</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap">
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/layout-mobile.css">
+<script defer src="../js/data.js"></script>
+<script defer src="../js/datos/apps.js"></script>
+<script defer src="../js/ui.js"></script>
+<script defer src="../js/nav.js"></script>
+</head>
+<body class="mob-body" data-module="conductor" data-page="app-conductor-recogida">
+<a class="c-index-link c-index-link--floating" href="../index.html">← Índice del mockup</a>
+<main class="mob-stage">
+  <div class="c-phone-frame app--driver" data-accent="conductor">
+    <div class="c-phone-frame__screen">
+      <span class="c-phone-frame__notch" aria-hidden="true"></span>
+      <div class="c-phone-frame__status" aria-hidden="true"><span data-tad-hora></span><span class="c-phone-frame__indicators"><span class="c-phone-frame__signal"><i></i><i></i><i></i><i></i></span><span class="c-phone-frame__battery"></span></span></div>
+      <header class="app-bar">
+        <a class="c-btn c-btn--ghost c-btn--icon app-bar__back" href="navegacion.html" aria-label="Volver a la navegación"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon c-icon--lg" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></a>
+        <h1 class="app-bar__title">Recogida</h1>
+        <nav aria-label="Menú de la app" style="display:flex;gap:var(--sp-1)">
+          <a class="c-btn c-btn--ghost" href="servicios.html" style="flex-direction:column;gap:2px;padding:0 var(--sp-2);font-size:var(--fs-12)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon c-icon--lg" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="18" r="2.25"/><circle cx="18" cy="6" r="2.25"/><path d="M8.25 18H15a3 3 0 0 0 0-6H9a3 3 0 0 1 0-6h6.75"/></svg><span>Servicios</span></a>
+          <a class="c-btn c-btn--ghost" href="incidencias.html" style="flex-direction:column;gap:2px;padding:0 var(--sp-2);font-size:var(--fs-12)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon c-icon--lg" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9.8 4h4.4l4 15H5.8z"/><path d="M8 11h8M6.9 15.2h10.2M3.5 19.5h17"/></svg><span>Incidencias</span></a>
+        </nav>
+      </header>
+      <div class="c-phone-frame__content">
+        <div class="app-content" style="display:grid;gap:var(--sp-4)">
+          <div class="driver-next">
+            <span class="driver-next__label" data-parada-etiqueta></span>
+            <span class="driver-next__stop" data-parada-nombre></span>
+            <span class="driver-next__meta" aria-live="polite" data-validados></span>
+          </div>
+
+          <section aria-labelledby="t-viajeros">
+            <h2 class="app-section__title" id="t-viajeros" style="color:var(--ink-300)">Viajeros que suben</h2>
+            <ul class="c-card" style="list-style:none;margin:0;padding:0" data-viajeros></ul>
+          </section>
+
+          <section aria-labelledby="t-validar">
+            <h2 class="app-section__title" id="t-validar" style="color:var(--ink-300)">Cómo validar</h2>
+            <div role="group" aria-label="Forma de validar" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--sp-2)">
+              <button class="c-btn c-btn--secondary" type="button" aria-pressed="true" data-modo="qr" style="padding:0 var(--sp-2)">QR</button>
+              <button class="c-btn c-btn--secondary" type="button" aria-pressed="false" data-modo="pin" style="padding:0 var(--sp-2)">PIN</button>
+              <button class="c-btn c-btn--secondary" type="button" aria-pressed="false" data-modo="lista" style="padding:0 var(--sp-2)">Lista</button>
+            </div>
+
+            <div data-panel="qr" style="margin-top:var(--sp-3)">
+              <div style="position:relative;height:200px;border-radius:var(--r-md);background:var(--ink-900);border:var(--bw) solid var(--ink-700);overflow:hidden" aria-hidden="true" data-camara>
+                <span style="position:absolute;top:var(--sp-8);left:25%;width:var(--sp-8);height:var(--sp-8);border-top:var(--accent-bar) solid var(--tad-yellow-500);border-left:var(--accent-bar) solid var(--tad-yellow-500)"></span>
+                <span style="position:absolute;top:var(--sp-8);right:25%;width:var(--sp-8);height:var(--sp-8);border-top:var(--accent-bar) solid var(--tad-yellow-500);border-right:var(--accent-bar) solid var(--tad-yellow-500)"></span>
+                <span style="position:absolute;bottom:var(--sp-8);left:25%;width:var(--sp-8);height:var(--sp-8);border-bottom:var(--accent-bar) solid var(--tad-yellow-500);border-left:var(--accent-bar) solid var(--tad-yellow-500)"></span>
+                <span style="position:absolute;bottom:var(--sp-8);right:25%;width:var(--sp-8);height:var(--sp-8);border-bottom:var(--accent-bar) solid var(--tad-yellow-500);border-right:var(--accent-bar) solid var(--tad-yellow-500)"></span>
+                <span style="position:absolute;left:25%;right:25%;top:50%;height:2px;background:var(--tad-yellow-500);opacity:0.6"></span>
+                <span style="position:absolute;left:0;right:0;bottom:var(--sp-2);text-align:center;font-size:var(--fs-14);color:var(--ink-300)">Cámara (simulada)</span>
+              </div>
+              <button class="c-btn c-btn--secondary c-btn--block" type="button" style="margin-top:var(--sp-3)" data-escanear><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon c-icon--lg" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.4-4.4"/></svg> Escanear QR</button>
+            </div>
+
+            <div data-panel="pin" style="margin-top:var(--sp-3)" hidden>
+              <div class="c-field">
+                <label class="c-field__label" for="pin" style="font-size:var(--fs-16)">PIN de 4 cifras del viajero</label>
+                <input class="c-input" id="pin" inputmode="numeric" autocomplete="off" maxlength="4" pattern="[0-9]{4}" style="min-height:var(--driver-touch);font-size:var(--fs-28);letter-spacing:0.5em;text-align:center">
+              </div>
+              <button class="c-btn c-btn--secondary c-btn--block" type="button" style="margin-top:var(--sp-3)" data-validar-pin><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon c-icon--lg" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg> Validar PIN</button>
+            </div>
+
+            <p data-panel="lista" style="margin:var(--sp-3) 0 0;font-size:var(--fs-16);color:var(--ink-100)" hidden>Pulsa «Ha subido» junto a cada viajero de la lista de arriba.</p>
+          </section>
+
+          <div style="display:grid;gap:var(--sp-3);padding-bottom:var(--sp-4)">
+            <button class="c-btn c-btn--primary c-btn--block" type="button" data-confirmar><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon c-icon--lg" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg> Confirmar recogida</button>
+            <button class="c-btn c-btn--secondary c-btn--block" type="button" data-no-presentado><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon c-icon--lg" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0"/></svg> No se ha presentado</button>
+          </div>
+        </div>
+      </div>
+      <span class="c-phone-frame__home" aria-hidden="true"></span>
+    </div>
+  </div>
+  <p class="mob-caption">App del conductor · Recogida de viajeros</p>
+</main>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var f = TAD.fmt, h = f.html, ahora = TAD.momento(), apps = TAD.apps;
+  function $(sel) { return document.querySelector(sel); }
+  function $all(sel) { return Array.prototype.slice.call(document.querySelectorAll(sel)); }
+
+  var c = TAD.conductor(apps.conductor.id);
+  var ruta = TAD.ruta(c.rutaHoy);
+  var serv = TAD.servicioActual(ruta.id, ahora);
+  var iProx = serv.paradas.map(function (p, i) { return TAD.estadoParada(serv, i, ahora); }).indexOf("proxima");
+  var paso = serv.paradas[iProx];
+  var suben = TAD.viajerosEnParada(ruta.id, paso.parada, serv.id).suben;
+  var total = TAD.suma(suben);
+  var validado = {};
+
+  $("[data-parada-etiqueta]").textContent = "Recogida · " + paso.estimada;
+  $("[data-parada-nombre]").textContent = TAD.parada(paso.parada).nombre;
+
+  function badgePerfil(perfil) {
+    if (perfil === "PMR") return '<span class="c-badge c-badge--plain c-badge--info">PMR</span>';
+    if (perfil === "mayor") return '<span class="c-badge c-badge--plain c-badge--neutral">Mayor</span>';
+    if (perfil === "estudiante") return '<span class="c-badge c-badge--plain c-badge--success">Estudiante</span>';
+    return "";
+  }
+  function pintar() {
+    $("[data-viajeros]").innerHTML = suben.map(function (r, i) {
+      var u = TAD.usuario(r.usuario), ok = !!validado[r.codigo];
+      return '<li style="padding:var(--sp-4)' + (i ? ";border-top:var(--bw) solid var(--ink-700)" : "") + '">' +
+        '<div style="display:flex;align-items:center;gap:var(--sp-2);flex-wrap:wrap"><strong style="font-size:var(--fs-18)">' + h(u.nombre.split(" ").slice(0, 2).join(" ")) + "</strong>" + badgePerfil(r.perfil) +
+        '<span class="c-badge c-badge--' + (ok ? "success" : "warning") + '">' + (ok ? "Validado" : "Pendiente") + "</span></div>" +
+        '<p style="margin:var(--sp-1) 0 0;font-size:var(--fs-16);color:var(--ink-100)">' + (r.viajeros > 1 ? r.viajeros + " plazas" : "1 plaza") + " · va a " + h(TAD.parada(r.destino).nombre) + "</p>" +
+        (r.nota ? '<p style="margin:var(--sp-1) 0 0;font-size:var(--fs-16);color:var(--tad-yellow-500)">' + h(r.nota) + "</p>" : "") +
+        '<p style="margin:var(--sp-1) 0 0;font-size:var(--fs-14);color:var(--ink-300)">' + h(r.codigo) + " · " + h(r.pago) + "</p>" +
+        '<button class="c-btn ' + (ok ? "c-btn--primary" : "c-btn--secondary") + ' c-btn--block" type="button" style="margin-top:var(--sp-3)" aria-pressed="' + ok + '" data-subido="' + r.codigo + '">' +
+        (ok ? "Ha subido ✓" : "Ha subido") + "</button></li>";
+    }).join("");
+    var n = TAD.suma(suben.filter(function (r) { return validado[r.codigo]; }));
+    $("[data-validados]").textContent = n + " de " + total + " viajeros validados";
+    $all("[data-subido]").forEach(function (b) {
+      b.addEventListener("click", function () { validado[b.getAttribute("data-subido")] = !validado[b.getAttribute("data-subido")]; pintar(); });
+    });
+  }
+  function validarSiguiente(como) {
+    var r = suben.filter(function (x) { return !validado[x.codigo]; })[0];
+    if (!r) { TADUI.toast("Todos los viajeros de esta parada están validados.", { titulo: "Nada pendiente" }); return; }
+    validado[r.codigo] = true;
+    pintar();
+    TADUI.toast(TAD.usuario(r.usuario).nombre.split(" ").slice(0, 2).join(" ") + (r.viajeros > 1 ? " y su acompañante" : "") + " · reserva " + r.codigo + ".", { titulo: como + " válido" });
+  }
+
+  // Selector de forma de validar
+  $all("[data-modo]").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var modo = b.getAttribute("data-modo");
+      $all("[data-modo]").forEach(function (x) {
+        var si = x === b;
+        x.setAttribute("aria-pressed", String(si));
+        x.classList.toggle("c-btn--primary", si);
+        x.classList.toggle("c-btn--secondary", !si);
+      });
+      $all("[data-panel]").forEach(function (p) { p.hidden = p.getAttribute("data-panel") !== modo; });
+    });
+  });
+  $("[data-modo='qr']").classList.replace("c-btn--secondary", "c-btn--primary");
+
+  $("[data-escanear]").addEventListener("click", function () { validarSiguiente("QR"); });
+  $("[data-validar-pin]").addEventListener("click", function () {
+    var v = $("#pin").value.trim();
+    if (!/^\d{4}$/.test(v)) { TADUI.toast("Escribe las 4 cifras del PIN que el viajero tiene en su reserva.", { titulo: "PIN incompleto", tipo: "danger" }); return; }
+    $("#pin").value = "";
+    validarSiguiente("PIN");
+  });
+  $("[data-confirmar]").addEventListener("click", function () {
+    var n = TAD.suma(suben.filter(function (r) { return validado[r.codigo]; }));
+    if (n < total) { TADUI.toast("Faltan " + (total - n) + " viajeros por validar. Si alguno no ha venido, pulsa «No se ha presentado».", { titulo: "Recogida incompleta", tipo: "danger" }); return; }
+    TADUI.toast("Recogida confirmada en " + TAD.parada(paso.parada).nombre + ". La central ya lo sabe.", { titulo: "Recogida confirmada" });
+  });
+  $("[data-no-presentado]").addEventListener("click", function () {
+    var r = suben.filter(function (x) { return !validado[x.codigo]; })[0];
+    TADUI.toast(r ? "Se avisa a la central y al viajero por SMS. Espera 5 minutos antes de salir." : "Todos los viajeros están validados.", { titulo: "No se ha presentado" });
+  });
+  pintar();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Navegación · App del conductor · Plataforma Digital TAD</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/layout-mobile.css">
+<script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script defer src="../js/data.js"></script>
+<script defer src="../js/datos/apps.js"></script>
+<script defer src="../js/ui.js"></script>
+<script defer src="../js/nav.js"></script>
+<script defer src="../js/maps.js"></script>
+</head>
+<body class="mob-body" data-module="conductor" data-page="app-conductor-navegacion">
+<a class="c-index-link c-index-link--floating" href="../index.html">← Índice del mockup</a>
+<main class="mob-stage">
+  <div class="c-phone-frame app--driver" data-accent="conductor">
+    <div class="c-phone-frame__screen">
+      <span class="c-phone-frame__notch" aria-hidden="true"></span>
+      <div class="c-phone-frame__status" aria-hidden="true"><span data-tad-hora></span><span class="c-phone-frame__indicators"><span class="c-phone-frame__signal"><i></i><i></i><i></i><i></i></span><span class="c-phone-frame__battery"></span></span></div>
+      <header class="app-bar">
+        <h1 class="app-bar__title" data-titulo>Navegación</h1>
+        <nav aria-label="Menú de la app" style="display:flex;gap:var(--sp-1)">
+          <a class="c-btn c-btn--ghost" href="servicios.html" style="flex-direction:column;gap:2px;padding:0 var(--sp-2);font-size:var(--fs-12)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon c-icon--lg" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="18" r="2.25"/><circle cx="18" cy="6" r="2.25"/><path d="M8.25 18H15a3 3 0 0 0 0-6H9a3 3 0 0 1 0-6h6.75"/></svg><span>Servicios</span></a>
+          <a class="c-btn c-btn--ghost" href="incidencias.html" style="flex-direction:column;gap:2px;padding:0 var(--sp-2);font-size:var(--fs-12)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon c-icon--lg" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9.8 4h4.4l4 15H5.8z"/><path d="M8 11h8M6.9 15.2h10.2M3.5 19.5h17"/></svg><span>Incidencias</span></a>
+        </nav>
+      </header>
+      <div class="c-phone-frame__content">
+        <div class="c-map" id="mapa" style="height:260px;border:0;border-radius:0">
+          <div class="c-map__canvas"></div>
+          <div class="c-map__fallback"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon c-icon--lg" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6.5 9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20z"/><path d="M9 4v13.5M15 6.5V20"/></svg> Mapa no disponible</div>
+        </div>
+        <div class="app-content" style="display:grid;gap:var(--sp-4)">
+          <div class="driver-next" role="status">
+            <span class="driver-next__label" data-prox-etiqueta></span>
+            <span class="driver-next__stop" data-prox-parada></span>
+            <span class="driver-next__meta" data-prox-meta></span>
+          </div>
+
+          <section aria-labelledby="t-paradas">
+            <h2 class="app-section__title" id="t-paradas" style="color:var(--ink-300)">Paradas del servicio</h2>
+            <ol class="c-card" style="list-style:none;margin:0;padding:0" data-paradas></ol>
+          </section>
+        </div>
+      </div>
+      <div style="flex:none;padding:var(--sp-3) var(--sp-4) var(--sp-6);background:var(--ink-900);border-top:var(--bw) solid var(--ink-700)">
+        <a class="c-btn c-btn--primary c-btn--block" href="recogida.html"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon c-icon--lg" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg> He llegado</a>
+      </div>
+      <span class="c-phone-frame__home" aria-hidden="true"></span>
+    </div>
+  </div>
+  <p class="mob-caption">App del conductor · Navegación</p>
+</main>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var f = TAD.fmt, h = f.html, ahora = TAD.momento(), apps = TAD.apps;
+  function $(sel) { return document.querySelector(sel); }
+
+  var c = TAD.conductor(apps.conductor.id);
+  var ruta = TAD.ruta(c.rutaHoy), v = TAD.vehiculo(c.vehiculoHoy);
+  var serv = TAD.servicioActual(ruta.id, ahora);
+  var estados = serv.paradas.map(function (p, i) { return TAD.estadoParada(serv, i, ahora); });
+  var iProx = estados.indexOf("proxima"), prox = serv.paradas[iProx];
+  var mins = TAD.minutos(prox.estimada) - TAD.minutos(ahora);
+  var gente = TAD.viajerosEnParada(ruta.id, prox.parada, serv.id);
+  var suben = TAD.suma(gente.suben), bajan = TAD.suma(gente.bajan);
+
+  $("[data-titulo]").textContent = "Ruta " + ruta.id + " · " + v.matricula;
+  $("[data-prox-etiqueta]").textContent = "Próxima parada · " + mins + " min";
+  $("[data-prox-parada]").textContent = TAD.parada(prox.parada).nombre;
+  $("[data-prox-meta]").textContent = (suben === 1 ? "Sube 1 viajero" : "Suben " + suben + " viajeros") + " · " + (bajan === 1 ? "baja 1" : "bajan " + bajan);
+
+  // Secuencia de paradas: las realizadas tachadas, la próxima resaltada
+  $("[data-paradas]").innerHTML = serv.paradas.map(function (p, i) {
+    var est = estados[i], g = TAD.viajerosEnParada(ruta.id, p.parada, serv.id);
+    var nombres = g.suben.map(function (r) { return TAD.usuario(r.usuario).nombre.split(" ").slice(0, 2).join(" ") + (r.viajeros > 1 ? " (+" + (r.viajeros - 1) + ")" : ""); });
+    var partes = [];
+    if (nombres.length) partes.push("Suben: " + nombres.join(", "));
+    if (g.bajan.length) partes.push("Bajan " + TAD.suma(g.bajan));
+    var realizada = est === "realizada", proxima = est === "proxima";
+    var estilo = "display:grid;grid-template-columns:auto minmax(0,1fr);gap:var(--sp-1) var(--sp-3);padding:var(--sp-3) var(--sp-4)" +
+      (i ? ";border-top:var(--bw) solid var(--ink-700)" : "") +
+      (proxima ? ";background:var(--tad-blue-900);box-shadow:inset var(--accent-bar) 0 0 var(--tad-yellow-500)" : "") +
+      (realizada ? ";color:var(--ink-300)" : "");
+    return '<li style="' + estilo + '"' + (proxima ? ' aria-current="step"' : "") + ">" +
+      '<span style="font-weight:var(--fw-bold);font-variant-numeric:tabular-nums' + (realizada ? ";text-decoration:line-through" : "") + '">' + p.estimada + "</span>" +
+      '<span><span style="display:block;font-weight:var(--fw-semibold)' + (realizada ? ";text-decoration:line-through" : "") + '">' + h(TAD.parada(p.parada).nombre) +
+      (realizada ? '<span class="u-visually-hidden"> (realizada)</span>' : "") + "</span>" +
+      (partes.length ? '<span style="display:block;font-size:var(--fs-16);color:' + (realizada ? "var(--ink-300)" : "var(--ink-100)") + '">' + h(partes.join(" · ")) + "</span>" : "") +
+      (proxima ? '<span class="c-badge c-badge--warning" style="margin-top:var(--sp-1)">Próxima</span>' : "") +
+      "</span></li>";
+  }).join("");
+
+  // Mapa con la ruta, las obras, las paradas del servicio y el vehículo
+  var m = TADMapa.crear("#mapa", { zoomControl: false });
+  m.obras().rutas({ ids: [ruta.id] }).paradas({ soloRuta: ruta.id, resaltar: prox.parada }).vehiculos({ ids: [v.matricula], seleccionar: v.matricula });
+  if (m.disponible) {
+    var encuadre = function () {
+      m.leaflet.invalidateSize();
+      m.leaflet.fitBounds(L.latLngBounds([v.posicion, TAD.parada(prox.parada).coord, TAD.parada(serv.paradas[Math.min(iProx + 1, serv.paradas.length - 1)].parada).coord]), { padding: [30, 30], maxZoom: 14 });
+    };
+    encuadre();
+    window.addEventListener("load", encuadre);
+  }
+});
+</script>
+</body>
+</html>

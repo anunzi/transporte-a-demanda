@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Reserva confirmada · App del viajero · Plataforma Digital TAD</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap">
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/layout-mobile.css">
+<script defer src="../js/data.js"></script>
+<script defer src="../js/datos/apps.js"></script>
+<script defer src="../js/ui.js"></script>
+<script defer src="../js/nav.js"></script>
+</head>
+<body class="mob-body" data-module="viajero" data-page="app-viajero-confirmacion">
+<a class="c-index-link c-index-link--floating" href="../index.html">← Índice del mockup</a>
+<main class="mob-stage">
+  <div class="c-phone-frame" data-accent="viajero">
+    <div class="c-phone-frame__screen">
+      <span class="c-phone-frame__notch" aria-hidden="true"></span>
+      <div class="c-phone-frame__status" aria-hidden="true"><span data-tad-hora></span><span class="c-phone-frame__indicators"><span class="c-phone-frame__signal"><i></i><i></i><i></i><i></i></span><span class="c-phone-frame__battery"></span></span></div>
+      <header class="app-bar">
+        <a class="c-btn c-btn--ghost c-btn--icon app-bar__back" href="home.html" aria-label="Volver al inicio"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon c-icon--lg" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></a>
+        <span class="app-bar__title">Tu reserva</span>
+      </header>
+      <div class="c-phone-frame__content">
+        <div class="app-content">
+          <div style="text-align:center">
+            <span style="display:inline-flex;align-items:center;justify-content:center;width:var(--avatar-lg);height:var(--avatar-lg);border-radius:50%;background:var(--tad-green-100);color:var(--tad-green-800)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon c-icon--lg" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>
+            <h1 style="margin:var(--sp-2) 0 var(--sp-1);font-size:var(--fs-28)">Reserva confirmada</h1>
+            <p class="u-muted" style="margin:0" data-aviso-envio></p>
+          </div>
+
+          <div class="c-card" style="margin-top:var(--sp-4)"><div class="c-card__body" style="padding:var(--sp-5);text-align:center">
+            <div style="width:220px;max-width:100%;margin:0 auto;color:var(--ink-900)"><svg viewBox="0 0 29 29" role="img" aria-label="Código QR de la reserva" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges"><rect width="29" height="29" style="fill:var(--surface)"/><path fill="currentColor" d="M2 2h7v1h-7zM10 2h1v1h-1zM14 2h2v1h-2zM18 2h1v1h-1zM20 2h7v1h-7zM2 3h1v1h-1zM8 3h1v1h-1zM11 3h1v1h-1zM15 3h1v1h-1zM17 3h2v1h-2zM20 3h1v1h-1zM26 3h1v1h-1zM2 4h1v1h-1zM4 4h3v1h-3zM8 4h1v1h-1zM10 4h2v1h-2zM14 4h2v1h-2zM17 4h2v1h-2zM20 4h1v1h-1zM22 4h3v1h-3zM26 4h1v1h-1zM2 5h1v1h-1zM4 5h3v1h-3zM8 5h1v1h-1zM11 5h2v1h-2zM16 5h1v1h-1zM20 5h1v1h-1zM22 5h3v1h-3zM26 5h1v1h-1zM2 6h1v1h-1zM4 6h3v1h-3zM8 6h1v1h-1zM10 6h1v1h-1zM13 6h3v1h-3zM17 6h1v1h-1zM20 6h1v1h-1zM22 6h3v1h-3zM26 6h1v1h-1zM2 7h1v1h-1zM8 7h1v1h-1zM10 7h1v1h-1zM13 7h1v1h-1zM15 7h4v1h-4zM20 7h1v1h-1zM26 7h1v1h-1zM2 8h7v1h-7zM10 8h1v1h-1zM12 8h1v1h-1zM14 8h1v1h-1zM16 8h1v1h-1zM18 8h1v1h-1zM20 8h7v1h-7zM17 9h2v1h-2zM2 10h1v1h-1zM5 10h2v1h-2zM8 10h1v1h-1zM12 10h1v1h-1zM14 10h1v1h-1zM22 10h2v1h-2zM3 11h2v1h-2zM9 11h5v1h-5zM15 11h3v1h-3zM19 11h6v1h-6zM5 12h1v1h-1zM8 12h2v1h-2zM11 12h2v1h-2zM15 12h1v1h-1zM17 12h3v1h-3zM21 12h2v1h-2zM2 13h2v1h-2zM6 13h2v1h-2zM9 13h1v1h-1zM11 13h1v1h-1zM14 13h2v1h-2zM19 13h2v1h-2zM5 14h1v1h-1zM7 14h2v1h-2zM10 14h1v1h-1zM12 14h1v1h-1zM14 14h2v1h-2zM17 14h2v1h-2zM22 14h3v1h-3zM2 15h1v1h-1zM7 15h1v1h-1zM9 15h4v1h-4zM19 15h3v1h-3zM24 15h1v1h-1zM2 16h2v1h-2zM5 16h6v1h-6zM12 16h5v1h-5zM18 16h1v1h-1zM25 16h1v1h-1zM2 17h2v1h-2zM5 17h3v1h-3zM12 17h1v1h-1zM16 17h4v1h-4zM21 17h1v1h-1zM5 18h4v1h-4zM10 18h2v1h-2zM13 18h2v1h-2zM17 18h7v1h-7zM25 18h2v1h-2zM12 19h1v1h-1zM16 19h3v1h-3zM22 19h1v1h-1zM2 20h7v1h-7zM12 20h1v1h-1zM14 20h1v1h-1zM16 20h1v1h-1zM18 20h1v1h-1zM20 20h1v1h-1zM22 20h1v1h-1zM26 20h1v1h-1zM2 21h1v1h-1zM8 21h1v1h-1zM11 21h4v1h-4zM16 21h1v1h-1zM18 21h1v1h-1zM22 21h3v1h-3zM2 22h1v1h-1zM4 22h3v1h-3zM8 22h1v1h-1zM11 22h4v1h-4zM16 22h1v1h-1zM18 22h9v1h-9zM2 23h1v1h-1zM4 23h3v1h-3zM8 23h1v1h-1zM11 23h2v1h-2zM14 23h2v1h-2zM17 23h1v1h-1zM19 23h1v1h-1zM23 23h1v1h-1zM25 23h1v1h-1zM2 24h1v1h-1zM4 24h3v1h-3zM8 24h1v1h-1zM10 24h1v1h-1zM14 24h2v1h-2zM18 24h1v1h-1zM22 24h1v1h-1zM25 24h1v1h-1zM2 25h1v1h-1zM8 25h1v1h-1zM10 25h5v1h-5zM16 25h6v1h-6zM24 25h1v1h-1zM26 25h1v1h-1zM2 26h7v1h-7zM10 26h2v1h-2zM15 26h1v1h-1zM18 26h1v1h-1zM20 26h1v1h-1zM24 26h1v1h-1z"/></svg></div>
+            <p class="u-muted u-small" style="margin:var(--sp-3) 0 var(--sp-1)">Código de reserva</p>
+            <p style="margin:0;font-size:var(--fs-22);font-weight:var(--fw-bold);letter-spacing:0.04em;font-variant-numeric:tabular-nums" data-codigo></p>
+            <p class="u-small" style="margin:var(--sp-2) 0 0">Enséñalo al subir o dile el código a la conductora.</p>
+          </div></div>
+
+          <section class="app-section" aria-labelledby="t-detalles">
+            <h2 class="app-section__title" id="t-detalles">Detalles del viaje</h2>
+            <div class="c-card"><div class="c-card__body" style="padding:var(--sp-4)">
+              <dl class="c-datalist" data-detalles></dl>
+            </div></div>
+          </section>
+
+          <div style="display:grid;gap:var(--sp-2);margin-top:var(--sp-5)">
+            <button class="c-btn c-btn--secondary" type="button" data-calendario><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg> Añadir al calendario</button>
+            <button class="c-btn c-btn--secondary" type="button" data-compartir><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H9.5L4 20z"/><path d="M8 9.5h8M8 12.5h5"/></svg> Compartir</button>
+          </div>
+          <a class="c-btn c-btn--primary c-btn--block" style="margin:var(--sp-3) 0 var(--sp-4)" href="seguimiento.html"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6.5 9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20z"/><path d="M9 4v13.5M15 6.5V20"/></svg> Seguir el vehículo</a>
+        </div>
+      </div>
+      <nav class="app-tabbar" aria-label="Menú de la app">
+        <a class="app-tabbar__tab" href="home.html" data-page="app-viajero-home"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.5V20h5v-6h3v6h5V9.5"/></svg><span>Inicio</span></a>
+        <a class="app-tabbar__tab" href="confirmacion.html" data-page="app-viajero-confirmacion"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg><span>Reservar</span></a>
+        <a class="app-tabbar__tab" href="seguimiento.html" data-page="app-viajero-seguimiento"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg><span>Mis viajes</span></a>
+        <a class="app-tabbar__tab" href="perfil.html" data-page="app-viajero-perfil"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0"/></svg><span>Perfil</span></a>
+      </nav>
+      <span class="c-phone-frame__home" aria-hidden="true"></span>
+    </div>
+  </div>
+  <p class="mob-caption">App del viajero · Reserva confirmada</p>
+</main>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var f = TAD.fmt, h = f.html, apps = TAD.apps;
+  function $(sel) { return document.querySelector(sel); }
+
+  var r = TAD.reservaReferencia();
+  var u = TAD.usuario(r.usuario);
+  var ruta = TAD.ruta(r.ruta), serv = TAD.servicio(r.servicio), v = TAD.vehiculo(ruta.vehiculo);
+  var sube = serv.paradas.filter(function (p) { return p.parada === r.origen; })[0];
+  var baja = serv.paradas.filter(function (p) { return p.parada === r.destino; })[0];
+  var t = TAD.tarifa(r.origen, r.destino, r.perfil);
+  var bono = TAD.tarifas.bonificaciones.filter(function (b) { return b.perfil === r.perfil; })[0];
+  var pago = apps.viajero.pagos.filter(function (p) { return p.principal; })[0];
+  var fecha = f.fechaLarga(r.fecha).replace(/ de \d{4}$/, "");
+
+  $("[data-aviso-envio]").textContent = "Te hemos enviado un SMS al " + u.telefono + " con estos datos.";
+  $("[data-codigo]").textContent = r.codigo;
+
+  var filas = [
+    ["Día", fecha.charAt(0).toUpperCase() + fecha.slice(1)],
+    ["Recogida", sube.prevista + " · " + TAD.parada(r.origen).nombre],
+    ["Llegada", baja.prevista + " · " + TAD.parada(r.destino).nombre],
+    ["Viajeros", r.viajeros + (r.viajeros === 1 ? " persona" : " personas")],
+    ["Vehículo", v.matricula + " · " + v.modelo + (v.pmr ? " · " + v.accesibilidad.toLowerCase() : "")],
+    ["Ruta", ruta.id + " · " + ruta.nombre],
+    ["Precio", f.euros(r.importe) + (bono ? " (" + bono.nombre.toLowerCase() + ", −" + f.porcentaje(t.pct) + ")" : "")],
+    ["Pago", r.pago + (pago && r.pago.indexOf("Tarjeta") === 0 ? " " + pago.detalle : "")]
+  ];
+  if (r.nota) filas.push(["Nota", r.nota]);
+  $("[data-detalles]").innerHTML = filas.map(function (x) { return "<dt>" + h(x[0]) + "</dt><dd>" + h(x[1]) + "</dd>"; }).join("");
+
+  $("[data-calendario]").addEventListener("click", function () {
+    TADUI.toast("Viaje añadido a tu calendario: " + fecha + ", " + sube.prevista + ". Te avisaremos 30 minutos antes.", { titulo: "Añadido al calendario" });
+  });
+  $("[data-compartir]").addEventListener("click", function () {
+    TADUI.toast("Hemos preparado un mensaje con tu código " + r.codigo + " para enviarlo a un familiar.", { titulo: "Compartir" });
+  });
+});
+</script>
+</body>
+</html>

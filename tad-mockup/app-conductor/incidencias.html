@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Incidencias · App del conductor · Plataforma Digital TAD</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap">
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/layout-mobile.css">
+<script defer src="../js/data.js"></script>
+<script defer src="../js/datos/apps.js"></script>
+<script defer src="../js/ui.js"></script>
+<script defer src="../js/nav.js"></script>
+</head>
+<body class="mob-body" data-module="conductor" data-page="app-conductor-incidencias">
+<a class="c-index-link c-index-link--floating" href="../index.html">← Índice del mockup</a>
+<main class="mob-stage">
+  <div class="c-phone-frame app--driver" data-accent="conductor">
+    <div class="c-phone-frame__screen">
+      <span class="c-phone-frame__notch" aria-hidden="true"></span>
+      <div class="c-phone-frame__status" aria-hidden="true"><span data-tad-hora></span><span class="c-phone-frame__indicators"><span class="c-phone-frame__signal"><i></i><i></i><i></i><i></i></span><span class="c-phone-frame__battery"></span></span></div>
+      <header class="app-bar">
+        <h1 class="app-bar__title">Incidencias</h1>
+        <nav aria-label="Menú de la app" style="display:flex;gap:var(--sp-1)">
+          <a class="c-btn c-btn--ghost" href="servicios.html" style="flex-direction:column;gap:2px;padding:0 var(--sp-2);font-size:var(--fs-12)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon c-icon--lg" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="18" r="2.25"/><circle cx="18" cy="6" r="2.25"/><path d="M8.25 18H15a3 3 0 0 0 0-6H9a3 3 0 0 1 0-6h6.75"/></svg><span>Servicios</span></a>
+          <a class="c-btn c-btn--ghost" href="incidencias.html" aria-current="page" style="flex-direction:column;gap:2px;padding:0 var(--sp-2);font-size:var(--fs-12);background:var(--on-dark-active)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon c-icon--lg" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9.8 4h4.4l4 15H5.8z"/><path d="M8 11h8M6.9 15.2h10.2M3.5 19.5h17"/></svg><span>Incidencias</span></a>
+        </nav>
+      </header>
+      <div class="c-phone-frame__content">
+        <div class="app-content" style="display:grid;gap:var(--sp-5)">
+          <section aria-labelledby="t-tipo">
+            <h2 class="app-section__title" id="t-tipo" style="color:var(--ink-300)">¿Qué ha pasado?</h2>
+            <div role="group" aria-labelledby="t-tipo" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--sp-3)" data-tipos></div>
+          </section>
+
+          <section aria-labelledby="t-nota" style="display:grid;gap:var(--sp-3)">
+            <div class="c-field">
+              <label class="c-field__label" id="t-nota" for="nota" style="font-size:var(--fs-16)">Nota para la central (opcional)</label>
+              <textarea class="c-textarea" id="nota" rows="3" style="font-size:var(--fs-18)" placeholder="Por ejemplo: rueda pinchada, espero en el arcén"></textarea>
+            </div>
+            <button class="c-btn c-btn--primary c-btn--block" type="button" data-enviar><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon c-icon--lg" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg> Enviar a la central</button>
+          </section>
+
+          <section aria-labelledby="t-chat" style="padding-bottom:var(--sp-4)">
+            <h2 class="app-section__title" id="t-chat" style="color:var(--ink-300)" data-chat-titulo>Chat con la central</h2>
+            <ol style="list-style:none;margin:0;padding:0;display:grid;gap:var(--sp-3)" aria-live="polite" data-chat></ol>
+            <form style="display:flex;gap:var(--sp-2);margin-top:var(--sp-4)" data-chat-form>
+              <label class="u-visually-hidden" for="mensaje">Mensaje para la central</label>
+              <input class="c-input" id="mensaje" autocomplete="off" placeholder="Escribe un mensaje" style="flex:1;min-width:0;min-height:var(--driver-touch);font-size:var(--fs-18)">
+              <button class="c-btn c-btn--primary c-btn--icon" type="submit" aria-label="Enviar mensaje" style="width:var(--driver-touch)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon c-icon--lg" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+            </form>
+          </section>
+        </div>
+      </div>
+      <span class="c-phone-frame__home" aria-hidden="true"></span>
+    </div>
+  </div>
+  <p class="mob-caption">App del conductor · Incidencias</p>
+</main>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var f = TAD.fmt, h = f.html, ahora = TAD.momento(), apps = TAD.apps, cond = apps.conductor;
+  function $(sel) { return document.querySelector(sel); }
+  function $all(sel) { return Array.prototype.slice.call(document.querySelectorAll(sel)); }
+  var ICONO = { reloj: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon c-icon--lg" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>', furgoneta: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon c-icon--lg" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 17H9.5M5 17H3.5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1H15l4.5 4.5H20a1.5 1.5 0 0 1 1.5 1.5v4a1 1 0 0 1-1 1H19"/><path d="M15 6v4.5h4.5M2.5 11H15"/><circle cx="7" cy="17.5" r="2"/><circle cx="17" cy="17.5" r="2"/></svg>', usuario: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon c-icon--lg" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0"/></svg>', alerta: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon c-icon--lg" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 4.5 2.8 17.7A2 2 0 0 0 4.5 20.7h15a2 2 0 0 0 1.7-3L13.7 4.5a2 2 0 0 0-3.4 0z"/><path d="M12 9.5v4.5M12 17.2v.1"/></svg>', mensaje: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon c-icon--lg" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H9.5L4 20z"/><path d="M8 9.5h8M8 12.5h5"/></svg>' };
+
+  var operadora = TAD.persona(apps.central.operadora);
+  var elegido = null;
+
+  // Tipos de incidencia en tarjetas grandes
+  $("[data-tipos]").innerHTML = cond.tiposIncidencia.map(function (t, i) {
+    var ancho = i === cond.tiposIncidencia.length - 1 && cond.tiposIncidencia.length % 2 ? "grid-column:1 / -1;" : "";
+    return '<button class="c-btn c-btn--secondary" type="button" aria-pressed="false" data-tipo="' + t.id + '" style="' + ancho +
+      'flex-direction:column;gap:var(--sp-2);min-height:104px;padding:var(--sp-3);white-space:normal;text-align:center;line-height:var(--lh-title)">' +
+      ICONO[t.icono] + "<span>" + h(t.nombre) + "</span></button>";
+  }).join("");
+  $all("[data-tipo]").forEach(function (b) {
+    b.addEventListener("click", function () {
+      elegido = b.getAttribute("data-tipo");
+      $all("[data-tipo]").forEach(function (x) {
+        var si = x === b;
+        x.setAttribute("aria-pressed", String(si));
+        x.classList.toggle("c-btn--primary", si);
+        x.classList.toggle("c-btn--secondary", !si);
+      });
+    });
+  });
+
+  $("[data-enviar]").addEventListener("click", function () {
+    if (!elegido) { TADUI.toast("Elige primero qué ha pasado.", { titulo: "Falta el tipo", tipo: "danger" }); return; }
+    var tipo = cond.tiposIncidencia.filter(function (t) { return t.id === elegido; })[0];
+    TADUI.toast("Aviso de «" + tipo.nombre.toLowerCase() + "» enviado a la central. " + operadora.nombre.split(" ")[0] + " te contestará por el chat.", { titulo: "Incidencia enviada" });
+  });
+
+  // Chat de hoy con la central
+  $("[data-chat-titulo]").textContent = "Chat con la central · hoy";
+  function burbuja(m) {
+    var mia = m.de === "conductora";
+    var quien = mia ? "Tú" : apps.central.nombre + " · " + operadora.nombre.split(" ")[0];
+    return '<li style="display:flex;flex-direction:column;align-items:' + (mia ? "flex-end" : "flex-start") + '">' +
+      '<span style="font-size:var(--fs-14);color:var(--ink-300)">' + h(quien) + " · " + m.hora + "</span>" +
+      '<span style="max-width:85%;margin-top:var(--sp-1);padding:var(--sp-3) var(--sp-4);border-radius:var(--r-lg);font-size:var(--fs-18);line-height:var(--lh-text);' +
+      (mia ? "background:var(--tad-blue-900);border-bottom-right-radius:var(--r-sm)" : "background:var(--ink-800);border:var(--bw) solid var(--ink-700);border-bottom-left-radius:var(--r-sm)") + '">' + h(m.texto) + "</span></li>";
+  }
+  var mensajes = cond.chat.filter(function (m) { return TAD.minutos(m.hora) <= TAD.minutos(ahora); });
+  $("[data-chat]").innerHTML = mensajes.map(burbuja).join("");
+  $("[data-chat-form]").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var campo = $("#mensaje"), texto = campo.value.trim();
+    if (!texto) return;
+    $("[data-chat]").insertAdjacentHTML("beforeend", burbuja({ de: "conductora", hora: ahora, texto: texto }));
+    campo.value = "";
+  });
+});
+</script>
+</body>
+</html>

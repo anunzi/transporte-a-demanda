@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Bienvenida · App del viajero · Plataforma Digital TAD</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap">
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/layout-mobile.css">
+<script defer src="../js/data.js"></script>
+<script defer src="../js/datos/apps.js"></script>
+<script defer src="../js/ui.js"></script>
+<script defer src="../js/nav.js"></script>
+</head>
+<body class="mob-body" data-module="viajero" data-page="app-viajero-onboarding">
+<a class="c-index-link c-index-link--floating" href="../index.html">← Índice del mockup</a>
+<main class="mob-stage">
+  <div class="c-phone-frame" data-accent="viajero">
+    <div class="c-phone-frame__screen">
+      <span class="c-phone-frame__notch" aria-hidden="true"></span>
+      <div class="c-phone-frame__status" aria-hidden="true"><span data-tad-hora></span><span class="c-phone-frame__indicators"><span class="c-phone-frame__signal"><i></i><i></i><i></i><i></i></span><span class="c-phone-frame__battery"></span></span></div>
+      <div class="c-phone-frame__content" style="display:flex;flex-direction:column;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;flex:none;padding:var(--sp-2) var(--sp-2) 0 var(--sp-4);color:var(--tad-blue-900)">
+          <svg class="app-bar__logo" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 113 40"><g style="fill:var(--logo-route);stroke:var(--logo-route)"><path d="M4 34.5h32" fill="none" stroke-width="2.6" stroke-linecap="round"/><circle cx="4.5" cy="34.5" r="3.2"/><circle cx="35.5" cy="34.5" r="3.2"/></g><g fill="currentColor"><path fill-rule="evenodd" d="M6 10.5a2.5 2.5 0 0 1 2.5-2.5H24l8 8v7.5a1.5 1.5 0 0 1-1.5 1.5H7.5A1.5 1.5 0 0 1 6 23.5zM9 11h7v5H9zM18.5 11h4.3l5 5h-9.3z"/><circle cx="12" cy="25.5" r="3.6"/><circle cx="26" cy="25.5" r="3.6"/></g><circle cx="12" cy="25.5" r="1.4" style="fill:var(--logo-bg)"/><circle cx="26" cy="25.5" r="1.4" style="fill:var(--logo-bg)"/><g fill="currentColor"><g transform="translate(50 9)"><path d="M0 0h17v5h-6v17H6V5H0z"/></g><g transform="translate(70 9)"><path fill-rule="evenodd" d="M7 0h5.4l7.3 22h-5.3l-1.3-4.2H6.3L5 22H-.3zM9.7 6.6 7.6 13.4h4.3z"/></g><g transform="translate(93 9)"><path fill-rule="evenodd" d="M0 0h7.5a11 11 0 0 1 0 22H0zM5 5v12h2.3a6 6 0 0 0 0-12z"/></g></g></svg>
+          <a class="c-btn c-btn--ghost" href="home.html" data-saltar>Saltar</a>
+        </div>
+        <h1 class="u-visually-hidden">Te damos la bienvenida a la app de transporte a demanda</h1>
+
+        <div style="flex:1;min-height:0;overflow:hidden;touch-action:pan-y" data-laminas aria-roledescription="carrusel" aria-label="Cómo funciona la app">
+          <div style="display:flex;height:100%;transition:transform var(--t-fast)" data-pista>
+            <section style="flex:0 0 100%;display:flex;flex-direction:column;justify-content:center;padding:var(--sp-4) var(--sp-6);text-align:center" aria-roledescription="lámina" aria-label="1 de 3" data-lamina>
+              <svg style="display:block;width:100%;max-width:280px;height:auto;margin:0 auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 180" aria-hidden="true" focusable="false"><circle cx="120" cy="92" r="78" style="fill:var(--tad-blue-100)"/><path d="M28 150h184" style="stroke:var(--ink-300)" stroke-width="3" stroke-linecap="round" fill="none"/><rect x="86" y="26" width="68" height="124" rx="12" style="fill:var(--tad-blue-900)"/><rect x="92" y="38" width="56" height="100" rx="5" style="fill:var(--surface)"/><rect x="100" y="48" width="40" height="34" rx="4" style="fill:var(--tad-blue-100)"/><rect x="100" y="48" width="40" height="9" rx="3" style="fill:var(--tad-blue-700)"/><g style="fill:var(--tad-blue-500)"><circle cx="108" cy="65" r="2.5"/><circle cx="116" cy="65" r="2.5"/><circle cx="124" cy="65" r="2.5"/><circle cx="132" cy="65" r="2.5"/><circle cx="108" cy="74" r="2.5"/><circle cx="116" cy="74" r="2.5"/></g><circle cx="124" cy="74" r="4" style="fill:var(--tad-green-700)"/><rect x="100" y="90" width="40" height="5" rx="2.5" style="fill:var(--ink-300)"/><rect x="100" y="100" width="28" height="5" rx="2.5" style="fill:var(--ink-300)"/><rect x="100" y="114" width="40" height="14" rx="4" style="fill:var(--tad-blue-700)"/><circle cx="160" cy="44" r="20" style="fill:var(--tad-green-700)"/><path d="m151 44 6 6 12-12" style="stroke:var(--surface)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M46 150V96" style="stroke:var(--ink-700)" stroke-width="4" stroke-linecap="round" fill="none"/><rect x="32" y="74" width="28" height="28" rx="6" style="fill:var(--tad-yellow-500)"/><path d="M39 84h9l4 4v5H39z" style="fill:var(--tad-blue-900)"/><circle cx="186" cy="118" r="5" style="fill:var(--tad-yellow-500)"/><circle cx="58" cy="40" r="4" style="fill:var(--tad-blue-500)"/></svg>
+              <h2 style="margin:var(--sp-6) 0 var(--sp-2);font-size:var(--fs-28)">Reserva en segundos</h2>
+              <p class="u-muted" style="margin:0;font-size:var(--fs-18);line-height:var(--lh-text)">Elige desde qué parada sales, adónde vas y a qué hora. Si lo prefieres, también puedes reservar por teléfono.</p>
+            </section>
+            <section style="flex:0 0 100%;display:flex;flex-direction:column;justify-content:center;padding:var(--sp-4) var(--sp-6);text-align:center" aria-roledescription="lámina" aria-label="2 de 3" data-lamina>
+              <svg style="display:block;width:100%;max-width:280px;height:auto;margin:0 auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 180" aria-hidden="true" focusable="false"><rect x="20" y="22" width="200" height="136" rx="16" style="fill:var(--tad-green-100)"/><path d="M20 108c40-10 62 14 100 4s58-34 100-26" style="stroke:var(--surface)" stroke-width="14" fill="none"/><path d="M84 22c-6 40 18 66 8 136" style="stroke:var(--surface)" stroke-width="10" fill="none"/><circle cx="176" cy="54" r="16" style="fill:var(--tad-green-300)"/><circle cx="196" cy="66" r="11" style="fill:var(--tad-green-300)"/><circle cx="44" cy="140" r="12" style="fill:var(--tad-green-300)"/><path d="M44 66c30 6 40 40 76 44s48-26 72-30" style="stroke:var(--tad-blue-700)" stroke-width="4" stroke-dasharray="2 9" stroke-linecap="round" fill="none"/><circle cx="44" cy="66" r="7" style="fill:var(--surface);stroke:var(--ink-700)" stroke-width="3"/><g transform="translate(96 88)"><circle cx="18" cy="18" r="22" style="fill:var(--tad-blue-700);stroke:var(--surface)" stroke-width="4"/><path d="M8 11h14l6 6v6a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V12a1 1 0 0 1 1-1z" style="fill:var(--surface)"/><circle cx="13" cy="25" r="3" style="fill:var(--tad-blue-900)"/><circle cx="24" cy="25" r="3" style="fill:var(--tad-blue-900)"/></g><path d="M192 34c-11 0-19 8-19 19 0 14 19 31 19 31s19-17 19-31c0-11-8-19-19-19z" style="fill:var(--tad-orange-600)"/><circle cx="192" cy="53" r="7" style="fill:var(--surface)"/><rect x="146" y="120" width="62" height="26" rx="13" style="fill:var(--surface)"/><circle cx="160" cy="133" r="6" style="fill:var(--tad-green-700)"/><rect x="171" y="129" width="28" height="8" rx="4" style="fill:var(--tad-blue-900)"/></svg>
+              <h2 style="margin:var(--sp-6) 0 var(--sp-2);font-size:var(--fs-28)">Sigue tu vehículo</h2>
+              <p class="u-muted" style="margin:0;font-size:var(--fs-18);line-height:var(--lh-text)">Mira en el mapa por dónde va y a qué hora llega a tu parada. Si hay un retraso, te avisamos.</p>
+            </section>
+            <section style="flex:0 0 100%;display:flex;flex-direction:column;justify-content:center;padding:var(--sp-4) var(--sp-6);text-align:center" aria-roledescription="lámina" aria-label="3 de 3" data-lamina>
+              <svg style="display:block;width:100%;max-width:280px;height:auto;margin:0 auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 180" aria-hidden="true" focusable="false"><circle cx="120" cy="92" r="78" style="fill:var(--tad-orange-100)"/><path d="M28 150h184" style="stroke:var(--ink-300)" stroke-width="3" stroke-linecap="round" fill="none"/><g transform="rotate(-10 96 92)"><rect x="42" y="58" width="108" height="68" rx="10" style="fill:var(--tad-blue-700)"/><rect x="42" y="72" width="108" height="12" style="fill:var(--tad-blue-900)"/><rect x="54" y="96" width="20" height="14" rx="3" style="fill:var(--tad-yellow-500)"/><rect x="84" y="102" width="50" height="6" rx="3" style="fill:var(--tad-blue-100)"/></g><rect x="138" y="46" width="54" height="98" rx="10" style="fill:var(--tad-blue-900)"/><rect x="143" y="56" width="44" height="78" rx="4" style="fill:var(--surface)"/><circle cx="165" cy="84" r="13" style="fill:var(--tad-green-700)"/><path d="m158 84 5 5 9-9" style="stroke:var(--surface)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/><rect x="150" y="106" width="30" height="5" rx="2.5" style="fill:var(--ink-300)"/><rect x="155" y="116" width="20" height="5" rx="2.5" style="fill:var(--ink-300)"/><circle cx="70" cy="140" r="16" style="fill:var(--tad-yellow-500)"/><circle cx="70" cy="140" r="10" style="fill:none;stroke:var(--tad-yellow-800)" stroke-width="2.5"/><circle cx="98" cy="146" r="11" style="fill:var(--tad-yellow-500)"/><circle cx="98" cy="146" r="6" style="fill:none;stroke:var(--tad-yellow-800)" stroke-width="2"/><circle cx="204" cy="40" r="5" style="fill:var(--tad-blue-500)"/></svg>
+              <h2 style="margin:var(--sp-6) 0 var(--sp-2);font-size:var(--fs-28)">Paga como quieras</h2>
+              <p class="u-muted" style="margin:0;font-size:var(--fs-18);line-height:var(--lh-text)">Con tarjeta, con Bizum o al subir. Si eres mayor, estudiante o PMR, tu bonificación se aplica sola.</p>
+            </section>
+          </div>
+        </div>
+
+        <div style="flex:none;padding:0 var(--sp-6) var(--sp-10)">
+          <div style="display:flex;justify-content:center" data-puntos>
+            <button type="button" style="display:inline-flex;align-items:center;justify-content:center;width:var(--touch-min);height:var(--touch-min);border:0;background:none;cursor:pointer" aria-label="Lámina 1 de 3" data-punto="0"><span style="display:block;width:var(--dot);height:var(--dot);border-radius:var(--r-pill);background:var(--ink-300);transition:width var(--t-fast)"></span></button>
+            <button type="button" style="display:inline-flex;align-items:center;justify-content:center;width:var(--touch-min);height:var(--touch-min);border:0;background:none;cursor:pointer" aria-label="Lámina 2 de 3" data-punto="1"><span style="display:block;width:var(--dot);height:var(--dot);border-radius:var(--r-pill);background:var(--ink-300);transition:width var(--t-fast)"></span></button>
+            <button type="button" style="display:inline-flex;align-items:center;justify-content:center;width:var(--touch-min);height:var(--touch-min);border:0;background:none;cursor:pointer" aria-label="Lámina 3 de 3" data-punto="2"><span style="display:block;width:var(--dot);height:var(--dot);border-radius:var(--r-pill);background:var(--ink-300);transition:width var(--t-fast)"></span></button>
+          </div>
+          <button class="c-btn c-btn--primary c-btn--lg c-btn--block" type="button" style="margin-top:var(--sp-3)" data-siguiente>Siguiente <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          <a class="c-btn c-btn--primary c-btn--lg c-btn--block" href="home.html" style="margin-top:var(--sp-3);display:none" data-empezar>Empezar <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+      <span class="c-phone-frame__home" aria-hidden="true"></span>
+    </div>
+  </div>
+  <p class="mob-caption">App del viajero · Bienvenida</p>
+</main>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  function $(sel) { return document.querySelector(sel); }
+  var laminas = Array.prototype.slice.call(document.querySelectorAll("[data-lamina]"));
+  var puntos = Array.prototype.slice.call(document.querySelectorAll("[data-punto]"));
+  var pista = $("[data-pista]"), visor = $("[data-laminas]");
+  var siguiente = $("[data-siguiente]"), empezar = $("[data-empezar]"), saltar = $("[data-saltar]");
+  var actual = 0;
+
+  function ir(n) {
+    actual = Math.max(0, Math.min(laminas.length - 1, n));
+    pista.style.transform = "translateX(" + (-100 * actual) + "%)";
+    laminas.forEach(function (l, i) { l.inert = i !== actual; l.setAttribute("aria-hidden", String(i !== actual)); });
+    puntos.forEach(function (p, i) {
+      var activo = i === actual, marca = p.firstElementChild;
+      if (activo) p.setAttribute("aria-current", "step"); else p.removeAttribute("aria-current");
+      marca.style.width = activo ? "var(--sp-6)" : "var(--dot)";
+      marca.style.background = activo ? "var(--color-primary)" : "var(--ink-300)";
+    });
+    var ultima = actual === laminas.length - 1;
+    siguiente.style.display = ultima ? "none" : "";
+    empezar.style.display = ultima ? "" : "none";
+    saltar.style.visibility = ultima ? "hidden" : "visible";
+  }
+
+  siguiente.addEventListener("click", function () { ir(actual + 1); if (actual === laminas.length - 1) empezar.focus(); });
+  puntos.forEach(function (p, i) { p.addEventListener("click", function () { ir(i); }); });
+
+  // Deslizamiento con el dedo o arrastrando con el ratón
+  var x0 = null;
+  visor.addEventListener("pointerdown", function (e) { x0 = e.clientX; });
+  visor.addEventListener("pointerup", function (e) {
+    if (x0 == null) return;
+    var dx = e.clientX - x0;
+    x0 = null;
+    if (Math.abs(dx) > 40) ir(actual + (dx < 0 ? 1 : -1));
+  });
+  visor.addEventListener("pointercancel", function () { x0 = null; });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "ArrowRight") ir(actual + 1);
+    if (e.key === "ArrowLeft") ir(actual - 1);
+  });
+  ir(0);
+});
+</script>
+</body>
+</html>

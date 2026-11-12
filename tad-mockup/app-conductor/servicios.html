@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Servicios del día · App del conductor · Plataforma Digital TAD</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap">
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/layout-mobile.css">
+<script defer src="../js/data.js"></script>
+<script defer src="../js/datos/apps.js"></script>
+<script defer src="../js/ui.js"></script>
+<script defer src="../js/nav.js"></script>
+</head>
+<body class="mob-body" data-module="conductor" data-page="app-conductor-servicios">
+<a class="c-index-link c-index-link--floating" href="../index.html">← Índice del mockup</a>
+<main class="mob-stage">
+  <div class="c-phone-frame app--driver" data-accent="conductor">
+    <div class="c-phone-frame__screen">
+      <span class="c-phone-frame__notch" aria-hidden="true"></span>
+      <div class="c-phone-frame__status" aria-hidden="true"><span data-tad-hora></span><span class="c-phone-frame__indicators"><span class="c-phone-frame__signal"><i></i><i></i><i></i><i></i></span><span class="c-phone-frame__battery"></span></span></div>
+      <header class="app-bar">
+        <h1 class="app-bar__title">Servicios del día</h1>
+        <nav aria-label="Menú de la app" style="display:flex;gap:var(--sp-1)">
+          <a class="c-btn c-btn--ghost" href="servicios.html" aria-current="page" style="flex-direction:column;gap:2px;padding:0 var(--sp-2);font-size:var(--fs-12);background:var(--on-dark-active)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon c-icon--lg" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="18" r="2.25"/><circle cx="18" cy="6" r="2.25"/><path d="M8.25 18H15a3 3 0 0 0 0-6H9a3 3 0 0 1 0-6h6.75"/></svg><span>Servicios</span></a>
+          <a class="c-btn c-btn--ghost" href="incidencias.html" style="flex-direction:column;gap:2px;padding:0 var(--sp-2);font-size:var(--fs-12)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon c-icon--lg" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9.8 4h4.4l4 15H5.8z"/><path d="M8 11h8M6.9 15.2h10.2M3.5 19.5h17"/></svg><span>Incidencias</span></a>
+        </nav>
+      </header>
+      <div class="c-phone-frame__content">
+        <div class="app-content" style="display:grid;gap:var(--sp-4)">
+          <div class="c-card"><div class="c-card__body" style="display:flex;align-items:center;gap:var(--sp-3);padding:var(--sp-4)">
+            <span class="c-avatar c-avatar--lg c-avatar--orange" aria-hidden="true" data-iniciales></span>
+            <div style="min-width:0">
+              <p style="margin:0;font-size:var(--fs-22);font-weight:var(--fw-bold);line-height:var(--lh-title)" data-nombre></p>
+              <p style="margin:var(--sp-1) 0 0;font-size:var(--fs-16);color:var(--ink-100)" data-cabecera></p>
+            </div>
+          </div></div>
+
+          <section aria-labelledby="t-servicios">
+            <h2 class="app-section__title" id="t-servicios" style="color:var(--ink-300)" data-titulo-lista>Hoy</h2>
+            <ul style="list-style:none;margin:0;padding:0;display:grid;gap:var(--sp-3)" data-servicios></ul>
+          </section>
+
+          <a class="c-btn c-btn--primary c-btn--block" href="navegacion.html" data-iniciar><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon c-icon--lg" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg> <span data-iniciar-texto></span></a>
+          <button class="c-btn c-btn--secondary c-btn--block" type="button" data-central><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon c-icon--lg" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5.2 4h3.3l1.6 4.4-2.1 1.4a11.5 11.5 0 0 0 6.2 6.2l1.4-2.1 4.4 1.6v3.3a1.6 1.6 0 0 1-1.7 1.6A16 16 0 0 1 3.6 5.7 1.6 1.6 0 0 1 5.2 4z"/></svg> Llamar a la central</button>
+        </div>
+      </div>
+      <span class="c-phone-frame__home" aria-hidden="true"></span>
+    </div>
+  </div>
+  <p class="mob-caption">App del conductor · Servicios del día</p>
+</main>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var f = TAD.fmt, h = f.html, ahora = TAD.momento(), t = TAD.minutos(ahora), apps = TAD.apps;
+  function $(sel) { return document.querySelector(sel); }
+
+  var c = TAD.conductor(apps.conductor.id);
+  var ruta = TAD.ruta(c.rutaHoy), v = TAD.vehiculo(c.vehiculoHoy);
+  var actual = TAD.servicioActual(ruta.id, ahora);
+
+  $("[data-iniciales]").textContent = f.iniciales(c.nombre);
+  $("[data-nombre]").textContent = c.nombre;
+  $("[data-cabecera]").textContent = v.matricula + " · Turno de " + c.turno.toLowerCase();
+  $("[data-titulo-lista]").textContent = "Ruta " + ruta.id + " · " + f.fechaLarga(TAD.fecha).replace(/ de \d{4}$/, "");
+
+  $("[data-servicios]").innerHTML = ruta.servicios.map(function (s) {
+    var ini = TAD.minutos(s.inicio), fin = TAD.minutos(s.fin);
+    var estado = fin < t ? "Finalizado" : (ini <= t ? "En curso" : "Programado");
+    var variante = estado === "Finalizado" ? "neutral" : (estado === "En curso" ? "info" : "success");
+    var viajeros = s.paradas.reduce(function (n, p) { return n + TAD.suma(p.suben.map(TAD.reserva)); }, 0);
+    var primera = TAD.parada(s.paradas[0].parada).nombre, ultima = TAD.parada(s.paradas[s.paradas.length - 1].parada).nombre;
+    var retraso = estado === "En curso" && ruta.retrasoMin ? '<span class="c-badge c-badge--warning">+' + ruta.retrasoMin + " min</span>" : "";
+    var enCurso = s.id === actual.id && estado === "En curso";
+    return '<li class="c-card" style="' + (enCurso ? "border:var(--bw-strong) solid var(--tad-yellow-500)" : "") + (estado === "Finalizado" ? ";color:var(--ink-300)" : "") + '"><div class="c-card__body" style="padding:var(--sp-4)">' +
+      '<div style="display:flex;justify-content:space-between;align-items:center;gap:var(--sp-2)"><span style="font-size:var(--fs-22);font-weight:var(--fw-bold);font-variant-numeric:tabular-nums">' + s.inicio + "–" + s.fin + "</span>" +
+      '<span style="display:flex;gap:var(--sp-1)">' + retraso + '<span class="c-badge c-badge--' + variante + '">' + estado + "</span></span></div>" +
+      '<p style="margin:var(--sp-1) 0 0;font-weight:var(--fw-semibold)">' + h(s.nombre) + "</p>" +
+      '<p style="margin:var(--sp-1) 0 0;font-size:var(--fs-16)">' + h(primera) + " → " + h(ultima) + "</p>" +
+      '<p style="margin:var(--sp-1) 0 0;font-size:var(--fs-16);color:var(--color-text-muted)">' + viajeros + " viajeros · " + s.paradas.length + " paradas</p>" +
+      "</div></li>";
+  }).join("");
+
+  var enMarcha = TAD.minutos(actual.inicio) <= t;
+  $("[data-iniciar-texto]").textContent = (enMarcha ? "Continuar servicio " : "Iniciar servicio ") + ruta.id;
+  $("[data-central]").addEventListener("click", function () {
+    TADUI.toast("Llamando a la " + apps.central.nombre + " (" + apps.central.telefono + ").", { titulo: "Llamando…" });
+  });
+});
+</script>
+</body>
+</html>

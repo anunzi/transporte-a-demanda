@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Inicio · App del viajero · Plataforma Digital TAD</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap">
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/layout-mobile.css">
+<script defer src="../js/data.js"></script>
+<script defer src="../js/datos/apps.js"></script>
+<script defer src="../js/ui.js"></script>
+<script defer src="../js/nav.js"></script>
+</head>
+<body class="mob-body" data-module="viajero" data-page="app-viajero-home">
+<a class="c-index-link c-index-link--floating" href="../index.html">← Índice del mockup</a>
+<main class="mob-stage">
+  <div class="c-phone-frame" data-accent="viajero">
+    <div class="c-phone-frame__screen">
+      <span class="c-phone-frame__notch" aria-hidden="true"></span>
+      <div class="c-phone-frame__status" aria-hidden="true"><span data-tad-hora></span><span class="c-phone-frame__indicators"><span class="c-phone-frame__signal"><i></i><i></i><i></i><i></i></span><span class="c-phone-frame__battery"></span></span></div>
+      <header class="app-bar app-bar--brand">
+        <span style="flex:1;display:flex"><svg class="app-bar__logo" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 113 40"><g style="fill:var(--logo-route);stroke:var(--logo-route)"><path d="M4 34.5h32" fill="none" stroke-width="2.6" stroke-linecap="round"/><circle cx="4.5" cy="34.5" r="3.2"/><circle cx="35.5" cy="34.5" r="3.2"/></g><g fill="currentColor"><path fill-rule="evenodd" d="M6 10.5a2.5 2.5 0 0 1 2.5-2.5H24l8 8v7.5a1.5 1.5 0 0 1-1.5 1.5H7.5A1.5 1.5 0 0 1 6 23.5zM9 11h7v5H9zM18.5 11h4.3l5 5h-9.3z"/><circle cx="12" cy="25.5" r="3.6"/><circle cx="26" cy="25.5" r="3.6"/></g><circle cx="12" cy="25.5" r="1.4" style="fill:var(--logo-bg)"/><circle cx="26" cy="25.5" r="1.4" style="fill:var(--logo-bg)"/><g fill="currentColor"><g transform="translate(50 9)"><path d="M0 0h17v5h-6v17H6V5H0z"/></g><g transform="translate(70 9)"><path fill-rule="evenodd" d="M7 0h5.4l7.3 22h-5.3l-1.3-4.2H6.3L5 22H-.3zM9.7 6.6 7.6 13.4h4.3z"/></g><g transform="translate(93 9)"><path fill-rule="evenodd" d="M0 0h7.5a11 11 0 0 1 0 22H0zM5 5v12h2.3a6 6 0 0 0 0-12z"/></g></g></svg></span>
+        <button class="c-btn c-btn--ghost c-btn--icon" type="button" aria-label="Avisos" data-avisos><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon c-icon--lg" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16v-5a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 0 0 4 0"/></svg></button>
+      </header>
+      <div class="c-phone-frame__content">
+        <div class="app-content">
+          <h1 style="margin:0 0 var(--sp-1);font-size:var(--fs-28)" data-saludo>Hola</h1>
+          <p class="u-muted" style="margin:0" data-fecha></p>
+
+          <div class="c-alert c-alert--warning" role="status" style="margin-top:var(--sp-4);display:none" data-aviso>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 4.5 2.8 17.7A2 2 0 0 0 4.5 20.7h15a2 2 0 0 0 1.7-3L13.7 4.5a2 2 0 0 0-3.4 0z"/><path d="M12 9.5v4.5M12 17.2v.1"/></svg>
+            <div class="c-alert__body"><strong class="c-alert__title" data-aviso-titulo></strong><span data-aviso-texto></span></div>
+          </div>
+
+          <section class="app-section" aria-labelledby="t-proximo">
+            <h2 class="app-section__title" id="t-proximo">Tu próximo viaje</h2>
+            <div class="c-card"><div class="c-card__body" style="padding:var(--sp-4)">
+              <div style="display:flex;justify-content:space-between;align-items:center;gap:var(--sp-2)">
+                <span data-viaje-estado></span>
+                <span class="u-muted u-small" data-viaje-codigo></span>
+              </div>
+              <p style="display:flex;align-items:baseline;gap:var(--sp-3);margin:var(--sp-2) 0 0">
+                <span style="font-size:var(--fs-36);font-weight:var(--fw-bold);line-height:var(--lh-title)" data-viaje-hora></span>
+                <span style="font-weight:var(--fw-semibold);color:var(--tad-orange-800)" data-viaje-retraso></span>
+              </p>
+              <dl class="c-datalist" style="margin:var(--sp-3) 0 var(--sp-4)">
+                <dt>Recogida</dt><dd data-viaje-origen></dd>
+                <dt>Destino</dt><dd data-viaje-destino></dd>
+                <dt>Vehículo</dt><dd data-viaje-vehiculo></dd>
+              </dl>
+              <div style="display:grid;gap:var(--sp-2)">
+                <a class="c-btn c-btn--primary c-btn--block" href="seguimiento.html"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6.5 9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20z"/><path d="M9 4v13.5M15 6.5V20"/></svg> Seguir el vehículo</a>
+                <a class="c-btn c-btn--secondary c-btn--block" href="confirmacion.html"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg> Ver mi billete</a>
+              </div>
+            </div></div>
+          </section>
+
+          <section class="app-section" aria-labelledby="t-rapida">
+            <h2 class="app-section__title" id="t-rapida">Reserva rápida</h2>
+            <form class="c-card" action="confirmacion.html"><div class="c-card__body" style="padding:var(--sp-4);display:grid;gap:var(--sp-3)">
+              <div class="c-field"><label class="c-field__label" for="r-origen">Desde</label><select class="c-select" id="r-origen" data-paradas></select></div>
+              <div class="c-field"><label class="c-field__label" for="r-destino">Hasta</label><select class="c-select" id="r-destino" data-paradas></select></div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-3)">
+                <div class="c-field"><label class="c-field__label" for="r-dia">Día</label><select class="c-select" id="r-dia"><option>Hoy</option><option>Mañana</option><option>Pasado mañana</option></select></div>
+                <div class="c-field"><label class="c-field__label" for="r-hora">Hora</label><select class="c-select" id="r-hora" data-horas></select></div>
+              </div>
+              <label class="c-checkbox"><input type="checkbox" id="r-acomp"> Viajo con acompañante</label>
+              <p style="margin:0" class="u-small" aria-live="polite" data-precio></p>
+              <button class="c-btn c-btn--primary c-btn--block" type="submit"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.4-4.4"/></svg> Buscar plaza</button>
+            </div></form>
+          </section>
+
+          <section class="app-section" aria-labelledby="t-atajos" style="padding-bottom:var(--sp-4)">
+            <h2 class="app-section__title" id="t-atajos">Atajos</h2>
+            <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--sp-2)" data-atajos></div>
+          </section>
+        </div>
+      </div>
+      <nav class="app-tabbar" aria-label="Menú de la app">
+        <a class="app-tabbar__tab" href="home.html" data-page="app-viajero-home"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.5V20h5v-6h3v6h5V9.5"/></svg><span>Inicio</span></a>
+        <a class="app-tabbar__tab" href="confirmacion.html" data-page="app-viajero-confirmacion"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg><span>Reservar</span></a>
+        <a class="app-tabbar__tab" href="seguimiento.html" data-page="app-viajero-seguimiento"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg><span>Mis viajes</span></a>
+        <a class="app-tabbar__tab" href="perfil.html" data-page="app-viajero-perfil"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0"/></svg><span>Perfil</span></a>
+      </nav>
+      <span class="c-phone-frame__home" aria-hidden="true"></span>
+    </div>
+  </div>
+  <p class="mob-caption">App del viajero · Inicio</p>
+</main>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var f = TAD.fmt, h = f.html, apps = TAD.apps;
+  var ICONO = { ruta: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon c-icon--lg" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="18" r="2.25"/><circle cx="18" cy="6" r="2.25"/><path d="M8.25 18H15a3 3 0 0 0 0-6H9a3 3 0 0 1 0-6h6.75"/></svg>', euro: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon c-icon--lg" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 6.8a7 7 0 1 0 0 10.4"/><path d="M4 10h9M4 14h9"/></svg>', telefono: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon c-icon--lg" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5.2 4h3.3l1.6 4.4-2.1 1.4a11.5 11.5 0 0 0 6.2 6.2l1.4-2.1 4.4 1.6v3.3a1.6 1.6 0 0 1-1.7 1.6A16 16 0 0 1 3.6 5.7 1.6 1.6 0 0 1 5.2 4z"/></svg>' };
+  function $(sel) { return document.querySelector(sel); }
+  function poner(sel, texto) { var el = $(sel); if (el) el.textContent = texto; }
+
+  var u = TAD.usuario(apps.viajero.usuario);
+  var r = TAD.reservaReferencia();
+  var ruta = TAD.ruta(r.ruta), serv = TAD.servicio(r.servicio);
+  var paso = serv.paradas.filter(function (p) { return p.parada === r.origen; })[0];
+  var v = TAD.vehiculo(ruta.vehiculo);
+  var fecha = f.fechaLarga(TAD.fecha).replace(/ de \d{4}$/, "");
+
+  poner("[data-saludo]", "Hola, " + u.nombre.split(" ")[0]);
+  poner("[data-fecha]", fecha.charAt(0).toUpperCase() + fecha.slice(1));
+
+  // Próximo viaje (la reserva de referencia)
+  $("[data-viaje-estado]").innerHTML = f.badge(r.estado);
+  poner("[data-viaje-codigo]", r.codigo);
+  poner("[data-viaje-hora]", paso.prevista);
+  if (paso.retraso) poner("[data-viaje-retraso]", "Nueva hora: " + paso.estimada);
+  poner("[data-viaje-origen]", TAD.parada(r.origen).nombre);
+  poner("[data-viaje-destino]", TAD.parada(r.destino).nombre);
+  poner("[data-viaje-vehiculo]", v.matricula + " · " + v.modelo);
+
+  // Aviso de la incidencia que afecta a su reserva
+  var inc = TAD.incidencias.filter(function (i) { return i.estado === "Abierta" && (i.afectados || []).indexOf(r.codigo) !== -1; })[0];
+  if (inc) {
+    poner("[data-aviso-titulo]", "Tu viaje va con " + paso.retraso + " min de retraso");
+    poner("[data-aviso-texto]", TAD.obras.nombre + ". Te recogemos a las " + paso.estimada + " en " + TAD.parada(r.origen).nombre + ".");
+    $("[data-aviso]").style.display = "";
+  }
+  var avisos = $("[data-avisos]");
+  avisos.setAttribute("data-toast", inc ? inc.titulo : "No tienes avisos nuevos.");
+  avisos.setAttribute("data-toast-title", "Avisos");
+
+  // Reserva rápida: paradas, horas y precio con su bonificación
+  document.querySelectorAll("[data-paradas]").forEach(function (sel, i) {
+    sel.innerHTML = TAD.paradas.map(function (p) {
+      var elegida = i === 0 ? p.id === r.origen : p.id === r.destino;
+      return '<option value="' + p.id + '"' + (elegida ? " selected" : "") + ">" + h(p.nombre) + "</option>";
+    }).join("");
+  });
+  var horas = [];
+  for (var m = TAD.minutos("07:00"); m <= TAD.minutos("19:00"); m += 30) horas.push(f.hora(m));
+  $("[data-horas]").innerHTML = horas.map(function (x) { return "<option" + (x === "11:00" ? " selected" : "") + ">" + x + "</option>"; }).join("");
+  function precio() {
+    var o = $("#r-origen").value, d = $("#r-destino").value;
+    var t = TAD.tarifa(o, d, u.perfil), n = $("#r-acomp").checked ? 2 : 1;
+    var ac = $("#r-acomp").checked ? TAD.tarifa(o, d, "general").importe : 0;
+    $("[data-precio]").innerHTML = o === d ? "Elige dos paradas distintas." :
+      "Precio: <strong>" + f.euros(t.importe + ac) + "</strong>" + (t.pct ? " · bonificación del " + f.porcentaje(t.pct) + " aplicada" : "") +
+      (n > 1 ? " (acompañante con tarifa general)" : "");
+  }
+  ["#r-origen", "#r-destino", "#r-acomp"].forEach(function (s) { $(s).addEventListener("change", precio); });
+  precio();
+
+  // Atajos
+  var central = apps.central;
+  $("[data-atajos]").innerHTML = apps.viajero.atajos.map(function (a) {
+    var cont = ICONO[a.icono] + '<span style="white-space:normal;text-align:center;line-height:var(--lh-title)">' + h(a.titulo) + "</span>";
+    var estilo = ' style="flex-direction:column;height:auto;min-height:88px;padding:var(--sp-3) var(--sp-2);font-size:var(--fs-14)"';
+    if (a.id === "bonificaciones") return '<a class="c-btn c-btn--secondary"' + estilo + ' href="perfil.html">' + cont + "</a>";
+    var aviso = a.id === "repetir"
+      ? 'data-toast-title="Viaje repetido" data-toast="Buscamos plaza para el mismo trayecto que tu último viaje: ' + h(TAD.parada(r.origen).nombre) + ' → ' + h(TAD.parada(r.destino).nombre) + '."'
+      : 'data-toast-title="Ayuda" data-toast="Llama a la ' + h(central.nombre) + ' al ' + h(central.telefono) + '. Te atendemos todos los días de 7:00 a 21:00."';
+    return '<button class="c-btn c-btn--secondary" type="button"' + estilo + " " + aviso + ">" + cont + "</button>";
+  }).join("");
+});
+</script>
+</body>
+</html>

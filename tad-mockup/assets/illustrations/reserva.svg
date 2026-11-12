@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 180" aria-hidden="true" focusable="false">
+  <circle cx="120" cy="92" r="78" style="fill:var(--tad-blue-100)"/>
+  <path d="M28 150h184" style="stroke:var(--ink-300)" stroke-width="3" stroke-linecap="round" fill="none"/>
+  <rect x="86" y="26" width="68" height="124" rx="12" style="fill:var(--tad-blue-900)"/>
+  <rect x="92" y="38" width="56" height="100" rx="5" style="fill:var(--surface)"/>
+  <rect x="100" y="48" width="40" height="34" rx="4" style="fill:var(--tad-blue-100)"/>
+  <rect x="100" y="48" width="40" height="9" rx="3" style="fill:var(--tad-blue-700)"/>
+  <g style="fill:var(--tad-blue-500)"><circle cx="108" cy="65" r="2.5"/><circle cx="116" cy="65" r="2.5"/><circle cx="124" cy="65" r="2.5"/><circle cx="132" cy="65" r="2.5"/><circle cx="108" cy="74" r="2.5"/><circle cx="116" cy="74" r="2.5"/></g>
+  <circle cx="124" cy="74" r="4" style="fill:var(--tad-green-700)"/>
+  <rect x="100" y="90" width="40" height="5" rx="2.5" style="fill:var(--ink-300)"/>
+  <rect x="100" y="100" width="28" height="5" rx="2.5" style="fill:var(--ink-300)"/>
+  <rect x="100" y="114" width="40" height="14" rx="4" style="fill:var(--tad-blue-700)"/>
+  <circle cx="160" cy="44" r="20" style="fill:var(--tad-green-700)"/>
+  <path d="m151 44 6 6 12-12" style="stroke:var(--surface)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <path d="M46 150V96" style="stroke:var(--ink-700)" stroke-width="4" stroke-linecap="round" fill="none"/>
+  <rect x="32" y="74" width="28" height="28" rx="6" style="fill:var(--tad-yellow-500)"/>
+  <path d="M39 84h9l4 4v5H39z" style="fill:var(--tad-blue-900)"/>
+  <circle cx="186" cy="118" r="5" style="fill:var(--tad-yellow-500)"/>
+  <circle cx="58" cy="40" r="4" style="fill:var(--tad-blue-500)"/>
+</svg>

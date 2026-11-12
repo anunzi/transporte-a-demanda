@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Seguimiento · App del viajero · Plataforma Digital TAD</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/layout-mobile.css">
+<script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script defer src="../js/data.js"></script>
+<script defer src="../js/datos/apps.js"></script>
+<script defer src="../js/ui.js"></script>
+<script defer src="../js/nav.js"></script>
+<script defer src="../js/maps.js"></script>
+</head>
+<body class="mob-body" data-module="viajero" data-page="app-viajero-seguimiento" data-momento="seguimiento">
+<a class="c-index-link c-index-link--floating" href="../index.html">← Índice del mockup</a>
+<main class="mob-stage">
+  <div class="c-phone-frame" data-accent="viajero">
+    <div class="c-phone-frame__screen">
+      <span class="c-phone-frame__notch" aria-hidden="true"></span>
+      <div class="c-phone-frame__status" aria-hidden="true"><span data-tad-hora></span><span class="c-phone-frame__indicators"><span class="c-phone-frame__signal"><i></i><i></i><i></i><i></i></span><span class="c-phone-frame__battery"></span></span></div>
+      <div class="c-phone-frame__content" style="overflow:hidden">
+        <h1 class="u-visually-hidden">Seguimiento de tu viaje</h1>
+        <div class="c-map c-map--full" id="mapa">
+          <div class="c-map__canvas"></div>
+          <div class="c-map__fallback"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon c-icon--lg" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6.5 9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20z"/><path d="M9 4v13.5M15 6.5V20"/></svg> Mapa no disponible</div>
+        </div>
+        <a class="c-btn c-btn--secondary c-btn--icon" href="home.html" aria-label="Volver al inicio" style="position:absolute;top:var(--sp-3);left:var(--sp-3);z-index:1000;box-shadow:var(--shadow-2);border-radius:50%"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon c-icon--lg" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></a>
+        <span class="c-badge c-badge--warning" style="position:absolute;top:calc(var(--sp-3) + var(--touch-min) + var(--sp-2));left:var(--sp-3);z-index:1000;box-shadow:var(--shadow-1);display:none" data-retraso></span>
+
+        <section aria-label="Tu vehículo" data-sheet style="position:absolute;left:0;right:0;bottom:0;z-index:1001;max-height:calc(100% - var(--sp-12));overflow:hidden;display:flex;flex-direction:column;background:var(--color-surface);border-radius:var(--r-lg) var(--r-lg) 0 0;box-shadow:var(--shadow-2);transition:transform var(--t-fast)">
+          <button type="button" aria-expanded="false" aria-controls="hoja-mas" data-tirador style="display:flex;align-items:center;justify-content:center;flex:none;width:100%;min-height:var(--touch-min);border:0;background:none;cursor:pointer;touch-action:none" aria-label="Mostrar más detalles del viaje">
+            <span aria-hidden="true" style="display:block;width:var(--sp-10);height:5px;border-radius:var(--r-pill);background:var(--ink-300)"></span>
+          </button>
+          <div data-sheet-resumen style="padding:0 var(--sp-4) var(--sp-4)">
+            <p class="u-muted" style="margin:0;font-size:var(--fs-14)" data-llega-a></p>
+            <p style="margin:0;font-size:var(--fs-28);font-weight:var(--fw-bold);line-height:var(--lh-title)" data-eta></p>
+            <div style="display:flex;align-items:center;gap:var(--sp-3);margin-top:var(--sp-3)">
+              <span class="c-avatar c-avatar--orange" aria-hidden="true" data-cond-ini></span>
+              <div style="flex:1;min-width:0">
+                <strong style="display:block" data-cond-nombre></strong>
+                <span class="u-muted" style="font-size:var(--fs-14)" data-cond-vehiculo></span>
+              </div>
+              <button class="c-btn c-btn--primary c-btn--icon" type="button" style="border-radius:50%" data-llamar><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon c-icon--lg" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5.2 4h3.3l1.6 4.4-2.1 1.4a11.5 11.5 0 0 0 6.2 6.2l1.4-2.1 4.4 1.6v3.3a1.6 1.6 0 0 1-1.7 1.6A16 16 0 0 1 3.6 5.7 1.6 1.6 0 0 1 5.2 4z"/></svg></button>
+            </div>
+          </div>
+          <div id="hoja-mas" data-sheet-mas style="flex:1;min-height:0;overflow-y:auto;padding:0 var(--sp-4) var(--sp-5);border-top:var(--bw) solid var(--color-border)">
+            <div style="margin-top:var(--sp-4)">
+              <div style="display:flex;justify-content:space-between;font-size:var(--fs-14);margin-bottom:var(--sp-1)"><span>Plazas ocupadas</span><strong data-plazas></strong></div>
+              <div class="c-progress" role="progressbar" aria-label="Plazas ocupadas" aria-valuemin="0" aria-valuemax="100" data-plazas-barra><span></span></div>
+            </div>
+            <h2 class="app-section__title" style="margin-top:var(--sp-5)">Tu viaje</h2>
+            <ol class="c-timeline" data-linea></ol>
+            <div style="display:grid;gap:var(--sp-2);margin-top:var(--sp-5)">
+              <button class="c-btn c-btn--secondary c-btn--block" type="button" data-central><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5.2 4h3.3l1.6 4.4-2.1 1.4a11.5 11.5 0 0 0 6.2 6.2l1.4-2.1 4.4 1.6v3.3a1.6 1.6 0 0 1-1.7 1.6A16 16 0 0 1 3.6 5.7 1.6 1.6 0 0 1 5.2 4z"/></svg> Llamar a la central</button>
+              <button class="c-btn c-btn--danger c-btn--block" type="button" data-cancelar><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6 6 18"/></svg> Cancelar viaje</button>
+            </div>
+          </div>
+        </section>
+      </div>
+      <nav class="app-tabbar" aria-label="Menú de la app">
+        <a class="app-tabbar__tab" href="home.html" data-page="app-viajero-home"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.5V20h5v-6h3v6h5V9.5"/></svg><span>Inicio</span></a>
+        <a class="app-tabbar__tab" href="confirmacion.html" data-page="app-viajero-confirmacion"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg><span>Reservar</span></a>
+        <a class="app-tabbar__tab" href="seguimiento.html" data-page="app-viajero-seguimiento"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg><span>Mis viajes</span></a>
+        <a class="app-tabbar__tab" href="perfil.html" data-page="app-viajero-perfil"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0"/></svg><span>Perfil</span></a>
+      </nav>
+      <span class="c-phone-frame__home" aria-hidden="true"></span>
+    </div>
+  </div>
+  <p class="mob-caption">App del viajero · Seguimiento</p>
+</main>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var f = TAD.fmt, h = f.html, apps = TAD.apps, ahora = TAD.momento();
+  function $(sel) { return document.querySelector(sel); }
+  function poner(sel, texto) { $(sel).textContent = texto; }
+
+  var r = TAD.reservaReferencia();
+  var ruta = TAD.ruta(r.ruta), serv = TAD.servicio(r.servicio);
+  var v = TAD.vehiculo(ruta.vehiculo), c = TAD.conductor(ruta.conductor);
+  var parada = TAD.parada(r.origen);
+  var paso = serv.paradas.filter(function (p) { return p.parada === r.origen; })[0];
+  var faltan = TAD.minutos(paso.estimada) - TAD.minutos(ahora);
+  var aBordo = ruta.seguimiento && ruta.seguimiento.hora === ahora ? ruta.seguimiento.aBordo : TAD.aBordo(ruta.id, ahora);
+
+  // Resumen de la hoja
+  poner("[data-llega-a]", "Llega a " + parada.nombre);
+  poner("[data-eta]", paso.estimada + " (" + faltan + " min)");
+  poner("[data-cond-ini]", f.iniciales(c.nombre));
+  poner("[data-cond-nombre]", c.nombre);
+  poner("[data-cond-vehiculo]", v.matricula + " · " + v.modelo);
+  $("[data-llamar]").setAttribute("aria-label", "Llamar a " + c.nombre.split(" ")[0] + ", la conductora");
+  if (paso.retraso) {
+    var b = $("[data-retraso]");
+    b.textContent = "Retraso de " + paso.retraso + " min · " + TAD.obras.nombre;
+    b.style.display = "";
+  }
+
+  // Detalle: plazas y línea de tiempo
+  var pct = Math.round(aBordo / v.plazas * 100);
+  poner("[data-plazas]", aBordo + "/" + v.plazas);
+  $("[data-plazas-barra]").setAttribute("aria-valuenow", pct);
+  $("[data-plazas-barra] span").style.width = pct + "%";
+  var desde = serv.paradas.map(function (p) { return p.parada; }).indexOf(r.origen) - 1;
+  var hasta = serv.paradas.map(function (p) { return p.parada; }).indexOf(r.destino);
+  $("[data-linea]").innerHTML = serv.paradas.slice(Math.max(0, desde), hasta + 1).map(function (p, k) {
+    var i = Math.max(0, desde) + k, est = TAD.estadoParada(serv, i, ahora);
+    var tuya = p.parada === r.origen ? " · te recoge aquí" : (p.parada === r.destino ? " · te bajas aquí" : "");
+    var clase = est === "realizada" ? " is-done" : (est === "proxima" ? " is-current" : "");
+    var desc = est === "realizada" ? "Ya ha pasado" : (p.retraso ? "Prevista " + p.prevista + " · " + p.retraso + " min tarde" : "A su hora");
+    return '<li class="c-timeline__item' + clase + '"><span class="c-timeline__time">' + p.estimada + '</span><div class="c-timeline__content">' +
+      '<span class="c-timeline__title">' + h(TAD.parada(p.parada).nombre) + h(tuya) + '</span><span class="c-timeline__desc">' + h(desc) + "</span></div></li>";
+  }).join("");
+
+  // Botones (avisos: nada se llama ni se cancela de verdad)
+  var central = apps.central;
+  $("[data-llamar]").addEventListener("click", function () {
+    TADUI.toast("Te ponemos en contacto con " + c.nombre + " a través de la central. Tu número no se le muestra.", { titulo: "Llamando…" });
+  });
+  $("[data-central]").addEventListener("click", function () {
+    TADUI.toast("Llamando a la " + central.nombre + " (" + central.telefono + ").", { titulo: "Llamando…" });
+  });
+  $("[data-cancelar]").addEventListener("click", function () {
+    TADUI.toast("Para cancelar el viaje " + r.codigo + " a menos de 30 minutos de la recogida, llama a la central.", { titulo: "Cancelar viaje", tipo: "danger" });
+  });
+
+  // Hoja inferior con dos posiciones: recogida (solo el resumen) y abierta
+  var hoja = $("[data-sheet]"), tirador = $("[data-tirador]"), resumen = $("[data-sheet-resumen]"), mas = $("[data-sheet-mas]");
+  function colocar() {
+    var abierta = tirador.getAttribute("aria-expanded") === "true";
+    var visible = resumen.offsetTop + resumen.offsetHeight;
+    hoja.style.transform = abierta ? "translateY(0)" : "translateY(" + Math.max(0, hoja.offsetHeight - visible) + "px)";
+    mas.inert = !abierta;
+    tirador.setAttribute("aria-label", abierta ? "Mostrar menos detalles" : "Mostrar más detalles del viaje");
+  }
+  function cambiar(abrir) {
+    tirador.setAttribute("aria-expanded", String(abrir == null ? tirador.getAttribute("aria-expanded") !== "true" : abrir));
+    colocar();
+  }
+  var inicioY = null, arrastrado = false;
+  tirador.addEventListener("pointerdown", function (e) { inicioY = e.clientY; arrastrado = false; });
+  tirador.addEventListener("pointerup", function (e) {
+    if (inicioY == null) return;
+    var dy = e.clientY - inicioY;
+    inicioY = null;
+    if (Math.abs(dy) > 24) { arrastrado = true; cambiar(dy < 0); }
+  });
+  tirador.addEventListener("click", function () { if (!arrastrado) cambiar(); arrastrado = false; });
+  colocar();
+  if (window.ResizeObserver) new ResizeObserver(colocar).observe(hoja);
+
+  // Mapa: ruta, obras, parada de Josefa y el vehículo, encuadrados por encima de la hoja
+  var m = TADMapa.crear("#mapa", { zoomControl: false });
+  m.obras().rutas({ ids: [ruta.id] }).paradas({ soloRuta: ruta.id, resaltar: r.origen }).vehiculos({ ids: [v.matricula], seleccionar: v.matricula });
+  if (m.disponible) {
+    m.leaflet.attributionControl.setPosition("topright");
+    var pos = v.posicionSeguimiento || v.posicion;
+    var encuadre = function () {
+      m.leaflet.invalidateSize();
+      m.leaflet.fitBounds(L.latLngBounds([pos, parada.coord]), { paddingTopLeft: [50, 90], paddingBottomRight: [50, resumen.offsetTop + resumen.offsetHeight + 30], maxZoom: 15 });
+    };
+    encuadre();
+    window.addEventListener("load", encuadre);
+  }
+});
+</script>
+</body>
+</html>
