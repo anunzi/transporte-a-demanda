@@ -1,0 +1,177 @@
+<!--ACCIONES-->
+<span class="c-badge c-badge--neutral c-badge--plain" style="font-size:var(--fs-14);padding:var(--sp-2) var(--sp-3)">{{i:reloj}} <span data-tad-reloj></span></span>
+<a class="c-btn c-btn--secondary" href="../motor/rutas.html">{{i:ruta}} Rutas del día</a>
+<a class="c-btn c-btn--primary" href="incidencias.html">{{i:incidencia}} Incidencias</a>
+<!--MAIN-->
+<div class="bo-grid bo-grid--map">
+  <section class="bo-sticky" aria-labelledby="t-mapa">
+    <h2 class="u-visually-hidden" id="t-mapa">Mapa de operación</h2>
+    <div class="c-map bo-map-tall" id="mapa">
+      <div class="c-map__canvas"></div>
+      <div class="c-map__fallback">{{i:mapa:lg}}<span>Mapa no disponible</span></div>
+      <div class="c-map__legend" aria-label="Leyenda del mapa">
+        <span class="c-map__legend-item"><span class="c-map__swatch c-map__swatch--servicio"></span>En servicio</span>
+        <span class="c-map__legend-item"><span class="c-map__swatch c-map__swatch--retraso"></span>Con retraso</span>
+        <span class="c-map__legend-item"><span class="c-map__swatch c-map__swatch--parado"></span>Parado en base</span>
+        <span class="c-map__legend-item"><span class="c-map__swatch c-map__swatch--parada"></span>Parada</span>
+        <span class="c-map__legend-item"><span class="c-map__swatch c-map__swatch--obras"></span>Obras</span>
+        <span class="c-map__legend-item"><span class="c-map__swatch c-map__swatch--line c-map__swatch--r1"></span>Ruta R1</span>
+        <span class="c-map__legend-item"><span class="c-map__swatch c-map__swatch--line c-map__swatch--r2"></span>Ruta R2</span>
+        <span class="c-map__legend-item"><span class="c-map__swatch c-map__swatch--line c-map__swatch--r3"></span>Ruta R3</span>
+        <span class="c-map__legend-item"><span class="c-map__swatch c-map__swatch--line c-map__swatch--r4"></span>Ruta R4</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="bo-stack">
+    <section aria-labelledby="t-kpis">
+      <h2 class="u-visually-hidden" id="t-kpis">Indicadores del día</h2>
+      <div class="bo-grid bo-grid--2" id="kpis" style="gap:var(--sp-3)"></div>
+    </section>
+
+    <section class="c-card" aria-labelledby="t-filtros">
+      <div class="c-card__header"><h2 class="c-card__title" id="t-filtros">{{i:filtro}} Filtros</h2></div>
+      <div class="c-card__body" style="display:grid;gap:var(--sp-3)">
+        <div class="c-field" style="margin:0">
+          <label class="c-field__label" for="f-municipio">Municipio</label>
+          <select class="c-select" id="f-municipio"></select>
+        </div>
+        <div>
+          <span class="c-field__label" id="l-estado">Estado</span>
+          <div class="c-chip-group" role="group" aria-labelledby="l-estado" id="f-estado" style="margin-top:var(--sp-1)"></div>
+        </div>
+        <div>
+          <span class="c-field__label" id="l-ruta">Ruta</span>
+          <div class="c-chip-group" role="group" aria-labelledby="l-ruta" id="f-ruta" style="margin-top:var(--sp-1)"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="c-card" aria-labelledby="t-vehiculos">
+      <div class="c-card__header"><h2 class="c-card__title" id="t-vehiculos">Vehículos</h2><span class="u-muted u-small" id="n-vehiculos"></span></div>
+      <ul class="c-list" id="lista-vehiculos"></ul>
+    </section>
+
+    <section class="c-card" aria-labelledby="t-alertas">
+      <div class="c-card__header"><h2 class="c-card__title" id="t-alertas">Alertas de hoy</h2><a class="u-small" href="incidencias.html">Ver todas</a></div>
+      <div class="c-card__body" style="display:grid;gap:var(--sp-3)" id="alertas"></div>
+    </section>
+  </div>
+</div>
+<!--SCRIPT-->
+document.addEventListener("DOMContentLoaded", function () {
+  var f = TAD.fmt, h = f.html, ahora = TAD.momento();
+  var ICONO = {
+    alerta: '{{i:alerta}}', reloj: '{{i:reloj}}', furgoneta: '{{i:furgoneta}}', flecha: '{{i:flecha-derecha}}'
+  };
+
+  // ---------- Indicadores del día ----------
+  var k = TAD.kpisHoy, hist = TAD.historial;
+  var mediaPunt = Math.round(hist.reduce(function (a, d) { return a + d.puntualidad; }, 0) / hist.length);
+  var mediaOcup = Math.round(hist.reduce(function (a, d) { return a + d.ocupacion; }, 0) / hist.length);
+  var kpis = [
+    { et: "Servicios activos", v: k.serviciosActivos, u: "", nota: "de " + TAD.rutas.length + " rutas planificadas", tipo: "flat" },
+    { et: "Viajeros a bordo", v: k.viajerosABordo, u: "", nota: "a las " + ahora, tipo: "flat" },
+    { et: "Puntualidad", v: k.puntualidad, u: "%", nota: (k.puntualidad >= mediaPunt ? "↑ " : "↓ ") + Math.abs(k.puntualidad - mediaPunt) + " puntos vs. media 30 días", tipo: k.puntualidad >= mediaPunt ? "up" : "down" },
+    { et: "Ocupación media", v: k.ocupacionMedia, u: "%", nota: (k.ocupacionMedia >= mediaOcup ? "↑ " : "↓ ") + Math.abs(k.ocupacionMedia - mediaOcup) + " puntos vs. media 30 días", tipo: k.ocupacionMedia >= mediaOcup ? "up" : "down" }
+  ];
+  document.getElementById("kpis").innerHTML = kpis.map(function (x) {
+    return '<div class="c-kpi"><span class="c-kpi__label">' + x.et + '</span><span class="c-kpi__value">' + x.v + (x.u ? ' <span class="c-kpi__unit">' + x.u + "</span>" : "") +
+      '</span><span class="c-kpi__delta c-kpi__delta--' + x.tipo + '">' + x.nota + "</span></div>";
+  }).join("");
+
+  // ---------- Estado de cada vehículo ----------
+  function estadoDe(v) {
+    var r = v.rutaHoy && v.estado === "En servicio" ? TAD.ruta(v.rutaHoy) : null;
+    if (v.estado !== "En servicio") return { clave: "fuera", texto: v.estado };
+    if (!r || !v.velocidad) return { clave: "parado", texto: "Parado en base" };
+    if (r.retrasoMin > 0) return { clave: "retraso", texto: "Retraso " + r.retrasoMin + " min" };
+    return { clave: "servicio", texto: "En servicio" };
+  }
+  function municipiosDeRuta(rutaId) {
+    var s = TAD.servicioActual(rutaId), m = {};
+    s.paradas.forEach(function (p) { m[TAD.parada(p.parada).municipio] = true; });
+    return m;
+  }
+
+  // ---------- Filtros ----------
+  var selMun = document.getElementById("f-municipio");
+  selMun.innerHTML = '<option value="">Todos los municipios</option>' + TAD.municipios.map(function (m) {
+    return '<option value="' + m.id + '">' + h(m.nombre) + "</option>";
+  }).join("");
+  var estadosFiltro = [["", "Todos"], ["servicio", "En servicio"], ["retraso", "Con retraso"], ["parado", "Parados"]];
+  document.getElementById("f-estado").innerHTML = estadosFiltro.map(function (e, i) {
+    return '<button class="c-chip" type="button" data-valor="' + e[0] + '" aria-pressed="' + (i === 0) + '">' + e[1] + "</button>";
+  }).join("");
+  document.getElementById("f-ruta").innerHTML = '<button class="c-chip" type="button" data-valor="" aria-pressed="true">Todas</button>' +
+    TAD.rutas.map(function (r) { return '<button class="c-chip" type="button" data-valor="' + r.id + '" aria-pressed="false">' + r.id + "</button>"; }).join("");
+  var filtro = { municipio: "", estado: "", ruta: "" };
+
+  // ---------- Mapa ----------
+  var mapa = TADMapa.crear("#mapa");
+  var seleccionado = null;
+  function dibujarMapa() {
+    mapa.limpiar().obras().rutas({ destacar: filtro.ruta || null }).paradas().vehiculos({ alPulsar: seleccionar, seleccionar: seleccionado });
+  }
+  dibujarMapa();
+  mapa.encuadrar(40);
+
+  // ---------- Lista de vehículos ----------
+  var lista = document.getElementById("lista-vehiculos");
+  function pintarLista() {
+    var visibles = 0;
+    lista.innerHTML = TAD.vehiculos.map(function (v) {
+      var est = estadoDe(v), r = v.rutaHoy && v.estado === "En servicio" ? TAD.ruta(v.rutaHoy) : null;
+      var c = r ? TAD.conductor(r.conductor) : null;
+      var ok = (!filtro.estado || est.clave === filtro.estado) && (!filtro.ruta || (r && r.id === filtro.ruta)) &&
+        (!filtro.municipio || (r && municipiosDeRuta(r.id)[filtro.municipio]) || (!r && filtro.municipio === "valdecerro" && v.posicion));
+      if (!ok) return "";
+      visibles++;
+      var abordo = r ? TAD.aBordo(r.id) : 0, pct = r ? Math.round(100 * abordo / v.plazas) : 0;
+      var badge = est.clave === "retraso" ? "Retraso" : est.clave === "fuera" ? v.estado : est.clave === "parado" ? "Disponible" : TAD.estadoVehiculo(v);
+      var prox = r ? TAD.parada(r.proximaParada) : null;
+      return '<li class="c-list__item"><button class="c-list__button' + (seleccionado === v.matricula ? " is-selected" : "") + '" type="button" data-matricula="' + v.matricula + '"' +
+        (v.posicion ? "" : " disabled") + ">" +
+        '<span class="c-avatar c-avatar--sm' + (est.clave === "retraso" ? " c-avatar--orange" : est.clave === "servicio" ? " c-avatar--green" : "") + '" aria-hidden="true">' + ICONO.furgoneta + "</span>" +
+        '<span><span class="c-list__title">' + v.matricula + (r ? " · Ruta " + r.id : "") + '</span><span class="c-list__meta">' +
+        (c ? h(c.nombre) + " · " : "") + (prox ? "Próxima: " + h(prox.nombre) + " (" + r.minutosProxima + " min)" : h(v.ubicacion || v.nota || "")) + "</span></span>" +
+        f.badge(badge) +
+        (r ? '<span class="c-list__wide"><span class="c-list__meta" style="display:flex;justify-content:space-between"><span>Ocupación</span><span>' + abordo + "/" + v.plazas + " plazas</span></span>" +
+          '<span class="c-progress' + (pct > 85 ? " c-progress--warning" : "") + '" role="progressbar" aria-label="Ocupación de ' + v.matricula + '" aria-valuenow="' + pct + '" aria-valuemin="0" aria-valuemax="100"><span style="width:' + pct + '%"></span></span></span>' : "") +
+        "</button></li>";
+    }).join("") || '<li class="c-list__item"><div class="c-empty-state"><p>Ningún vehículo cumple los filtros.</p></div></li>';
+    document.getElementById("n-vehiculos").textContent = visibles + " de " + TAD.vehiculos.length;
+  }
+  function seleccionar(matricula) {
+    seleccionado = matricula;
+    mapa.centrarEn(matricula, 14);
+    pintarLista();
+  }
+  lista.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-matricula]");
+    if (b) seleccionar(b.getAttribute("data-matricula"));
+  });
+  function grupoChips(id, clave) {
+    document.getElementById(id).addEventListener("click", function (e) {
+      var chip = e.target.closest(".c-chip");
+      if (!chip) return;
+      this.querySelectorAll(".c-chip").forEach(function (c) { c.setAttribute("aria-pressed", c === chip ? "true" : "false"); });
+      filtro[clave] = chip.getAttribute("data-valor");
+      pintarLista();
+      if (clave === "ruta") dibujarMapa();
+    });
+  }
+  grupoChips("f-estado", "estado");
+  grupoChips("f-ruta", "ruta");
+  selMun.addEventListener("change", function () { filtro.municipio = selMun.value; pintarLista(); });
+  pintarLista();
+
+  // ---------- Alertas de hoy ----------
+  document.getElementById("alertas").innerHTML = TAD.incidencias.filter(function (i) { return i.fecha === TAD.fecha; }).map(function (i) {
+    var abierta = i.estado === "Abierta";
+    return '<div class="c-alert ' + (abierta ? "c-alert--warning" : "c-alert--success") + '">' + (abierta ? ICONO.reloj : ICONO.alerta) +
+      '<div class="c-alert__body"><strong class="c-alert__title">' + h(i.titulo) + "</strong>" + i.hora + " · " + i.estado + (i.cierre ? " a las " + i.cierre : "") +
+      ' · <a href="incidencias.html#' + i.id + '">Ver detalle</a></div></div>';
+  }).join("");
+});
+<!--FIN-->

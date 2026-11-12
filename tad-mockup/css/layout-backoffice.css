@@ -184,6 +184,12 @@
 .bo-grid--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .bo-grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .bo-grid--main-side { grid-template-columns: minmax(0, 1fr) 360px; }
+.bo-grid--map { grid-template-columns: minmax(0, 65fr) minmax(320px, 35fr); align-items: start; }
+.bo-sticky { position: sticky; top: calc(var(--topbar-h) + var(--sp-4)); }
+.bo-stack { display: flex; flex-direction: column; gap: var(--sp-5); min-width: 0; }
+.bo-map-tall { --map-h: calc(100vh - var(--topbar-h) - 220px); min-height: 520px; }
+.bo-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-3); margin-bottom: var(--sp-4); }
+.bo-toolbar__spacer { flex: 1; }
 
 /* ---------- Menú colapsado (< 1200 px) ---------- */
 @media (max-width: 1199.98px) {
@@ -205,6 +211,8 @@
   .bo-topbar__search { flex-basis: 200px; }
   .bo-content { padding: var(--sp-6); }
   .bo-grid--main-side { grid-template-columns: minmax(0, 1fr) 300px; }
+  .bo-grid--map { grid-template-columns: minmax(0, 60fr) minmax(300px, 40fr); }
+  .bo-grid--3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 /* ---------- Menú colapsado a mano (botón .bo-sidebar__toggle, lo maneja nav.js) ---------- */

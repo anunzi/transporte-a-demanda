@@ -7,7 +7,9 @@
    - rellena las migas en el elemento [data-breadcrumb];
    - rellena la hora de la maqueta en [data-tad-reloj] ("14/04/2026 09:40")
      y en [data-tad-hora] ("09:40"); con body[data-momento="seguimiento"] usa las 10:08;
-   - colapsa el menú lateral con el botón .bo-sidebar__toggle (se recuerda en este navegador).
+   - colapsa el menú lateral con el botón .bo-sidebar__toggle (se recuerda en este navegador);
+   - pone el usuario ([data-tad-usuario-nombre|cargo|iniciales]): concejala en admin y bi, operadora en el resto;
+   - rellena los avisos de la campana ([data-tad-avisos], [data-tad-avisos-n]) con las incidencias de hoy.
    El menú y la barra superior van escritos en cada HTML: este archivo no los genera.
    Necesita data.js cargado antes.
    ========================================================================== */
@@ -94,12 +96,37 @@
     });
   }
 
+  /** Usuario del pie del menú y avatar de la barra superior: operadora o concejala según el módulo. */
+  function usuario() {
+    var modulo = document.body.getAttribute("data-module");
+    var p = TAD.persona(modulo === "admin" || modulo === "bi" ? "ad1" : "op1");
+    if (!p) return;
+    $all("[data-tad-usuario-nombre]").forEach(function (el) { el.textContent = p.nombre; });
+    $all("[data-tad-usuario-cargo]").forEach(function (el) { el.textContent = p.cargo.split(" · ")[0]; });
+    $all("[data-tad-usuario-iniciales]").forEach(function (el) { el.textContent = p.iniciales; el.setAttribute("title", p.nombre); });
+  }
+
+  /** Avisos de la campana: incidencias de hoy. */
+  function avisos() {
+    var hoy = TAD.incidencias.filter(function (i) { return i.fecha === TAD.fecha; });
+    var b = base();
+    $all("[data-tad-avisos-n]").forEach(function (el) { el.textContent = hoy.length; });
+    $all("[data-tad-avisos-boton]").forEach(function (el) { el.setAttribute("aria-label", "Notificaciones: " + hoy.length + " de hoy"); });
+    $all("[data-tad-avisos]").forEach(function (menu) {
+      menu.innerHTML = hoy.map(function (i) {
+        return '<a class="c-dropdown__item" href="' + b + 'control/incidencias.html#' + i.id + '"><span><strong>' + TAD.fmt.html(i.hora) + "</strong> · " + TAD.fmt.html(i.titulo) + "</span></a>";
+      }).join("") + '<div class="c-dropdown__sep"></div><a class="c-dropdown__item" href="' + b + 'control/incidencias.html">Ver todas las incidencias</a>';
+    });
+  }
+
   function iniciar() {
     if (!window.TAD) return;
     var pagina = document.body.getAttribute("data-page");
     marcarActivo(pagina);
     migas(pagina);
     reloj();
+    usuario();
+    avisos();
     menuColapsable();
   }
 

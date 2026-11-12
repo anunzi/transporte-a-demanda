@@ -1,0 +1,229 @@
+<!--SIN-MAPA-->
+<!--ACCIONES-->
+<span class="c-badge c-badge--neutral c-badge--plain" style="font-size:var(--fs-14);padding:var(--sp-2) var(--sp-3)">{{i:reloj}} <span data-tad-reloj></span></span>
+<button class="c-btn c-btn--primary" type="button" data-open="modal-nueva">{{i:mas}} Nueva incidencia</button>
+<!--MAIN-->
+<section aria-labelledby="t-kpis">
+  <h2 class="u-visually-hidden" id="t-kpis">Resumen</h2>
+  <div class="bo-grid bo-grid--kpis" id="kpis"></div>
+</section>
+
+<div class="bo-grid bo-grid--main-side" style="margin-top:var(--sp-6)">
+  <section aria-labelledby="t-tabla">
+    <div class="bo-toolbar">
+      <h2 id="t-tabla" style="margin:0">Registro de incidencias</h2>
+      <span class="bo-toolbar__spacer"></span>
+      <div class="c-chip-group" role="group" aria-label="Filtrar por estado" data-filter-target="tabla-incidencias" data-filter-key="estado">
+        <button class="c-chip" type="button" data-filter="" aria-pressed="true">Todas</button>
+        <button class="c-chip" type="button" data-filter="Abierta" aria-pressed="false">Abiertas</button>
+        <button class="c-chip" type="button" data-filter="Cerrada" aria-pressed="false">Cerradas</button>
+      </div>
+    </div>
+    <div class="c-table-wrap">
+      <table class="c-table" data-sortable id="tabla-incidencias">
+        <caption class="u-visually-hidden">Incidencias abiertas y cerradas</caption>
+        <thead><tr>
+          <th scope="col"><button class="c-table__sort" type="button">Prioridad {{i:chevron-abajo}}</button></th>
+          <th scope="col" class="is-wide">Incidencia</th>
+          <th scope="col"><button class="c-table__sort" type="button">Ruta {{i:chevron-abajo}}</button></th>
+          <th scope="col"><button class="c-table__sort" type="button">Vehículo {{i:chevron-abajo}}</button></th>
+          <th scope="col"><button class="c-table__sort" type="button">Fecha {{i:chevron-abajo}}</button></th>
+          <th scope="col"><button class="c-table__sort" type="button">Estado {{i:chevron-abajo}}</button></th>
+          <th scope="col">Responsable</th>
+          <th scope="col" class="c-table__actions"><span class="u-visually-hidden">Acciones</span></th>
+        </tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+  <div class="bo-stack">
+    <section class="c-card" aria-labelledby="t-sust">
+      <div class="c-card__header"><h2 class="c-card__title" id="t-sust">Vehículos de sustitución disponibles</h2></div>
+      <ul class="c-list" id="sustitucion"></ul>
+    </section>
+    <section class="c-card" aria-labelledby="t-afectados">
+      <div class="c-card__header"><h2 class="c-card__title" id="t-afectados">Viajeros afectados ahora</h2></div>
+      <ul class="c-list" id="afectados"></ul>
+      <div class="c-card__footer">
+        <button class="c-btn c-btn--primary c-btn--sm" type="button" data-toast="Hemos enviado un SMS y un aviso en la app a los viajeros afectados." data-toast-title="Viajeros notificados">{{i:mensaje}} Avisar a todos</button>
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- Detalle de una incidencia -->
+<div class="c-drawer" id="detalle" role="dialog" aria-modal="true" aria-labelledby="detalle-t">
+  <div class="c-drawer__panel">
+    <div class="c-drawer__header">
+      <div>
+        <span id="detalle-badges"></span>
+        <h2 class="c-drawer__title" id="detalle-t" style="margin-top:var(--sp-2)"></h2>
+      </div>
+      <button class="c-btn c-btn--ghost c-btn--icon c-btn--sm" type="button" data-close aria-label="Cerrar">{{i:cerrar}}</button>
+    </div>
+    <div class="c-drawer__body">
+      <dl class="c-datalist" id="detalle-datos"></dl>
+      <p style="margin-top:var(--sp-4)" id="detalle-desc"></p>
+      <h3 style="margin-top:var(--sp-5)">Línea de tiempo</h3>
+      <ol class="c-timeline" id="detalle-historial"></ol>
+      <div id="detalle-afectados"></div>
+    </div>
+    <div class="c-drawer__footer" id="detalle-acciones">
+      <button class="c-btn c-btn--secondary c-btn--sm" type="button" data-open="modal-sustitucion">{{i:furgoneta}} Asignar vehículo de sustitución</button>
+      <button class="c-btn c-btn--secondary c-btn--sm" type="button" data-toast="Hemos enviado un SMS y un aviso en la app a los viajeros afectados." data-toast-title="Viajeros notificados">{{i:mensaje}} Notificar viajeros</button>
+      <a class="c-btn c-btn--secondary c-btn--sm" href="../motor/rutas.html">{{i:ruta}} Replanificar ruta</a>
+      <button class="c-btn c-btn--primary c-btn--sm" type="button" data-toast="La incidencia queda cerrada y registrada en el historial." data-toast-title="Incidencia cerrada" data-toast-close>{{i:check}} Cerrar incidencia</button>
+    </div>
+  </div>
+</div>
+
+<!-- Asignar sustitución -->
+<div class="c-modal" id="modal-sustitucion" role="dialog" aria-modal="true" aria-labelledby="modal-sustitucion-t">
+  <div class="c-modal__dialog">
+    <div class="c-modal__header">
+      <h2 class="c-modal__title" id="modal-sustitucion-t">Asignar vehículo de sustitución</h2>
+      <button class="c-btn c-btn--ghost c-btn--icon c-btn--sm" type="button" data-close aria-label="Cerrar">{{i:cerrar}}</button>
+    </div>
+    <div class="c-modal__body">
+      <div class="c-field">
+        <label class="c-field__label" for="sust-vehiculo">Vehículo</label>
+        <select class="c-select" id="sust-vehiculo"></select>
+        <span class="c-field__help" id="sust-ayuda"></span>
+      </div>
+      <div class="c-field">
+        <label class="c-field__label" for="sust-conductor">Conductor</label>
+        <select class="c-select" id="sust-conductor"></select>
+      </div>
+    </div>
+    <div class="c-modal__footer">
+      <button class="c-btn c-btn--secondary" type="button" data-close>Cancelar</button>
+      <button class="c-btn c-btn--primary" type="button" data-toast="El vehículo de sustitución sale de la base. El conductor ya tiene la ruta en su app." data-toast-title="Sustitución asignada" data-toast-close>Asignar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Nueva incidencia -->
+<div class="c-modal" id="modal-nueva" role="dialog" aria-modal="true" aria-labelledby="modal-nueva-t">
+  <div class="c-modal__dialog">
+    <div class="c-modal__header">
+      <h2 class="c-modal__title" id="modal-nueva-t">Nueva incidencia</h2>
+      <button class="c-btn c-btn--ghost c-btn--icon c-btn--sm" type="button" data-close aria-label="Cerrar">{{i:cerrar}}</button>
+    </div>
+    <div class="c-modal__body">
+      <div class="bo-grid bo-grid--2" style="gap:var(--sp-3)">
+        <div class="c-field"><label class="c-field__label" for="n-tipo">Tipo</label>
+          <select class="c-select" id="n-tipo"><option>Retraso</option><option>Avería</option><option>Usuario no presentado</option><option>Accidente</option><option>Otra</option></select></div>
+        <div class="c-field"><label class="c-field__label" for="n-prioridad">Prioridad</label>
+          <select class="c-select" id="n-prioridad"><option>Baja</option><option selected>Media</option><option>Alta</option></select></div>
+        <div class="c-field"><label class="c-field__label" for="n-ruta">Ruta</label><select class="c-select" id="n-ruta"></select></div>
+        <div class="c-field"><label class="c-field__label" for="n-vehiculo">Vehículo</label><select class="c-select" id="n-vehiculo"></select></div>
+      </div>
+      <div class="c-field"><label class="c-field__label" for="n-desc">Descripción</label><textarea class="c-textarea" id="n-desc" placeholder="Qué ha pasado, dónde y a quién afecta"></textarea></div>
+    </div>
+    <div class="c-modal__footer">
+      <button class="c-btn c-btn--secondary" type="button" data-close>Cancelar</button>
+      <button class="c-btn c-btn--primary" type="button" data-toast="La incidencia se ha registrado y se ha avisado al conductor." data-toast-title="Incidencia creada" data-toast-close>Crear incidencia</button>
+    </div>
+  </div>
+</div>
+<!--SCRIPT-->
+document.addEventListener("DOMContentLoaded", function () {
+  var f = TAD.fmt, h = f.html;
+  var PRIORIDAD = { Alta: 3, Media: 2, Baja: 1 };
+  var CLASE_PRIORIDAD = { Alta: "danger", Media: "warning", Baja: "neutral" };
+  var lista = TAD.incidencias.slice().sort(function (a, b) { return (b.fecha + b.hora).localeCompare(a.fecha + a.hora); });
+
+  // ---------- Indicadores ----------
+  var hoy = lista.filter(function (i) { return i.fecha === TAD.fecha; });
+  var cerradas = lista.filter(function (i) { return i.cierre; });
+  var mediaMin = Math.round(cerradas.reduce(function (a, i) { return a + TAD.minutos(i.cierre) - TAD.minutos(i.hora); }, 0) / cerradas.length);
+  var afectadas = [];
+  lista.forEach(function (i) { if (i.estado === "Abierta" && i.afectados) afectadas = afectadas.concat(i.afectados.map(TAD.reserva)); });
+  var kpis = [
+    ["Abiertas", lista.filter(function (i) { return i.estado === "Abierta"; }).length, "", "En seguimiento ahora"],
+    ["Incidencias hoy", hoy.length, "", hoy.filter(function (i) { return i.estado === "Cerrada"; }).length + " ya cerrada"],
+    ["Tiempo medio de resolución", mediaMin, "min", "Últimas " + cerradas.length + " incidencias"],
+    ["Viajeros afectados ahora", TAD.suma(afectadas), "", afectadas.length + " reservas con retraso"]
+  ];
+  document.getElementById("kpis").innerHTML = kpis.map(function (k) {
+    return '<div class="c-kpi"><span class="c-kpi__label">' + k[0] + '</span><span class="c-kpi__value">' + k[1] + (k[2] ? ' <span class="c-kpi__unit">' + k[2] + "</span>" : "") +
+      '</span><span class="c-kpi__delta c-kpi__delta--flat">' + k[3] + "</span></div>";
+  }).join("");
+
+  // ---------- Tabla ----------
+  document.querySelector("#tabla-incidencias tbody").innerHTML = lista.map(function (i) {
+    var resp = TAD.persona(i.responsable);
+    return '<tr data-estado="' + i.estado + '" id="fila-' + i.id + '">' +
+      '<td data-value="' + PRIORIDAD[i.prioridad] + '"><span class="c-badge c-badge--' + CLASE_PRIORIDAD[i.prioridad] + '">' + i.prioridad + "</span></td>" +
+      "<td><strong>" + h(i.titulo) + '</strong><span class="c-list__meta">' + i.id + " · " + h(i.tipo) + "</span></td>" +
+      "<td>" + i.ruta + "</td><td>" + i.vehiculo + "</td>" +
+      '<td class="is-nowrap" data-value="' + i.fecha.replace(/-/g, "") + i.hora.replace(":", "") + '">' + f.fecha(i.fecha) + " · " + i.hora + "</td>" +
+      "<td>" + f.badge(i.estado) + "</td><td>" + h(resp ? resp.nombre : "") + "</td>" +
+      '<td class="c-table__actions"><button class="c-btn c-btn--ghost c-btn--sm" type="button" data-incidencia="' + i.id + '">Ver detalle</button></td></tr>';
+  }).join("");
+
+  // ---------- Detalle (panel lateral) ----------
+  function abrirDetalle(id, desde) {
+    var i = TAD.incidencia(id); if (!i) return;
+    var r = TAD.ruta(i.ruta), v = TAD.vehiculo(i.vehiculo), c = r ? TAD.conductor(r.conductor) : null;
+    document.getElementById("detalle-badges").innerHTML = '<span class="c-badge c-badge--' + CLASE_PRIORIDAD[i.prioridad] + '">Prioridad ' + i.prioridad.toLowerCase() + "</span> " + f.badge(i.estado);
+    document.getElementById("detalle-t").textContent = i.titulo;
+    document.getElementById("detalle-datos").innerHTML = [
+      ["Código", i.id], ["Tipo", i.tipo], ["Ruta", r.id + " · " + r.nombre], ["Vehículo", v.matricula + " · " + v.modelo],
+      ["Conductor", c ? c.nombre : "—"], ["Abierta", f.fecha(i.fecha) + " a las " + i.hora], ["Responsable", TAD.persona(i.responsable).nombre],
+      ["Cierre", i.cierre ? "A las " + i.cierre : "Pendiente"]
+    ].map(function (x) { return "<dt>" + x[0] + "</dt><dd>" + h(x[1]) + "</dd>"; }).join("");
+    document.getElementById("detalle-desc").textContent = i.descripcion;
+    document.getElementById("detalle-historial").innerHTML = i.historial.map(function (x, n) {
+      var ultima = n === i.historial.length - 1;
+      return '<li class="c-timeline__item ' + (ultima && i.estado === "Abierta" ? "is-current" : "is-done") + '"><span class="c-timeline__time">' + x.hora +
+        '</span><div class="c-timeline__content"><span class="c-timeline__title">' + h(x.texto) + "</span></div></li>";
+    }).join("");
+    document.getElementById("detalle-afectados").innerHTML = i.afectados ? '<h3 style="margin-top:var(--sp-5)">Viajeros afectados</h3><ul class="c-list">' +
+      i.afectados.map(function (cod) { return filaAfectado(TAD.reserva(cod)); }).join("") + "</ul>" : "";
+    document.getElementById("detalle-acciones").hidden = i.estado !== "Abierta";
+    TADUI.abrir("detalle", desde);
+    if (history.replaceState) history.replaceState(null, "", "#" + id);
+  }
+  document.querySelector("#tabla-incidencias tbody").addEventListener("click", function (e) {
+    var b = e.target.closest("[data-incidencia]");
+    if (b) abrirDetalle(b.getAttribute("data-incidencia"), b);
+  });
+
+  // ---------- Viajeros afectados ----------
+  function filaAfectado(r) {
+    var u = TAD.usuario(r.usuario), s = TAD.servicio(r.servicio);
+    var p = s.paradas.filter(function (x) { return x.parada === r.origen; })[0];
+    return '<li class="c-list__item"><div class="c-list__button" style="cursor:default"><span class="c-avatar c-avatar--sm" aria-hidden="true">' + u.iniciales + "</span>" +
+      '<span><span class="c-list__title">' + h(u.nombre) + (r.viajeros > 1 ? " +" + (r.viajeros - 1) : "") + '</span><span class="c-list__meta">' +
+      h(TAD.parada(r.origen).nombre) + " · prevista " + p.prevista + ", estimada " + p.estimada + "</span></span>" +
+      '<a class="u-small" href="../crm/usuario.html">Ficha</a></div></li>';
+  }
+  document.getElementById("afectados").innerHTML = afectadas.map(filaAfectado).join("");
+
+  // ---------- Vehículos de sustitución ----------
+  var libres = TAD.vehiculos.filter(function (v) { return v.estado === "En servicio" && !v.velocidad && v.posicion; });
+  var sustituto = TAD.vehiculos.filter(function (v) { return v.subestado === "Sustitución"; });
+  document.getElementById("sustitucion").innerHTML = libres.map(function (v) {
+    return '<li class="c-list__item"><div class="c-list__button" style="cursor:default"><span class="c-avatar c-avatar--sm c-avatar--green" aria-hidden="true">{{i:furgoneta}}</span>' +
+      '<span><span class="c-list__title">' + v.matricula + " · " + h(v.modelo) + '</span><span class="c-list__meta">' + v.plazas + " plazas · " +
+      (v.pmr ? "adaptado PMR" : "sin adaptación PMR") + " · " + h(v.ubicacion) + "</span></span>" + f.badge("Disponible") + "</div></li>";
+  }).join("") + sustituto.map(function (v) {
+    return '<li class="c-list__item"><div class="c-list__button" style="cursor:default"><span class="c-avatar c-avatar--sm" aria-hidden="true">{{i:furgoneta}}</span>' +
+      '<span><span class="c-list__title">' + v.matricula + " · " + h(v.modelo) + '</span><span class="c-list__meta">' + h(v.nota) + "</span></span>" + f.badge("En servicio") + "</div></li>";
+  }).join("");
+  document.getElementById("sust-vehiculo").innerHTML = libres.map(function (v) { return "<option>" + v.matricula + " · " + v.plazas + " plazas</option>"; }).join("");
+  document.getElementById("sust-ayuda").textContent = libres.length && !libres[0].pmr ? "Atención: no está adaptado para PMR. Comprueba que ningún viajero lo necesite." : "";
+  document.getElementById("sust-conductor").innerHTML = TAD.conductores.filter(function (c) { return c.estado !== "En ruta"; }).map(function (c) {
+    return "<option>" + h(c.nombre) + " · " + c.turno.toLowerCase() + " (" + c.estado.toLowerCase() + ")</option>";
+  }).join("");
+
+  // ---------- Formulario de nueva incidencia ----------
+  document.getElementById("n-ruta").innerHTML = TAD.rutas.map(function (r) { return "<option>" + r.id + " · " + h(r.nombre) + "</option>"; }).join("");
+  document.getElementById("n-vehiculo").innerHTML = TAD.vehiculos.map(function (v) { return "<option>" + v.matricula + "</option>"; }).join("");
+
+  // Abrir el detalle si se llega con #INC-xxxx (desde la campana o el centro de control)
+  if (location.hash && TAD.incidencia(location.hash.slice(1))) abrirDetalle(location.hash.slice(1));
+});
+<!--FIN-->
