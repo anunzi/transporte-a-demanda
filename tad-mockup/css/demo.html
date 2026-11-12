@@ -89,6 +89,7 @@
       <li><a class="c-chip" href="#navegacion">Navegación</a></li>
       <li><a class="c-chip" href="#avisos">Avisos y seguimiento</a></li>
       <li><a class="c-chip" href="#capas">Ventanas y paneles</a></li>
+      <li><a class="c-chip" href="../js/prueba.html">Datos, mapas y gráficos</a></li>
       <li><a class="c-chip" href="#layouts">Armazones de página</a></li>
     </ul>
   </nav>
@@ -481,6 +482,18 @@
       <button class="c-tabs__tab is-hover" role="tab" type="button" aria-selected="false" tabindex="-1">Recurrentes</button>
       <button class="c-tabs__tab is-focus" role="tab" type="button" aria-selected="false" tabindex="-1">Con foco</button>
       <button class="c-tabs__tab" role="tab" type="button" aria-selected="false" tabindex="-1" disabled>Desactivada</button>
+    </div>
+
+    <h3 class="demo-sub">Desplegable</h3>
+    <p class="demo-note">Menú que se abre desde un botón (notificaciones, exportar). Aquí se muestra abierto; en las pantallas se abre y se cierra con el ratón o el teclado.</p>
+    <div class="c-dropdown" style="margin-bottom:200px">
+      <button class="c-btn c-btn--secondary" type="button" aria-expanded="true" aria-controls="dd-demo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10.5l5 5 5-5M5 20h14"/></svg> Exportar <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+      <div class="c-dropdown__menu c-dropdown__menu--left is-open" id="dd-demo">
+        <button class="c-dropdown__item" type="button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg> Informe en PDF</button>
+        <button class="c-dropdown__item" type="button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v16h16"/><path d="m7.5 14.5 3.5-4 3 2.5 5-6"/></svg> Hoja de cálculo</button>
+        <div class="c-dropdown__sep"></div>
+        <button class="c-dropdown__item" type="button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5.5" width="18" height="13" rx="2"/><path d="m3.5 7 8.5 6 8.5-6"/></svg> Enviar por correo</button>
+      </div>
     </div>
 
     <h3 class="demo-sub">Pasos del flujo de reserva</h3>

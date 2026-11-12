@@ -85,6 +85,12 @@ PAREJAS = [
     ("Conductor: botón principal, ratón encima", "--ink-900", "--tad-yellow-100", TEXTO),
     ("Conductor: rótulo «Próxima parada»", "--tad-yellow-500", "--tad-blue-900", TEXTO),
     ("Conductor: datos de la próxima parada", "--ink-100", "--tad-blue-900", TEXTO),
+    # Mapas y gráficos (bloque 2)
+    ("Etiquetas y ejes de los gráficos", "--chart-text", "--surface", TEXTO),
+    ("Etiqueta y tooltip del mapa", "--surface", "--ink-900", TEXTO),
+    ("Icono del vehículo en servicio", "--surface", "--estado-servicio", GRAFICO),
+    ("Icono del vehículo con retraso", "--ink-900", "--estado-retraso", GRAFICO),
+    ("Icono del vehículo parado", "--surface", "--estado-parado", GRAFICO),
     # Elementos que no son texto (3:1)
     ("Borde de los campos de formulario", "--color-border-strong", "--surface", GRAFICO),
     ("Foco de teclado sobre blanco", "--focus-color", "--surface", GRAFICO),

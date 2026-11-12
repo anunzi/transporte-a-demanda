@@ -595,8 +595,8 @@ a.c-card:hover, .c-card--link:hover, .c-card--link.is-hover { box-shadow: var(--
 .c-map__legend {
   position: absolute;
   left: var(--sp-3);
-  bottom: var(--sp-3);
-  z-index: 500;
+  bottom: var(--sp-6);
+  z-index: 1000;
   display: flex;
   flex-direction: column;
   gap: var(--sp-1);
@@ -808,3 +808,172 @@ a.c-card:hover, .c-card--link:hover, .c-card--link.is-hover { box-shadow: var(--
 .c-phone-frame .c-checkbox,
 .c-phone-frame .c-radio,
 .c-phone-frame .c-switch { min-height: var(--touch-min); font-size: var(--fs-16); }
+
+/* ==========================================================================
+   Añadidos del bloque 2: desplegable, orden de tablas, marcadores de mapa
+   y gráficos. Los usan js/ui.js, js/maps.js y js/charts.js.
+   ========================================================================== */
+
+/* ---------- Desplegable ---------- */
+.c-dropdown { position: relative; display: inline-block; }
+.c-dropdown__menu {
+  position: absolute;
+  top: calc(100% + var(--sp-1));
+  right: 0;
+  z-index: 60;
+  display: none;
+  min-width: 220px;
+  padding: var(--sp-1);
+  background: var(--color-surface);
+  border: var(--bw) solid var(--color-border);
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-2);
+}
+.c-dropdown__menu--left { right: auto; left: 0; }
+.c-dropdown__menu.is-open { display: block; }
+.c-dropdown__item {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  width: 100%;
+  min-height: var(--control-h);
+  padding: 0 var(--sp-3);
+  border: 0;
+  border-radius: var(--r-sm);
+  background: none;
+  font: inherit;
+  font-size: var(--fs-14);
+  color: var(--color-text);
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+}
+.c-dropdown__item:hover, .c-dropdown__item:focus-visible { background: var(--ink-100); color: var(--color-text); }
+.c-dropdown__item:focus-visible { outline: var(--focus-ring); outline-offset: calc(var(--focus-width) * -1); }
+.c-dropdown__sep { height: var(--bw); margin: var(--sp-1) 0; background: var(--color-border); }
+
+/* ---------- Orden en tablas ---------- */
+.c-table th[aria-sort] .c-table__sort { color: var(--color-text); }
+.c-table th[aria-sort="descending"] .c-table__sort .c-icon { transform: rotate(180deg); }
+.c-table th:not([aria-sort]) .c-table__sort .c-icon { opacity: 0.45; }
+.c-table tbody tr.is-filtered-out { display: none; }
+
+/* ---------- Marcadores y capas del mapa (Leaflet) ---------- */
+.c-map .leaflet-container { width: 100%; height: 100%; font-family: var(--font-sans); font-size: var(--fs-12); background: var(--ink-100); }
+.c-map .leaflet-div-icon { background: none; border: 0; }
+.c-map .leaflet-control-attribution { font-size: 10px; }
+.c-map .leaflet-bar a { color: var(--ink-900); }
+.c-map .leaflet-bar a:focus-visible { outline: var(--focus-ring); outline-offset: 0; }
+
+.c-map-stop {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: var(--surface);
+  border: var(--bw-strong) solid var(--ink-700);
+  box-shadow: var(--shadow-1);
+}
+.c-map-stop--virtual { border-style: dashed; border-color: var(--ink-500); }
+.c-map-stop--intercambiador { border-radius: 3px; background: var(--tad-blue-900); border-color: var(--surface); }
+.c-map-stop--resaltada {
+  background: var(--color-primary);
+  border: 3px solid var(--marker-ring);
+  box-shadow: 0 0 0 3px var(--color-primary), var(--shadow-2);
+}
+.c-map-label {
+  display: inline-block;
+  padding: 1px var(--sp-2);
+  border-radius: var(--r-sm);
+  background: var(--ink-900);
+  color: var(--surface);
+  font-size: var(--fs-12);
+  font-weight: var(--fw-semibold);
+  white-space: nowrap;
+  box-shadow: var(--shadow-1);
+}
+.c-map .leaflet-tooltip.c-map-tooltip {
+  padding: var(--sp-1) var(--sp-2);
+  border: 0;
+  border-radius: var(--r-sm);
+  background: var(--ink-900);
+  color: var(--surface);
+  font-family: var(--font-sans);
+  font-size: var(--fs-12);
+  box-shadow: var(--shadow-1);
+}
+.c-map .leaflet-tooltip.c-map-tooltip::before { display: none; }
+
+.c-map-vehicle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 3px solid var(--marker-ring);
+  background: var(--estado-servicio);
+  color: var(--surface);
+  box-shadow: var(--shadow-2);
+}
+.c-map-vehicle .c-icon { width: var(--fs-16); height: var(--fs-16); }
+.c-map-vehicle--retraso { background: var(--estado-retraso); color: var(--ink-900); }
+.c-map-vehicle--incidencia { background: var(--estado-incidencia); }
+.c-map-vehicle--parado { background: var(--estado-parado); }
+.c-map-vehicle.is-selected { box-shadow: 0 0 0 4px var(--color-primary), var(--shadow-2); }
+
+.c-map-route { fill: none; stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; stroke-opacity: 0.85; }
+.c-map-route--r1 { stroke: var(--ruta-r1); }
+.c-map-route--r2 { stroke: var(--ruta-r2); }
+.c-map-route--r3 { stroke: var(--ruta-r3); }
+.c-map-route--r4 { stroke: var(--ruta-r4); }
+.c-map-route--atenuada { stroke-opacity: 0.25; }
+.c-map-works { fill: var(--obras); fill-opacity: 0.18; stroke: var(--obras); stroke-width: 2; stroke-dasharray: 6 4; }
+.c-map-heat { fill: var(--calor); fill-opacity: 0.35; stroke: var(--calor); stroke-width: 1; }
+.c-map-area { stroke: var(--surface); stroke-width: 2; fill-opacity: 0.65; }
+.c-map-area--1 { fill: var(--demanda-1); }
+.c-map-area--2 { fill: var(--demanda-2); }
+.c-map-area--3 { fill: var(--demanda-3); }
+.c-map-area--4 { fill: var(--demanda-4); }
+.c-map__swatch--r1 { background: var(--ruta-r1); }
+.c-map__swatch--r2 { background: var(--ruta-r2); }
+.c-map__swatch--r3 { background: var(--ruta-r3); }
+.c-map__swatch--r4 { background: var(--ruta-r4); }
+.c-map__swatch--servicio { background: var(--estado-servicio); }
+.c-map__swatch--retraso { background: var(--estado-retraso); }
+.c-map__swatch--parado { background: var(--estado-parado); }
+.c-map__swatch--obras { background: var(--obras); opacity: 0.6; border-radius: 2px; }
+.c-map__swatch--parada { background: var(--surface); border: var(--bw-strong) solid var(--ink-700); }
+.c-map__swatch--calor { background: var(--calor); opacity: 0.6; }
+
+/* ---------- Gráficos (SVG generado por charts.js) ---------- */
+.c-chart { position: relative; width: 100%; }
+.c-chart svg { display: block; width: 100%; height: auto; overflow: visible; }
+.c-chart__grid { stroke: var(--chart-grid); stroke-width: 1; }
+.c-chart__axis { stroke: var(--chart-axis); stroke-width: 1; }
+.c-chart__label { fill: var(--chart-text); font-family: var(--font-sans); font-size: 12px; }
+.c-chart__value { fill: var(--color-text); font-family: var(--font-sans); font-size: 12px; font-weight: var(--fw-semibold); }
+.c-chart__big { fill: var(--color-text); font-family: var(--font-sans); font-size: 28px; font-weight: var(--fw-bold); }
+.c-chart__line { fill: none; stroke-width: 2.5; stroke-linejoin: round; stroke-linecap: round; }
+.c-chart__line--dashed { stroke-dasharray: 6 5; }
+.c-chart__dot { stroke: var(--surface); stroke-width: 2; }
+.c-chart__track { fill: none; stroke: var(--ink-100); }
+.c-chart__bar:hover, .c-chart__slice:hover { opacity: 0.85; }
+.c-chart__legend { display: flex; flex-wrap: wrap; gap: var(--sp-2) var(--sp-4); margin: var(--sp-3) 0 0; padding: 0; list-style: none; font-size: var(--fs-12); color: var(--color-text-muted); }
+.c-chart__legend li { display: inline-flex; align-items: center; gap: var(--sp-2); }
+.c-chart__key { width: var(--dot); height: var(--dot); border-radius: 3px; flex: none; }
+.c-chart__key--line { height: 3px; border-radius: 2px; width: var(--sp-5); }
+.c-chart__key--dashed { height: 0; border-top: 3px dashed; width: var(--sp-5); }
+.c-chart__tip {
+  position: absolute;
+  z-index: 5;
+  padding: var(--sp-1) var(--sp-2);
+  border-radius: var(--r-sm);
+  background: var(--ink-900);
+  color: var(--surface);
+  font-size: var(--fs-12);
+  white-space: nowrap;
+  pointer-events: none;
+  transform: translate(-50%, calc(-100% - var(--sp-2)));
+}
+.c-chart__tip[hidden] { display: none; }

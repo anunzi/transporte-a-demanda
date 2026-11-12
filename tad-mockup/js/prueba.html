@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Prueba de datos y utilidades · Plataforma Digital TAD</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/layout-backoffice.css">
+<script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script defer src="data.js"></script>
+<script defer src="ui.js"></script>
+<script defer src="nav.js"></script>
+<script defer src="maps.js"></script>
+<script defer src="charts.js"></script>
+<style>
+  /* Solo maquetación de esta página de prueba */
+  .prueba-section { margin-top: var(--sp-8); }
+  .prueba-section > h2 { margin-bottom: var(--sp-4); }
+  .prueba-vehiculos { display: grid; gap: var(--sp-2); margin: 0; padding: 0; list-style: none; }
+  .prueba-vehiculos button { width: 100%; height: auto; min-height: var(--control-h); padding: var(--sp-2) var(--sp-3); justify-content: space-between; flex-wrap: wrap; white-space: normal; text-align: left; line-height: var(--lh-text); }
+  .prueba-checks { margin: 0; padding: 0; list-style: none; display: grid; gap: var(--sp-2); }
+  .prueba-checks li { display: flex; align-items: center; gap: var(--sp-2); }
+  .prueba-dl { display: grid; grid-template-columns: max-content 1fr; gap: var(--sp-2) var(--sp-4); margin: 0; }
+  .prueba-dl dt { color: var(--color-text-muted); }
+  .prueba-dl dd { margin: 0; font-weight: var(--fw-medium); }
+  .prueba-map { --map-h: 520px; }
+</style>
+</head>
+<body class="bo-body" data-module="control" data-page="prueba">
+<div class="bo">
+  <aside class="bo-sidebar" aria-label="Menú principal">
+    <a class="bo-sidebar__brand" href="../index.html" aria-label="Plataforma Digital TAD, índice"><svg class="bo-sidebar__logo bo-sidebar__logo--full" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 40"><g style="fill:var(--logo-route);stroke:var(--logo-route)"><path d="M4 34.5h32" fill="none" stroke-width="2.6" stroke-linecap="round"/><circle cx="4.5" cy="34.5" r="3.2"/><circle cx="35.5" cy="34.5" r="3.2"/></g><g fill="currentColor"><path fill-rule="evenodd" d="M6 10.5a2.5 2.5 0 0 1 2.5-2.5H24l8 8v7.5a1.5 1.5 0 0 1-1.5 1.5H7.5A1.5 1.5 0 0 1 6 23.5zM9 11h7v5H9zM18.5 11h4.3l5 5h-9.3z"/><circle cx="12" cy="25.5" r="3.6"/><circle cx="26" cy="25.5" r="3.6"/></g><circle cx="12" cy="25.5" r="1.4" style="fill:var(--logo-bg)"/><circle cx="26" cy="25.5" r="1.4" style="fill:var(--logo-bg)"/><g fill="currentColor"><g transform="translate(50 9)"><path d="M0 0h17v5h-6v17H6V5H0z"/></g><g transform="translate(70 9)"><path fill-rule="evenodd" d="M7 0h5.4l7.3 22h-5.3l-1.3-4.2H6.3L5 22H-.3zM9.7 6.6 7.6 13.4h4.3z"/></g><g transform="translate(93 9)"><path fill-rule="evenodd" d="M0 0h7.5a11 11 0 0 1 0 22H0zM5 5v12h2.3a6 6 0 0 0 0-12z"/></g></g><path d="M121 6v28" style="stroke:var(--logo-route)" stroke-width="2" stroke-linecap="round"/><text x="131" y="18" fill="currentColor" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="600" letter-spacing=".3">Plataforma Digital</text><text x="131" y="33" fill="currentColor" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="400">Personas que nos mueven</text></svg><svg class="bo-sidebar__logo bo-sidebar__logo--compact" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 113 40"><g style="fill:var(--logo-route);stroke:var(--logo-route)"><path d="M4 34.5h32" fill="none" stroke-width="2.6" stroke-linecap="round"/><circle cx="4.5" cy="34.5" r="3.2"/><circle cx="35.5" cy="34.5" r="3.2"/></g><g fill="currentColor"><path fill-rule="evenodd" d="M6 10.5a2.5 2.5 0 0 1 2.5-2.5H24l8 8v7.5a1.5 1.5 0 0 1-1.5 1.5H7.5A1.5 1.5 0 0 1 6 23.5zM9 11h7v5H9zM18.5 11h4.3l5 5h-9.3z"/><circle cx="12" cy="25.5" r="3.6"/><circle cx="26" cy="25.5" r="3.6"/></g><circle cx="12" cy="25.5" r="1.4" style="fill:var(--logo-bg)"/><circle cx="26" cy="25.5" r="1.4" style="fill:var(--logo-bg)"/><g fill="currentColor"><g transform="translate(50 9)"><path d="M0 0h17v5h-6v17H6V5H0z"/></g><g transform="translate(70 9)"><path fill-rule="evenodd" d="M7 0h5.4l7.3 22h-5.3l-1.3-4.2H6.3L5 22H-.3zM9.7 6.6 7.6 13.4h4.3z"/></g><g transform="translate(93 9)"><path fill-rule="evenodd" d="M0 0h7.5a11 11 0 0 1 0 22H0zM5 5v12h2.3a6 6 0 0 0 0-12z"/></g></g></svg></a>
+    <nav class="bo-nav" aria-label="Módulos">
+      <div class="bo-nav__group">
+        <p class="bo-nav__title">Operación</p>
+        <ul class="bo-nav__list">
+          <li><a class="bo-nav__link" href="../control/mapa.html" data-page="control-mapa"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6.5 9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20z"/><path d="M9 4v13.5M15 6.5V20"/></svg><span class="bo-nav__label">Centro de control</span></a></li>
+          <li><a class="bo-nav__link" href="../control/incidencias.html" data-page="control-incidencias"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9.8 4h4.4l4 15H5.8z"/><path d="M8 11h8M6.9 15.2h10.2M3.5 19.5h17"/></svg><span class="bo-nav__label">Incidencias</span></a></li>
+        </ul>
+      </div>
+      <div class="bo-nav__group">
+        <p class="bo-nav__title">Planificación</p>
+        <ul class="bo-nav__list">
+          <li><a class="bo-nav__link" href="../motor/rutas.html" data-page="motor-rutas"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="18" r="2.25"/><circle cx="18" cy="6" r="2.25"/><path d="M8.25 18H15a3 3 0 0 0 0-6H9a3 3 0 0 1 0-6h6.75"/></svg><span class="bo-nav__label">Rutas del día</span></a></li>
+          <li><a class="bo-nav__link" href="../motor/reglas.html" data-page="motor-reglas"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h9M17 7h3M4 17h3M11 17h9"/><circle cx="15" cy="7" r="2"/><circle cx="9" cy="17" r="2"/></svg><span class="bo-nav__label">Reglas operativas</span></a></li>
+        </ul>
+      </div>
+      <div class="bo-nav__group">
+        <p class="bo-nav__title">Prueba</p>
+        <ul class="bo-nav__list">
+          <li><a class="bo-nav__link" href="prueba.html" data-page="prueba" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span class="bo-nav__label">Datos y utilidades</span></a></li>
+        </ul>
+      </div>
+    </nav>
+    <button class="bo-sidebar__toggle" type="button" aria-label="Plegar el menú"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
+    <div class="bo-sidebar__user">
+      <span class="c-avatar c-avatar--sm" aria-hidden="true" id="usuario-iniciales"></span>
+      <span class="bo-sidebar__user-text"><span class="bo-sidebar__user-name" id="usuario-nombre"></span><span class="bo-sidebar__user-role">Operadora</span></span>
+    </div>
+  </aside>
+
+  <div class="bo-main">
+    <header class="bo-topbar">
+      <nav class="c-breadcrumb bo-topbar__crumbs" aria-label="Migas de pan"><ol><li>Prueba</li><li><span aria-current="page">Datos y utilidades</span></li></ol></nav>
+      <div class="bo-topbar__search c-input-group"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.4-4.4"/></svg><input class="c-input" type="search" aria-label="Buscar en la plataforma" placeholder="Buscar viajero, reserva o matrícula"></div>
+      <div class="bo-topbar__actions">
+        <select class="c-select bo-topbar__territory" aria-label="Territorio"><option>Comarca de la Sierra Norte</option></select>
+        <div class="c-dropdown">
+          <button class="c-btn c-btn--ghost c-btn--icon bo-bell" type="button" data-dropdown aria-controls="menu-avisos" aria-label="Notificaciones: 2 sin leer"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16v-5a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 0 0 4 0"/></svg><span class="bo-bell__count" aria-hidden="true">2</span></button>
+          <div class="c-dropdown__menu" id="menu-avisos">
+            <a class="c-dropdown__item" href="#incidencias"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg> Retraso de 12 min en la ruta R2</a>
+            <a class="c-dropdown__item" href="#incidencias"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 17H9.5M5 17H3.5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1H15l4.5 4.5H20a1.5 1.5 0 0 1 1.5 1.5v4a1 1 0 0 1-1 1H19"/><path d="M15 6v4.5h4.5M2.5 11H15"/><circle cx="7" cy="17.5" r="2"/><circle cx="17" cy="17.5" r="2"/></svg> 6604 LBC sustituido por 9951 KZD</a>
+            <div class="c-dropdown__sep"></div>
+            <button class="c-dropdown__item" type="button" data-toast="Notificaciones marcadas como leídas."><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg> Marcar como leídas</button>
+          </div>
+        </div>
+        <a class="c-index-link" href="../index.html"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg> Índice</a>
+      </div>
+    </header>
+
+    <main class="bo-content" id="contenido">
+      <header class="bo-pagehead">
+        <div>
+          <span class="bo-pagehead__module"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg> Página de prueba</span>
+          <h1 class="bo-pagehead__title">Datos y utilidades</h1>
+          <p class="bo-pagehead__desc">Todo lo de esta página se dibuja desde <code>js/data.js</code>. Hora de la maqueta: <strong data-tad-reloj></strong></p>
+        </div>
+        <div class="bo-pagehead__actions">
+          <button class="c-btn c-btn--secondary" type="button" data-open="panel-incidencia"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9.8 4h4.4l4 15H5.8z"/><path d="M8 11h8M6.9 15.2h10.2M3.5 19.5h17"/></svg> Ver incidencia</button>
+          <button class="c-btn c-btn--primary" type="button" data-open="modal-replanificar"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="18" r="2.25"/><circle cx="18" cy="6" r="2.25"/><path d="M8.25 18H15a3 3 0 0 0 0-6H9a3 3 0 0 1 0-6h6.75"/></svg> Replanificar</button>
+        </div>
+      </header>
+
+      <!-- Indicadores -->
+      <div class="bo-grid bo-grid--kpis" id="kpis"></div>
+
+      <!-- Comprobaciones -->
+      <section class="prueba-section" aria-labelledby="t-checks">
+        <h2 id="t-checks">Comprobaciones en vivo</h2>
+        <div class="c-card"><div class="c-card__body"><ul class="prueba-checks" id="checks"></ul></div></div>
+      </section>
+
+      <!-- Reserva de referencia -->
+      <section class="prueba-section" aria-labelledby="t-reserva">
+        <h2 id="t-reserva">Reserva de referencia</h2>
+        <div class="bo-grid bo-grid--2">
+          <article class="c-card">
+            <header class="c-card__header"><h3 class="c-card__title" id="reserva-codigo"></h3><span id="reserva-estado"></span></header>
+            <div class="c-card__body"><dl class="prueba-dl" id="reserva-datos"></dl></div>
+            <footer class="c-card__footer">
+              <button class="c-btn c-btn--ghost c-btn--sm" type="button" data-toast="Hemos enviado el recibo por SMS." data-toast-title="Recibo enviado">Ver recibo</button>
+              <button class="c-btn c-btn--primary c-btn--sm" type="button" data-toast="Reserva confirmada. Hemos enviado un SMS al 6XX XXX 123." data-toast-title="Reserva confirmada">Confirmar de nuevo</button>
+            </footer>
+          </article>
+          <article class="c-card">
+            <header class="c-card__header"><h3 class="c-card__title">Ruta R2 · paradas del servicio</h3><span class="c-badge c-badge--warning">Retraso 12 min</span></header>
+            <div class="c-card__body"><ol class="c-timeline" id="r2-timeline"></ol></div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Mapa -->
+      <section class="prueba-section" aria-labelledby="t-mapa">
+        <h2 id="t-mapa">Mapa de operación a las 09:40</h2>
+        <div class="bo-grid bo-grid--main-side">
+          <div class="c-map prueba-map" id="mapa">
+            <div class="c-map__canvas"></div>
+            <div class="c-map__fallback"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon c-icon--lg" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6.5 9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20z"/><path d="M9 4v13.5M15 6.5V20"/></svg><span>Mapa no disponible</span></div>
+            <div class="c-map__legend" aria-label="Leyenda del mapa">
+              <span class="c-map__legend-item"><span class="c-map__swatch c-map__swatch--servicio"></span>En servicio</span>
+              <span class="c-map__legend-item"><span class="c-map__swatch c-map__swatch--retraso"></span>Con retraso</span>
+              <span class="c-map__legend-item"><span class="c-map__swatch c-map__swatch--parado"></span>Parado</span>
+              <span class="c-map__legend-item"><span class="c-map__swatch c-map__swatch--parada"></span>Parada</span>
+              <span class="c-map__legend-item"><span class="c-map__swatch c-map__swatch--obras"></span>Obras CM-1004</span>
+              <span class="c-map__legend-item"><span class="c-map__swatch c-map__swatch--line c-map__swatch--r1"></span>R1</span>
+              <span class="c-map__legend-item"><span class="c-map__swatch c-map__swatch--line c-map__swatch--r2"></span>R2</span>
+              <span class="c-map__legend-item"><span class="c-map__swatch c-map__swatch--line c-map__swatch--r3"></span>R3</span>
+              <span class="c-map__legend-item"><span class="c-map__swatch c-map__swatch--line c-map__swatch--r4"></span>R4</span>
+            </div>
+          </div>
+          <div class="c-card">
+            <div class="c-card__header"><h3 class="c-card__title">Vehículos</h3></div>
+            <div class="c-card__body"><ul class="prueba-vehiculos" id="vehiculos"></ul></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tabla -->
+      <section class="prueba-section" aria-labelledby="t-tabla">
+        <h2 id="t-tabla">Reservas de hoy</h2>
+        <div class="c-chip-group" style="margin-bottom:var(--sp-3)" role="group" aria-label="Filtrar por estado" data-filter-target="tabla-reservas" data-filter-key="estado" id="filtros"></div>
+        <div class="c-table-wrap">
+          <table class="c-table" data-sortable id="tabla-reservas">
+            <caption class="u-visually-hidden">Las 24 reservas del 14/04/2026</caption>
+            <thead><tr>
+              <th scope="col"><button class="c-table__sort" type="button">Hora <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button></th>
+              <th scope="col"><button class="c-table__sort" type="button">Código <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button></th>
+              <th scope="col"><button class="c-table__sort" type="button">Titular <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button></th>
+              <th scope="col">Trayecto</th>
+              <th scope="col"><button class="c-table__sort" type="button">Ruta <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button></th>
+              <th scope="col" class="is-num"><button class="c-table__sort" type="button">Viajeros <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button></th>
+              <th scope="col"><button class="c-table__sort" type="button">Estado <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button></th>
+              <th scope="col" class="is-num"><button class="c-table__sort" type="button">Importe <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button></th>
+            </tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Gráficos -->
+      <section class="prueba-section" aria-labelledby="t-graficos">
+        <h2 id="t-graficos">Gráficos</h2>
+        <div class="bo-grid bo-grid--2">
+          <div class="c-card"><div class="c-card__header"><h3 class="c-card__title">Viajeros por día y predicción</h3></div><div class="c-card__body"><div id="g-linea"></div></div></div>
+          <div class="c-card"><div class="c-card__header"><h3 class="c-card__title">Ocupación media por franja</h3></div><div class="c-card__body"><div id="g-barras"></div></div></div>
+          <div class="c-card"><div class="c-card__header"><h3 class="c-card__title">Viajeros de hoy por perfil</h3></div><div class="c-card__body"><div id="g-donut"></div></div></div>
+          <div class="c-card"><div class="c-card__header"><h3 class="c-card__title">Puntualidad de hoy</h3></div><div class="c-card__body"><div id="g-medidor"></div></div></div>
+          <div class="c-card"><div class="c-card__header"><h3 class="c-card__title">CO₂ evitado acumulado (30 días)</h3></div><div class="c-card__body"><div id="g-area"></div></div></div>
+          <div class="c-card"><div class="c-card__header"><h3 class="c-card__title">Demanda por municipio y mapa de calor</h3></div><div class="c-card__body" style="padding:0">
+            <div class="c-map" id="mapa-territorio" style="--map-h:300px;border:0;border-radius:0 0 var(--r-md) var(--r-md)">
+              <div class="c-map__canvas"></div>
+              <div class="c-map__fallback"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon c-icon--lg" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6.5 9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20z"/><path d="M9 4v13.5M15 6.5V20"/></svg><span>Mapa no disponible</span></div>
+            </div>
+          </div></div>
+        </div>
+      </section>
+
+      <!-- Comportamientos -->
+      <section class="prueba-section" aria-labelledby="t-ui" id="incidencias">
+        <h2 id="t-ui">Comportamientos (ui.js)</h2>
+        <div class="c-card"><div class="c-card__body">
+          <div class="c-tabs" role="tablist" aria-label="Ejemplo de pestañas">
+            <button class="c-tabs__tab" role="tab" type="button" id="tab-1" aria-controls="panel-1" aria-selected="true">Pasos de la reserva</button>
+            <button class="c-tabs__tab" role="tab" type="button" id="tab-2" aria-controls="panel-2" aria-selected="false">Avisos y ventanas</button>
+          </div>
+          <div class="c-tabpanel" role="tabpanel" id="panel-1" aria-labelledby="tab-1">
+            <div data-stepper>
+              <ol class="c-stepper" aria-label="Pasos de la reserva">
+                <li class="c-stepper__step"><span class="c-stepper__label">Origen y destino</span></li>
+                <li class="c-stepper__step"><span class="c-stepper__label">Fecha y hora</span></li>
+                <li class="c-stepper__step"><span class="c-stepper__label">Viajeros</span></li>
+                <li class="c-stepper__step"><span class="c-stepper__label">Confirmación</span></li>
+              </ol>
+              <div data-step style="padding-top:var(--sp-5)"><h3>1. Origen y destino</h3><p id="paso-1"></p></div>
+              <div data-step style="padding-top:var(--sp-5)"><h3>2. Fecha y hora</h3><p>Martes 14 de abril, recogida a las 10:00 (ventana de ±15 minutos).</p></div>
+              <div data-step style="padding-top:var(--sp-5)"><h3>3. Viajeros</h3><p>1 viajera · perfil mayor · sin acompañante.</p></div>
+              <div data-step style="padding-top:var(--sp-5)"><h3>4. Confirmación</h3><p id="paso-4"></p></div>
+              <div class="c-card__footer" style="background:none;padding-left:0;padding-right:0;border:0;justify-content:flex-start">
+                <button class="c-btn c-btn--secondary" type="button" data-step-prev><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg> Anterior</button>
+                <button class="c-btn c-btn--primary" type="button" data-step-next>Siguiente <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+              </div>
+            </div>
+          </div>
+          <div class="c-tabpanel" role="tabpanel" id="panel-2" aria-labelledby="tab-2" hidden>
+            <div class="demo-row" style="display:flex;flex-wrap:wrap;gap:var(--sp-2)">
+              <button class="c-btn c-btn--primary" type="button" data-toast="Hemos enviado un SMS al 6XX XXX 123." data-toast-title="Reserva confirmada">Aviso de éxito</button>
+              <button class="c-btn c-btn--danger" type="button" data-toast="Revisa la conexión e inténtalo de nuevo." data-toast-title="No se ha podido enviar" data-toast-type="danger">Aviso de error</button>
+              <button class="c-btn c-btn--secondary" type="button" data-open="modal-replanificar">Abrir ventana</button>
+              <button class="c-btn c-btn--secondary" type="button" data-open="panel-incidencia">Abrir panel lateral</button>
+              <div class="c-dropdown">
+                <button class="c-btn c-btn--secondary" type="button" data-dropdown aria-controls="menu-exportar"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10.5l5 5 5-5M5 20h14"/></svg> Exportar <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+                <div class="c-dropdown__menu c-dropdown__menu--left" id="menu-exportar">
+                  <button class="c-dropdown__item" type="button" data-toast="Informe en PDF generado."><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg> PDF</button>
+                  <button class="c-dropdown__item" type="button" data-toast="Hoja de cálculo generada."><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v16h16"/><path d="m7.5 14.5 3.5-4 3 2.5 5-6"/></svg> Excel</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div></div>
+      </section>
+    </main>
+  </div>
+</div>
+
+<!-- Ventana de confirmación -->
+<div class="c-modal" id="modal-replanificar" role="dialog" aria-modal="true" aria-labelledby="modal-replanificar-t">
+  <div class="c-modal__dialog">
+    <div class="c-modal__header">
+      <h2 class="c-modal__title" id="modal-replanificar-t">¿Replanificar las rutas de hoy?</h2>
+      <button class="c-btn c-btn--ghost c-btn--icon c-btn--sm" type="button" data-close aria-label="Cerrar"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    </div>
+    <div class="c-modal__body"><p style="margin:0" id="modal-texto"></p></div>
+    <div class="c-modal__footer">
+      <button class="c-btn c-btn--secondary" type="button" data-close>Cancelar</button>
+      <button class="c-btn c-btn--primary" type="button" data-toast="Las rutas se han recalculado. Los conductores ya tienen la nueva secuencia." data-toast-title="Rutas replanificadas" data-toast-close>Replanificar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Panel lateral -->
+<div class="c-drawer" id="panel-incidencia" role="dialog" aria-modal="true" aria-labelledby="panel-incidencia-t">
+  <div class="c-drawer__panel">
+    <div class="c-drawer__header">
+      <div><span class="c-badge c-badge--warning" id="inc-estado"></span><h2 class="c-drawer__title" id="panel-incidencia-t" style="margin-top:var(--sp-2)"></h2></div>
+      <button class="c-btn c-btn--ghost c-btn--icon c-btn--sm" type="button" data-close aria-label="Cerrar"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    </div>
+    <div class="c-drawer__body"><p id="inc-desc"></p><ol class="c-timeline" id="inc-historial"></ol></div>
+    <div class="c-drawer__footer">
+      <button class="c-btn c-btn--primary c-btn--sm" type="button" data-toast="Aviso enviado a los 3 viajeros afectados." data-toast-title="Viajeros notificados">Notificar viajeros</button>
+      <button class="c-btn c-btn--secondary c-btn--sm" type="button" data-close>Cerrar</button>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var f = TAD.fmt, h = f.html;
+
+  // Usuario del menú
+  var op = TAD.persona("op1");
+  document.getElementById("usuario-nombre").textContent = op.nombre;
+  document.getElementById("usuario-iniciales").textContent = op.iniciales;
+
+  // Indicadores
+  var k = TAD.kpisHoy, hist = TAD.historial;
+  var kpis = [
+    ["Servicios activos", k.serviciosActivos, "", null],
+    ["Viajeros a bordo", k.viajerosABordo, "", hist.map(function (d) { return d.viajeros; })],
+    ["Puntualidad", k.puntualidad, "%", hist.map(function (d) { return d.puntualidad; })],
+    ["Ocupación media", k.ocupacionMedia, "%", hist.map(function (d) { return d.ocupacion; })]
+  ];
+  document.getElementById("kpis").innerHTML = kpis.map(function (x, i) {
+    return '<div class="c-kpi"><span class="c-kpi__label">' + x[0] + '</span><span class="c-kpi__value">' + x[1] +
+      (x[2] ? ' <span class="c-kpi__unit">' + x[2] + "</span>" : "") + '</span><div class="c-kpi__foot"><span class="c-kpi__delta c-kpi__delta--flat">Hoy, ' + TAD.ahora + '</span><span id="spark-' + i + '"></span></div></div>';
+  }).join("");
+  kpis.forEach(function (x, i) { if (x[3]) TADGrafico.sparkline("#spark-" + i, x[3].slice(-14)); });
+
+  // Comprobaciones en vivo
+  var porEstado = TAD.reservasPorEstado(), fl = TAD.flota();
+  var sumaABordo = TAD.rutas.reduce(function (n, r) { return n + TAD.aBordo(r.id); }, 0);
+  var ref = TAD.reservaReferencia();
+  var checks = [
+    ["24 reservas: 9 finalizadas, 6 en curso, 7 confirmadas, 1 cancelada, 1 pendiente",
+      TAD.reservas.length === 24 && porEstado["Finalizada"] === 9 && porEstado["En curso"] === 6 && porEstado["Confirmada"] === 7],
+    ["23 viajeros a bordo a las 09:40 (calculado parada a parada: " + sumaABordo + ")", sumaABordo === 23],
+    ["Ruta R2 a las 10:08: " + TAD.aBordo("R2", "10:08") + "/16 plazas", TAD.aBordo("R2", "10:08") === 7],
+    ["Flota: " + fl.total + " vehículos, " + fl.enServicio + " en servicio, " + fl.mantenimiento + " en mantenimiento, " + fl.reserva + " en reserva, " + fl.pmr + " PMR",
+      fl.enServicio === 5 && fl.mantenimiento === 1 && fl.reserva === 0 && fl.pmr === 3],
+    ["Reserva de Josefa: " + f.euros(ref.importe) + " (2,20 € interzona − 50 %)", ref.importe === TAD.tarifa(ref.origen, ref.destino, "mayor").importe]
+  ];
+  document.getElementById("checks").innerHTML = checks.map(function (c) {
+    return "<li>" + f.badge(c[1] ? "Confirmada" : "Incidencia").replace(c[1] ? "Confirmada" : "Incidencia", c[1] ? "Cuadra" : "No cuadra") + " " + h(c[0]) + "</li>";
+  }).join("");
+
+  // Reserva de referencia
+  var u = TAD.usuario(ref.usuario), ruta = TAD.ruta(ref.ruta), v = TAD.vehiculo(ruta.vehiculo), c = TAD.conductor(ruta.conductor);
+  var parada = TAD.servicio(ref.servicio).paradas.filter(function (p) { return p.parada === ref.origen; })[0];
+  var tar = TAD.tarifa(ref.origen, ref.destino, ref.perfil);
+  document.getElementById("reserva-codigo").textContent = ref.codigo;
+  document.getElementById("reserva-estado").innerHTML = f.badge(ref.estado);
+  document.getElementById("reserva-datos").innerHTML = [
+    ["Viajera", u.nombre + " · " + u.edad + " años"],
+    ["Perfil", "Mayor · bonificación " + f.porcentaje(u.bonificacionPct)],
+    ["Trayecto", TAD.parada(ref.origen).nombre + " → " + TAD.parada(ref.destino).nombre],
+    ["Recogida", "Prevista " + parada.prevista + " · estimada " + parada.estimada + " (retraso " + parada.retraso + " min)"],
+    ["Ruta", ruta.id + " · " + v.matricula + " (" + v.modelo + ", " + v.plazas + " plazas, " + (v.accesibilidad || "sin adaptación").toLowerCase() + ")"],
+    ["Conductora", c.nombre],
+    ["Tarifa", f.euros(tar.base) + (tar.interzona ? " interzona" : "") + " − " + f.porcentaje(tar.pct) + " = " + f.euros(tar.importe)],
+    ["Pago", ref.pago],
+    ["Nota", ref.nota]
+  ].map(function (x) { return "<dt>" + x[0] + "</dt><dd>" + h(x[1]) + "</dd>"; }).join("");
+
+  // Línea de tiempo de la R2
+  var serv = TAD.servicioActual("R2");
+  document.getElementById("r2-timeline").innerHTML = serv.paradas.map(function (p, i) {
+    var est = TAD.estadoParada(serv, i);
+    var cls = est === "realizada" ? "is-done" : est === "proxima" ? "is-current" : "";
+    var sub = TAD.suma(p.suben.map(TAD.reserva)), baj = TAD.suma(p.bajan.map(TAD.reserva));
+    var mov = [sub ? "suben " + sub : "", baj ? "bajan " + baj : ""].filter(Boolean).join(" · ") || "sin movimientos";
+    return '<li class="c-timeline__item ' + cls + '"><span class="c-timeline__time">' + p.estimada + '</span><div class="c-timeline__content"><span class="c-timeline__title">' +
+      h(TAD.parada(p.parada).nombre) + '</span><span class="c-timeline__desc">' + mov + (p.retraso ? " · prevista " + p.prevista : "") + "</span></div></li>";
+  }).join("");
+
+  // Mapa principal
+  var mapa = TADMapa.crear("#mapa");
+  mapa.obras().rutas().paradas({ resaltar: ref.origen }).vehiculos({ alPulsar: function () {} }).encuadrar();
+  document.getElementById("vehiculos").innerHTML = TAD.vehiculos.map(function (v) {
+    var r = v.rutaHoy ? TAD.ruta(v.rutaHoy) : null;
+    var estado = TAD.estadoVehiculo(v);
+    var detalle = r ? "Ruta " + r.id + " · " + TAD.aBordo(r.id) + "/" + v.plazas : (v.ubicacion || "");
+    return '<li><button class="c-btn c-btn--ghost" type="button" data-matricula="' + v.matricula + '"' + (v.posicion ? "" : " disabled") + '><span>' + v.matricula +
+      ' <span class="u-muted u-small">' + h(detalle) + "</span></span>" + f.badge(r && r.retrasoMin ? "Retraso" : estado) + "</button></li>";
+  }).join("");
+  document.getElementById("vehiculos").addEventListener("click", function (e) {
+    var b = e.target.closest("[data-matricula]");
+    if (b) mapa.centrarEn(b.getAttribute("data-matricula"), 14);
+  });
+
+  // Tabla y filtros
+  var estados = ["", "Finalizada", "En curso", "Confirmada", "Cancelada", "Pendiente"];
+  document.getElementById("filtros").innerHTML = estados.map(function (e) {
+    var n = e ? porEstado[e] : TAD.reservas.length;
+    return '<button class="c-chip" type="button" data-filter="' + e + '" aria-pressed="' + (e ? "false" : "true") + '">' + (e || "Todas") + " · " + n + "</button>";
+  }).join("");
+  document.querySelector("#tabla-reservas tbody").innerHTML = TAD.reservas.map(function (r) {
+    return '<tr data-estado="' + r.estado + '"' + (r.codigo === ref.codigo ? ' class="is-selected"' : "") + "><td>" + r.horaPrevista + "</td><td>" + r.codigo + "</td><td>" + h(TAD.usuario(r.usuario).nombre) +
+      "</td><td>" + h(TAD.parada(r.origen).nombre) + " → " + h(TAD.parada(r.destino).nombre) + "</td><td>" + (r.ruta || "—") + '</td><td class="is-num">' + r.viajeros +
+      "</td><td>" + f.badge(r.estado) + '</td><td class="is-num" data-value="' + r.importe + '">' + f.euros(r.importe) + "</td></tr>";
+  }).join("");
+
+  // Gráficos
+  var etiquetas = hist.map(function (d) { return f.fechaCorta(d.fecha); }).concat(TAD.prediccion.map(function (d) { return f.fechaCorta(d.fecha); }));
+  var real = hist.map(function (d) { return d.viajeros; }).concat(TAD.prediccion.map(function () { return null; }));
+  var pred = hist.map(function (d, i) { return i === hist.length - 1 ? d.viajeros : null; }).concat(TAD.prediccion.map(function (d) { return d.viajeros; }));
+  TADGrafico.linea("#g-linea", { titulo: "Viajeros por día, últimos 30 días y predicción de la próxima semana", descripcion: "Entre semana unos 50 viajeros al día; los fines de semana, menos de 20.",
+    etiquetas: etiquetas, series: [{ nombre: "Viajeros", valores: real, color: "--chart-1" }, { nombre: "Predicción", valores: pred, color: "--chart-4", discontinua: true }], maxEtiquetas: 7 });
+  TADGrafico.barras("#g-barras", { titulo: "Ocupación media por franja horaria", etiquetas: TAD.reglas.franjas.map(function (x) { return x.desde + "–" + x.hasta; }),
+    series: [{ nombre: "Ocupación", valores: [52, 68, 57], color: "--chart-2" }], unidad: " %", unidadEje: " %", max: 100, valores: true });
+  var perfiles = {};
+  TAD.reservas.filter(function (r) { return r.estado !== "Cancelada" && r.estado !== "Pendiente"; }).forEach(function (r) {
+    var p = r.perfil === "familia numerosa" ? "general" : r.perfil;
+    perfiles[p] = (perfiles[p] || 0) + r.viajeros;
+  });
+  var nombres = { mayor: "Mayores", PMR: "PMR", estudiante: "Estudiantes", general: "General" };
+  var colores = { mayor: "--chart-1", PMR: "--chart-4", estudiante: "--chart-2", general: "--chart-3" };
+  var datosDonut = Object.keys(nombres).map(function (p) { return { nombre: nombres[p], valor: perfiles[p] || 0, color: colores[p] }; });
+  TADGrafico.donut("#g-donut", { titulo: "Viajeros de hoy por perfil", datos: datosDonut, centro: String(datosDonut.reduce(function (a, d) { return a + d.valor; }, 0)), subcentro: "viajeros hoy" });
+  TADGrafico.medidor("#g-medidor", { titulo: "Puntualidad de hoy", valor: k.puntualidad, unidad: " %", objetivo: 95 });
+  var acum = 0;
+  TADGrafico.area("#g-area", { titulo: "CO₂ evitado acumulado en los últimos 30 días", etiquetas: hist.map(function (d) { return f.fechaCorta(d.fecha); }),
+    series: [{ nombre: "CO₂ evitado", valores: hist.map(function (d) { acum += d.co2; return Math.round(acum); }), color: "--chart-2" }], unidad: " kg", maxEtiquetas: 6 });
+  TADMapa.crear("#mapa-territorio").municipios().calor().encuadrar(10);
+
+  // Textos de ventana, panel y pasos
+  var opt = TAD.optimizacion, inc = TAD.incidencia("INC-0412");
+  document.getElementById("modal-texto").textContent = "Se recalcularán las " + opt.rutas + " rutas con las " + opt.reservas + " reservas de hoy. Los conductores recibirán la nueva secuencia de paradas en su app.";
+  document.getElementById("inc-estado").textContent = inc.estado;
+  document.getElementById("panel-incidencia-t").textContent = inc.titulo;
+  document.getElementById("inc-desc").textContent = inc.descripcion;
+  document.getElementById("inc-historial").innerHTML = inc.historial.map(function (x) {
+    return '<li class="c-timeline__item is-done"><span class="c-timeline__time">' + x.hora + '</span><div class="c-timeline__content"><span class="c-timeline__title">' + h(x.texto) + "</span></div></li>";
+  }).join("");
+  document.getElementById("paso-1").textContent = TAD.parada(ref.origen).nombre + " → " + TAD.parada(ref.destino).nombre + ".";
+  document.getElementById("paso-4").textContent = "Tarifa " + f.euros(tar.base) + " con bonificación del " + f.porcentaje(tar.pct) + ": total " + f.euros(tar.importe) + ".";
+});
+</script>
+</body>
+</html>
