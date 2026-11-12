@@ -14,7 +14,7 @@ Es un proyecto **aparte del panel de Anunzi**: no comparte código, base de dato
 ## Marca
 - La maqueta sale con la marca **TAD** («Plataforma Digital TAD»). **No lleva marca de Kuanthico ni de Anunzi**: no nombrarlas en ninguna pantalla.
 - La marca TAD es provisional y puede cambiar: nombre, logo y colores deben vivir en un solo lugar (logo SVG + `css/tokens.css`) para poder cambiarlos sin tocar las pantallas.
-- No nombrar en la interfaz a los proveedores tecnológicos que se usen por detrás. Sin logos reales de administraciones, de la Unión Europea ni de empresas.
+- No nombrar en la interfaz a los proveedores tecnológicos que se usen por detrás. Sin logos reales de administraciones, de la Unión Europea ni de empresas (única excepción: el logo de Cl@ve en el acceso, pedido por Matías).
 
 ## Reglas de trabajo
 1. **Nada de este proyecto toca el hosting del panel**: prohibido `public_html/whatsapp-gpt`, `public_html/staging`, `~/domains/staging.anunzi.net` y los dominios de otros clientes. Si se publica en el hosting, va en su propia carpeta o subdominio, y solo con el OK de Matías.
@@ -30,6 +30,16 @@ Es un proyecto **aparte del panel de Anunzi**: no comparte código, base de dato
 - **Carpeta**: la maqueta vive en `tad-mockup/` dentro de este repositorio; esa carpeta es la que se sube al hosting.
 - **Forma de trabajo**: se planifica con Fable y se programa con Opus.
 
+## Publicación (definido 2026-11-12)
+- Va en un sitio nuevo de Hostinger, dentro de la misma cuenta de hosting de Anunzi: `dodgerblue-aardvark-898542.hostingersite.com` (dominio provisional).
+- Se llega con el mismo acceso SSH de siempre (`anunzi-hosting`). Carpeta del sitio: `~/domains/dodgerblue-aardvark-898542.hostingersite.com/public_html/`. La maqueta se sube a `public_html/tad/` (queda en `https://dodgerblue-aardvark-898542.hostingersite.com/tad/`).
+- **En esa cuenta viven también el panel y los sitios de otros clientes**: solo se escribe dentro de la carpeta de este dominio. Las demás carpetas de `~/domains/` no se tocan nunca.
+- Cada subida necesita el OK de Matías.
+
+## Decisiones sobre dudas del brief (2026-11-12, Matías)
+- **Mapa**: se acepta el fondo real con nombres de pueblos reales junto a los ficticios.
+- **Vehículo 9951 KZD**: pasa a «En servicio (sustitución)» porque reemplaza al 6604 LBC; ajustar los conteos de flota (5 en servicio, 1 en mantenimiento, 0 en reserva) en todas las pantallas.
+- **«Acceder con Cl@ve»**: lleva el logo de Cl@ve. Es la única excepción a la regla de «sin logos reales».
+
 ## Pendiente de definir
-- **Dónde se publica**: el brief dice un hosting compartido, en la carpeta `tad/` de un dominio. Falta saber **qué dominio** y que Matías dé el OK. Mientras tanto se revisa en local.
-- Dudas abiertas del brief: ver `docs/bitacora.md`.
+- **«IA responsable»**: tiene color de módulo en el brief pero no pantalla propia. Si va o no en el menú lateral se decide más adelante; mientras tanto, no ponerla en el menú.

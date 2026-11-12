@@ -6,10 +6,11 @@
 - 2026-11-12 · alcance y stack · Quedan definidos por el brief: maqueta navegable no funcional (30 pantallas + índice), HTML/CSS/JS puros, datos ficticios. Matías (vía brief).
 - 2026-11-12 · forma de trabajo · Se planifica con Fable y se programa con Opus. Se construye por bloques (sección 8 del brief) con parada para revisión al final de cada uno. Matías.
 
+- 2026-11-12 · publicación · Se aloja en un sitio nuevo de Hostinger en la misma cuenta de Anunzi: `dodgerblue-aardvark-898542.hostingersite.com`, carpeta `public_html/tad/`. Acceso SSH verificado (solo lectura): la carpeta existe y está vacía salvo la página por defecto de Hostinger. Matías.
+- 2026-11-12 · mapa · Se acepta el mapa real de fondo con nombres de pueblos reales. Matías.
+- 2026-11-12 · vehículo 9951 KZD · Queda «En servicio (sustitución)»; se ajustan los conteos de flota. Matías.
+- 2026-11-12 · Cl@ve · El enlace «Acceder con Cl@ve» lleva el logo, como excepción a «sin logos reales». Matías.
+
 ## Pendientes y dudas abiertas (2026-11-12)
 
-- **Publicación**: falta definir el dominio donde va la carpeta `tad/` y el OK de Matías. No puede ser el hosting del panel.
-- **«IA responsable»**: el brief le asigna color de módulo, pero no tiene pantalla propia (solo un panel dentro de `motor/reglas.html`). ¿Va en el menú lateral o no?
-- **Mapa**: el territorio es ficticio pero el mapa de fondo es real (sierra norte de Madrid), así que al lado de «Valdecerro» se verán nombres de pueblos reales. ¿Se acepta o se busca un fondo sin nombres?
-- **Vehículo 9951 KZD**: figura «En reserva» en la flota, pero una incidencia dice que está sustituyendo al 6604 LBC. Hay que elegir una de las dos versiones para que los datos sean coherentes.
-- **«Acceder con Cl@ve»**: es un servicio real de la administración española. Propuesta: dejarlo solo como texto, sin logo.
+- **«IA responsable»**: tiene color de módulo, pero no pantalla propia. Se ve más adelante; por ahora no va en el menú lateral.
