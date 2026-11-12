@@ -1886,7 +1886,7 @@
   "pantallas": [
     {
       "id": "landing",
-      "archivo": "landing.html",
+      "archivo": "index.html",
       "nombre": "Landing institucional",
       "modulo": "acceso",
       "grupo": null,

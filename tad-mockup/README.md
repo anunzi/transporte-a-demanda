@@ -6,16 +6,17 @@ Publicada en: https://dodgerblue-aardvark-898542.hostingersite.com/
 
 ## Cómo se recorre
 
-- `index.html` es la portada de la presentación: accesos por perfil y las 30 pantallas agrupadas por módulo.
-- `login.html` lleva a cada perfil: Ciudadano → portal del viajero, Conductor → app del conductor, Operador → centro de control, Administración → cuadro de mando.
-- Toda pantalla tiene «← Índice del mockup» para volver.
+- `index.html` es la **portada** (la landing institucional): es lo primero que se ve al abrir el sitio.
+- Su botón de acceso lleva a `login.html`, donde se elige el perfil: Ciudadano → portal del viajero, Conductor → app del conductor, Operador → centro de control, Administración → cuadro de mando. Debajo, «Probar las versiones en la aplicación» abre la app del viajero y la del conductor.
+- Dentro de cada perfil se navega con su propio menú. La barra superior «← Cambiar de perfil» vuelve al acceso.
+- `paginas.html` es el **menú completo de páginas** (las 30 pantallas agrupadas por módulo), para el equipo: se llega desde un enlace discreto al pie del acceso.
 - La historia es la de un solo día: **martes 14 de abril de 2026**. El backoffice y la app del conductor muestran las **09:40**; el seguimiento del viajero (web y app) muestra las **10:08**, cuando la furgoneta de Josefa está a 4 minutos.
 - El hilo que une todas las pantallas: la reserva **TAD-2026-04187** de Josefa Martín, en la ruta **R2**, con el vehículo **4521 LKT** y la conductora **Carmen Ortega**, que va 12 minutos tarde por obras en la CM-1004.
 
 ## Organización
 
 ```
-index.html, landing.html, login.html, 404.html
+index.html (portada), login.html (acceso), paginas.html (menú de páginas), 404.html
 css/        tokens.css (colores, tipografía, medidas), components.css (componentes .c-*),
             layout-backoffice.css, layout-public.css, layout-mobile.css, demo.html (muestra del sistema)
 js/         data.js (todos los datos), ui.js (pestañas, ventanas, avisos…), nav.js (menú, migas, reloj),
@@ -61,7 +62,7 @@ Sube el contenido de `tad-mockup/` a la raíz del sitio (solo escribe en la carp
 
 | Punto del brief | Cómo se comprobó | Resultado |
 | --- | --- | --- |
-| Todas las pantallas abren desde el índice y vuelven | Índice dibujado desde `TAD.pantallas`; enlace al índice en todas | OK (30 pantallas + índice) |
+| Todas las pantallas abren desde el menú de páginas y vuelven | Menú dibujado desde `TAD.pantallas`; «Cambiar de perfil» en todas | OK (30 pantallas + menú) |
 | Ningún enlace roto | `herramientas/enlaces.py` (estricto) | OK — 625 enlaces, 0 rotos |
 | Mismo menú y barra superior; ítem activo correcto | `herramientas/menu.py`; `nav.js` marca el activo por `data-page` | OK — 14 pantallas idénticas |
 | Datos coherentes en todas las pantallas | `herramientas/datos.py` y `datos_sueltos.py` | OK — 584 comprobaciones; 0 datos escritos a mano |

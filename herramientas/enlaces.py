@@ -20,7 +20,7 @@ def main():
     pendientes_ok = "--pendientes" in sys.argv
     data = (RAIZ / "js" / "data.js").read_text(encoding="utf-8")
     datos = json.loads(re.search(r"/\*DATOS-INICIO\*/(.*?)/\*DATOS-FIN\*/", data, re.S).group(1))
-    inventario = {p["archivo"] for p in datos["pantallas"]} | {"index.html"}
+    inventario = {p["archivo"] for p in datos["pantallas"]} | {"index.html", "paginas.html"}
 
     rotos, pendientes, revisados = [], set(), 0
     for html in sorted(RAIZ.rglob("*.html")):

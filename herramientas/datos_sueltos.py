@@ -4,7 +4,7 @@ Uso:  python herramientas/datos_sueltos.py
 
 Regla del brief: los datos que existen en js/data.js (nombres de viajeros y conductores,
 matrículas, códigos de reserva) no se escriben en el HTML; se pintan desde window.TAD.
-Revisa las pantallas del inventario (TAD.pantallas) e index.html, sin contar los bloques
+Revisa las pantallas del inventario (TAD.pantallas) , index.html y paginas.html, sin contar los bloques
 <script> (allí sí se pueden nombrar ids para buscar datos, p. ej. TAD.vehiculo("4521 LKT")).
 No revisa css/demo.html ni js/prueba.html, que son páginas de muestra.
 Sale con código 1 si encuentra alguno.
@@ -30,7 +30,7 @@ def main():
     buscar += [(u["dni"], "DNI") for u in D["usuarios"]]
     patron_codigo = re.compile(r"TAD-2026-\d{5}")
 
-    archivos = [RAIZ / p["archivo"] for p in D["pantallas"]] + [RAIZ / "index.html"]
+    archivos = [RAIZ / p["archivo"] for p in D["pantallas"]] + [RAIZ / "paginas.html"]
     hallazgos, revisados = [], 0
     for html in archivos:
         if not html.exists():

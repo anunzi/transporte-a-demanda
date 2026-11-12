@@ -37,3 +37,10 @@
 
 - **Logo de Cl@ve**: para el bloque 6 hace falta el archivo, o el OK para redibujarlo.
 - **Miniaturas del índice**: ¿esquemas o capturas reales? Se decide en el bloque 6.
+
+## 2026-11-12 — Entrada de presentación (pedido de Matías)
+- Al abrir el sitio se ve la **landing** (ahora es `index.html`). Recorrido: portada → acceso → perfil elegido → experiencia completa con su propio menú.
+- El acceso suma «Probar las versiones en la aplicación» (app del viajero y app del conductor) y, al pie y en segundo plano, «Ver el menú completo de páginas».
+- El antiguo índice pasa a `paginas.html` (menú para el equipo, fuera de la experiencia).
+- La barra de maqueta de cada pantalla dice «← Cambiar de perfil» y lleva al acceso (antes llevaba al índice).
+
