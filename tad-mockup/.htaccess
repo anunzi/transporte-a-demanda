@@ -1,0 +1,7 @@
+# Maqueta TAD: mientras se construye, que el navegador y la caché del hosting
+# pidan siempre la última versión de páginas, estilos y scripts.
+<IfModule mod_headers.c>
+  <FilesMatch "\.(html|css|js)$">
+    Header set Cache-Control "no-cache, must-revalidate"
+  </FilesMatch>
+</IfModule>

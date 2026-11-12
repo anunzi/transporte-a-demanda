@@ -20,12 +20,16 @@
    Si Leaflet no carga (sin conexión o CDN caído), el contenedor se queda en gris
    con «Mapa no disponible» y las llamadas no hacen nada: la página sigue funcionando.
    Las rutas son líneas aproximadas dibujadas a mano, no siguen la carretera exacta.
+   Mapa base: IGN (Instituto Geográfico Nacional), sin clave de acceso.
    ========================================================================== */
 (function () {
   "use strict";
 
-  var TESELAS = "https://tile.openstreetmap.org/{z}/{x}/{y}.png";
-  var ATRIBUCION = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>';
+  /* Mapa base oficial del Instituto Geográfico Nacional (IGN Base, licencia CC BY 4.0).
+     Se usa este y no las teselas públicas de OpenStreetMap porque esas bloquean
+     este tipo de uso («Access blocked»). La atribución es obligatoria por la licencia. */
+  var TESELAS = "https://www.ign.es/wmts/ign-base?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=IGNBaseTodo&STYLE=default&TILEMATRIXSET=GoogleMapsCompatible&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}&FORMAT=image/png";
+  var ATRIBUCION = 'Mapa base: <a href="https://www.ign.es">IGN</a> (CC BY 4.0)';
   var ICONO_FURGONETA = '<svg class="c-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 17H9.5M5 17H3.5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1H15l4.5 4.5H20a1.5 1.5 0 0 1 1.5 1.5v4a1 1 0 0 1-1 1H19"/><path d="M15 6v4.5h4.5M2.5 11H15"/><circle cx="7" cy="17.5" r="2"/><circle cx="17" cy="17.5" r="2"/></svg>';
 
   function el(x) { return typeof x === "string" ? document.querySelector(x) : x; }
@@ -66,7 +70,7 @@
       attributionControl: true
     });
     mapa.attributionControl.setPrefix(false);
-    L.tileLayer(TESELAS, { maxZoom: 18, attribution: ATRIBUCION }).addTo(mapa);
+    L.tileLayer(TESELAS, { maxZoom: 17, attribution: ATRIBUCION }).addTo(mapa);
     cont.classList.add("is-loaded");
 
     var hora = opciones.momento || TAD.momento();

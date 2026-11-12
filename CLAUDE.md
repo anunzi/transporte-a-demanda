@@ -21,7 +21,7 @@ Es un proyecto **aparte del panel de Anunzi**: no comparte código, base de dato
 2. Sin credenciales, tokens ni datos personales reales en el código ni en el repositorio. En la maqueta, solo datos ficticios (sección 6 del brief).
 3. Cambios chicos y explicados. Lee el código antes de afirmar algo; si no pudiste verificarlo, dilo.
 4. Commits en `main` de `anunzi/transporte-a-demanda`. Publicar o desplegar algo, solo con el OK de Matías.
-5. Se construye **por bloques, en el orden de la sección 8 del brief, y se para al final de cada bloque** para que Matías revise. No se empieza un bloque sin cerrar el anterior.
+5. Se construye **por bloques, en el orden de la sección 8 del brief**. **Desde el 2026-11-12, Matías pidió construir todo el plan seguido, sin parar a revisar cada bloque, y subir cada avance directamente al sitio** (`dodgerblue-aardvark-898542.hostingersite.com`) para ir viéndolo ahí; los ajustes se hacen al final. Ese permiso de publicación vale solo para este sitio y con `herramientas/publicar.sh`.
 6. No inventar pantallas fuera del inventario del brief ni cambiar el sistema de diseño desde una pantalla.
 
 ## Definido (2026-11-12, según el brief)
@@ -34,7 +34,7 @@ Es un proyecto **aparte del panel de Anunzi**: no comparte código, base de dato
 - Va en un sitio nuevo de Hostinger, dentro de la misma cuenta de hosting de Anunzi: `dodgerblue-aardvark-898542.hostingersite.com` (dominio provisional).
 - Se llega con el mismo acceso SSH de siempre (`anunzi-hosting`). Carpeta del sitio: `~/domains/dodgerblue-aardvark-898542.hostingersite.com/public_html/`. La maqueta se sube a la **raíz del sitio** (`public_html/`, no a una subcarpeta `tad/`): queda en `https://dodgerblue-aardvark-898542.hostingersite.com/`. Las rutas del código siguen siendo relativas, como pide el brief. En la raíz hay un `default.php` de Hostinger (página de bienvenida) que habrá que reemplazar en la primera subida.
 - **En esa cuenta viven también el panel y los sitios de otros clientes**: solo se escribe dentro de la carpeta de este dominio. Las demás carpetas de `~/domains/` no se tocan nunca.
-- Cada subida necesita el OK de Matías.
+- Subidas: autorizadas de forma continua para este sitio desde el 2026-11-12 (ver regla 5). Usar siempre `herramientas/publicar.sh`, que solo escribe en la carpeta de este dominio.
 
 ## Decisiones sobre dudas del brief (2026-11-12, Matías)
 - **Mapa**: se acepta el fondo real con nombres de pueblos reales junto a los ficticios.
