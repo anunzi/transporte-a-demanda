@@ -5,3 +5,6 @@
     Header set Cache-Control "no-cache, must-revalidate"
   </FilesMatch>
 </IfModule>
+
+# Pantallas que todavía no existen: página amable de «en construcción»
+ErrorDocument 404 /404.html

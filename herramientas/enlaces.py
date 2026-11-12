@@ -25,6 +25,8 @@ def main():
     rotos, pendientes, revisados = [], set(), 0
     for html in sorted(RAIZ.rglob("*.html")):
         rel = html.relative_to(RAIZ).as_posix()
+        if rel == "404.html":  # usa rutas absolutas a propósito (la sirve el hosting en cualquier carpeta)
+            continue
         texto = html.read_text(encoding="utf-8")
         # Quitar los <script> en línea: allí las rutas se construyen con código
         sin_js = re.sub(r"<script>.*?</script>", "", texto, flags=re.S)

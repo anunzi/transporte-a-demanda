@@ -1884,78 +1884,246 @@
   ],
   "kpisHoy": {"serviciosActivos": 4, "viajerosABordo": 23, "puntualidad": 94, "ocupacionMedia": 61},
   "pantallas": [
-    {"id": "landing", "archivo": "landing.html", "nombre": "Landing institucional", "modulo": "acceso", "grupo": null},
-    {"id": "login", "archivo": "login.html", "nombre": "Acceso", "modulo": "acceso", "grupo": null},
-    {"id": "viajero-home", "archivo": "viajero/home.html", "nombre": "Inicio", "modulo": "viajero", "grupo": "Portal del viajero"},
-    {"id": "viajero-registro", "archivo": "viajero/registro.html", "nombre": "Registro", "modulo": "viajero", "grupo": "Portal del viajero"},
-    {"id": "viajero-reservar", "archivo": "viajero/reservar.html", "nombre": "Reservar un viaje", "modulo": "viajero", "grupo": "Portal del viajero"},
+    {
+      "id": "landing",
+      "archivo": "landing.html",
+      "nombre": "Landing institucional",
+      "modulo": "acceso",
+      "grupo": null,
+      "descripcion": "Presentación del servicio para la ciudadanía y las administraciones."
+    },
+    {
+      "id": "login",
+      "archivo": "login.html",
+      "nombre": "Acceso",
+      "modulo": "acceso",
+      "grupo": null,
+      "descripcion": "Acceso con selector de perfil: ciudadano, conductor, operador o administración."
+    },
+    {
+      "id": "viajero-home",
+      "archivo": "viajero/home.html",
+      "nombre": "Inicio",
+      "modulo": "viajero",
+      "grupo": "Portal del viajero",
+      "descripcion": "Inicio de Josefa: reservar, su próximo viaje y avisos del día."
+    },
+    {
+      "id": "viajero-registro",
+      "archivo": "viajero/registro.html",
+      "nombre": "Registro",
+      "modulo": "viajero",
+      "grupo": "Portal del viajero",
+      "descripcion": "Alta de un nuevo viajero en tres pasos, con perfil especial."
+    },
+    {
+      "id": "viajero-reservar",
+      "archivo": "viajero/reservar.html",
+      "nombre": "Reservar un viaje",
+      "modulo": "viajero",
+      "grupo": "Portal del viajero",
+      "descripcion": "Reserva completa en cuatro pasos con tarifa calculada."
+    },
     {
       "id": "viajero-seguimiento",
       "archivo": "viajero/seguimiento.html",
       "nombre": "Seguimiento del viaje",
       "modulo": "viajero",
-      "grupo": "Portal del viajero"
+      "grupo": "Portal del viajero",
+      "descripcion": "El vehículo en el mapa y la hora estimada de llegada."
     },
-    {"id": "viajero-mis-viajes", "archivo": "viajero/mis-viajes.html", "nombre": "Mis viajes", "modulo": "viajero", "grupo": "Portal del viajero"},
-    {"id": "app-viajero-onboarding", "archivo": "app-viajero/onboarding.html", "nombre": "Bienvenida", "modulo": "viajero", "grupo": "App del viajero"},
-    {"id": "app-viajero-home", "archivo": "app-viajero/home.html", "nombre": "Inicio", "modulo": "viajero", "grupo": "App del viajero"},
+    {
+      "id": "viajero-mis-viajes",
+      "archivo": "viajero/mis-viajes.html",
+      "nombre": "Mis viajes",
+      "modulo": "viajero",
+      "grupo": "Portal del viajero",
+      "descripcion": "Próximos viajes, historial, recurrentes y bonificaciones."
+    },
+    {
+      "id": "app-viajero-onboarding",
+      "archivo": "app-viajero/onboarding.html",
+      "nombre": "Bienvenida",
+      "modulo": "viajero",
+      "grupo": "App del viajero",
+      "descripcion": "Bienvenida a la app en tres pantallas."
+    },
+    {
+      "id": "app-viajero-home",
+      "archivo": "app-viajero/home.html",
+      "nombre": "Inicio",
+      "modulo": "viajero",
+      "grupo": "App del viajero",
+      "descripcion": "Reserva rápida y próximo viaje desde el móvil."
+    },
     {
       "id": "app-viajero-confirmacion",
       "archivo": "app-viajero/confirmacion.html",
       "nombre": "Reserva confirmada",
       "modulo": "viajero",
-      "grupo": "App del viajero"
+      "grupo": "App del viajero",
+      "descripcion": "Reserva confirmada con código QR."
     },
     {
       "id": "app-viajero-seguimiento",
       "archivo": "app-viajero/seguimiento.html",
       "nombre": "Seguimiento",
       "modulo": "viajero",
-      "grupo": "App del viajero"
+      "grupo": "App del viajero",
+      "descripcion": "Seguimiento del vehículo a pantalla completa."
     },
-    {"id": "app-viajero-perfil", "archivo": "app-viajero/perfil.html", "nombre": "Perfil", "modulo": "viajero", "grupo": "App del viajero"},
+    {
+      "id": "app-viajero-perfil",
+      "archivo": "app-viajero/perfil.html",
+      "nombre": "Perfil",
+      "modulo": "viajero",
+      "grupo": "App del viajero",
+      "descripcion": "Datos, bonificación, pagos y accesibilidad."
+    },
     {
       "id": "app-conductor-servicios",
       "archivo": "app-conductor/servicios.html",
       "nombre": "Servicios del día",
       "modulo": "conductor",
-      "grupo": "App del conductor"
+      "grupo": "App del conductor",
+      "descripcion": "Servicios del día de la conductora."
     },
     {
       "id": "app-conductor-navegacion",
       "archivo": "app-conductor/navegacion.html",
       "nombre": "Navegación",
       "modulo": "conductor",
-      "grupo": "App del conductor"
+      "grupo": "App del conductor",
+      "descripcion": "Ruta y próxima parada, pensada para conducir."
     },
     {
       "id": "app-conductor-recogida",
       "archivo": "app-conductor/recogida.html",
       "nombre": "Recogida de viajeros",
       "modulo": "conductor",
-      "grupo": "App del conductor"
+      "grupo": "App del conductor",
+      "descripcion": "Validación de viajeros en la parada."
     },
     {
       "id": "app-conductor-incidencias",
       "archivo": "app-conductor/incidencias.html",
       "nombre": "Incidencias",
       "modulo": "conductor",
-      "grupo": "App del conductor"
+      "grupo": "App del conductor",
+      "descripcion": "Aviso de incidencias y chat con la central."
     },
-    {"id": "control-mapa", "archivo": "control/mapa.html", "nombre": "Centro de control", "modulo": "control", "grupo": "Operación"},
-    {"id": "control-incidencias", "archivo": "control/incidencias.html", "nombre": "Incidencias", "modulo": "control", "grupo": "Operación"},
-    {"id": "motor-rutas", "archivo": "motor/rutas.html", "nombre": "Rutas del día", "modulo": "motor", "grupo": "Planificación"},
-    {"id": "motor-reglas", "archivo": "motor/reglas.html", "nombre": "Reglas operativas", "modulo": "motor", "grupo": "Planificación"},
-    {"id": "crm-bandeja", "archivo": "crm/bandeja.html", "nombre": "Bandeja", "modulo": "crm", "grupo": "Atención ciudadana"},
-    {"id": "crm-usuario", "archivo": "crm/usuario.html", "nombre": "Ficha de usuario", "modulo": "crm", "grupo": "Atención ciudadana"},
-    {"id": "flota-vehiculos", "archivo": "flota/vehiculos.html", "nombre": "Vehículos", "modulo": "flota", "grupo": "Flota"},
-    {"id": "flota-vehiculo", "archivo": "flota/vehiculo.html", "nombre": "Ficha de vehículo", "modulo": "flota", "grupo": "Flota"},
-    {"id": "economica-tarifas", "archivo": "economica/tarifas.html", "nombre": "Tarifas", "modulo": "economica", "grupo": "Económica"},
-    {"id": "economica-facturacion", "archivo": "economica/facturacion.html", "nombre": "Facturación", "modulo": "economica", "grupo": "Económica"},
-    {"id": "admin-cuadro-mando", "archivo": "admin/cuadro-mando.html", "nombre": "Cuadro de mando", "modulo": "admin", "grupo": "Administración"},
-    {"id": "admin-territorio", "archivo": "admin/territorio.html", "nombre": "Territorio", "modulo": "admin", "grupo": "Administración"},
-    {"id": "bi-dashboard", "archivo": "bi/dashboard.html", "nombre": "Dashboard", "modulo": "bi", "grupo": "Análisis"},
-    {"id": "bi-informes", "archivo": "bi/informes.html", "nombre": "Informes", "modulo": "bi", "grupo": "Análisis"}
+    {
+      "id": "control-mapa",
+      "archivo": "control/mapa.html",
+      "nombre": "Centro de control",
+      "modulo": "control",
+      "grupo": "Operación",
+      "descripcion": "Mapa en vivo de vehículos, rutas, paradas y alertas."
+    },
+    {
+      "id": "control-incidencias",
+      "archivo": "control/incidencias.html",
+      "nombre": "Incidencias",
+      "modulo": "control",
+      "grupo": "Operación",
+      "descripcion": "Gestión de incidencias y sustituciones."
+    },
+    {
+      "id": "motor-rutas",
+      "archivo": "motor/rutas.html",
+      "nombre": "Rutas del día",
+      "modulo": "motor",
+      "grupo": "Planificación",
+      "descripcion": "Planificación del día: 24 reservas agrupadas en 4 rutas."
+    },
+    {
+      "id": "motor-reglas",
+      "archivo": "motor/reglas.html",
+      "nombre": "Reglas operativas",
+      "modulo": "motor",
+      "grupo": "Planificación",
+      "descripcion": "Reglas operativas e IA responsable."
+    },
+    {
+      "id": "crm-bandeja",
+      "archivo": "crm/bandeja.html",
+      "nombre": "Bandeja",
+      "modulo": "crm",
+      "grupo": "Atención ciudadana",
+      "descripcion": "Atención multicanal: teléfono, WhatsApp, correo y chat."
+    },
+    {
+      "id": "crm-usuario",
+      "archivo": "crm/usuario.html",
+      "nombre": "Ficha de usuario",
+      "modulo": "crm",
+      "grupo": "Atención ciudadana",
+      "descripcion": "Ficha completa de un viajero."
+    },
+    {
+      "id": "flota-vehiculos",
+      "archivo": "flota/vehiculos.html",
+      "nombre": "Vehículos",
+      "modulo": "flota",
+      "grupo": "Flota",
+      "descripcion": "Estado de los 6 vehículos de la flota."
+    },
+    {
+      "id": "flota-vehiculo",
+      "archivo": "flota/vehiculo.html",
+      "nombre": "Ficha de vehículo",
+      "modulo": "flota",
+      "grupo": "Flota",
+      "descripcion": "Ficha, telemetría y mantenimiento de un vehículo."
+    },
+    {
+      "id": "economica-tarifas",
+      "archivo": "economica/tarifas.html",
+      "nombre": "Tarifas",
+      "modulo": "economica",
+      "grupo": "Económica",
+      "descripcion": "Tarifas, bonificaciones y simulador."
+    },
+    {
+      "id": "economica-facturacion",
+      "archivo": "economica/facturacion.html",
+      "nombre": "Facturación",
+      "modulo": "economica",
+      "grupo": "Económica",
+      "descripcion": "Facturas y liquidación mensual."
+    },
+    {
+      "id": "admin-cuadro-mando",
+      "archivo": "admin/cuadro-mando.html",
+      "nombre": "Cuadro de mando",
+      "modulo": "admin",
+      "grupo": "Administración",
+      "descripcion": "Indicadores ejecutivos para la concejalía."
+    },
+    {
+      "id": "admin-territorio",
+      "archivo": "admin/territorio.html",
+      "nombre": "Territorio",
+      "modulo": "admin",
+      "grupo": "Administración",
+      "descripcion": "Municipios, paradas, cobertura y zonas."
+    },
+    {
+      "id": "bi-dashboard",
+      "archivo": "bi/dashboard.html",
+      "nombre": "Dashboard",
+      "modulo": "bi",
+      "grupo": "Análisis",
+      "descripcion": "Análisis de demanda, ocupación y sostenibilidad."
+    },
+    {
+      "id": "bi-informes",
+      "archivo": "bi/informes.html",
+      "nombre": "Informes",
+      "modulo": "bi",
+      "grupo": "Análisis",
+      "descripcion": "Generador de informes periódicos."
+    }
   ]
 }/*DATOS-FIN*/;
 
