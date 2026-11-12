@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Reservar un viaje · Portal del viajero · Plataforma Digital TAD</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/layout-public.css">
+<script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script defer src="../js/data.js"></script>
+<script defer src="../js/datos/viajero.js"></script>
+<script defer src="../js/ui.js"></script>
+<script defer src="../js/nav.js"></script>
+<script defer src="../js/maps.js"></script>
+</head>
+<body class="pub-body" data-module="viajero" data-page="viajero-reservar">
+<a class="c-skip-link" href="#contenido">Saltar al contenido</a>
+<div class="pub-mockbar"><a class="c-index-link" href="../index.html"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg> Índice del mockup</a></div>
+<header class="pub-header">
+  <div class="pub-wrap"><div class="pub-header__inner">
+    <a class="pub-header__brand" href="home.html" aria-label="Plataforma Digital TAD, inicio"><svg class="pub-header__logo" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 40"><g style="fill:var(--logo-route);stroke:var(--logo-route)"><path d="M4 34.5h32" fill="none" stroke-width="2.6" stroke-linecap="round"/><circle cx="4.5" cy="34.5" r="3.2"/><circle cx="35.5" cy="34.5" r="3.2"/></g><g fill="currentColor"><path fill-rule="evenodd" d="M6 10.5a2.5 2.5 0 0 1 2.5-2.5H24l8 8v7.5a1.5 1.5 0 0 1-1.5 1.5H7.5A1.5 1.5 0 0 1 6 23.5zM9 11h7v5H9zM18.5 11h4.3l5 5h-9.3z"/><circle cx="12" cy="25.5" r="3.6"/><circle cx="26" cy="25.5" r="3.6"/></g><circle cx="12" cy="25.5" r="1.4" style="fill:var(--logo-bg)"/><circle cx="26" cy="25.5" r="1.4" style="fill:var(--logo-bg)"/><g fill="currentColor"><g transform="translate(50 9)"><path d="M0 0h17v5h-6v17H6V5H0z"/></g><g transform="translate(70 9)"><path fill-rule="evenodd" d="M7 0h5.4l7.3 22h-5.3l-1.3-4.2H6.3L5 22H-.3zM9.7 6.6 7.6 13.4h4.3z"/></g><g transform="translate(93 9)"><path fill-rule="evenodd" d="M0 0h7.5a11 11 0 0 1 0 22H0zM5 5v12h2.3a6 6 0 0 0 0-12z"/></g></g><path d="M121 6v28" style="stroke:var(--logo-route)" stroke-width="2" stroke-linecap="round"/><text x="131" y="18" fill="currentColor" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="600" letter-spacing=".3">Plataforma Digital</text><text x="131" y="33" fill="currentColor" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="400">Personas que nos mueven</text></svg></a>
+    <nav class="pub-nav" aria-label="Menú principal">
+      <ul class="pub-nav__list">
+        <li><a class="pub-nav__link" href="home.html">Inicio</a></li>
+        <li><a class="pub-nav__link" href="reservar.html">Reservar</a></li>
+        <li><a class="pub-nav__link" href="mis-viajes.html">Mis viajes</a></li>
+        <li><a class="pub-nav__link" href="home.html#ayuda">Ayuda</a></li>
+      </ul>
+    </nav>
+    <div class="c-dropdown pub-header__account">
+      <button class="c-btn c-btn--secondary" type="button" data-dropdown aria-controls="menu-cuenta"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0"/></svg> Mi cuenta <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+      <div class="c-dropdown__menu" id="menu-cuenta">
+        <p style="margin:0;padding:var(--sp-2) var(--sp-3);font-size:var(--fs-14);color:var(--color-text-muted)">Has entrado como <strong data-viajero-nombre style="color:var(--color-text)"></strong></p>
+        <a class="c-dropdown__item" style="min-height:var(--touch-min)" href="mis-viajes.html"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg> Mis viajes</a>
+        <a class="c-dropdown__item" style="min-height:var(--touch-min)" href="mis-viajes.html#bonificaciones"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 6.8a7 7 0 1 0 0 10.4"/><path d="M4 10h9M4 14h9"/></svg> Mis bonificaciones</a>
+        <a class="c-dropdown__item" style="min-height:var(--touch-min)" href="registro.html"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M15.5 4.6a3.5 3.5 0 0 1 0 6.8M18 14.2a6.5 6.5 0 0 1 3.5 5.8"/></svg> Dar de alta a otra persona</a>
+        <div class="c-dropdown__sep"></div>
+        <a class="c-dropdown__item" style="min-height:var(--touch-min)" href="../login.html"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg> Cerrar sesión</a>
+      </div>
+    </div>
+  </div></div>
+</header>
+<main class="pub-main" id="contenido" tabindex="-1">
+  <div class="pub-wrap">
+    <h1 class="pub-title" style="margin:0 0 var(--sp-2)">Reservar un viaje</h1>
+    <p class="pub-lead" style="margin:0 0 var(--sp-6)">Son cuatro pasos. Puedes volver atrás cuando quieras: no se reserva nada hasta que pulses «Confirmar reserva».</p>
+
+    <div class="c-card" data-stepper id="reserva">
+      <div class="c-card__body">
+        <ol class="c-stepper" aria-label="Pasos de la reserva" style="margin-bottom:var(--sp-8)">
+          <li class="c-stepper__step"><span class="c-stepper__label">Origen y destino</span></li>
+          <li class="c-stepper__step"><span class="c-stepper__label">Día y hora</span></li>
+          <li class="c-stepper__step"><span class="c-stepper__label">Viajeros</span></li>
+          <li class="c-stepper__step"><span class="c-stepper__label">Confirmar</span></li>
+        </ol>
+
+        <!-- Paso 1 -->
+        <section data-step aria-labelledby="p1-t">
+          <h2 id="p1-t" style="margin:0 0 var(--sp-5)">Paso 1 de 4 · ¿Desde dónde y adónde?</h2>
+          <div class="pub-grid pub-grid--2" style="align-items:start">
+            <div>
+              <div class="c-field">
+                <label class="c-field__label" for="origen">Parada de salida <span class="c-field__required" aria-hidden="true">*</span></label>
+                <select class="c-select" id="origen" required aria-describedby="origen-ayuda"></select>
+                <span class="c-field__help" id="origen-ayuda">Las paradas están agrupadas por municipio.</span>
+                <span class="c-field__error" id="origen-error"></span>
+              </div>
+              <button class="c-btn c-btn--ghost" type="button" id="intercambiar" style="margin:0 0 var(--sp-4)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="18" r="2.25"/><circle cx="18" cy="6" r="2.25"/><path d="M8.25 18H15a3 3 0 0 0 0-6H9a3 3 0 0 1 0-6h6.75"/></svg> Intercambiar salida y llegada</button>
+              <div class="c-field">
+                <label class="c-field__label" for="destino">Parada de llegada <span class="c-field__required" aria-hidden="true">*</span></label>
+                <select class="c-select" id="destino" required></select>
+                <span class="c-field__error" id="destino-error"></span>
+              </div>
+              <p class="u-muted" style="margin:0;font-size:var(--fs-14)">Las paradas «virtuales» no tienen poste: el vehículo solo pasa si alguien lo ha reservado.</p>
+            </div>
+            <div class="c-map" id="mapa-reserva" style="--map-h:340px">
+              <div class="c-map__canvas"></div>
+              <div class="c-map__fallback"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon c-icon--lg" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6.5 9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20z"/><path d="M9 4v13.5M15 6.5V20"/></svg><span>Mapa no disponible</span></div>
+              <div class="c-map__legend" aria-label="Leyenda del mapa">
+                <span class="c-map__legend-item"><span class="c-map__swatch c-map__swatch--parada" style="background:var(--color-primary);border-color:var(--color-primary)"></span>Salida</span>
+                <span class="c-map__legend-item"><span class="c-map__swatch c-map__swatch--parada"></span>Llegada</span>
+              </div>
+            </div>
+          </div>
+          <div style="display:flex;justify-content:flex-end;gap:var(--sp-3);margin-top:var(--sp-6)">
+            <button class="c-btn c-btn--primary c-btn--lg" type="button" data-step-next data-validar="1">Continuar <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          </div>
+        </section>
+
+        <!-- Paso 2 -->
+        <section data-step aria-labelledby="p2-t" hidden>
+          <h2 id="p2-t" style="margin:0 0 var(--sp-5)">Paso 2 de 4 · ¿Qué día y a qué hora?</h2>
+          <div class="pub-grid pub-grid--2" style="align-items:start">
+            <div>
+              <div class="c-field">
+                <label class="c-field__label" for="fecha">Día del viaje <span class="c-field__required" aria-hidden="true">*</span></label>
+                <input class="c-input" type="date" id="fecha" required aria-describedby="fecha-ayuda">
+                <span class="c-field__help" id="fecha-ayuda"></span>
+                <span class="c-field__error" id="fecha-error"></span>
+              </div>
+              <div class="c-field">
+                <fieldset id="franjas" style="border:0;margin:0;padding:0">
+                  <legend class="c-field__label" style="margin-bottom:var(--sp-1)">Franja horaria</legend>
+                  <div id="franjas-opciones"></div>
+                </fieldset>
+              </div>
+              <div class="c-field">
+                <label class="c-field__label" for="hora">Hora de recogida <span class="c-field__required" aria-hidden="true">*</span></label>
+                <select class="c-select" id="hora" required aria-describedby="hora-ayuda"></select>
+                <span class="c-field__help" id="hora-ayuda"></span>
+                <span class="c-field__error" id="hora-error"></span>
+              </div>
+            </div>
+            <div>
+              <div class="c-field">
+                <fieldset style="border:0;margin:0;padding:0">
+                  <legend class="c-field__label" style="margin-bottom:var(--sp-1)">¿Cuántas veces?</legend>
+                  <div><label class="c-radio" style="min-height:var(--touch-min)"><input type="radio" name="tipo" value="puntual" checked> Solo ese día</label></div>
+                  <div><label class="c-radio" style="min-height:var(--touch-min)"><input type="radio" name="tipo" value="recurrente" aria-controls="dias-campo"> Todas las semanas (viaje recurrente)</label></div>
+                </fieldset>
+              </div>
+              <div id="dias-campo" hidden><div class="c-field">
+                <fieldset id="dias" style="border:0;margin:0;padding:0">
+                  <legend class="c-field__label" style="margin-bottom:var(--sp-1)">¿Qué días de la semana?</legend>
+                  <div id="dias-opciones" style="display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));gap:0 var(--sp-4)"></div>
+                </fieldset>
+                <span class="c-field__error" id="dias-error"></span>
+              </div></div>
+            </div>
+          </div>
+          <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:var(--sp-3);margin-top:var(--sp-6)">
+            <button class="c-btn c-btn--secondary c-btn--lg" type="button" data-step-prev><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg> Atrás</button>
+            <button class="c-btn c-btn--primary c-btn--lg" type="button" data-step-next data-validar="2">Continuar <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          </div>
+        </section>
+
+        <!-- Paso 3 -->
+        <section data-step aria-labelledby="p3-t" hidden>
+          <h2 id="p3-t" style="margin:0 0 var(--sp-5)">Paso 3 de 4 · ¿Quién viaja?</h2>
+          <div class="pub-grid pub-grid--2" style="align-items:start">
+            <div>
+              <div class="c-field">
+                <label class="c-field__label" for="viajeros">Número de viajeros</label>
+                <select class="c-select" id="viajeros" aria-describedby="viajeros-ayuda">
+                  <option value="1">1 persona</option>
+                  <option value="2">2 personas</option>
+                  <option value="3">3 personas</option>
+                  <option value="4">4 personas</option>
+                </select>
+                <span class="c-field__help" id="viajeros-ayuda">Contándote a ti.</span>
+                <span class="c-field__error" id="viajeros-error"></span>
+              </div>
+              <div class="c-field">
+                <label class="c-field__label" for="perfil">Descuento que se aplica</label>
+                <select class="c-select" id="perfil" aria-describedby="perfil-ayuda"></select>
+                <span class="c-field__help" id="perfil-ayuda"></span>
+              </div>
+            </div>
+            <div>
+              <div class="c-field">
+                <fieldset style="border:0;margin:0;padding:0">
+                  <legend class="c-field__label" style="margin-bottom:var(--sp-1)">Necesidades del viaje</legend>
+                  <div><label class="c-checkbox" style="min-height:var(--touch-min)"><input type="checkbox" id="pmr"> Necesito vehículo con rampa o elevador</label></div>
+                  <div><label class="c-checkbox" style="min-height:var(--touch-min)"><input type="checkbox" id="acompanante" aria-describedby="acompanante-ayuda"> Viajo con un acompañante</label></div>
+                  <span class="c-field__help" id="acompanante-ayuda">El acompañante cuenta como un viajero más.</span>
+                </fieldset>
+              </div>
+              <div class="c-field">
+                <label class="c-field__label" for="observaciones">Observaciones para la conductora o el conductor (opcional)</label>
+                <textarea class="c-textarea" id="observaciones" style="font-size:var(--fs-16)" placeholder="Por ejemplo: viajo con andador."></textarea>
+              </div>
+            </div>
+          </div>
+          <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:var(--sp-3);margin-top:var(--sp-6)">
+            <button class="c-btn c-btn--secondary c-btn--lg" type="button" data-step-prev><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg> Atrás</button>
+            <button class="c-btn c-btn--primary c-btn--lg" type="button" data-step-next data-validar="3">Ver el resumen <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          </div>
+        </section>
+
+        <!-- Paso 4 -->
+        <section data-step aria-labelledby="p4-t" hidden>
+          <h2 id="p4-t" style="margin:0 0 var(--sp-5)">Paso 4 de 4 · Revisa y confirma</h2>
+          <div class="pub-grid pub-grid--2" style="align-items:start">
+            <div>
+              <h3 style="margin:0 0 var(--sp-3);font-size:var(--fs-18)">Tu viaje</h3>
+              <dl class="c-datalist" id="resumen-viaje" style="font-size:var(--fs-16)"></dl>
+              <div style="display:flex;flex-wrap:wrap;gap:var(--sp-2);margin-top:var(--sp-4)">
+                <button class="c-btn c-btn--ghost" type="button" data-step-go="1"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="m13.5 6.5 4 4"/></svg> Cambiar trayecto</button>
+                <button class="c-btn c-btn--ghost" type="button" data-step-go="2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="m13.5 6.5 4 4"/></svg> Cambiar día u hora</button>
+                <button class="c-btn c-btn--ghost" type="button" data-step-go="3"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="m13.5 6.5 4 4"/></svg> Cambiar viajeros</button>
+              </div>
+            </div>
+            <div>
+              <h3 style="margin:0 0 var(--sp-3);font-size:var(--fs-18)">Precio</h3>
+              <dl class="c-datalist" id="resumen-precio" style="font-size:var(--fs-16)"></dl>
+              <p style="margin:var(--sp-4) 0 0;padding:var(--sp-4);border-radius:var(--r-md);background:var(--accent-soft);display:flex;justify-content:space-between;align-items:baseline;gap:var(--sp-3)">
+                <span style="font-weight:var(--fw-semibold)">Total a pagar</span>
+                <span id="total" style="font-size:var(--fs-28);font-weight:var(--fw-bold);color:var(--accent-text)"></span>
+              </p>
+              <p class="u-muted" id="total-nota" style="margin:var(--sp-2) 0 0;font-size:var(--fs-14)"></p>
+              <div class="c-field" style="margin-top:var(--sp-5)">
+                <fieldset style="border:0;margin:0;padding:0">
+                  <legend class="c-field__label" style="margin-bottom:var(--sp-1)">Forma de pago</legend>
+                  <div id="pagos"></div>
+                </fieldset>
+              </div>
+            </div>
+          </div>
+          <div id="confirmada" hidden style="margin-top:var(--sp-6)"></div>
+          <div id="acciones-final"><div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:var(--sp-3);margin-top:var(--sp-6)">
+            <button class="c-btn c-btn--secondary c-btn--lg" type="button" data-step-prev><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg> Atrás</button>
+            <button class="c-btn c-btn--primary c-btn--lg" type="button" id="confirmar"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg> Confirmar reserva</button>
+          </div></div>
+        </section>
+      </div>
+    </div>
+  </div>
+</main>
+<footer class="pub-footer">
+  <div class="pub-wrap">
+    <div class="pub-footer__inner">
+      <div class="pub-footer__brand"><svg role="img" aria-label="Plataforma Digital TAD" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 40"><g style="fill:var(--logo-route);stroke:var(--logo-route)"><path d="M4 34.5h32" fill="none" stroke-width="2.6" stroke-linecap="round"/><circle cx="4.5" cy="34.5" r="3.2"/><circle cx="35.5" cy="34.5" r="3.2"/></g><g fill="currentColor"><path fill-rule="evenodd" d="M6 10.5a2.5 2.5 0 0 1 2.5-2.5H24l8 8v7.5a1.5 1.5 0 0 1-1.5 1.5H7.5A1.5 1.5 0 0 1 6 23.5zM9 11h7v5H9zM18.5 11h4.3l5 5h-9.3z"/><circle cx="12" cy="25.5" r="3.6"/><circle cx="26" cy="25.5" r="3.6"/></g><circle cx="12" cy="25.5" r="1.4" style="fill:var(--logo-bg)"/><circle cx="26" cy="25.5" r="1.4" style="fill:var(--logo-bg)"/><g fill="currentColor"><g transform="translate(50 9)"><path d="M0 0h17v5h-6v17H6V5H0z"/></g><g transform="translate(70 9)"><path fill-rule="evenodd" d="M7 0h5.4l7.3 22h-5.3l-1.3-4.2H6.3L5 22H-.3zM9.7 6.6 7.6 13.4h4.3z"/></g><g transform="translate(93 9)"><path fill-rule="evenodd" d="M0 0h7.5a11 11 0 0 1 0 22H0zM5 5v12h2.3a6 6 0 0 0 0-12z"/></g></g><path d="M121 6v28" style="stroke:var(--logo-route)" stroke-width="2" stroke-linecap="round"/><text x="131" y="18" fill="currentColor" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="600" letter-spacing=".3">Plataforma Digital</text><text x="131" y="33" fill="currentColor" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="400">Personas que nos mueven</text></svg><p class="pub-footer__claim">Transporte a demanda para que ningún pueblo se quede atrás.</p></div>
+      <div class="pub-seals">
+        <div class="pub-seal">
+          <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 14 18 6l14 8M6 14h24M8 14v13M14 14v13M22 14v13M28 14v13M5 27h26M3 31h30"/></svg>
+          <span class="pub-seal__text"><span class="pub-seal__small">Con la colaboración del</span><span class="pub-seal__name">Ayuntamiento</span></span>
+        </div>
+        <div class="pub-seal">
+          <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="6" y="5" width="24" height="22" rx="4"/><path d="M6 17h24M10 11h16"/><circle cx="12" cy="22" r="1.5"/><circle cx="24" cy="22" r="1.5"/><path d="M10 27v3M26 27v3"/></svg>
+          <span class="pub-seal__text"><span class="pub-seal__small">Servicio integrado en el</span><span class="pub-seal__name">Consorcio de Transportes</span></span>
+        </div>
+        <div class="pub-seal">
+          <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="4" y="8" width="28" height="20" rx="2"/><path d="M12 18h12M18 12v12"/></svg>
+          <span class="pub-seal__text"><span class="pub-seal__small">Proyecto</span><span class="pub-seal__name">Cofinanciado por la Unión Europea</span></span>
+        </div>
+      </div>
+    </div>
+    <div class="pub-footer__legal">
+      <span>Plataforma Digital TAD · Maqueta de demostración con datos ficticios</span>
+      <ul class="pub-footer__links">
+        <li><a href="#" data-toast="Esta página no forma parte de la maqueta.">Aviso legal</a></li>
+        <li><a href="#" data-toast="Esta página no forma parte de la maqueta.">Privacidad</a></li>
+        <li><a href="#" data-toast="Esta página no forma parte de la maqueta.">Accesibilidad</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var f = TAD.fmt, h = f.html, V = TAD.viajero, yo = TAD.usuario(V.usuario);
+  document.querySelectorAll("[data-viajero-nombre]").forEach(function (el) { el.textContent = yo.nombre; });
+  var res = TAD.reservaReferencia();
+  var $ = function (id) { return document.getElementById(id); };
+  var ICO_ERROR = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 4.5 2.8 17.7A2 2 0 0 0 4.5 20.7h15a2 2 0 0 0 1.7-3L13.7 4.5a2 2 0 0 0-3.4 0z"/><path d="M12 9.5v4.5M12 17.2v.1"/></svg>';
+  var DIAS = ["lunes", "martes", "miércoles", "jueves", "viernes", "sábado"];
+  var cont = $("reserva");
+
+  // ---------- Errores asociados al campo ----------
+  function errorEn(campo, texto) {
+    var field = campo.closest(".c-field"), err = field.querySelector(".c-field__error");
+    err.innerHTML = ICO_ERROR + "<span>" + h(texto) + "</span>";
+    field.classList.add("c-field--error");
+    if (campo.tagName !== "FIELDSET") campo.setAttribute("aria-invalid", "true");
+    var ids = (campo.getAttribute("aria-describedby") || "").split(" ").filter(Boolean);
+    if (ids.indexOf(err.id) === -1) ids.push(err.id);
+    campo.setAttribute("aria-describedby", ids.join(" "));
+  }
+  function limpiarError(campo) {
+    var field = campo.closest(".c-field"), err = field && field.querySelector(".c-field__error");
+    if (!err) return;
+    field.classList.remove("c-field--error");
+    campo.removeAttribute("aria-invalid");
+    var ids = (campo.getAttribute("aria-describedby") || "").split(" ").filter(function (x) { return x && x !== err.id; });
+    if (ids.length) campo.setAttribute("aria-describedby", ids.join(" ")); else campo.removeAttribute("aria-describedby");
+    err.innerHTML = "";
+  }
+  function enfocar(campo) {
+    var foco = campo.tagName === "FIELDSET" ? campo.querySelector("input") : campo;
+    foco.focus();
+  }
+
+  // ---------- Valores iniciales: los del viaje de la usuaria (o los que llegan de Inicio) ----------
+  var q = new URLSearchParams(location.search);
+  function param(nombre, valido, defecto) { var v = q.get(nombre); return v && valido(v) ? v : defecto; }
+  var ini = {
+    origen: param("origen", TAD.parada, res.origen),
+    destino: param("destino", TAD.parada, res.destino),
+    fecha: param("fecha", function (v) { return /^\d{4}-\d{2}-\d{2}$/.test(v); }, V.fechaSugerida),
+    hora: param("hora", function (v) { return /^\d{2}:\d{2}$/.test(v); }, res.horaPrevista)
+  };
+
+  // ---------- Paso 1: origen y destino ----------
+  var selO = $("origen"), selD = $("destino");
+  function opcionesParadas(sel, valor) {
+    sel.innerHTML = TAD.municipios.map(function (m) {
+      return '<optgroup label="' + h(m.nombre) + '">' + TAD.paradas.filter(function (p) { return p.municipio === m.id; }).map(function (p) {
+        return '<option value="' + p.id + '"' + (p.id === valor ? " selected" : "") + ">" + h(p.nombre) + "</option>";
+      }).join("") + "</optgroup>";
+    }).join("");
+  }
+  opcionesParadas(selO, ini.origen);
+  opcionesParadas(selD, ini.destino);
+
+  var mapa = window.TADMapa ? TADMapa.crear("#mapa-reserva", { zoom: 11 }) : null;
+  function dibujarMapa() {
+    if (!mapa) return;
+    mapa.limpiar().paradas({ ids: [selO.value, selD.value], resaltar: selO.value, etiquetas: true }).encuadrar(60);
+  }
+  dibujarMapa();
+  [selO, selD].forEach(function (s) { s.addEventListener("change", function () { limpiarError(selD); dibujarMapa(); }); });
+  $("intercambiar").addEventListener("click", function () {
+    var o = selO.value; selO.value = selD.value; selD.value = o;
+    limpiarError(selD); dibujarMapa();
+    TADUI.toast("Ahora sales de " + TAD.parada(selO.value).nombre + " y llegas a " + TAD.parada(selD.value).nombre + ".", { titulo: "Trayecto cambiado" });
+  });
+
+  // ---------- Paso 2: día y hora ----------
+  var inFecha = $("fecha"), selHora = $("hora");
+  function sumarDias(iso, n) {
+    var p = iso.split("-"), d = new Date(+p[0], +p[1] - 1, +p[2] + n);
+    return d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2);
+  }
+  var fechaMax = sumarDias(TAD.fecha, TAD.reglas.antelacionMaximaDias);
+  inFecha.min = TAD.fecha;
+  inFecha.max = fechaMax;
+  inFecha.value = ini.fecha;
+  $("fecha-ayuda").textContent = "Puedes reservar desde hoy hasta el " + f.fechaLarga(fechaMax) + ".";
+  $("hora-ayuda").textContent = "El vehículo puede llegar entre " + TAD.reglas.ventanaAntes + " minutos antes y " + TAD.reglas.ventanaDespues + " minutos después.";
+
+  var franjas = TAD.reglas.franjas;
+  function franjaDe(hora) {
+    var t = TAD.minutos(hora);
+    for (var i = 0; i < franjas.length; i++) if (t >= TAD.minutos(franjas[i].desde) && t < TAD.minutos(franjas[i].hasta)) return i;
+    return 1;
+  }
+  $("franjas-opciones").innerHTML = franjas.map(function (fr, i) {
+    return '<div><label class="c-radio" style="min-height:var(--touch-min)"><input type="radio" name="franja" value="' + i + '"> ' +
+      h(fr.nombre) + " (" + fr.desde + " a " + fr.hasta + ")</label></div>";
+  }).join("");
+  function horasDeFranja(i, valor) {
+    var fr = franjas[i], ops = "";
+    for (var t = TAD.minutos(fr.desde); t < TAD.minutos(fr.hasta); t += 15) {
+      var hh = f.hora(t);
+      ops += '<option value="' + hh + '"' + (hh === valor ? " selected" : "") + ">" + hh + "</option>";
+    }
+    selHora.innerHTML = ops;
+  }
+  var franjaIni = franjaDe(ini.hora);
+  document.querySelector('input[name="franja"][value="' + franjaIni + '"]').checked = true;
+  horasDeFranja(franjaIni, ini.hora);
+  document.querySelectorAll('input[name="franja"]').forEach(function (r) {
+    r.addEventListener("change", function () { horasDeFranja(+r.value); limpiarError(selHora); });
+  });
+
+  $("dias-opciones").innerHTML = DIAS.map(function (d) {
+    return '<div><label class="c-checkbox" style="min-height:var(--touch-min)"><input type="checkbox" name="dia" value="' + d + '"> ' + d.charAt(0).toUpperCase() + d.slice(1) + "</label></div>";
+  }).join("");
+  function diaSemana(iso) { return f.fechaLarga(iso).split(",")[0]; }
+  function marcarDiaDeLaFecha() {
+    var d = diaSemana(inFecha.value || ini.fecha);
+    document.querySelectorAll('input[name="dia"]').forEach(function (c) { c.checked = c.value === d; });
+  }
+  document.querySelectorAll('input[name="tipo"]').forEach(function (r) {
+    r.addEventListener("change", function () {
+      var rec = document.querySelector('input[name="tipo"]:checked').value === "recurrente";
+      $("dias-campo").hidden = !rec;
+      if (rec) marcarDiaDeLaFecha();
+    });
+  });
+  document.querySelectorAll('input[name="dia"]').forEach(function (c) { c.addEventListener("change", function () { limpiarError($("dias")); }); });
+  inFecha.addEventListener("change", function () { limpiarError(inFecha); limpiarError(selHora); });
+  selHora.addEventListener("change", function () { limpiarError(selHora); });
+
+  // ---------- Paso 3: viajeros ----------
+  var selN = $("viajeros"), selPerfil = $("perfil"), chkPmr = $("pmr"), chkAcomp = $("acompanante");
+  selPerfil.innerHTML = '<option value="general">Sin descuento (tarifa general)</option>' + TAD.tarifas.bonificaciones.map(function (b) {
+    return '<option value="' + h(b.perfil) + '"' + (b.perfil === yo.perfil ? " selected" : "") + ">" + h(b.nombre) + " · " + f.porcentaje(b.pct) + "</option>";
+  }).join("");
+  var miBonif = TAD.tarifas.bonificaciones.filter(function (b) { return b.perfil === yo.perfil; })[0];
+  $("perfil-ayuda").textContent = miBonif ? "Tienes acreditado el descuento «" + miBonif.nombre + "». Si eliges otro, tendrás que acreditarlo al subir." : "Si tienes derecho a descuento, tendrás que acreditarlo al subir.";
+  chkPmr.checked = /andador|rampa|silla/i.test(res.nota || "");
+  selN.value = "1";
+  selN.addEventListener("change", function () { limpiarError(selN); });
+  chkAcomp.addEventListener("change", function () { limpiarError(selN); });
+
+  // ---------- Validación al pulsar «Continuar» ----------
+  var validar = {
+    1: function () {
+      limpiarError(selD);
+      if (selO.value === selD.value) { errorEn(selD, "La parada de llegada tiene que ser distinta de la de salida."); return selD; }
+      return null;
+    },
+    2: function () {
+      limpiarError(inFecha); limpiarError(selHora); limpiarError($("dias"));
+      var v = inFecha.value;
+      if (!v) { errorEn(inFecha, "Escribe el día del viaje."); return inFecha; }
+      if (v < TAD.fecha) { errorEn(inFecha, "Ese día ya ha pasado. Elige hoy o un día posterior."); return inFecha; }
+      if (v > fechaMax) { errorEn(inFecha, "Solo se puede reservar hasta el " + f.fecha(fechaMax) + "."); return inFecha; }
+      if (v === TAD.fecha) {
+        var minimo = TAD.minutos(TAD.momento()) + TAD.reglas.antelacionMinimaMin;
+        if (TAD.minutos(selHora.value) < minimo) {
+          errorEn(selHora, "Para hoy hay que reservar con " + TAD.reglas.antelacionMinimaMin + " minutos de antelación: elige las " + f.hora(Math.ceil(minimo / 15) * 15) + " o más tarde.");
+          return selHora;
+        }
+      }
+      var rec = document.querySelector('input[name="tipo"]:checked').value === "recurrente";
+      if (rec && !document.querySelector('input[name="dia"]:checked')) { errorEn($("dias"), "Marca al menos un día de la semana."); return $("dias"); }
+      return null;
+    },
+    3: function () {
+      limpiarError(selN);
+      if (chkAcomp.checked && +selN.value < 2) { errorEn(selN, "Si viajas con acompañante, elige al menos 2 personas."); return selN; }
+      return null;
+    }
+  };
+  cont.querySelectorAll("[data-validar]").forEach(function (b) {
+    b.addEventListener("click", function (e) {
+      var mal = validar[b.getAttribute("data-validar")]();
+      if (mal) { e.stopPropagation(); e.preventDefault(); enfocar(mal); }
+    });
+  });
+
+  // ---------- Paso 4: resumen y tarifa calculada con TAD.tarifa() ----------
+  $("pagos").innerHTML = TAD.tarifas.pagos.filter(function (p) { return p.activo; }).map(function (p) {
+    return '<div><label class="c-radio" style="min-height:var(--touch-min)"><input type="radio" name="pago" value="' + p.id + '"' + (p.nombre === res.pago ? " checked" : "") + "> " + h(p.nombre) + "</label></div>";
+  }).join("");
+
+  function resumen() {
+    var o = selO.value, d = selD.value, perfil = selPerfil.value, n = +selN.value;
+    var t = TAD.tarifa(o, d, perfil);
+    var rec = document.querySelector('input[name="tipo"]:checked').value === "recurrente";
+    var dias = Array.prototype.map.call(document.querySelectorAll('input[name="dia"]:checked'), function (c) { return c.value; });
+    var bonif = TAD.tarifas.bonificaciones.filter(function (b) { return b.perfil === perfil; })[0];
+    var obs = $("observaciones").value.trim();
+    $("resumen-viaje").innerHTML =
+      "<dt>Salida</dt><dd>" + h(TAD.parada(o).nombre) + "</dd>" +
+      "<dt>Llegada</dt><dd>" + h(TAD.parada(d).nombre) + "</dd>" +
+      "<dt>Día</dt><dd>" + (rec ? "Cada " + dias.join(", ") + ", desde el " + f.fechaLarga(inFecha.value) : f.fechaLarga(inFecha.value)) + "</dd>" +
+      "<dt>Recogida</dt><dd>A las " + h(selHora.value) + "</dd>" +
+      "<dt>Viajeros</dt><dd>" + n + (n === 1 ? " persona" : " personas") + (chkAcomp.checked ? " (con acompañante)" : "") + "</dd>" +
+      "<dt>Vehículo</dt><dd>" + (chkPmr.checked ? "Con rampa o elevador" : "Cualquiera") + "</dd>" +
+      (obs ? "<dt>Observaciones</dt><dd>" + h(obs) + "</dd>" : "");
+    var zonaO = TAD.parada(o).zona, zonaD = TAD.parada(d).zona;
+    $("resumen-precio").innerHTML =
+      "<dt>Trayecto</dt><dd>" + (t.interzona ? "Entre zonas (zona " + zonaO + " → zona " + zonaD + ")" : "Dentro de la zona " + zonaO) + "</dd>" +
+      "<dt>Precio del billete</dt><dd>" + f.euros(t.base) + "</dd>" +
+      "<dt>Descuento</dt><dd>" + (bonif ? h(bonif.nombre) + " (" + f.porcentaje(t.pct) + "): −" + f.euros(Math.round((t.base - t.importe) * 100) / 100) : "Sin descuento") + "</dd>" +
+      "<dt>Precio por persona</dt><dd>" + f.euros(t.importe) + "</dd>" +
+      "<dt>Personas</dt><dd>× " + n + "</dd>";
+    $("total").textContent = f.euros(t.importe * n);
+    $("total-nota").textContent = rec ? "Es el precio de cada viaje. Se cobra el día que viajas." : (bonif ? "Recuerda llevar tu acreditación por si te la piden al subir." : "");
+  }
+  cont.addEventListener("tad:paso", function (e) { if (e.detail.paso === 4) resumen(); });
+
+  // ---------- Confirmar ----------
+  $("confirmar").addEventListener("click", function () {
+    TADUI.toast("Hemos enviado un SMS al " + yo.telefono + ".", { titulo: "Reserva confirmada" });
+    var caja = $("confirmada");
+    caja.innerHTML = '<div class="c-alert c-alert--success" role="note"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><div class="c-alert__body"><strong class="c-alert__title">Reserva confirmada</strong>' +
+      "Tu código de reserva es <strong>" + h(V.codigoNuevaReserva) + "</strong>. Hemos enviado un SMS al " + h(yo.telefono) + " con los datos del viaje.</div></div>" +
+      '<p style="margin:var(--sp-4) 0 0;display:flex;flex-wrap:wrap;gap:var(--sp-3)"><a class="c-btn c-btn--primary c-btn--lg" href="mis-viajes.html" id="ir-mis-viajes"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg> Ir a Mis viajes</a>' +
+      '<a class="c-btn c-btn--secondary c-btn--lg" href="home.html"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.5V20h5v-6h3v6h5V9.5"/></svg> Volver al inicio</a></p>';
+    caja.hidden = false;
+    $("acciones-final").hidden = true;
+    document.querySelectorAll('[data-step-go]').forEach(function (b) { b.style.display = "none"; });
+    $("ir-mis-viajes").focus();
+  });
+});
+</script>
+</body>
+</html>

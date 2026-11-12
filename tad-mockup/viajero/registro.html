@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Registro · Portal del viajero · Plataforma Digital TAD</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap">
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/layout-public.css">
+<script defer src="../js/data.js"></script>
+<script defer src="../js/datos/viajero.js"></script>
+<script defer src="../js/ui.js"></script>
+<script defer src="../js/nav.js"></script>
+</head>
+<body class="pub-body" data-module="viajero" data-page="viajero-registro">
+<a class="c-skip-link" href="#contenido">Saltar al contenido</a>
+<div class="pub-mockbar"><a class="c-index-link" href="../index.html"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg> Índice del mockup</a></div>
+<header class="pub-header">
+  <div class="pub-wrap"><div class="pub-header__inner">
+    <a class="pub-header__brand" href="home.html" aria-label="Plataforma Digital TAD, inicio"><svg class="pub-header__logo" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 40"><g style="fill:var(--logo-route);stroke:var(--logo-route)"><path d="M4 34.5h32" fill="none" stroke-width="2.6" stroke-linecap="round"/><circle cx="4.5" cy="34.5" r="3.2"/><circle cx="35.5" cy="34.5" r="3.2"/></g><g fill="currentColor"><path fill-rule="evenodd" d="M6 10.5a2.5 2.5 0 0 1 2.5-2.5H24l8 8v7.5a1.5 1.5 0 0 1-1.5 1.5H7.5A1.5 1.5 0 0 1 6 23.5zM9 11h7v5H9zM18.5 11h4.3l5 5h-9.3z"/><circle cx="12" cy="25.5" r="3.6"/><circle cx="26" cy="25.5" r="3.6"/></g><circle cx="12" cy="25.5" r="1.4" style="fill:var(--logo-bg)"/><circle cx="26" cy="25.5" r="1.4" style="fill:var(--logo-bg)"/><g fill="currentColor"><g transform="translate(50 9)"><path d="M0 0h17v5h-6v17H6V5H0z"/></g><g transform="translate(70 9)"><path fill-rule="evenodd" d="M7 0h5.4l7.3 22h-5.3l-1.3-4.2H6.3L5 22H-.3zM9.7 6.6 7.6 13.4h4.3z"/></g><g transform="translate(93 9)"><path fill-rule="evenodd" d="M0 0h7.5a11 11 0 0 1 0 22H0zM5 5v12h2.3a6 6 0 0 0 0-12z"/></g></g><path d="M121 6v28" style="stroke:var(--logo-route)" stroke-width="2" stroke-linecap="round"/><text x="131" y="18" fill="currentColor" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="600" letter-spacing=".3">Plataforma Digital</text><text x="131" y="33" fill="currentColor" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="400">Personas que nos mueven</text></svg></a>
+    <nav class="pub-nav" aria-label="Menú principal">
+      <ul class="pub-nav__list">
+        <li><a class="pub-nav__link" href="home.html">Inicio</a></li>
+        <li><a class="pub-nav__link" href="reservar.html">Reservar</a></li>
+        <li><a class="pub-nav__link" href="mis-viajes.html">Mis viajes</a></li>
+        <li><a class="pub-nav__link" href="home.html#ayuda">Ayuda</a></li>
+      </ul>
+    </nav>
+    <div class="c-dropdown pub-header__account">
+      <button class="c-btn c-btn--secondary" type="button" data-dropdown aria-controls="menu-cuenta"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0"/></svg> Mi cuenta <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+      <div class="c-dropdown__menu" id="menu-cuenta">
+        <p style="margin:0;padding:var(--sp-2) var(--sp-3);font-size:var(--fs-14);color:var(--color-text-muted)">Has entrado como <strong data-viajero-nombre style="color:var(--color-text)"></strong></p>
+        <a class="c-dropdown__item" style="min-height:var(--touch-min)" href="mis-viajes.html"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg> Mis viajes</a>
+        <a class="c-dropdown__item" style="min-height:var(--touch-min)" href="mis-viajes.html#bonificaciones"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 6.8a7 7 0 1 0 0 10.4"/><path d="M4 10h9M4 14h9"/></svg> Mis bonificaciones</a>
+        <a class="c-dropdown__item" style="min-height:var(--touch-min)" href="registro.html"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M15.5 4.6a3.5 3.5 0 0 1 0 6.8M18 14.2a6.5 6.5 0 0 1 3.5 5.8"/></svg> Dar de alta a otra persona</a>
+        <div class="c-dropdown__sep"></div>
+        <a class="c-dropdown__item" style="min-height:var(--touch-min)" href="../login.html"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg> Cerrar sesión</a>
+      </div>
+    </div>
+  </div></div>
+</header>
+<main class="pub-main" id="contenido" tabindex="-1">
+  <div class="pub-wrap">
+    <h1 class="pub-title" style="margin:0 0 var(--sp-2)">Darse de alta</h1>
+    <p class="pub-lead" style="margin:0 0 var(--sp-6)">Es gratis y solo hay que hacerlo una vez. Después podrás reservar por internet, desde la app o por teléfono.</p>
+
+    <form class="c-card" data-stepper id="registro" novalidate>
+      <div class="c-card__body">
+        <ol class="c-stepper" aria-label="Pasos del alta" style="margin-bottom:var(--sp-8)">
+          <li class="c-stepper__step"><span class="c-stepper__label">Tus datos</span></li>
+          <li class="c-stepper__step"><span class="c-stepper__label">Descuentos</span></li>
+          <li class="c-stepper__step"><span class="c-stepper__label">Verificación</span></li>
+        </ol>
+        <p class="u-muted" style="margin:0 0 var(--sp-5);font-size:var(--fs-14)">Los campos con <span aria-hidden="true">*</span><span class="u-visually-hidden">asterisco</span> son obligatorios.</p>
+
+        <!-- Paso 1 -->
+        <section data-step aria-labelledby="p1-t">
+          <h2 id="p1-t" style="margin:0 0 var(--sp-5)">Paso 1 de 3 · Tus datos personales</h2>
+          <div class="pub-grid pub-grid--2" style="gap:0 var(--sp-6)">
+            <div class="c-field">
+              <label class="c-field__label" for="nombre">Nombre <span class="c-field__required" aria-hidden="true">*</span></label>
+              <input class="c-input" id="nombre" type="text" autocomplete="given-name" required>
+              <span class="c-field__error" id="nombre-error"></span>
+            </div>
+            <div class="c-field">
+              <label class="c-field__label" for="apellidos">Apellidos <span class="c-field__required" aria-hidden="true">*</span></label>
+              <input class="c-input" id="apellidos" type="text" autocomplete="family-name" required>
+              <span class="c-field__error" id="apellidos-error"></span>
+            </div>
+            <div class="c-field">
+              <label class="c-field__label" for="dni">DNI o NIE <span class="c-field__required" aria-hidden="true">*</span></label>
+              <input class="c-input" id="dni" type="text" autocomplete="off" spellcheck="false" required aria-describedby="dni-ayuda">
+              <span class="c-field__help" id="dni-ayuda">DNI: 8 números y una letra. NIE: una letra, 7 números y otra letra.</span>
+              <span class="c-field__error" id="dni-error"></span>
+            </div>
+            <div class="c-field">
+              <label class="c-field__label" for="nacimiento">Fecha de nacimiento <span class="c-field__required" aria-hidden="true">*</span></label>
+              <input class="c-input" id="nacimiento" type="date" autocomplete="bday" required>
+              <span class="c-field__error" id="nacimiento-error"></span>
+            </div>
+            <div class="c-field">
+              <label class="c-field__label" for="telefono">Teléfono móvil <span class="c-field__required" aria-hidden="true">*</span></label>
+              <input class="c-input" id="telefono" type="tel" autocomplete="tel" required aria-describedby="telefono-ayuda">
+              <span class="c-field__help" id="telefono-ayuda">Te enviaremos un SMS para comprobarlo y para avisarte de tus viajes.</span>
+              <span class="c-field__error" id="telefono-error"></span>
+            </div>
+            <div class="c-field">
+              <label class="c-field__label" for="correo">Correo electrónico (opcional)</label>
+              <input class="c-input" id="correo" type="email" autocomplete="email">
+              <span class="c-field__error" id="correo-error"></span>
+            </div>
+            <div class="c-field">
+              <label class="c-field__label" for="municipio">Municipio donde vives <span class="c-field__required" aria-hidden="true">*</span></label>
+              <select class="c-select" id="municipio" required></select>
+              <span class="c-field__error" id="municipio-error"></span>
+            </div>
+          </div>
+          <div style="display:flex;justify-content:flex-end;gap:var(--sp-3);margin-top:var(--sp-4)">
+            <button class="c-btn c-btn--primary c-btn--lg" type="button" data-step-next data-validar="1">Continuar <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          </div>
+        </section>
+
+        <!-- Paso 2 -->
+        <section data-step aria-labelledby="p2-t" hidden>
+          <h2 id="p2-t" style="margin:0 0 var(--sp-2)">Paso 2 de 3 · ¿Tienes derecho a algún descuento?</h2>
+          <p style="margin:0 0 var(--sp-5)">Si es así, adjunta un documento que lo acredite. Lo revisaremos en un máximo de 2 días laborables.</p>
+          <div class="pub-grid pub-grid--2" style="align-items:start">
+            <div class="c-field">
+              <fieldset id="perfiles" style="border:0;margin:0;padding:0">
+                <legend class="c-field__label" style="margin-bottom:var(--sp-1)">Descuento</legend>
+                <div id="perfiles-opciones"></div>
+              </fieldset>
+              <span class="c-field__error" id="perfiles-error"></span>
+            </div>
+            <div id="doc-campo"><div class="c-field">
+              <span class="c-field__label" id="doc-titulo">Documento que lo acredita <span class="c-field__required" aria-hidden="true">*</span></span>
+              <div id="zona" style="display:flex;flex-direction:column;align-items:center;gap:var(--sp-2);padding:var(--sp-6) var(--sp-4);border:var(--bw-strong) dashed var(--color-border-strong);border-radius:var(--r-md);background:var(--surface-alt);text-align:center">
+                <span class="c-empty-state__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon c-icon--lg" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg></span>
+                <p style="margin:0;font-weight:var(--fw-semibold)">Arrastra aquí el archivo</p>
+                <p style="margin:0" class="u-muted">o bien</p>
+                <button class="c-btn c-btn--secondary" type="button" id="elegir" aria-describedby="doc-titulo doc-ayuda"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg> Elegir archivo</button>
+                <span class="c-field__help" id="doc-ayuda" style="font-size:var(--fs-14)">PDF, JPG o PNG de hasta 5 MB. Por ejemplo: certificado de empadronamiento, tarjeta de discapacidad o carné de estudiante.</span>
+              </div>
+              <ul class="c-list" id="adjuntos" aria-label="Archivos adjuntos" style="margin-top:var(--sp-2)"></ul>
+              <span class="c-field__error" id="doc-error"></span>
+            </div></div>
+          </div>
+          <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:var(--sp-3);margin-top:var(--sp-6)">
+            <button class="c-btn c-btn--secondary c-btn--lg" type="button" data-step-prev><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg> Atrás</button>
+            <button class="c-btn c-btn--primary c-btn--lg" type="button" data-step-next data-validar="2">Continuar <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          </div>
+        </section>
+
+        <!-- Paso 3 -->
+        <section data-step aria-labelledby="p3-t" hidden>
+          <h2 id="p3-t" style="margin:0 0 var(--sp-2)">Paso 3 de 3 · Comprueba tu teléfono</h2>
+          <p style="margin:0 0 var(--sp-5)" id="sms-texto"></p>
+          <div class="pub-grid pub-grid--2" style="align-items:start">
+            <div>
+              <div class="c-field">
+                <label class="c-field__label" for="codigo">Código de 6 cifras <span class="c-field__required" aria-hidden="true">*</span></label>
+                <input class="c-input" id="codigo" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="6" required aria-describedby="codigo-ayuda" style="font-size:var(--fs-22);letter-spacing:var(--sp-1);max-width:12rem">
+                <span class="c-field__help" id="codigo-ayuda">En esta maqueta vale cualquier número de 6 cifras.</span>
+                <span class="c-field__error" id="codigo-error"></span>
+              </div>
+              <button class="c-btn c-btn--ghost" type="button" id="reenviar"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H9.5L4 20z"/><path d="M8 9.5h8M8 12.5h5"/></svg> No me ha llegado: enviar otro código</button>
+            </div>
+            <div>
+              <h3 style="margin:0 0 var(--sp-2);font-size:var(--fs-16)">Protección de tus datos</h3>
+              <div id="rgpd" tabindex="0" role="region" aria-labelledby="rgpd-t" style="max-height:12rem;overflow:auto;padding:var(--sp-3) var(--sp-4);border:var(--bw) solid var(--color-border);border-radius:var(--r-sm);background:var(--surface-alt);font-size:var(--fs-14)">
+                <p class="u-visually-hidden" id="rgpd-t">Información básica sobre protección de datos</p>
+                <p style="margin:0 0 var(--sp-2)"><strong>Responsable:</strong> <span id="rgpd-responsable"></span>.</p>
+                <p style="margin:0 0 var(--sp-2)"><strong>Para qué:</strong> gestionar tus reservas, avisarte de tus viajes y, si lo pides, aplicarte los descuentos que te correspondan.</p>
+                <p style="margin:0 0 var(--sp-2)"><strong>Base legal:</strong> la prestación de un servicio público de transporte y tu consentimiento.</p>
+                <p style="margin:0 0 var(--sp-2)"><strong>Quién más los ve:</strong> solo el ayuntamiento de tu municipio, cuando paga tu descuento. No se venden ni se ceden a empresas.</p>
+                <p style="margin:0"><strong>Tus derechos:</strong> puedes ver, corregir o borrar tus datos, y retirar tu consentimiento, cuando quieras, desde «Mi cuenta» o llamando a la central.</p>
+              </div>
+              <div class="c-field" style="margin-top:var(--sp-3)">
+                <label class="c-checkbox" style="min-height:var(--touch-min);font-size:var(--fs-16)"><input type="checkbox" id="acepto" required> He leído la información sobre protección de datos y la acepto <span class="c-field__required" aria-hidden="true">*</span></label>
+                <span class="c-field__error" id="acepto-error"></span>
+              </div>
+            </div>
+          </div>
+          <div id="registrada" hidden style="margin-top:var(--sp-6)"></div>
+          <div id="acciones-final"><div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:var(--sp-3);margin-top:var(--sp-6)">
+            <button class="c-btn c-btn--secondary c-btn--lg" type="button" data-step-prev><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg> Atrás</button>
+            <button class="c-btn c-btn--primary c-btn--lg" type="submit" id="crear"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg> Crear mi cuenta</button>
+          </div></div>
+        </section>
+      </div>
+    </form>
+  </div>
+</main>
+<footer class="pub-footer">
+  <div class="pub-wrap">
+    <div class="pub-footer__inner">
+      <div class="pub-footer__brand"><svg role="img" aria-label="Plataforma Digital TAD" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 40"><g style="fill:var(--logo-route);stroke:var(--logo-route)"><path d="M4 34.5h32" fill="none" stroke-width="2.6" stroke-linecap="round"/><circle cx="4.5" cy="34.5" r="3.2"/><circle cx="35.5" cy="34.5" r="3.2"/></g><g fill="currentColor"><path fill-rule="evenodd" d="M6 10.5a2.5 2.5 0 0 1 2.5-2.5H24l8 8v7.5a1.5 1.5 0 0 1-1.5 1.5H7.5A1.5 1.5 0 0 1 6 23.5zM9 11h7v5H9zM18.5 11h4.3l5 5h-9.3z"/><circle cx="12" cy="25.5" r="3.6"/><circle cx="26" cy="25.5" r="3.6"/></g><circle cx="12" cy="25.5" r="1.4" style="fill:var(--logo-bg)"/><circle cx="26" cy="25.5" r="1.4" style="fill:var(--logo-bg)"/><g fill="currentColor"><g transform="translate(50 9)"><path d="M0 0h17v5h-6v17H6V5H0z"/></g><g transform="translate(70 9)"><path fill-rule="evenodd" d="M7 0h5.4l7.3 22h-5.3l-1.3-4.2H6.3L5 22H-.3zM9.7 6.6 7.6 13.4h4.3z"/></g><g transform="translate(93 9)"><path fill-rule="evenodd" d="M0 0h7.5a11 11 0 0 1 0 22H0zM5 5v12h2.3a6 6 0 0 0 0-12z"/></g></g><path d="M121 6v28" style="stroke:var(--logo-route)" stroke-width="2" stroke-linecap="round"/><text x="131" y="18" fill="currentColor" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="600" letter-spacing=".3">Plataforma Digital</text><text x="131" y="33" fill="currentColor" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="400">Personas que nos mueven</text></svg><p class="pub-footer__claim">Transporte a demanda para que ningún pueblo se quede atrás.</p></div>
+      <div class="pub-seals">
+        <div class="pub-seal">
+          <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 14 18 6l14 8M6 14h24M8 14v13M14 14v13M22 14v13M28 14v13M5 27h26M3 31h30"/></svg>
+          <span class="pub-seal__text"><span class="pub-seal__small">Con la colaboración del</span><span class="pub-seal__name">Ayuntamiento</span></span>
+        </div>
+        <div class="pub-seal">
+          <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="6" y="5" width="24" height="22" rx="4"/><path d="M6 17h24M10 11h16"/><circle cx="12" cy="22" r="1.5"/><circle cx="24" cy="22" r="1.5"/><path d="M10 27v3M26 27v3"/></svg>
+          <span class="pub-seal__text"><span class="pub-seal__small">Servicio integrado en el</span><span class="pub-seal__name">Consorcio de Transportes</span></span>
+        </div>
+        <div class="pub-seal">
+          <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="4" y="8" width="28" height="20" rx="2"/><path d="M12 18h12M18 12v12"/></svg>
+          <span class="pub-seal__text"><span class="pub-seal__small">Proyecto</span><span class="pub-seal__name">Cofinanciado por la Unión Europea</span></span>
+        </div>
+      </div>
+    </div>
+    <div class="pub-footer__legal">
+      <span>Plataforma Digital TAD · Maqueta de demostración con datos ficticios</span>
+      <ul class="pub-footer__links">
+        <li><a href="#" data-toast="Esta página no forma parte de la maqueta.">Aviso legal</a></li>
+        <li><a href="#" data-toast="Esta página no forma parte de la maqueta.">Privacidad</a></li>
+        <li><a href="#" data-toast="Esta página no forma parte de la maqueta.">Accesibilidad</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var f = TAD.fmt, h = f.html, V = TAD.viajero, yo = TAD.usuario(V.usuario);
+  document.querySelectorAll("[data-viajero-nombre]").forEach(function (el) { el.textContent = yo.nombre; });
+  var $ = function (id) { return document.getElementById(id); };
+  var ICO_ERROR = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 4.5 2.8 17.7A2 2 0 0 0 4.5 20.7h15a2 2 0 0 0 1.7-3L13.7 4.5a2 2 0 0 0-3.4 0z"/><path d="M12 9.5v4.5M12 17.2v.1"/></svg>', ICO_DOC = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg>', ICO_QUITAR = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6 6 18"/></svg>';
+  var form = $("registro"), ej = V.registroEjemplo;
+
+  // ---------- Errores asociados al campo ----------
+  function errorEn(campo, texto) {
+    var field = campo.closest(".c-field"), err = field.querySelector(".c-field__error");
+    err.innerHTML = ICO_ERROR + "<span>" + h(texto) + "</span>";
+    field.classList.add("c-field--error");
+    if (campo.tagName !== "FIELDSET" && campo.tagName !== "BUTTON") campo.setAttribute("aria-invalid", "true");
+    var ids = (campo.getAttribute("aria-describedby") || "").split(" ").filter(Boolean);
+    if (ids.indexOf(err.id) === -1) ids.push(err.id);
+    campo.setAttribute("aria-describedby", ids.join(" "));
+  }
+  function limpiarError(campo) {
+    var field = campo.closest(".c-field"), err = field && field.querySelector(".c-field__error");
+    if (!err) return;
+    field.classList.remove("c-field--error");
+    campo.removeAttribute("aria-invalid");
+    var ids = (campo.getAttribute("aria-describedby") || "").split(" ").filter(function (x) { return x && x !== err.id; });
+    if (ids.length) campo.setAttribute("aria-describedby", ids.join(" ")); else campo.removeAttribute("aria-describedby");
+    err.innerHTML = "";
+  }
+  function enfocar(campo) { (campo.tagName === "FIELDSET" ? campo.querySelector("input") : campo).focus(); }
+
+  // ---------- Paso 1: datos de ejemplo de una persona nueva ----------
+  $("municipio").innerHTML = '<option value="">Elige tu municipio</option>' + TAD.municipios.map(function (m) {
+    return '<option value="' + m.id + '">' + h(m.nombre) + "</option>";
+  }).join("");
+  $("nombre").value = ej.nombre;
+  $("apellidos").value = ej.apellidos;
+  $("dni").value = ej.dni;
+  $("nacimiento").value = ej.nacimiento;
+  $("nacimiento").max = TAD.fecha;
+  $("telefono").value = ej.telefono;
+  $("correo").value = ej.correo;
+  $("municipio").value = ej.municipio;
+  form.querySelectorAll(".c-input, .c-select").forEach(function (c) {
+    c.addEventListener("input", function () { if (c.getAttribute("aria-invalid")) limpiarError(c); });
+    c.addEventListener("change", function () { if (c.getAttribute("aria-invalid")) limpiarError(c); });
+  });
+
+  // ---------- Paso 2: descuentos y documento ----------
+  $("perfiles-opciones").innerHTML = '<div><label class="c-radio" style="min-height:var(--touch-min);font-size:var(--fs-16)"><input type="radio" name="perfil" value="general"> No, ninguno</label></div>' +
+    TAD.tarifas.bonificaciones.map(function (b) {
+      return '<div><label class="c-radio" style="min-height:var(--touch-min);font-size:var(--fs-16)"><input type="radio" name="perfil" value="' + h(b.perfil) + '"' + (b.perfil === ej.perfil ? " checked" : "") + "> " +
+        h(b.nombre) + " (" + f.porcentaje(b.pct) + ")</label></div>";
+    }).join("");
+  var adjunto = null;
+  function pintarAdjunto() {
+    $("adjuntos").innerHTML = adjunto ? '<li class="c-list__item" style="display:flex;align-items:center;gap:var(--sp-3);padding:var(--sp-2) 0">' +
+      '<span class="c-avatar c-avatar--sm" aria-hidden="true">' + ICO_DOC + "</span>" +
+      '<span style="flex:1;min-width:0;overflow-wrap:anywhere"><span class="c-list__title">' + h(adjunto.nombre) + '</span><span class="c-list__meta">' + h(adjunto.tamano) + " · listo para enviar</span></span>" +
+      '<button class="c-btn c-btn--ghost" type="button" id="quitar" aria-label="Quitar el archivo ' + h(adjunto.nombre) + '">' + ICO_QUITAR + " Quitar</button></li>" : "";
+    if (adjunto) $("quitar").addEventListener("click", function () {
+      adjunto = null; pintarAdjunto(); $("elegir").focus();
+      TADUI.toast("Has quitado el archivo.", { titulo: "Archivo quitado" });
+    });
+  }
+  function adjuntar() {
+    adjunto = ej.documento; pintarAdjunto(); limpiarError($("elegir"));
+    TADUI.toast(ej.documento.nombre + " (" + ej.documento.tamano + "). En la maqueta no se sube ningún archivo de verdad.", { titulo: "Archivo añadido" });
+  }
+  adjunto = ej.documento;
+  pintarAdjunto();
+  $("elegir").addEventListener("click", adjuntar);
+  var zona = $("zona");
+  zona.addEventListener("dragover", function (e) { e.preventDefault(); zona.style.borderColor = "var(--color-primary)"; });
+  zona.addEventListener("dragleave", function () { zona.style.borderColor = ""; });
+  zona.addEventListener("drop", function (e) { e.preventDefault(); zona.style.borderColor = ""; adjuntar(); });
+  function perfilElegido() { var r = form.querySelector('input[name="perfil"]:checked'); return r ? r.value : ""; }
+  function mostrarDocumento() { $("doc-campo").hidden = perfilElegido() === "general"; }
+  form.querySelectorAll('input[name="perfil"]').forEach(function (r) { r.addEventListener("change", function () { limpiarError($("perfiles")); mostrarDocumento(); }); });
+  mostrarDocumento();
+
+  // ---------- Paso 3: verificación por SMS y protección de datos ----------
+  $("sms-texto").textContent = "Hemos enviado un SMS con un código de 6 cifras al " + ej.telefono + ". Escríbelo aquí. Puede tardar un par de minutos en llegar.";
+  $("rgpd-responsable").textContent = "Consorcio de Transportes de la " + TAD.meta.territorio;
+  $("reenviar").addEventListener("click", function () {
+    TADUI.toast("Te hemos enviado otro código al " + $("telefono").value + ".", { titulo: "Código reenviado" });
+  });
+  $("acepto").addEventListener("change", function () { limpiarError($("acepto")); });
+
+  // ---------- Validación ----------
+  function obligatorio(id, texto) { var c = $(id); if (!c.value.trim()) { errorEn(c, texto); return c; } return null; }
+  var validar = {
+    1: function () {
+      ["nombre", "apellidos", "dni", "nacimiento", "telefono", "correo", "municipio"].forEach(function (id) { limpiarError($(id)); });
+      var malos = [
+        obligatorio("nombre", "Escribe tu nombre."),
+        obligatorio("apellidos", "Escribe tus apellidos."),
+        (function () {
+          var c = $("dni"), v = c.value.trim().toUpperCase().replace(/[\s-]/g, "");
+          if (!v) { errorEn(c, "Escribe tu DNI o NIE."); return c; }
+          if (!/^(\d{8}|[XYZ]\d{7})[A-Z]$/.test(v)) { errorEn(c, "Revisa el número: el DNI tiene 8 números y una letra (por ejemplo, 12345678A)."); return c; }
+          return null;
+        })(),
+        (function () {
+          var c = $("nacimiento");
+          if (!c.value) { errorEn(c, "Escribe tu fecha de nacimiento."); return c; }
+          if (c.value > TAD.fecha) { errorEn(c, "La fecha de nacimiento no puede ser posterior a hoy."); return c; }
+          return null;
+        })(),
+        (function () {
+          var c = $("telefono"), v = c.value.replace(/\s/g, "");
+          if (!v) { errorEn(c, "Escribe tu teléfono móvil."); return c; }
+          if (!/^[67][\dX]{8}$/i.test(v)) { errorEn(c, "Escribe un móvil de 9 cifras que empiece por 6 o por 7."); return c; }
+          return null;
+        })(),
+        (function () {
+          var c = $("correo"), v = c.value.trim();
+          if (v && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) { errorEn(c, "Revisa el correo: tiene que ser como nombre@ejemplo.es. Si no tienes, déjalo en blanco."); return c; }
+          return null;
+        })(),
+        obligatorio("municipio", "Elige el municipio donde vives.")
+      ].filter(Boolean);
+      return malos[0] || null;
+    },
+    2: function () {
+      limpiarError($("perfiles")); limpiarError($("elegir"));
+      var p = perfilElegido();
+      if (!p) { errorEn($("perfiles"), "Elige una opción. Si no tienes descuento, marca «No, ninguno»."); return $("perfiles"); }
+      if (p !== "general" && !adjunto) { errorEn($("elegir"), "Adjunta un documento que acredite el descuento."); return $("elegir"); }
+      return null;
+    },
+    3: function () {
+      var c = $("codigo"), a = $("acepto"), malo = null;
+      limpiarError(c); limpiarError(a);
+      if (!/^\d{6}$/.test(c.value.trim())) { errorEn(c, "Escribe el código de 6 cifras que te hemos enviado por SMS."); malo = c; }
+      if (!a.checked) { errorEn(a, "Para crear la cuenta tienes que aceptar la información sobre protección de datos."); malo = malo || a; }
+      return malo;
+    }
+  };
+  form.querySelectorAll("[data-validar]").forEach(function (b) {
+    b.addEventListener("click", function (e) {
+      var mal = validar[b.getAttribute("data-validar")]();
+      if (mal) { e.stopPropagation(); e.preventDefault(); enfocar(mal); }
+    });
+  });
+
+  // Enter en un campo: en los pasos 1 y 2 equivale a «Continuar»; en el 3, a «Crear mi cuenta»
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var paso = +form.getAttribute("data-step-actual") || 1;
+    if (paso < 3) { form.querySelector('[data-validar="' + paso + '"]').click(); return; }
+    var mal = validar[3]();
+    if (mal) { enfocar(mal); return; }
+    TADUI.toast("Ya puedes reservar tu primer viaje.", { titulo: "Cuenta creada" });
+    var caja = $("registrada");
+    caja.innerHTML = '<div class="c-alert c-alert--success" role="note"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><div class="c-alert__body"><strong class="c-alert__title">Cuenta creada</strong>' +
+      "Te damos la bienvenida, " + h($("nombre").value) + ". Te hemos enviado un SMS con tus datos de acceso." +
+      (perfilElegido() !== "general" ? " Revisaremos tu documento y te avisaremos cuando el descuento esté activo." : "") + "</div></div>" +
+      '<p style="margin:var(--sp-4) 0 0;display:flex;flex-wrap:wrap;gap:var(--sp-3)"><a class="c-btn c-btn--primary c-btn--lg" href="reservar.html" id="ir-reservar"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg> Reservar un viaje</a>' +
+      '<a class="c-btn c-btn--secondary c-btn--lg" href="home.html"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.5V20h5v-6h3v6h5V9.5"/></svg> Ir al inicio</a></p>';
+    caja.hidden = false;
+    $("acciones-final").hidden = true;
+    $("ir-reservar").focus();
+  });
+});
+</script>
+</body>
+</html>

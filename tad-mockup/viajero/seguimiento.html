@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Sigue tu viaje · Portal del viajero · Plataforma Digital TAD</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/layout-public.css">
+<script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script defer src="../js/data.js"></script>
+<script defer src="../js/datos/viajero.js"></script>
+<script defer src="../js/ui.js"></script>
+<script defer src="../js/nav.js"></script>
+<script defer src="../js/maps.js"></script>
+</head>
+<body class="pub-body" data-module="viajero" data-page="viajero-seguimiento" data-momento="seguimiento">
+<a class="c-skip-link" href="#contenido">Saltar al contenido</a>
+<div class="pub-mockbar"><a class="c-index-link" href="../index.html"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg> Índice del mockup</a></div>
+<header class="pub-header">
+  <div class="pub-wrap"><div class="pub-header__inner">
+    <a class="pub-header__brand" href="home.html" aria-label="Plataforma Digital TAD, inicio"><svg class="pub-header__logo" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 40"><g style="fill:var(--logo-route);stroke:var(--logo-route)"><path d="M4 34.5h32" fill="none" stroke-width="2.6" stroke-linecap="round"/><circle cx="4.5" cy="34.5" r="3.2"/><circle cx="35.5" cy="34.5" r="3.2"/></g><g fill="currentColor"><path fill-rule="evenodd" d="M6 10.5a2.5 2.5 0 0 1 2.5-2.5H24l8 8v7.5a1.5 1.5 0 0 1-1.5 1.5H7.5A1.5 1.5 0 0 1 6 23.5zM9 11h7v5H9zM18.5 11h4.3l5 5h-9.3z"/><circle cx="12" cy="25.5" r="3.6"/><circle cx="26" cy="25.5" r="3.6"/></g><circle cx="12" cy="25.5" r="1.4" style="fill:var(--logo-bg)"/><circle cx="26" cy="25.5" r="1.4" style="fill:var(--logo-bg)"/><g fill="currentColor"><g transform="translate(50 9)"><path d="M0 0h17v5h-6v17H6V5H0z"/></g><g transform="translate(70 9)"><path fill-rule="evenodd" d="M7 0h5.4l7.3 22h-5.3l-1.3-4.2H6.3L5 22H-.3zM9.7 6.6 7.6 13.4h4.3z"/></g><g transform="translate(93 9)"><path fill-rule="evenodd" d="M0 0h7.5a11 11 0 0 1 0 22H0zM5 5v12h2.3a6 6 0 0 0 0-12z"/></g></g><path d="M121 6v28" style="stroke:var(--logo-route)" stroke-width="2" stroke-linecap="round"/><text x="131" y="18" fill="currentColor" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="600" letter-spacing=".3">Plataforma Digital</text><text x="131" y="33" fill="currentColor" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="400">Personas que nos mueven</text></svg></a>
+    <nav class="pub-nav" aria-label="Menú principal">
+      <ul class="pub-nav__list">
+        <li><a class="pub-nav__link" href="home.html">Inicio</a></li>
+        <li><a class="pub-nav__link" href="reservar.html">Reservar</a></li>
+        <li><a class="pub-nav__link" href="mis-viajes.html">Mis viajes</a></li>
+        <li><a class="pub-nav__link" href="home.html#ayuda">Ayuda</a></li>
+      </ul>
+    </nav>
+    <div class="c-dropdown pub-header__account">
+      <button class="c-btn c-btn--secondary" type="button" data-dropdown aria-controls="menu-cuenta"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0"/></svg> Mi cuenta <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+      <div class="c-dropdown__menu" id="menu-cuenta">
+        <p style="margin:0;padding:var(--sp-2) var(--sp-3);font-size:var(--fs-14);color:var(--color-text-muted)">Has entrado como <strong data-viajero-nombre style="color:var(--color-text)"></strong></p>
+        <a class="c-dropdown__item" style="min-height:var(--touch-min)" href="mis-viajes.html"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg> Mis viajes</a>
+        <a class="c-dropdown__item" style="min-height:var(--touch-min)" href="mis-viajes.html#bonificaciones"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 6.8a7 7 0 1 0 0 10.4"/><path d="M4 10h9M4 14h9"/></svg> Mis bonificaciones</a>
+        <a class="c-dropdown__item" style="min-height:var(--touch-min)" href="registro.html"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M15.5 4.6a3.5 3.5 0 0 1 0 6.8M18 14.2a6.5 6.5 0 0 1 3.5 5.8"/></svg> Dar de alta a otra persona</a>
+        <div class="c-dropdown__sep"></div>
+        <a class="c-dropdown__item" style="min-height:var(--touch-min)" href="../login.html"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg> Cerrar sesión</a>
+      </div>
+    </div>
+  </div></div>
+</header>
+<main class="pub-main" id="contenido" tabindex="-1">
+  <div class="pub-wrap">
+    <p style="margin:0 0 var(--sp-2)"><a href="mis-viajes.html" style="display:inline-flex;align-items:center;gap:var(--sp-1);min-height:var(--touch-min)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg> Volver a Mis viajes</a></p>
+    <h1 class="pub-title" style="margin:0 0 var(--sp-2)">Sigue tu viaje</h1>
+    <p class="pub-lead" id="lead" style="margin:0 0 var(--sp-6)"></p>
+
+    <div class="pub-grid pub-grid--main-side" style="align-items:start">
+      <section aria-labelledby="t-mapa">
+        <h2 id="t-mapa" class="u-visually-hidden">Mapa del recorrido</h2>
+        <div class="c-map" id="mapa" style="--map-h:520px">
+          <div class="c-map__canvas" role="region" aria-label="Mapa con la posición del vehículo, la ruta y tu parada"></div>
+          <div class="c-map__fallback"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon c-icon--lg" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6.5 9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20z"/><path d="M9 4v13.5M15 6.5V20"/></svg><span>Mapa no disponible</span><span style="font-weight:var(--fw-regular)">Los datos de tu viaje siguen al día en el panel.</span></div>
+          <div class="c-map__legend" aria-label="Leyenda del mapa">
+            <span class="c-map__legend-item"><span class="c-map__swatch c-map__swatch--parada" style="background:var(--color-primary);border-color:var(--color-primary)"></span>Tu parada</span>
+            <span class="c-map__legend-item"><span class="c-map__swatch c-map__swatch--retraso"></span>Tu vehículo (con retraso)</span>
+            <span class="c-map__legend-item"><span class="c-map__swatch c-map__swatch--line c-map__swatch--r2" id="leyenda-ruta-sw"></span><span id="leyenda-ruta">Ruta</span></span>
+            <span class="c-map__legend-item"><span class="c-map__swatch c-map__swatch--obras"></span>Obras</span>
+          </div>
+        </div>
+      </section>
+
+      <aside style="display:grid;gap:var(--sp-5)" aria-label="Datos de tu viaje">
+        <section class="c-card" aria-labelledby="t-llegada">
+          <div class="c-card__body">
+            <h2 id="t-llegada" style="margin:0;font-size:var(--fs-16);font-weight:var(--fw-semibold);color:var(--color-text-muted)">Llegada estimada a tu parada</h2>
+            <p style="margin:var(--sp-1) 0 0;font-size:var(--fs-36);font-weight:var(--fw-bold);line-height:var(--lh-title)" id="eta"></p>
+            <p style="margin:0 0 var(--sp-4)" id="eta-parada"></p>
+            <div class="c-alert c-alert--warning" role="note"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg><div class="c-alert__body"><strong class="c-alert__title" id="retraso-titulo"></strong><span id="retraso-texto"></span></div></div>
+          </div>
+        </section>
+
+        <section class="c-card" aria-labelledby="t-vehiculo">
+          <header class="c-card__header"><h2 class="c-card__title" id="t-vehiculo">Tu vehículo</h2><span id="vehiculo-badge"></span></header>
+          <div class="c-card__body">
+            <div style="display:flex;align-items:center;gap:var(--sp-3);margin-bottom:var(--sp-4)">
+              <span class="c-avatar c-avatar--lg" aria-hidden="true" id="conductor-ini"></span>
+              <span><span style="display:block;font-weight:var(--fw-semibold)" id="conductor-nombre"></span><span class="u-muted" style="font-size:var(--fs-14)" id="conductor-rol"></span></span>
+            </div>
+            <dl class="c-datalist" id="vehiculo-datos" style="font-size:var(--fs-16)"></dl>
+            <div style="margin-top:var(--sp-4)">
+              <p style="display:flex;justify-content:space-between;margin:0 0 var(--sp-1);font-size:var(--fs-14)"><span>Plazas ocupadas</span><strong id="plazas-texto"></strong></p>
+              <div class="c-progress" role="progressbar" aria-labelledby="plazas-etiqueta" aria-valuemin="0" id="plazas-barra"><span id="plazas-relleno"></span></div>
+              <span class="u-visually-hidden" id="plazas-etiqueta">Plazas ocupadas</span>
+            </div>
+          </div>
+          <footer class="c-card__footer" style="flex-direction:column;align-items:stretch">
+            <button class="c-btn c-btn--primary c-btn--block" type="button" id="llamar"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5.2 4h3.3l1.6 4.4-2.1 1.4a11.5 11.5 0 0 0 6.2 6.2l1.4-2.1 4.4 1.6v3.3a1.6 1.6 0 0 1-1.7 1.6A16 16 0 0 1 3.6 5.7 1.6 1.6 0 0 1 5.2 4z"/></svg> Llamar a la central</button>
+            <button class="c-btn c-btn--danger c-btn--block" type="button" data-open="modal-cancelar"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6 6 18"/></svg> Cancelar viaje</button>
+          </footer>
+        </section>
+      </aside>
+    </div>
+
+    <section class="c-card" aria-labelledby="t-linea" style="margin-top:var(--sp-6)">
+      <header class="c-card__header"><h2 class="c-card__title" id="t-linea">Tu viaje de hoy, paso a paso</h2></header>
+      <div class="c-card__body">
+        <ol class="c-timeline" id="linea"></ol>
+      </div>
+      <footer class="c-card__footer" style="flex-wrap:wrap">
+        <a class="c-btn c-btn--secondary" href="mis-viajes.html"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg> Ver mis viajes</a>
+        <a class="c-btn c-btn--primary" href="home.html"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.5V20h5v-6h3v6h5V9.5"/></svg> Volver al inicio</a>
+      </footer>
+    </section>
+  </div>
+</main>
+
+<div class="c-modal" id="modal-cancelar" role="dialog" aria-modal="true" aria-labelledby="modal-cancelar-t" aria-describedby="modal-cancelar-d">
+  <div class="c-modal__dialog">
+    <div class="c-modal__header">
+      <h2 class="c-modal__title" id="modal-cancelar-t">¿Quieres cancelar tu viaje de hoy?</h2>
+      <button class="c-btn c-btn--ghost c-btn--icon" type="button" data-close aria-label="Cerrar sin cancelar"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    </div>
+    <div class="c-modal__body"><p style="margin:0" id="modal-cancelar-d"></p></div>
+    <div class="c-modal__footer" style="flex-wrap:wrap">
+      <button class="c-btn c-btn--secondary" type="button" data-close>No, mantener el viaje</button>
+      <button class="c-btn c-btn--danger" type="button" id="confirmar-cancelacion" data-toast-close>Sí, cancelar el viaje</button>
+    </div>
+  </div>
+</div>
+<footer class="pub-footer">
+  <div class="pub-wrap">
+    <div class="pub-footer__inner">
+      <div class="pub-footer__brand"><svg role="img" aria-label="Plataforma Digital TAD" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 40"><g style="fill:var(--logo-route);stroke:var(--logo-route)"><path d="M4 34.5h32" fill="none" stroke-width="2.6" stroke-linecap="round"/><circle cx="4.5" cy="34.5" r="3.2"/><circle cx="35.5" cy="34.5" r="3.2"/></g><g fill="currentColor"><path fill-rule="evenodd" d="M6 10.5a2.5 2.5 0 0 1 2.5-2.5H24l8 8v7.5a1.5 1.5 0 0 1-1.5 1.5H7.5A1.5 1.5 0 0 1 6 23.5zM9 11h7v5H9zM18.5 11h4.3l5 5h-9.3z"/><circle cx="12" cy="25.5" r="3.6"/><circle cx="26" cy="25.5" r="3.6"/></g><circle cx="12" cy="25.5" r="1.4" style="fill:var(--logo-bg)"/><circle cx="26" cy="25.5" r="1.4" style="fill:var(--logo-bg)"/><g fill="currentColor"><g transform="translate(50 9)"><path d="M0 0h17v5h-6v17H6V5H0z"/></g><g transform="translate(70 9)"><path fill-rule="evenodd" d="M7 0h5.4l7.3 22h-5.3l-1.3-4.2H6.3L5 22H-.3zM9.7 6.6 7.6 13.4h4.3z"/></g><g transform="translate(93 9)"><path fill-rule="evenodd" d="M0 0h7.5a11 11 0 0 1 0 22H0zM5 5v12h2.3a6 6 0 0 0 0-12z"/></g></g><path d="M121 6v28" style="stroke:var(--logo-route)" stroke-width="2" stroke-linecap="round"/><text x="131" y="18" fill="currentColor" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="600" letter-spacing=".3">Plataforma Digital</text><text x="131" y="33" fill="currentColor" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="400">Personas que nos mueven</text></svg><p class="pub-footer__claim">Transporte a demanda para que ningún pueblo se quede atrás.</p></div>
+      <div class="pub-seals">
+        <div class="pub-seal">
+          <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 14 18 6l14 8M6 14h24M8 14v13M14 14v13M22 14v13M28 14v13M5 27h26M3 31h30"/></svg>
+          <span class="pub-seal__text"><span class="pub-seal__small">Con la colaboración del</span><span class="pub-seal__name">Ayuntamiento</span></span>
+        </div>
+        <div class="pub-seal">
+          <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="6" y="5" width="24" height="22" rx="4"/><path d="M6 17h24M10 11h16"/><circle cx="12" cy="22" r="1.5"/><circle cx="24" cy="22" r="1.5"/><path d="M10 27v3M26 27v3"/></svg>
+          <span class="pub-seal__text"><span class="pub-seal__small">Servicio integrado en el</span><span class="pub-seal__name">Consorcio de Transportes</span></span>
+        </div>
+        <div class="pub-seal">
+          <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="4" y="8" width="28" height="20" rx="2"/><path d="M12 18h12M18 12v12"/></svg>
+          <span class="pub-seal__text"><span class="pub-seal__small">Proyecto</span><span class="pub-seal__name">Cofinanciado por la Unión Europea</span></span>
+        </div>
+      </div>
+    </div>
+    <div class="pub-footer__legal">
+      <span>Plataforma Digital TAD · Maqueta de demostración con datos ficticios</span>
+      <ul class="pub-footer__links">
+        <li><a href="#" data-toast="Esta página no forma parte de la maqueta.">Aviso legal</a></li>
+        <li><a href="#" data-toast="Esta página no forma parte de la maqueta.">Privacidad</a></li>
+        <li><a href="#" data-toast="Esta página no forma parte de la maqueta.">Accesibilidad</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var f = TAD.fmt, h = f.html, V = TAD.viajero, yo = TAD.usuario(V.usuario);
+  document.querySelectorAll("[data-viajero-nombre]").forEach(function (el) { el.textContent = yo.nombre; });
+  var $ = function (id) { return document.getElementById(id); };
+  var ahora = TAD.momento();
+  var res = TAD.reservaReferencia();
+  var ruta = TAD.ruta(res.ruta), veh = TAD.vehiculo(ruta.vehiculo), cond = TAD.conductor(ruta.conductor);
+  var serv = TAD.servicio(res.servicio), seg = ruta.seguimiento;
+  var iO = -1, iD = -1;
+  serv.paradas.forEach(function (p, i) { if (p.parada === res.origen) iO = i; if (p.parada === res.destino) iD = i; });
+  var pO = serv.paradas[iO], pD = serv.paradas[iD];
+  var inc = TAD.incidencias.filter(function (i) { return (i.afectados || []).indexOf(res.codigo) !== -1; })[0];
+  var conv = TAD.conversaciones.filter(function (c) { return c.reserva === res.codigo; })[0];
+
+  // Esta pantalla es parte de «Mis viajes»: se marca en el menú
+  var enlaceMisViajes = document.querySelector('.pub-nav__link[href="mis-viajes.html"]');
+  if (enlaceMisViajes) enlaceMisViajes.setAttribute("aria-current", "page");
+
+  // ---------- Cabecera y llegada estimada ----------
+  $("lead").textContent = "Hoy, " + f.fechaLarga(TAD.fecha) + ". Son las " + ahora + ": tu vehículo llegará a tu parada a las " + pO.estimada + ", dentro de " + seg.minutos + " minutos.";
+  $("eta").textContent = pO.estimada + " (" + seg.minutos + " min)";
+  $("eta-parada").innerHTML = "En " + h(TAD.parada(res.origen).nombre) + '. <span class="u-muted">Estaba prevista a las ' + pO.prevista + ".</span>";
+  $("retraso-titulo").textContent = "Retraso de " + pO.retraso + " minutos";
+  $("retraso-texto").textContent = TAD.obras.nombre + "." + (inc ? " Te avisamos por SMS a las " + inc.historial[inc.historial.length - 1].hora + "." : "");
+
+  // ---------- Vehículo y conductora ----------
+  $("vehiculo-badge").innerHTML = f.badge(pO.retraso ? "Retraso" : "En servicio");
+  $("conductor-ini").textContent = f.iniciales(cond.nombre);
+  $("conductor-nombre").textContent = cond.nombre;
+  $("conductor-rol").textContent = "Conduce hoy tu vehículo";
+  $("vehiculo-datos").innerHTML =
+    "<dt>Matrícula</dt><dd>" + h(veh.matricula) + "</dd>" +
+    "<dt>Vehículo</dt><dd>" + h(veh.modelo) + (veh.accesibilidad ? " con " + h(veh.accesibilidad.toLowerCase()) : "") + "</dd>" +
+    "<dt>Ruta</dt><dd>" + h(ruta.id) + " · " + h(ruta.nombre) + "</dd>" +
+    "<dt>Tu destino</dt><dd>" + h(TAD.parada(res.destino).nombre) + ", sobre las " + pD.estimada + "</dd>";
+  var pct = Math.round(100 * seg.aBordo / veh.plazas);
+  $("plazas-texto").textContent = seg.aBordo + "/" + veh.plazas;
+  var barra = $("plazas-barra");
+  barra.setAttribute("aria-valuemax", veh.plazas);
+  barra.setAttribute("aria-valuenow", seg.aBordo);
+  barra.setAttribute("aria-valuetext", seg.aBordo + " de " + veh.plazas + " plazas");
+  $("plazas-relleno").style.width = pct + "%";
+
+  $("llamar").addEventListener("click", function () {
+    TADUI.toast("En el producto real, esto abriría la llamada a la central (" + V.central.telefono + ").", { titulo: "Llamar a la central" });
+  });
+  $("modal-cancelar-d").textContent = "Se anulará la reserva " + res.codigo + ": recogida a las " + res.horaPrevista + " en " + TAD.parada(res.origen).nombre +
+    ". No se te cobrará. Si cambias de idea, tendrás que hacer una reserva nueva.";
+  var btnCancelar = $("confirmar-cancelacion");
+  btnCancelar.setAttribute("data-toast", "Hemos enviado un SMS al " + yo.telefono + " con la cancelación.");
+  btnCancelar.setAttribute("data-toast-title", "Viaje cancelado");
+
+  // ---------- Mapa (si no carga, el panel sigue funcionando) ----------
+  $("leyenda-ruta").textContent = "Ruta " + ruta.id;
+  $("leyenda-ruta-sw").className = "c-map__swatch c-map__swatch--line c-map__swatch--" + ruta.id.toLowerCase();
+  if (window.TADMapa) {
+    TADMapa.crear("#mapa", { zoom: 12 }).obras().rutas({ ids: [ruta.id] })
+      .paradas({ soloRuta: ruta.id, resaltar: res.origen })
+      .vehiculos({ ids: [veh.matricula], seleccionar: veh.matricula, etiquetas: true })
+      .encuadrar(40);
+  }
+
+  // ---------- Línea de tiempo ----------
+  var items = [];
+  if (conv) items.push({ hora: conv.hora, clase: "is-done", titulo: "Reserva confirmada", desc: "Por " + conv.canal + ", con el " + conv.atendidaPor.toLowerCase() + "." });
+  if (inc) items.push({ hora: inc.hora, clase: "is-alert", titulo: "Retraso de " + pO.retraso + " minutos", desc: TAD.obras.nombre + ". Te avisamos por SMS a las " + inc.historial[inc.historial.length - 1].hora + "." });
+  serv.paradas.forEach(function (p, i) {
+    if (i > iD) return;
+    var nombre = TAD.parada(p.parada).nombre, estado = TAD.estadoParada(serv, i);
+    var item = { hora: p.estimada, clase: estado === "realizada" ? "is-done" : (estado === "proxima" ? "is-current" : ""), desc: p.retraso ? "Prevista a las " + p.prevista + "." : "" };
+    if (i === 0) item.titulo = "Sale el vehículo desde " + nombre;
+    else if (i === iO) { item.titulo = "Te recoge en " + nombre; item.desc = "Prevista a las " + p.prevista + ". Llega en " + seg.minutos + " minutos."; }
+    else if (i === iD) { item.titulo = "Llegas a " + nombre; item.desc = "Prevista a las " + p.prevista + "." + (res.nota ? " Nota de tu reserva: " + res.nota : ""); }
+    else item.titulo = (estado === "realizada" ? "Ha pasado por " : "Pasará por ") + nombre;
+    items.push(item);
+  });
+  items.sort(function (a, b) { return TAD.minutos(a.hora) - TAD.minutos(b.hora); });
+  $("linea").innerHTML = items.map(function (x) {
+    return '<li class="c-timeline__item ' + x.clase + '"' + (x.clase === "is-current" ? ' aria-current="step"' : "") + '><span class="c-timeline__time">' + x.hora + "</span>" +
+      '<div class="c-timeline__content"><span class="c-timeline__title">' + h(x.titulo) + "</span>" + (x.desc ? '<span class="c-timeline__desc">' + h(x.desc) + "</span>" : "") + "</div></li>";
+  }).join("");
+});
+</script>
+</body>
+</html>

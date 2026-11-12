@@ -62,6 +62,10 @@
 .pub-body .c-select { min-height: var(--touch-min); font-size: var(--fs-16); }
 .pub-body .c-btn--sm { min-height: var(--control-h-sm); font-size: var(--fs-14); }
 .pub-body .c-btn--icon { width: var(--touch-min); }
+.pub-body .c-checkbox,
+.pub-body .c-radio,
+.pub-body .c-switch,
+.pub-body .c-dropdown__item { min-height: var(--touch-min); font-size: var(--fs-16); }
 
 /* ---------- Pie institucional ---------- */
 .pub-footer { background: var(--tad-blue-900); color: var(--ink-100); font-size: var(--fs-14); --focus-color: var(--focus-color-on-dark); }
@@ -107,7 +111,7 @@
 /* ---------- Móvil: el menú se apila debajo del logo ---------- */
 @media (max-width: 720px) {
   .pub-wrap { padding: 0 var(--sp-4); }
-  .pub-header__inner { flex-wrap: wrap; gap: var(--sp-2) var(--sp-4); padding: var(--sp-3) 0; }
+  .pub-header__inner { flex-wrap: wrap; gap: var(--sp-2) var(--sp-4); padding-top: var(--sp-3); padding-bottom: var(--sp-3); }
   .pub-header__brand { flex: 1; }
   .pub-nav { order: 3; flex-basis: 100%; }
   .pub-nav__list { flex-wrap: wrap; }

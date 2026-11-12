@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Inicio · Portal del viajero · Plataforma Digital TAD</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap">
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/layout-public.css">
+<script defer src="../js/data.js"></script>
+<script defer src="../js/datos/viajero.js"></script>
+<script defer src="../js/ui.js"></script>
+<script defer src="../js/nav.js"></script>
+</head>
+<body class="pub-body" data-module="viajero" data-page="viajero-home">
+<a class="c-skip-link" href="#contenido">Saltar al contenido</a>
+<div class="pub-mockbar"><a class="c-index-link" href="../index.html"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg> Índice del mockup</a></div>
+<header class="pub-header">
+  <div class="pub-wrap"><div class="pub-header__inner">
+    <a class="pub-header__brand" href="home.html" aria-label="Plataforma Digital TAD, inicio"><svg class="pub-header__logo" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 40"><g style="fill:var(--logo-route);stroke:var(--logo-route)"><path d="M4 34.5h32" fill="none" stroke-width="2.6" stroke-linecap="round"/><circle cx="4.5" cy="34.5" r="3.2"/><circle cx="35.5" cy="34.5" r="3.2"/></g><g fill="currentColor"><path fill-rule="evenodd" d="M6 10.5a2.5 2.5 0 0 1 2.5-2.5H24l8 8v7.5a1.5 1.5 0 0 1-1.5 1.5H7.5A1.5 1.5 0 0 1 6 23.5zM9 11h7v5H9zM18.5 11h4.3l5 5h-9.3z"/><circle cx="12" cy="25.5" r="3.6"/><circle cx="26" cy="25.5" r="3.6"/></g><circle cx="12" cy="25.5" r="1.4" style="fill:var(--logo-bg)"/><circle cx="26" cy="25.5" r="1.4" style="fill:var(--logo-bg)"/><g fill="currentColor"><g transform="translate(50 9)"><path d="M0 0h17v5h-6v17H6V5H0z"/></g><g transform="translate(70 9)"><path fill-rule="evenodd" d="M7 0h5.4l7.3 22h-5.3l-1.3-4.2H6.3L5 22H-.3zM9.7 6.6 7.6 13.4h4.3z"/></g><g transform="translate(93 9)"><path fill-rule="evenodd" d="M0 0h7.5a11 11 0 0 1 0 22H0zM5 5v12h2.3a6 6 0 0 0 0-12z"/></g></g><path d="M121 6v28" style="stroke:var(--logo-route)" stroke-width="2" stroke-linecap="round"/><text x="131" y="18" fill="currentColor" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="600" letter-spacing=".3">Plataforma Digital</text><text x="131" y="33" fill="currentColor" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="400">Personas que nos mueven</text></svg></a>
+    <nav class="pub-nav" aria-label="Menú principal">
+      <ul class="pub-nav__list">
+        <li><a class="pub-nav__link" href="home.html">Inicio</a></li>
+        <li><a class="pub-nav__link" href="reservar.html">Reservar</a></li>
+        <li><a class="pub-nav__link" href="mis-viajes.html">Mis viajes</a></li>
+        <li><a class="pub-nav__link" href="home.html#ayuda">Ayuda</a></li>
+      </ul>
+    </nav>
+    <div class="c-dropdown pub-header__account">
+      <button class="c-btn c-btn--secondary" type="button" data-dropdown aria-controls="menu-cuenta"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0"/></svg> Mi cuenta <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+      <div class="c-dropdown__menu" id="menu-cuenta">
+        <p style="margin:0;padding:var(--sp-2) var(--sp-3);font-size:var(--fs-14);color:var(--color-text-muted)">Has entrado como <strong data-viajero-nombre style="color:var(--color-text)"></strong></p>
+        <a class="c-dropdown__item" style="min-height:var(--touch-min)" href="mis-viajes.html"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg> Mis viajes</a>
+        <a class="c-dropdown__item" style="min-height:var(--touch-min)" href="mis-viajes.html#bonificaciones"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 6.8a7 7 0 1 0 0 10.4"/><path d="M4 10h9M4 14h9"/></svg> Mis bonificaciones</a>
+        <a class="c-dropdown__item" style="min-height:var(--touch-min)" href="registro.html"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M15.5 4.6a3.5 3.5 0 0 1 0 6.8M18 14.2a6.5 6.5 0 0 1 3.5 5.8"/></svg> Dar de alta a otra persona</a>
+        <div class="c-dropdown__sep"></div>
+        <a class="c-dropdown__item" style="min-height:var(--touch-min)" href="../login.html"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg> Cerrar sesión</a>
+      </div>
+    </div>
+  </div></div>
+</header>
+<main class="pub-main" id="contenido" tabindex="-1">
+  <div class="pub-wrap">
+    <h1 class="pub-title" id="saludo" style="margin:0 0 var(--sp-2)">Hola</h1>
+    <p class="pub-lead" id="saludo-lead" style="margin:0 0 var(--sp-6)"></p>
+
+    <div class="c-alert" role="note" style="margin-bottom:var(--sp-6)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 4.5 2.8 17.7A2 2 0 0 0 4.5 20.7h15a2 2 0 0 0 1.7-3L13.7 4.5a2 2 0 0 0-3.4 0z"/><path d="M12 9.5v4.5M12 17.2v.1"/></svg><div class="c-alert__body"><strong class="c-alert__title">Aviso</strong><span id="aviso-obras"></span></div></div>
+
+    <div class="pub-grid pub-grid--2" style="align-items:start">
+      <section class="c-card" aria-labelledby="t-proximo">
+        <header class="c-card__header">
+          <h2 class="c-card__title" id="t-proximo">Tu próximo viaje</h2>
+          <span id="proximo-estado"></span>
+        </header>
+        <div class="c-card__body" id="proximo"></div>
+        <footer class="c-card__footer" style="flex-wrap:wrap">
+          <a class="c-btn c-btn--secondary" href="mis-viajes.html"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg> Ver mis viajes</a>
+          <a class="c-btn c-btn--primary" href="seguimiento.html"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6.5 9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20z"/><path d="M9 4v13.5M15 6.5V20"/></svg> Seguir el vehículo</a>
+        </footer>
+      </section>
+
+      <section class="c-card" aria-labelledby="t-reservar">
+        <header class="c-card__header"><h2 class="c-card__title" id="t-reservar">Reservar ahora</h2></header>
+        <form class="c-card__body" action="reservar.html" method="get" id="form-rapida">
+          <p class="u-muted" style="margin:0 0 var(--sp-4);font-size:var(--fs-14)">Elige el trayecto y el día. En el siguiente paso podrás revisarlo todo antes de confirmar.</p>
+          <div class="pub-grid pub-grid--2" style="gap:0 var(--sp-4)">
+            <div class="c-field">
+              <label class="c-field__label" for="r-origen">¿Desde dónde sales?</label>
+              <select class="c-select" id="r-origen" name="origen"></select>
+            </div>
+            <div class="c-field">
+              <label class="c-field__label" for="r-destino">¿Adónde vas?</label>
+              <select class="c-select" id="r-destino" name="destino"></select>
+            </div>
+            <div class="c-field">
+              <label class="c-field__label" for="r-fecha">Día</label>
+              <input class="c-input" type="date" id="r-fecha" name="fecha">
+            </div>
+            <div class="c-field">
+              <label class="c-field__label" for="r-hora">Hora de recogida</label>
+              <select class="c-select" id="r-hora" name="hora"></select>
+            </div>
+          </div>
+          <button class="c-btn c-btn--primary c-btn--lg c-btn--block" type="submit">Continuar con la reserva <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        </form>
+      </section>
+    </div>
+
+    <section aria-labelledby="t-accesos" style="margin-top:var(--sp-10)">
+      <h2 id="t-accesos" style="margin:0 0 var(--sp-4)">Accesos rápidos</h2>
+      <div class="pub-grid pub-grid--3">
+        <a class="c-card" id="acceso-repetir" href="reservar.html">
+          <div class="c-card__body" style="display:flex;gap:var(--sp-4);align-items:flex-start">
+            <span class="c-avatar c-avatar--green" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="18" r="2.25"/><circle cx="18" cy="6" r="2.25"/><path d="M8.25 18H15a3 3 0 0 0 0-6H9a3 3 0 0 1 0-6h6.75"/></svg></span>
+            <span><strong style="display:block;font-size:var(--fs-18)">Repetir último viaje</strong><span class="u-muted" id="acceso-repetir-desc" style="font-size:var(--fs-14)"></span></span>
+          </div>
+        </a>
+        <a class="c-card" href="mis-viajes.html#bonificaciones">
+          <div class="c-card__body" style="display:flex;gap:var(--sp-4);align-items:flex-start">
+            <span class="c-avatar" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 6.8a7 7 0 1 0 0 10.4"/><path d="M4 10h9M4 14h9"/></svg></span>
+            <span><strong style="display:block;font-size:var(--fs-18)">Mis bonificaciones</strong><span class="u-muted" id="acceso-bonif-desc" style="font-size:var(--fs-14)"></span></span>
+          </div>
+        </a>
+        <a class="c-card" href="#ayuda">
+          <div class="c-card__body" style="display:flex;gap:var(--sp-4);align-items:flex-start">
+            <span class="c-avatar c-avatar--purple" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H9.5L4 20z"/><path d="M8 9.5h8M8 12.5h5"/></svg></span>
+            <span><strong style="display:block;font-size:var(--fs-18)">Ayuda</strong><span class="u-muted" style="font-size:var(--fs-14)">Preguntas frecuentes y teléfono de la central de reservas.</span></span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section id="ayuda" aria-labelledby="t-ayuda" tabindex="-1" style="margin-top:var(--sp-10);scroll-margin-top:var(--sp-6)">
+      <h2 id="t-ayuda" style="margin:0 0 var(--sp-4)">Ayuda</h2>
+      <div class="pub-grid pub-grid--main-side" style="align-items:start">
+        <div class="c-card">
+          <div class="c-card__body" id="preguntas" style="display:grid;gap:var(--sp-2)"></div>
+        </div>
+        <aside class="c-card" aria-labelledby="t-central">
+          <header class="c-card__header"><h3 class="c-card__title" id="t-central">¿Prefieres hablar con una persona?</h3></header>
+          <div class="c-card__body">
+            <p style="margin:0 0 var(--sp-2)">Llama a la central de reservas. También puedes reservar por teléfono.</p>
+            <p style="margin:0;font-size:var(--fs-22);font-weight:var(--fw-bold)" id="central-tel"></p>
+            <p class="u-muted" style="margin:0 0 var(--sp-4);font-size:var(--fs-14)" id="central-horario"></p>
+            <button class="c-btn c-btn--primary c-btn--block" type="button" id="btn-central"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5.2 4h3.3l1.6 4.4-2.1 1.4a11.5 11.5 0 0 0 6.2 6.2l1.4-2.1 4.4 1.6v3.3a1.6 1.6 0 0 1-1.7 1.6A16 16 0 0 1 3.6 5.7 1.6 1.6 0 0 1 5.2 4z"/></svg> Llamar a la central</button>
+            <p style="margin:var(--sp-4) 0 0;font-size:var(--fs-14)">¿Alguien de tu familia quiere usar el servicio? <a href="registro.html">Puede darse de alta aquí</a>.</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </div>
+</main>
+<footer class="pub-footer">
+  <div class="pub-wrap">
+    <div class="pub-footer__inner">
+      <div class="pub-footer__brand"><svg role="img" aria-label="Plataforma Digital TAD" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 40"><g style="fill:var(--logo-route);stroke:var(--logo-route)"><path d="M4 34.5h32" fill="none" stroke-width="2.6" stroke-linecap="round"/><circle cx="4.5" cy="34.5" r="3.2"/><circle cx="35.5" cy="34.5" r="3.2"/></g><g fill="currentColor"><path fill-rule="evenodd" d="M6 10.5a2.5 2.5 0 0 1 2.5-2.5H24l8 8v7.5a1.5 1.5 0 0 1-1.5 1.5H7.5A1.5 1.5 0 0 1 6 23.5zM9 11h7v5H9zM18.5 11h4.3l5 5h-9.3z"/><circle cx="12" cy="25.5" r="3.6"/><circle cx="26" cy="25.5" r="3.6"/></g><circle cx="12" cy="25.5" r="1.4" style="fill:var(--logo-bg)"/><circle cx="26" cy="25.5" r="1.4" style="fill:var(--logo-bg)"/><g fill="currentColor"><g transform="translate(50 9)"><path d="M0 0h17v5h-6v17H6V5H0z"/></g><g transform="translate(70 9)"><path fill-rule="evenodd" d="M7 0h5.4l7.3 22h-5.3l-1.3-4.2H6.3L5 22H-.3zM9.7 6.6 7.6 13.4h4.3z"/></g><g transform="translate(93 9)"><path fill-rule="evenodd" d="M0 0h7.5a11 11 0 0 1 0 22H0zM5 5v12h2.3a6 6 0 0 0 0-12z"/></g></g><path d="M121 6v28" style="stroke:var(--logo-route)" stroke-width="2" stroke-linecap="round"/><text x="131" y="18" fill="currentColor" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="600" letter-spacing=".3">Plataforma Digital</text><text x="131" y="33" fill="currentColor" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="400">Personas que nos mueven</text></svg><p class="pub-footer__claim">Transporte a demanda para que ningún pueblo se quede atrás.</p></div>
+      <div class="pub-seals">
+        <div class="pub-seal">
+          <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 14 18 6l14 8M6 14h24M8 14v13M14 14v13M22 14v13M28 14v13M5 27h26M3 31h30"/></svg>
+          <span class="pub-seal__text"><span class="pub-seal__small">Con la colaboración del</span><span class="pub-seal__name">Ayuntamiento</span></span>
+        </div>
+        <div class="pub-seal">
+          <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="6" y="5" width="24" height="22" rx="4"/><path d="M6 17h24M10 11h16"/><circle cx="12" cy="22" r="1.5"/><circle cx="24" cy="22" r="1.5"/><path d="M10 27v3M26 27v3"/></svg>
+          <span class="pub-seal__text"><span class="pub-seal__small">Servicio integrado en el</span><span class="pub-seal__name">Consorcio de Transportes</span></span>
+        </div>
+        <div class="pub-seal">
+          <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="4" y="8" width="28" height="20" rx="2"/><path d="M12 18h12M18 12v12"/></svg>
+          <span class="pub-seal__text"><span class="pub-seal__small">Proyecto</span><span class="pub-seal__name">Cofinanciado por la Unión Europea</span></span>
+        </div>
+      </div>
+    </div>
+    <div class="pub-footer__legal">
+      <span>Plataforma Digital TAD · Maqueta de demostración con datos ficticios</span>
+      <ul class="pub-footer__links">
+        <li><a href="#" data-toast="Esta página no forma parte de la maqueta.">Aviso legal</a></li>
+        <li><a href="#" data-toast="Esta página no forma parte de la maqueta.">Privacidad</a></li>
+        <li><a href="#" data-toast="Esta página no forma parte de la maqueta.">Accesibilidad</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var f = TAD.fmt, h = f.html, V = TAD.viajero, yo = TAD.usuario(V.usuario);
+  document.querySelectorAll("[data-viajero-nombre]").forEach(function (el) { el.textContent = yo.nombre; });
+  var res = TAD.reservaReferencia();
+  var ruta = TAD.ruta(res.ruta), veh = TAD.vehiculo(ruta.vehiculo), serv = TAD.servicio(res.servicio);
+  var paradaOrigen = serv.paradas.filter(function (p) { return p.parada === res.origen; })[0];
+  var paradaDestino = serv.paradas.filter(function (p) { return p.parada === res.destino; })[0];
+  var bonif = TAD.tarifas.bonificaciones.filter(function (b) { return b.perfil === yo.perfil; })[0];
+
+  // ---------- Saludo ----------
+  document.getElementById("saludo").textContent = "Hola, " + yo.nombre.split(" ")[0];
+  document.getElementById("saludo-lead").textContent = "Hoy es " + f.fechaLarga(TAD.fecha) + ". Tu próximo viaje es hoy a las " + res.horaPrevista + " desde " + TAD.municipio(TAD.parada(res.origen).municipio).nombre + ".";
+  document.getElementById("aviso-obras").textContent = "Hoy hay " + TAD.obras.nombre.charAt(0).toLowerCase() + TAD.obras.nombre.slice(1) + ": posibles retrasos de 10–15 minutos.";
+
+  // ---------- Tu próximo viaje ----------
+  document.getElementById("proximo-estado").innerHTML = f.badge(res.estado);
+  var retraso = paradaOrigen.retraso;
+  document.getElementById("proximo").innerHTML =
+    '<p style="margin:0;font-size:var(--fs-36);font-weight:var(--fw-bold);line-height:var(--lh-title)">' + res.horaPrevista + "</p>" +
+    '<p class="u-muted" style="margin:0 0 var(--sp-4)">Hoy · recogida en ' + h(TAD.parada(res.origen).nombre) + "</p>" +
+    (retraso ? '<div class="c-alert c-alert--warning" role="note" style="margin-bottom:var(--sp-4)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg><div class="c-alert__body"><strong class="c-alert__title">El vehículo llegará sobre las ' + paradaOrigen.estimada + "</strong>Lleva " + retraso + " minutos de retraso por las obras. Te avisaremos si cambia.</div></div>" : "") +
+    '<dl class="c-datalist">' +
+      "<dt>Recogida</dt><dd>" + h(TAD.parada(res.origen).nombre) + "</dd>" +
+      "<dt>Destino</dt><dd>" + h(TAD.parada(res.destino).nombre) + " · llegada prevista " + (paradaDestino ? paradaDestino.prevista : res.horaLlegadaPrevista) + "</dd>" +
+      "<dt>Vehículo</dt><dd>" + h(veh.matricula) + " · " + h(veh.modelo) + (veh.accesibilidad ? " con " + h(veh.accesibilidad.toLowerCase()) : "") + "</dd>" +
+      "<dt>Precio</dt><dd>" + f.euros(res.importe) + (bonif ? " (bonificación del " + f.porcentaje(bonif.pct) + ")" : "") + "</dd>" +
+      "<dt>Reserva</dt><dd>" + h(res.codigo) + "</dd>" +
+    "</dl>";
+
+  // ---------- Reservar ahora ----------
+  function opcionesParadas(sel, valor) {
+    sel.innerHTML = TAD.municipios.map(function (m) {
+      return '<optgroup label="' + h(m.nombre) + '">' + TAD.paradas.filter(function (p) { return p.municipio === m.id; }).map(function (p) {
+        return '<option value="' + p.id + '"' + (p.id === valor ? " selected" : "") + ">" + h(p.nombre) + "</option>";
+      }).join("") + "</optgroup>";
+    }).join("");
+  }
+  function opcionesHoras(sel, valor) {
+    sel.innerHTML = TAD.reglas.franjas.map(function (fr) {
+      var ops = "";
+      for (var t = TAD.minutos(fr.desde); t < TAD.minutos(fr.hasta); t += 15) {
+        var hh = f.hora(t);
+        ops += '<option value="' + hh + '"' + (hh === valor ? " selected" : "") + ">" + hh + "</option>";
+      }
+      return '<optgroup label="' + h(fr.nombre) + " (" + fr.desde + "–" + fr.hasta + ')">' + ops + "</optgroup>";
+    }).join("");
+  }
+  opcionesParadas(document.getElementById("r-origen"), res.origen);
+  opcionesParadas(document.getElementById("r-destino"), res.destino);
+  opcionesHoras(document.getElementById("r-hora"), res.horaPrevista);
+  var fecha = document.getElementById("r-fecha");
+  fecha.value = V.fechaSugerida;
+  fecha.min = TAD.fecha;
+
+  // ---------- Accesos rápidos ----------
+  var ultimo = V.historial.filter(function (v) { return v.estado === "Finalizada"; })[0];
+  document.getElementById("acceso-repetir").href = "reservar.html?origen=" + ultimo.origen + "&destino=" + ultimo.destino + "&hora=" + encodeURIComponent(ultimo.hora);
+  document.getElementById("acceso-repetir-desc").textContent = TAD.parada(ultimo.origen).nombre + " → " + TAD.parada(ultimo.destino).nombre + ", a las " + ultimo.hora + ".";
+  document.getElementById("acceso-bonif-desc").textContent = bonif ? bonif.nombre + ": " + f.porcentaje(bonif.pct) + " de descuento en cada viaje." : "Consulta si tienes derecho a descuento.";
+
+  // ---------- Ayuda ----------
+  var r = TAD.reglas, precios = TAD.tarifas.precios;
+  var preguntas = [
+    ["¿Cómo reservo un viaje?", "Pulsa «Reservar», elige desde dónde sales, adónde vas, el día y la hora. Antes de confirmar verás el precio. También puedes reservar llamando a la central."],
+    ["¿Con cuánta antelación tengo que reservar?", "Al menos " + r.antelacionMinimaMin + " minutos antes del viaje, y como mucho con " + r.antelacionMaximaDias + " días de antelación."],
+    ["¿Cuánto cuesta el viaje?", precios.map(function (p) { return p.tipo + ": " + f.euros(p.importe); }).join(". ") + ". Hay descuentos: " +
+      TAD.tarifas.bonificaciones.map(function (b) { return b.nombre.toLowerCase() + " (" + f.porcentaje(b.pct) + ")"; }).join(", ") + "."],
+    ["¿Cuánto tiempo me espera el vehículo?", "Te recogemos entre " + r.ventanaAntes + " minutos antes y " + r.ventanaDespues + " minutos después de la hora reservada. Si hay retraso, te avisamos por SMS."],
+    ["¿Qué es una parada virtual?", "Es un punto de recogida sin poste, por ejemplo un cruce. El vehículo solo pasa por allí si alguien lo ha reservado."],
+    ["Voy con andador o silla de ruedas, ¿puedo viajar?", "Sí. Al reservar, marca «Necesito vehículo con rampa o elevador» y te asignaremos uno adaptado."]
+  ];
+  document.getElementById("preguntas").innerHTML = preguntas.map(function (p) {
+    return '<details style="border-bottom:var(--bw) solid var(--color-border);padding-bottom:var(--sp-2)">' +
+      '<summary style="padding:var(--sp-3) 0;font-weight:var(--fw-semibold);cursor:pointer">' + h(p[0]) + "</summary>" +
+      '<p style="margin:0 0 var(--sp-2)">' + h(p[1]) + "</p></details>";
+  }).join("");
+  document.getElementById("central-tel").textContent = V.central.telefono;
+  document.getElementById("central-horario").textContent = V.central.horario + ".";
+  document.getElementById("btn-central").addEventListener("click", function () {
+    TADUI.toast("En el producto real, esto abriría la llamada al " + V.central.telefono + ".", { titulo: "Llamar a la central" });
+  });
+});
+</script>
+</body>
+</html>

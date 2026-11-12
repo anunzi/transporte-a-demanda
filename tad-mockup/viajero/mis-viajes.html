@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Mis viajes · Portal del viajero · Plataforma Digital TAD</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap">
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/layout-public.css">
+<script defer src="../js/data.js"></script>
+<script defer src="../js/datos/viajero.js"></script>
+<script defer src="../js/ui.js"></script>
+<script defer src="../js/nav.js"></script>
+</head>
+<body class="pub-body" data-module="viajero" data-page="viajero-mis-viajes">
+<a class="c-skip-link" href="#contenido">Saltar al contenido</a>
+<div class="pub-mockbar"><a class="c-index-link" href="../index.html"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg> Índice del mockup</a></div>
+<header class="pub-header">
+  <div class="pub-wrap"><div class="pub-header__inner">
+    <a class="pub-header__brand" href="home.html" aria-label="Plataforma Digital TAD, inicio"><svg class="pub-header__logo" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 40"><g style="fill:var(--logo-route);stroke:var(--logo-route)"><path d="M4 34.5h32" fill="none" stroke-width="2.6" stroke-linecap="round"/><circle cx="4.5" cy="34.5" r="3.2"/><circle cx="35.5" cy="34.5" r="3.2"/></g><g fill="currentColor"><path fill-rule="evenodd" d="M6 10.5a2.5 2.5 0 0 1 2.5-2.5H24l8 8v7.5a1.5 1.5 0 0 1-1.5 1.5H7.5A1.5 1.5 0 0 1 6 23.5zM9 11h7v5H9zM18.5 11h4.3l5 5h-9.3z"/><circle cx="12" cy="25.5" r="3.6"/><circle cx="26" cy="25.5" r="3.6"/></g><circle cx="12" cy="25.5" r="1.4" style="fill:var(--logo-bg)"/><circle cx="26" cy="25.5" r="1.4" style="fill:var(--logo-bg)"/><g fill="currentColor"><g transform="translate(50 9)"><path d="M0 0h17v5h-6v17H6V5H0z"/></g><g transform="translate(70 9)"><path fill-rule="evenodd" d="M7 0h5.4l7.3 22h-5.3l-1.3-4.2H6.3L5 22H-.3zM9.7 6.6 7.6 13.4h4.3z"/></g><g transform="translate(93 9)"><path fill-rule="evenodd" d="M0 0h7.5a11 11 0 0 1 0 22H0zM5 5v12h2.3a6 6 0 0 0 0-12z"/></g></g><path d="M121 6v28" style="stroke:var(--logo-route)" stroke-width="2" stroke-linecap="round"/><text x="131" y="18" fill="currentColor" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="600" letter-spacing=".3">Plataforma Digital</text><text x="131" y="33" fill="currentColor" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="400">Personas que nos mueven</text></svg></a>
+    <nav class="pub-nav" aria-label="Menú principal">
+      <ul class="pub-nav__list">
+        <li><a class="pub-nav__link" href="home.html">Inicio</a></li>
+        <li><a class="pub-nav__link" href="reservar.html">Reservar</a></li>
+        <li><a class="pub-nav__link" href="mis-viajes.html">Mis viajes</a></li>
+        <li><a class="pub-nav__link" href="home.html#ayuda">Ayuda</a></li>
+      </ul>
+    </nav>
+    <div class="c-dropdown pub-header__account">
+      <button class="c-btn c-btn--secondary" type="button" data-dropdown aria-controls="menu-cuenta"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0"/></svg> Mi cuenta <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+      <div class="c-dropdown__menu" id="menu-cuenta">
+        <p style="margin:0;padding:var(--sp-2) var(--sp-3);font-size:var(--fs-14);color:var(--color-text-muted)">Has entrado como <strong data-viajero-nombre style="color:var(--color-text)"></strong></p>
+        <a class="c-dropdown__item" style="min-height:var(--touch-min)" href="mis-viajes.html"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg> Mis viajes</a>
+        <a class="c-dropdown__item" style="min-height:var(--touch-min)" href="mis-viajes.html#bonificaciones"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 6.8a7 7 0 1 0 0 10.4"/><path d="M4 10h9M4 14h9"/></svg> Mis bonificaciones</a>
+        <a class="c-dropdown__item" style="min-height:var(--touch-min)" href="registro.html"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M15.5 4.6a3.5 3.5 0 0 1 0 6.8M18 14.2a6.5 6.5 0 0 1 3.5 5.8"/></svg> Dar de alta a otra persona</a>
+        <div class="c-dropdown__sep"></div>
+        <a class="c-dropdown__item" style="min-height:var(--touch-min)" href="../login.html"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg> Cerrar sesión</a>
+      </div>
+    </div>
+  </div></div>
+</header>
+<main class="pub-main" id="contenido" tabindex="-1">
+  <div class="pub-wrap">
+    <h1 class="pub-title" style="margin:0 0 var(--sp-2)">Mis viajes</h1>
+    <p class="pub-lead" style="margin:0 0 var(--sp-6)">Aquí tienes tus próximos viajes, los que ya has hecho y los que se repiten cada semana.</p>
+
+    <div class="pub-grid pub-grid--main-side" style="align-items:start">
+      <div style="min-width:0">
+        <div>
+          <div class="c-tabs" role="tablist" aria-label="Tipos de viaje">
+            <button class="c-tabs__tab" role="tab" type="button" id="tab-proximos" aria-controls="panel-proximos" aria-selected="true">Próximos <span class="c-tabs__count" id="n-proximos"></span></button>
+            <button class="c-tabs__tab" role="tab" type="button" id="tab-historial" aria-controls="panel-historial" aria-selected="false" tabindex="-1">Historial</button>
+            <button class="c-tabs__tab" role="tab" type="button" id="tab-recurrentes" aria-controls="panel-recurrentes" aria-selected="false" tabindex="-1">Recurrentes</button>
+          </div>
+
+          <div class="c-tabpanel" role="tabpanel" id="panel-proximos" aria-labelledby="tab-proximos">
+            <div class="c-table-wrap" style="--table-max-h:none" tabindex="0" role="region" aria-label="Próximos viajes (se puede desplazar en horizontal)">
+              <table class="c-table">
+                <caption class="u-visually-hidden">Próximos viajes</caption>
+                <thead><tr><th scope="col">Viaje</th><th scope="col" class="is-num">Importe</th><th scope="col" class="c-table__actions">Acciones</th></tr></thead>
+                <tbody id="tabla-proximos"></tbody>
+              </table>
+            </div>
+            <p style="margin:var(--sp-4) 0 0"><a class="c-btn c-btn--primary" href="reservar.html"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg> Reservar otro viaje</a></p>
+          </div>
+
+          <div class="c-tabpanel" role="tabpanel" id="panel-historial" aria-labelledby="tab-historial" hidden>
+            <div class="c-table-wrap" style="--table-max-h:none" tabindex="0" role="region" aria-label="Historial de viajes (se puede desplazar en horizontal)">
+              <table class="c-table">
+                <caption class="u-visually-hidden">Viajes que ya has hecho</caption>
+                <thead><tr><th scope="col">Viaje</th><th scope="col" class="is-num">Importe</th><th scope="col" class="c-table__actions">Acciones</th></tr></thead>
+                <tbody id="tabla-historial"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="c-tabpanel" role="tabpanel" id="panel-recurrentes" aria-labelledby="tab-recurrentes" hidden>
+            <div id="recurrentes"></div>
+          </div>
+        </div>
+      </div>
+
+      <aside style="display:grid;gap:var(--sp-5)" aria-label="Tus descuentos y tu resumen del mes">
+        <section class="c-card" id="bonificaciones" tabindex="-1" aria-labelledby="t-bonif" style="scroll-margin-top:var(--sp-6)">
+          <header class="c-card__header"><h2 class="c-card__title" id="t-bonif">Tus bonificaciones</h2><span id="bonif-badge"></span></header>
+          <div class="c-card__body" id="bonif"></div>
+        </section>
+        <section class="c-card" aria-labelledby="t-mes">
+          <header class="c-card__header"><h2 class="c-card__title" id="t-mes">Resumen del mes</h2></header>
+          <div class="c-card__body" id="mes"></div>
+        </section>
+      </aside>
+    </div>
+  </div>
+</main>
+
+<div class="c-modal" id="modal-cancelar" role="dialog" aria-modal="true" aria-labelledby="modal-cancelar-t" aria-describedby="modal-cancelar-d">
+  <div class="c-modal__dialog">
+    <div class="c-modal__header">
+      <h2 class="c-modal__title" id="modal-cancelar-t">¿Quieres cancelar este viaje?</h2>
+      <button class="c-btn c-btn--ghost c-btn--icon" type="button" data-close aria-label="Cerrar sin cancelar"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    </div>
+    <div class="c-modal__body"><p style="margin:0" id="modal-cancelar-d"></p></div>
+    <div class="c-modal__footer" style="flex-wrap:wrap">
+      <button class="c-btn c-btn--secondary" type="button" data-close>No, mantener el viaje</button>
+      <button class="c-btn c-btn--danger" type="button" id="confirmar-cancelacion" data-toast="" data-toast-title="Viaje cancelado" data-toast-close>Sí, cancelar el viaje</button>
+    </div>
+  </div>
+</div>
+
+<div class="c-modal" id="modal-recibo" role="dialog" aria-modal="true" aria-labelledby="modal-recibo-t">
+  <div class="c-modal__dialog">
+    <div class="c-modal__header">
+      <h2 class="c-modal__title" id="modal-recibo-t">Recibo del viaje</h2>
+      <button class="c-btn c-btn--ghost c-btn--icon" type="button" data-close aria-label="Cerrar el recibo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    </div>
+    <div class="c-modal__body"><dl class="c-datalist" id="recibo" style="font-size:var(--fs-16)"></dl><p class="u-muted" id="recibo-nota" style="margin:var(--sp-4) 0 0;font-size:var(--fs-14)"></p></div>
+    <div class="c-modal__footer" style="flex-wrap:wrap">
+      <button class="c-btn c-btn--secondary" type="button" data-close>Cerrar</button>
+      <button class="c-btn c-btn--primary" type="button" data-toast="En el producto real se descargaría el recibo en PDF." data-toast-title="Descargar recibo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10.5l5 5 5-5M5 20h14"/></svg> Descargar en PDF</button>
+    </div>
+  </div>
+</div>
+<footer class="pub-footer">
+  <div class="pub-wrap">
+    <div class="pub-footer__inner">
+      <div class="pub-footer__brand"><svg role="img" aria-label="Plataforma Digital TAD" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 40"><g style="fill:var(--logo-route);stroke:var(--logo-route)"><path d="M4 34.5h32" fill="none" stroke-width="2.6" stroke-linecap="round"/><circle cx="4.5" cy="34.5" r="3.2"/><circle cx="35.5" cy="34.5" r="3.2"/></g><g fill="currentColor"><path fill-rule="evenodd" d="M6 10.5a2.5 2.5 0 0 1 2.5-2.5H24l8 8v7.5a1.5 1.5 0 0 1-1.5 1.5H7.5A1.5 1.5 0 0 1 6 23.5zM9 11h7v5H9zM18.5 11h4.3l5 5h-9.3z"/><circle cx="12" cy="25.5" r="3.6"/><circle cx="26" cy="25.5" r="3.6"/></g><circle cx="12" cy="25.5" r="1.4" style="fill:var(--logo-bg)"/><circle cx="26" cy="25.5" r="1.4" style="fill:var(--logo-bg)"/><g fill="currentColor"><g transform="translate(50 9)"><path d="M0 0h17v5h-6v17H6V5H0z"/></g><g transform="translate(70 9)"><path fill-rule="evenodd" d="M7 0h5.4l7.3 22h-5.3l-1.3-4.2H6.3L5 22H-.3zM9.7 6.6 7.6 13.4h4.3z"/></g><g transform="translate(93 9)"><path fill-rule="evenodd" d="M0 0h7.5a11 11 0 0 1 0 22H0zM5 5v12h2.3a6 6 0 0 0 0-12z"/></g></g><path d="M121 6v28" style="stroke:var(--logo-route)" stroke-width="2" stroke-linecap="round"/><text x="131" y="18" fill="currentColor" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="600" letter-spacing=".3">Plataforma Digital</text><text x="131" y="33" fill="currentColor" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="400">Personas que nos mueven</text></svg><p class="pub-footer__claim">Transporte a demanda para que ningún pueblo se quede atrás.</p></div>
+      <div class="pub-seals">
+        <div class="pub-seal">
+          <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 14 18 6l14 8M6 14h24M8 14v13M14 14v13M22 14v13M28 14v13M5 27h26M3 31h30"/></svg>
+          <span class="pub-seal__text"><span class="pub-seal__small">Con la colaboración del</span><span class="pub-seal__name">Ayuntamiento</span></span>
+        </div>
+        <div class="pub-seal">
+          <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="6" y="5" width="24" height="22" rx="4"/><path d="M6 17h24M10 11h16"/><circle cx="12" cy="22" r="1.5"/><circle cx="24" cy="22" r="1.5"/><path d="M10 27v3M26 27v3"/></svg>
+          <span class="pub-seal__text"><span class="pub-seal__small">Servicio integrado en el</span><span class="pub-seal__name">Consorcio de Transportes</span></span>
+        </div>
+        <div class="pub-seal">
+          <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="4" y="8" width="28" height="20" rx="2"/><path d="M12 18h12M18 12v12"/></svg>
+          <span class="pub-seal__text"><span class="pub-seal__small">Proyecto</span><span class="pub-seal__name">Cofinanciado por la Unión Europea</span></span>
+        </div>
+      </div>
+    </div>
+    <div class="pub-footer__legal">
+      <span>Plataforma Digital TAD · Maqueta de demostración con datos ficticios</span>
+      <ul class="pub-footer__links">
+        <li><a href="#" data-toast="Esta página no forma parte de la maqueta.">Aviso legal</a></li>
+        <li><a href="#" data-toast="Esta página no forma parte de la maqueta.">Privacidad</a></li>
+        <li><a href="#" data-toast="Esta página no forma parte de la maqueta.">Accesibilidad</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var f = TAD.fmt, h = f.html, V = TAD.viajero, yo = TAD.usuario(V.usuario);
+  document.querySelectorAll("[data-viajero-nombre]").forEach(function (el) { el.textContent = yo.nombre; });
+  var $ = function (id) { return document.getElementById(id); };
+  var res = TAD.reservaReferencia();
+  var ICONO = { mapa: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6.5 9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20z"/><path d="M9 4v13.5M15 6.5V20"/></svg>', editar: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="m13.5 6.5 4 4"/></svg>', cerrar: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6 6 18"/></svg>', documento: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg>', reloj: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>', calendario: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>' };
+
+  function corta(iso) { return f.fechaLarga(iso).split(" de 20")[0]; }   // "martes, 14 de abril"
+  function trayecto(v) { return h(TAD.parada(v.origen).nombre) + " → " + h(TAD.parada(v.destino).nombre); }
+  function enlaceReserva(v) {
+    return "reservar.html?origen=" + v.origen + "&destino=" + v.destino + "&fecha=" + v.fecha + "&hora=" + encodeURIComponent(v.hora);
+  }
+
+  // ---------- Próximos: el de hoy (data.js) y los siguientes (datos del viajero) ----------
+  var proximos = [{
+    codigo: res.codigo, fecha: res.fecha, hora: res.horaPrevista, origen: res.origen, destino: res.destino,
+    viajeros: res.viajeros, perfil: res.perfil, estado: res.estado, pago: res.pago, hoy: true
+  }].concat(V.proximos);
+  $("n-proximos").textContent = proximos.length;
+  $("tabla-proximos").innerHTML = proximos.map(function (v) {
+    var cuando = v.hoy ? "Hoy" : corta(v.fecha);
+    var acciones = v.hoy
+      ? '<a class="c-btn c-btn--primary" href="seguimiento.html" aria-label="Seguir el vehículo del viaje de hoy">' + ICONO.mapa + " Seguir</a>"
+      : '<a class="c-btn c-btn--ghost" href="' + enlaceReserva(v) + '" aria-label="Modificar el viaje del ' + corta(v.fecha) + '">' + ICONO.editar + " Modificar</a>";
+    acciones += '<button class="c-btn c-btn--ghost" type="button" data-open="modal-cancelar" data-codigo="' + v.codigo + '" aria-label="Cancelar el viaje ' + (v.hoy ? "de hoy" : "del " + corta(v.fecha)) + '">' + ICONO.cerrar + " Cancelar</button>";
+    var rec = v.recurrente ? V.recurrente(v.recurrente) : null;
+    return "<tr" + (v.hoy ? ' class="is-selected"' : "") + ">" +
+      "<td><strong>" + cuando + ", " + v.hora + "</strong><br>" + trayecto(v) +
+        '<span style="display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-1) var(--sp-2);margin-top:var(--sp-1)">' + f.badge(v.estado) +
+        (rec ? '<span class="c-badge c-badge--plain c-badge--info">Cada ' + rec.dias.join(" y ") + "</span>" : "") +
+        '<span class="u-muted" style="font-size:var(--fs-14)">Reserva ' + h(v.codigo) + "</span></span></td>" +
+      '<td class="is-num">' + f.euros(V.importe(v)) + "</td>" +
+      '<td class="c-table__actions"><span style="display:inline-flex;flex-direction:column;align-items:stretch;gap:var(--sp-1)">' + acciones + "</span></td></tr>";
+  }).join("");
+
+  // ---------- Historial ----------
+  $("tabla-historial").innerHTML = V.historial.map(function (v, i) {
+    var importe = v.estado === "Cancelada" ? "—" : (v.devuelto ? "Devuelto" : f.euros(V.importe(v)));
+    var acciones = v.estado === "Cancelada" ? '<span class="u-muted">—</span>'
+      : '<button class="c-btn c-btn--ghost" type="button" data-open="modal-recibo" data-recibo="' + i + '" aria-label="Ver recibo del viaje del ' + corta(v.fecha) + '">' + ICONO.documento + " Ver recibo</button>";
+    return "<tr>" +
+      "<td><strong>" + corta(v.fecha) + ", " + v.hora + "</strong><br>" + trayecto(v) +
+        '<span style="display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-1) var(--sp-2);margin-top:var(--sp-1)">' + f.badge(v.estado) +
+        '<span class="u-muted" style="font-size:var(--fs-14)">Reserva ' + h(v.codigo) + "</span></span></td>" +
+      '<td class="is-num">' + importe + "</td>" +
+      '<td class="c-table__actions">' + acciones + "</td></tr>";
+  }).join("");
+
+  // ---------- Recurrentes ----------
+  $("recurrentes").innerHTML = V.recurrentes.length ?
+    '<div class="c-table-wrap" style="--table-max-h:none" tabindex="0" role="region" aria-label="Viajes recurrentes (se puede desplazar en horizontal)"><table class="c-table"><caption class="u-visually-hidden">Viajes que se repiten cada semana</caption>' +
+    '<thead><tr><th scope="col">Viaje</th><th scope="col" class="is-num">Importe</th><th scope="col" class="c-table__actions">Acciones</th></tr></thead><tbody>' +
+    V.recurrentes.map(function (r) {
+      var siguiente = V.proximos.filter(function (p) { return p.recurrente === r.id; })[0];
+      return "<tr>" +
+        "<td><strong>Cada " + r.dias.join(" y ") + ", " + r.hora + "</strong><br>" + trayecto(r) +
+        '<span style="display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-1) var(--sp-2);margin-top:var(--sp-1)">' + f.badge(r.estado) +
+        '<span class="u-muted" style="font-size:var(--fs-14)">' + h(r.motivo) + " · desde el " + f.fecha(r.desde) + "</span></span></td>" +
+        '<td class="is-num">' + f.euros(V.importe(r)) + "<br>" + '<span class="u-muted" style="font-size:var(--fs-14)">por viaje</span></td>' +
+        '<td class="c-table__actions"><span style="display:inline-flex;flex-direction:column;align-items:stretch;gap:var(--sp-1)">' +
+          (siguiente ? '<a class="c-btn c-btn--ghost" href="' + enlaceReserva(siguiente) + '" aria-label="Modificar el viaje de cada ' + r.dias.join(" y ") + '">' + ICONO.editar + " Modificar</a>" : "") +
+          '<button class="c-btn c-btn--ghost" type="button" data-toast="Durante la pausa no se reservará ningún viaje. Puedes reactivarlo cuando quieras." data-toast-title="Viaje recurrente en pausa" aria-label="Pausar el viaje de cada ' + r.dias.join(" y ") + '">' + ICONO.reloj + " Pausar</button>" +
+        "</span></td></tr>";
+    }).join("") + "</tbody></table></div>"
+    : '<div class="c-empty-state"><span class="c-empty-state__icon" aria-hidden="true">' + ICONO.calendario + '</span><h3 class="c-empty-state__title">No tienes viajes recurrentes</h3><p>Si viajas siempre los mismos días, puedes reservar una vez y repetir cada semana.</p><a class="c-btn c-btn--primary" href="reservar.html">Crear viaje recurrente</a></div>';
+
+  // ---------- Modales: cancelar y recibo ----------
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest ? e.target.closest("[data-codigo], [data-recibo]") : null;
+    if (!b) return;
+    if (b.hasAttribute("data-codigo")) {
+      var v = proximos.filter(function (x) { return x.codigo === b.getAttribute("data-codigo"); })[0];
+      $("modal-cancelar-d").textContent = "Se anulará la reserva " + v.codigo + " (" + (v.hoy ? "hoy" : corta(v.fecha)) + " a las " + v.hora + ", " +
+        TAD.parada(v.origen).nombre + " → " + TAD.parada(v.destino).nombre + "). No se te cobrará." +
+        (v.recurrente ? " Solo se cancela este día: el viaje recurrente sigue activo." : "");
+      $("confirmar-cancelacion").setAttribute("data-toast", "Hemos enviado un SMS al " + yo.telefono + " con la cancelación.");
+    } else {
+      var r = V.historial[+b.getAttribute("data-recibo")], t = TAD.tarifa(r.origen, r.destino, r.perfil);
+      var bon = TAD.tarifas.bonificaciones.filter(function (x) { return x.perfil === r.perfil; })[0];
+      var rec = r.reclamacion ? TAD.reclamaciones.filter(function (x) { return x.id === r.reclamacion; })[0] : null;
+      $("modal-recibo-t").textContent = "Recibo del viaje del " + corta(r.fecha);
+      $("recibo").innerHTML =
+        "<dt>Reserva</dt><dd>" + h(r.codigo) + "</dd>" +
+        "<dt>Fecha</dt><dd>" + f.fechaLarga(r.fecha) + "</dd>" +
+        "<dt>Trayecto</dt><dd>" + trayecto(r) + "</dd>" +
+        "<dt>Horario</dt><dd>Recogida " + r.hora + " · llegada " + r.llegada + "</dd>" +
+        (r.vehiculo ? "<dt>Vehículo</dt><dd>" + h(r.vehiculo) + "</dd>" : "") +
+        "<dt>Billete</dt><dd>" + f.euros(t.base) + (t.interzona ? " (entre zonas)" : "") + "</dd>" +
+        "<dt>Descuento</dt><dd>" + (bon ? h(bon.nombre) + ", " + f.porcentaje(t.pct) : "Sin descuento") + "</dd>" +
+        "<dt>Total pagado</dt><dd><strong>" + f.euros(V.importe(r)) + "</strong></dd>" +
+        "<dt>Forma de pago</dt><dd>" + h(r.pago) + "</dd>";
+      $("recibo-nota").textContent = rec ? "Importe devuelto tras tu reclamación del " + f.fecha(rec.fecha) + ": " + rec.respuesta : "";
+    }
+  });
+
+  // ---------- Bonificaciones ----------
+  var bonif = TAD.tarifas.bonificaciones.filter(function (b) { return b.perfil === yo.perfil; })[0];
+  var mes = TAD.fecha.slice(0, 7);
+  var delMes = V.historial.filter(function (v) { return v.fecha.slice(0, 7) === mes && v.estado === "Finalizada"; });
+  var ahorroMes = delMes.reduce(function (n, v) { return n + V.ahorro(v); }, 0);
+  if (bonif) {
+    $("bonif-badge").innerHTML = '<span class="c-badge c-badge--success">Activa</span>';
+    $("bonif").innerHTML =
+      '<p style="margin:0;font-size:var(--fs-22);font-weight:var(--fw-bold)">' + f.porcentaje(bonif.pct) + " de descuento</p>" +
+      '<p style="margin:0 0 var(--sp-4)">' + h(bonif.nombre) + "</p>" +
+      '<dl class="c-datalist">' +
+        "<dt>Lo paga</dt><dd>" + h(bonif.financia) + "</dd>" +
+        "<dt>Ahorro en " + f.mes(mes).split(" ")[0] + "</dt><dd>" + f.euros(ahorroMes) + "</dd>" +
+      "</dl>" +
+      '<p class="u-muted" style="margin:var(--sp-4) 0 0;font-size:var(--fs-14)">Se aplica sola en cada reserva. Si viajas con acompañante, también se le aplica a él o a ella.</p>';
+  } else {
+    $("bonif").innerHTML = '<p style="margin:0">No tienes ningún descuento. Si crees que te corresponde uno, llama a la central de reservas.</p>';
+  }
+
+  // ---------- Resumen del mes ----------
+  var gastado = delMes.reduce(function (n, v) { return n + V.importe(v); }, 0);
+  var co2 = delMes.length * V.co2PorViaje;
+  $("t-mes").textContent = "Resumen de " + f.mes(mes);
+  $("mes").innerHTML =
+    '<div style="display:grid;grid-template-columns:repeat(3, minmax(0, 1fr));gap:var(--sp-3);text-align:center">' +
+      '<p style="margin:0"><span style="display:block;font-size:var(--fs-28);font-weight:var(--fw-bold)">' + delMes.length + '</span><span class="u-muted" style="font-size:var(--fs-14)">viajes hechos</span></p>' +
+      '<p style="margin:0"><span style="display:block;font-size:var(--fs-28);font-weight:var(--fw-bold)">' + f.euros(gastado) + '</span><span class="u-muted" style="font-size:var(--fs-14)">pagado</span></p>' +
+      '<p style="margin:0"><span style="display:block;font-size:var(--fs-28);font-weight:var(--fw-bold)">' + f.numero(co2, 1) + '</span><span class="u-muted" style="font-size:var(--fs-14)">kg de CO₂ evitado</span></p>' +
+    "</div>" +
+    '<p class="u-muted" style="margin:var(--sp-4) 0 0;font-size:var(--fs-14)">Hasta el ' + f.fechaLarga(TAD.fecha).split(", ")[1] + ". Sin contar el viaje de hoy, que aún no se ha hecho.</p>";
+});
+</script>
+</body>
+</html>
