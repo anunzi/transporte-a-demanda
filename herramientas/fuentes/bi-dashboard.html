@@ -1,0 +1,195 @@
+<!--ACCIONES-->
+<a class="c-btn c-btn--secondary" href="informes.html">{{i:documento}} Informes</a>
+<button class="c-btn c-btn--primary" type="button" data-toast="Los datos del dashboard con los filtros actuales se han descargado en Excel." data-toast-title="Exportación lista">{{i:descargar}} Exportar datos</button>
+<!--MAIN-->
+<section class="c-card" aria-labelledby="t-filtros">
+  <h2 class="u-visually-hidden" id="t-filtros">Filtros</h2>
+  <div class="c-card__body bo-toolbar" style="margin:0;align-items:flex-end">
+    <div class="c-field" style="margin:0">
+      <label class="c-field__label" for="f-periodo">Periodo</label>
+      <select class="c-select" id="f-periodo"></select>
+    </div>
+    <div class="c-field" style="margin:0">
+      <label class="c-field__label" for="f-municipio">Municipio</label>
+      <select class="c-select" id="f-municipio"></select>
+    </div>
+    <span class="bo-toolbar__spacer"></span>
+    <p class="u-small u-muted" style="margin:0" id="f-resumen" aria-live="polite"></p>
+  </div>
+</section>
+
+<section aria-labelledby="t-kpis" style="margin-top:var(--sp-5)">
+  <h2 class="u-visually-hidden" id="t-kpis">Indicadores del periodo</h2>
+  <div class="bo-grid bo-grid--kpis" id="kpis"></div>
+</section>
+
+<div class="bo-grid bo-grid--2" style="margin-top:var(--sp-5)">
+  <section class="c-card" aria-labelledby="t-viajes">
+    <div class="c-card__header"><h2 class="c-card__title" id="t-viajes">Viajes por día</h2><span class="u-small u-muted" id="viajes-nota"></span></div>
+    <div class="c-card__body"><div id="graf-viajes"></div></div>
+  </section>
+  <section class="c-card" aria-labelledby="t-franjas">
+    <div class="c-card__header"><h2 class="c-card__title" id="t-franjas">Ocupación por franja horaria</h2><span class="u-small u-muted">Días laborables</span></div>
+    <div class="c-card__body"><div id="graf-franjas"></div></div>
+  </section>
+</div>
+
+<div class="bo-grid bo-grid--3" style="margin-top:var(--sp-5)">
+  <section class="c-card" aria-labelledby="t-perfiles">
+    <div class="c-card__header"><h2 class="c-card__title" id="t-perfiles">Viajeros por perfil</h2></div>
+    <div class="c-card__body"><div id="graf-perfiles"></div></div>
+  </section>
+  <section class="c-card" aria-labelledby="t-puntualidad">
+    <div class="c-card__header"><h2 class="c-card__title" id="t-puntualidad">Puntualidad</h2><span class="u-small u-muted">Ventana de ±10 min</span></div>
+    <div class="c-card__body"><div id="graf-puntualidad"></div><p class="u-small u-muted" style="margin:var(--sp-2) 0 0;text-align:center" id="puntualidad-nota"></p></div>
+  </section>
+  <section class="c-card" aria-labelledby="t-co2">
+    <div class="c-card__header"><h2 class="c-card__title" id="t-co2">{{i:hoja}} CO₂ evitado acumulado</h2></div>
+    <div class="c-card__body"><div id="graf-co2"></div></div>
+  </section>
+</div>
+
+<div class="bo-grid bo-grid--2" style="margin-top:var(--sp-5)">
+  <section class="c-card" aria-labelledby="t-calor">
+    <div class="c-card__header"><h2 class="c-card__title" id="t-calor">{{i:mapa}} Demanda por parada</h2><span class="u-small u-muted" id="calor-nota"></span></div>
+    <div class="c-card__body">
+      <div class="c-map" id="mapa-calor">
+        <div class="c-map__canvas"></div>
+        <div class="c-map__fallback">{{i:mapa:lg}}<span>Mapa no disponible</span></div>
+        <div class="c-map__legend" aria-label="Leyenda del mapa">
+          <span class="c-map__legend-item"><span class="c-map__swatch c-map__swatch--calor"></span>Viajeros que suben o bajan (tamaño del círculo)</span>
+        </div>
+      </div>
+      <ol class="c-list" style="margin-top:var(--sp-3)" id="top-paradas" aria-label="Paradas con más demanda"></ol>
+    </div>
+  </section>
+
+  <section class="c-card" aria-labelledby="t-prediccion">
+    <div class="c-card__header">
+      <h2 class="c-card__title" id="t-prediccion">{{i:grafico}} Análisis de demanda: predicción próxima semana</h2>
+      <span class="c-badge c-badge--accent">Predicción</span>
+    </div>
+    <div class="c-card__body">
+      <div id="graf-prediccion"></div>
+      <dl class="c-datalist" style="margin-top:var(--sp-4)" id="prediccion-datos"></dl>
+      <div class="c-alert" style="margin-top:var(--sp-4)" role="note">
+        {{i:alerta}}
+        <div class="c-alert__body"><strong class="c-alert__title">Recomendación</strong><span id="prediccion-recomendacion"></span></div>
+      </div>
+    </div>
+    <div class="c-card__footer" style="display:flex;justify-content:space-between;align-items:center;gap:var(--sp-3)">
+      <span class="u-small u-muted">Estimación a partir del historial, el calendario escolar y las citas médicas programadas.</span>
+      <a class="c-btn c-btn--secondary c-btn--sm" href="../motor/reglas.html">{{i:ajustes}} Ajustar recursos</a>
+    </div>
+  </section>
+</div>
+<script defer src="../js/datos/admin-bi.js"></script>
+<!--SCRIPT-->
+document.addEventListener("DOMContentLoaded", function () {
+  var f = TAD.fmt, h = f.html, A = TAD.analitica;
+  var PERIODOS = [[7, "Últimos 7 días"], [14, "Últimos 14 días"], [30, "Últimos 30 días"]];
+  var selP = document.getElementById("f-periodo"), selM = document.getElementById("f-municipio");
+  selP.innerHTML = PERIODOS.map(function (p) { return '<option value="' + p[0] + '"' + (p[0] === 30 ? " selected" : "") + ">" + p[1] + "</option>"; }).join("");
+  selM.innerHTML = '<option value="">Toda la comarca</option>' + TAD.municipios.map(function (m) { return '<option value="' + m.id + '">' + h(m.nombre) + "</option>"; }).join("");
+
+  // ---------- Mapa de calor (reservas de hoy) y paradas con más demanda ----------
+  TADMapa.crear("#mapa-calor").calor().encuadrar(20);
+  document.getElementById("calor-nota").textContent = "Reservas de hoy, " + f.fechaCorta(TAD.fecha);
+  var cuenta = {};
+  TAD.reservas.forEach(function (r) { [r.origen, r.destino].forEach(function (p) { cuenta[p] = (cuenta[p] || 0) + r.viajeros; }); });
+  document.getElementById("top-paradas").innerHTML = Object.keys(cuenta).sort(function (a, b) { return cuenta[b] - cuenta[a]; }).slice(0, 3).map(function (id, i) {
+    var p = TAD.parada(id);
+    return '<li class="c-list__item"><div class="c-list__button" style="cursor:default;padding-inline:0"><span class="c-avatar c-avatar--sm c-avatar--orange" aria-hidden="true">' + (i + 1) + "</span>" +
+      '<span><span class="c-list__title">' + h(p.nombre) + '</span><span class="c-list__meta">' + h(TAD.municipio(p.municipio).nombre) + "</span></span>" +
+      "<strong>" + cuenta[id] + " viajeros</strong></div></li>";
+  }).join("");
+
+  function pintar() {
+    var n = +selP.value, mun = selM.value || null;
+    var k = A.indicadores(n, mun), serie = A.serie(n, mun), media30 = A.indicadores(30, mun);
+    var etiquetas = serie.map(function (d) { return f.fechaCorta(d.fecha); });
+    var lugar = mun ? TAD.municipio(mun).nombre : "toda la comarca";
+    document.getElementById("f-resumen").textContent = "Del " + f.fecha(k.desde) + " al " + f.fecha(k.hasta) + " · " + lugar + " · datos cerrados a medianoche";
+
+    // Indicadores (los mismos cálculos que el cuadro de mando)
+    var kpis = [
+      ["Viajeros", f.numero(k.viajeros), "", f.numero(k.viajeros / k.dias, 1) + " de media al día"],
+      ["Viajes", f.numero(k.viajes), "", f.numero(k.km) + " km recorridos"],
+      ["Ocupación media", k.ocupacion, "%", "Ponderada por viajes"],
+      ["Puntualidad", k.puntualidad, "%", "Objetivo ≥ 92 %"],
+      ["CO₂ evitado", f.numero(k.co2), "kg", "Frente al coche particular"]
+    ];
+    document.getElementById("kpis").innerHTML = kpis.map(function (x) {
+      return '<div class="c-kpi"><span class="c-kpi__label">' + x[0] + '</span><span class="c-kpi__value">' + x[1] + (x[2] ? ' <span class="c-kpi__unit">' + x[2] + "</span>" : "") +
+        '</span><span class="c-kpi__delta c-kpi__delta--flat">' + x[3] + "</span></div>";
+    }).join("");
+
+    // Viajes por día
+    document.getElementById("viajes-nota").textContent = f.numero(k.viajes) + " viajes · " + f.numero(k.viajeros) + " viajeros";
+    TADGrafico.linea("#graf-viajes", {
+      titulo: "Viajes y viajeros por día", descripcion: "Viajes y viajeros de cada día del periodo en " + lugar + ".",
+      etiquetas: etiquetas, maxEtiquetas: 8,
+      series: [
+        { nombre: "Viajeros", valores: serie.map(function (d) { return d.viajeros; }), color: "--chart-1" },
+        { nombre: "Viajes", valores: serie.map(function (d) { return d.viajes; }), color: "--chart-5" }
+      ]
+    });
+
+    // Ocupación por franja
+    var fr = A.franjas(mun);
+    TADGrafico.barras("#graf-franjas", {
+      titulo: "Ocupación media por franja horaria", descripcion: "Porcentaje de plazas ocupadas en cada franja en " + lugar + ".",
+      etiquetas: fr.map(function (x) { return x.franja; }), max: 100, unidad: " %", valores: true,
+      series: [{ nombre: "Ocupación", valores: fr.map(function (x) { return x.ocupacion; }), color: "--chart-1" }]
+    });
+
+    // Viajeros por perfil
+    TADGrafico.donut("#graf-perfiles", {
+      titulo: "Viajeros por perfil", descripcion: "Reparto de los viajeros del periodo según su perfil de bonificación.",
+      datos: A.perfiles(n, mun), centro: f.numero(k.viajeros), subcentro: "viajeros", alto: 220
+    });
+
+    // Puntualidad
+    TADGrafico.medidor("#graf-puntualidad", { titulo: "Puntualidad del periodo", valor: k.puntualidad, max: 100, unidad: " %", objetivo: 92, alto: 200 });
+    var dif = k.puntualidad - media30.puntualidad;
+    document.getElementById("puntualidad-nota").textContent = n === 30 ? "Media de los últimos 30 días" :
+      (dif === 0 ? "Igual que la media de 30 días" : (dif > 0 ? "+" : "−") + Math.abs(dif) + " puntos frente a la media de 30 días");
+
+    // CO₂ acumulado
+    var acum = 0;
+    TADGrafico.area("#graf-co2", {
+      titulo: "CO₂ evitado acumulado (kg)", descripcion: "Kilos de CO₂ evitados, acumulados día a día, en " + lugar + ".",
+      etiquetas: etiquetas, maxEtiquetas: 4, alto: 300,
+      series: [{ nombre: "CO₂ evitado", valores: serie.map(function (d) { acum += d.co2; return Math.round(acum); }), color: "--chart-2" }], unidad: " kg"
+    });
+
+    // Predicción: últimos 14 días reales + 7 previstos (línea punteada)
+    var reales = A.serie(14, mun), pred = A.prediccion(mun);
+    var vReales = reales.map(function (d) { return d.viajeros; }).concat(pred.map(function () { return null; }));
+    var vPred = reales.map(function (d, i) { return i === reales.length - 1 ? d.viajeros : null; }).concat(pred.map(function (p) { return p.viajeros; }));
+    TADGrafico.linea("#graf-prediccion", {
+      titulo: "Viajeros por día: real y previsto", descripcion: "Viajeros de los últimos 14 días y previsión para los 7 siguientes en " + lugar + ".",
+      etiquetas: reales.map(function (d) { return f.fechaCorta(d.fecha); }).concat(pred.map(function (p) { return f.fechaCorta(p.fecha); })), maxEtiquetas: 7,
+      series: [
+        { nombre: "Real", valores: vReales, color: "--chart-1" },
+        { nombre: "Previsto", valores: vPred, color: "--chart-4", discontinua: true }
+      ]
+    });
+    var totPred = pred.reduce(function (a, p) { return a + p.viajeros; }, 0);
+    var semAnt = A.serie(7, mun).reduce(function (a, d) { return a + d.viajeros; }, 0);
+    var pico = pred.slice().sort(function (a, b) { return b.viajeros - a.viajeros; })[0];
+    document.getElementById("prediccion-datos").innerHTML = [
+      ["Viajeros previstos", f.numero(totPred) + " (" + (totPred >= semAnt ? "+" : "−") + f.numero(Math.abs(100 * (totPred / semAnt - 1)), 0) + " % frente a la semana pasada)"],
+      ["Día de más demanda", f.fechaLarga(pico.fecha).replace(/ de \d{4}$/, "") + " · " + pico.viajeros + " viajeros"],
+      ["Periodo previsto", f.fecha(pred[0].fecha) + " – " + f.fecha(pred[pred.length - 1].fecha)]
+    ].map(function (x) { return "<dt>" + x[0] + "</dt><dd>" + h(x[1]) + "</dd>"; }).join("");
+    var franjaPico = A.franjas(mun).slice().sort(function (a, b) { return b.ocupacion - a.ocupacion; })[0];
+    document.getElementById("prediccion-recomendacion").textContent = "Reforzar la franja " + franjaPico.franja + " h del " +
+      f.fechaLarga(pico.fecha).split(",")[0] + " con un vehículo más" + (mun ? " en " + TAD.municipio(mun).nombre : "") + ": se espera la ocupación más alta de la semana.";
+  }
+
+  selP.addEventListener("change", pintar);
+  selM.addEventListener("change", pintar);
+  pintar();
+});
+<!--FIN-->

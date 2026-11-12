@@ -1,0 +1,188 @@
+<!--ACCIONES-->
+<span class="c-badge c-badge--neutral c-badge--plain" style="font-size:var(--fs-14);padding:var(--sp-2) var(--sp-3)">{{i:calendario}} <span id="periodo"></span></span>
+<button class="c-btn c-btn--secondary" type="button" data-toast="El listado de municipios, núcleos y paradas se ha descargado en Excel." data-toast-title="Exportación lista">{{i:descargar}} Exportar</button>
+<button class="c-btn c-btn--primary" type="button" data-open="modal-programar">{{i:calendario}} Programar informe</button>
+<!--MAIN-->
+<div class="bo-grid bo-grid--map">
+  <section class="bo-sticky" aria-labelledby="t-mapa">
+    <h2 class="u-visually-hidden" id="t-mapa">Mapa de demanda por municipio</h2>
+    <div class="c-map bo-map-tall" id="mapa">
+      <div class="c-map__canvas"></div>
+      <div class="c-map__fallback">{{i:mapa:lg}}<span>Mapa no disponible</span></div>
+      <div class="c-map__legend" aria-label="Leyenda del mapa">
+        <span class="c-map__legend-item"><strong>Demanda</strong></span>
+        <span class="c-map__legend-item"><span class="c-map__swatch" style="background:var(--demanda-1);border-radius:2px"></span>Baja</span>
+        <span class="c-map__legend-item"><span class="c-map__swatch" style="background:var(--demanda-2);border-radius:2px"></span>Media</span>
+        <span class="c-map__legend-item"><span class="c-map__swatch" style="background:var(--demanda-3);border-radius:2px"></span>Alta</span>
+        <span class="c-map__legend-item"><span class="c-map__swatch" style="background:var(--demanda-4);border-radius:2px"></span>Muy alta</span>
+        <span class="c-map__legend-item"><span class="c-map__swatch c-map__swatch--parada"></span>Parada</span>
+      </div>
+    </div>
+    <p class="u-small u-muted" style="margin:var(--sp-2) 0 0">Color según viajeros por cada 1.000 habitantes. Pulsa un municipio para ver sus núcleos.</p>
+  </section>
+
+  <div class="bo-stack">
+    <section class="c-card" aria-labelledby="t-municipios">
+      <div class="c-card__header"><h2 class="c-card__title" id="t-municipios">{{i:inicio}} Municipios</h2><span class="u-small u-muted" id="n-municipios"></span></div>
+      <ul class="c-list" id="lista-municipios"></ul>
+    </section>
+
+    <section class="c-card" aria-labelledby="t-programados">
+      <div class="c-card__header">
+        <h2 class="c-card__title" id="t-programados">{{i:reloj}} Informes programados</h2>
+        <button class="c-btn c-btn--ghost c-btn--sm" type="button" data-open="modal-programar">{{i:mas}} Nuevo</button>
+      </div>
+      <ul class="c-list" id="programados"></ul>
+      <div class="c-card__footer"><a class="u-small" href="../bi/informes.html">Ver informes generados</a></div>
+    </section>
+
+    <section class="c-card" aria-labelledby="t-zonas">
+      <div class="c-card__header">
+        <h2 class="c-card__title" id="t-zonas">{{i:editar}} Zonas tarifarias</h2>
+        <span class="c-badge c-badge--neutral">Borrador</span>
+      </div>
+      <div class="c-card__body" style="display:grid;gap:var(--sp-4)" id="zonas"></div>
+      <div class="c-card__body" style="display:grid;gap:var(--sp-3);border-top:var(--bw) solid var(--color-border)">
+        <div class="c-field" style="margin:0">
+          <label class="c-field__label" for="z-municipio">Municipio</label>
+          <select class="c-select" id="z-municipio"></select>
+        </div>
+        <div class="c-field" style="margin:0">
+          <label class="c-field__label" for="z-zona">Pasar a la zona</label>
+          <select class="c-select" id="z-zona"></select>
+        </div>
+      </div>
+      <div class="c-card__footer" style="display:flex;flex-wrap:wrap;gap:var(--sp-2)">
+        <button class="c-btn c-btn--secondary c-btn--sm" type="button" data-toast="Dibuja el nuevo límite pulsando sobre el mapa. Doble clic para terminar." data-toast-title="Modo dibujo">{{i:mapa}} Dibujar en el mapa</button>
+        <button class="c-btn c-btn--primary c-btn--sm" type="button" data-toast="Los cambios de zona se aplicarán a partir del 1 de mayo, tras la aprobación del consorcio." data-toast-title="Propuesta de zonas guardada">{{i:check}} Guardar propuesta</button>
+      </div>
+    </section>
+  </div>
+</div>
+
+<section aria-labelledby="t-nucleos" style="margin-top:var(--sp-6)">
+    <div class="bo-toolbar">
+      <h2 id="t-nucleos" style="margin:0">Municipios y núcleos</h2>
+      <span class="bo-toolbar__spacer"></span>
+      <div class="c-chip-group" role="group" aria-label="Filtrar por municipio" data-filter-target="tabla-nucleos" data-filter-key="municipio" id="filtro-municipio"></div>
+    </div>
+    <div class="c-table-wrap">
+      <table class="c-table" id="tabla-nucleos">
+        <caption class="u-visually-hidden">Núcleos de población con habitantes, paradas, viajeros de los últimos 30 días y cobertura</caption>
+        <thead><tr>
+          <th scope="col">Núcleo</th>
+          <th scope="col" class="is-num">Habitantes</th>
+          <th scope="col" class="is-num">Paradas</th>
+          <th scope="col" class="is-num">Viajeros (30 días)</th>
+          <th scope="col">Cobertura</th>
+        </tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <p class="u-small u-muted" style="margin:var(--sp-2) 0 0">Cobertura: población que vive a menos de 300 m de una parada fija o virtual.</p>
+</section>
+
+<!-- Programar informe -->
+<div class="c-modal" id="modal-programar" role="dialog" aria-modal="true" aria-labelledby="modal-programar-t">
+  <div class="c-modal__dialog">
+    <div class="c-modal__header">
+      <h2 class="c-modal__title" id="modal-programar-t">Programar un informe periódico</h2>
+      <button class="c-btn c-btn--ghost c-btn--icon c-btn--sm" type="button" data-close aria-label="Cerrar">{{i:cerrar}}</button>
+    </div>
+    <div class="c-modal__body">
+      <div class="bo-grid bo-grid--2" style="gap:var(--sp-3)">
+        <div class="c-field"><label class="c-field__label" for="p-plantilla">Plantilla</label><select class="c-select" id="p-plantilla"></select></div>
+        <div class="c-field"><label class="c-field__label" for="p-frecuencia">Frecuencia</label>
+          <select class="c-select" id="p-frecuencia"><option>Cada día</option><option selected>Cada semana</option><option>Cada mes</option><option>Cada trimestre</option></select></div>
+        <div class="c-field"><label class="c-field__label" for="p-destino">Destinatarios</label><select class="c-select" id="p-destino"></select></div>
+        <div class="c-field"><label class="c-field__label" for="p-formato">Formato</label><select class="c-select" id="p-formato"><option>PDF</option><option>Excel</option></select></div>
+      </div>
+    </div>
+    <div class="c-modal__footer">
+      <button class="c-btn c-btn--secondary" type="button" data-close>Cancelar</button>
+      <button class="c-btn c-btn--primary" type="button" data-toast="El informe se enviará automáticamente con la frecuencia elegida." data-toast-title="Informe programado" data-toast-close>Programar</button>
+    </div>
+  </div>
+</div>
+<script defer src="../js/datos/admin-bi.js"></script>
+<!--SCRIPT-->
+document.addEventListener("DOMContentLoaded", function () {
+  var f = TAD.fmt, h = f.html, A = TAD.analitica;
+  var k = A.indicadores();
+  document.getElementById("periodo").textContent = "Últimos 30 días · " + f.fecha(k.desde) + " – " + f.fecha(k.hasta);
+  var filas = A.porMunicipio();
+  var orden = filas.slice().sort(function (a, b) { return b.porMil - a.porMil; });
+  var NIVEL = ["Muy alta", "Alta", "Media", "Baja"];
+
+  // ---------- Mapa ----------
+  var mapa = TADMapa.crear("#mapa");
+  mapa.municipios({ alPulsar: seleccionar }).paradas().encuadrar(20);
+
+  // ---------- Lista de municipios ----------
+  document.getElementById("n-municipios").textContent = TAD.municipios.length + " municipios · " + TAD.nucleos.length + " núcleos";
+  document.getElementById("lista-municipios").innerHTML = filas.map(function (r) {
+    var m = r.municipio, nivel = orden.indexOf(r);
+    return '<li class="c-list__item"><button class="c-list__button" type="button" data-municipio-btn="' + m.id + '">' +
+      '<span class="c-avatar c-avatar--sm" aria-hidden="true">' + m.zona + "</span>" +
+      '<span><span class="c-list__title">' + h(m.nombre) + '</span><span class="c-list__meta">' + f.numero(m.habitantes) + " hab. · " +
+      TAD.paradas.filter(function (p) { return p.municipio === m.id; }).length + " paradas · " + f.numero(r.viajeros) + " viajeros · cobertura " + f.porcentaje(A.cobertura(m.id)) + "</span></span>" +
+      '<span class="c-badge c-badge--' + (nivel < 2 ? "info" : "neutral") + '">' + NIVEL[Math.min(3, nivel)] + "</span></button></li>";
+  }).join("");
+  document.getElementById("lista-municipios").addEventListener("click", function (e) {
+    var b = e.target.closest("[data-municipio-btn]");
+    if (b) seleccionar(b.getAttribute("data-municipio-btn"));
+  });
+
+  // ---------- Tabla de núcleos ----------
+  document.getElementById("filtro-municipio").innerHTML = '<button class="c-chip" type="button" data-filter="" aria-pressed="true">Todos</button>' +
+    TAD.municipios.map(function (m) { return '<button class="c-chip" type="button" data-filter="' + m.id + '" aria-pressed="false">' + h(TAD.nucleo(m.id).nombre) + "</button>"; }).join("");
+  document.querySelector("#tabla-nucleos tbody").innerHTML = filas.map(function (r) {
+    var m = r.municipio, cob = A.cobertura(m.id);
+    var cab = '<tr data-municipio="' + m.id + '"><th scope="row"><strong>' + h(m.nombre) + "</strong></th>" +
+      '<td class="is-num"><strong>' + f.numero(m.habitantes) + '</strong></td><td class="is-num"><strong>' +
+      TAD.paradas.filter(function (p) { return p.municipio === m.id; }).length + '</strong></td><td class="is-num"><strong>' + f.numero(r.viajeros) + "</strong></td>" +
+      "<td>" + barra(cob, true) + "</td></tr>";
+    return cab + A.porNucleo(30, m.id).map(function (n) {
+      return '<tr data-municipio="' + m.id + '"><td style="padding-left:var(--sp-8)">' + h(n.nucleo.nombre) + "</td>" +
+        '<td class="is-num">' + f.numero(n.nucleo.habitantes) + '</td><td class="is-num">' + n.paradas + '</td><td class="is-num">' + f.numero(n.viajeros) + "</td>" +
+        "<td>" + barra(n.cobertura) + "</td></tr>";
+    }).join("");
+  }).join("");
+  function barra(pct, fuerte) {
+    var tipo = pct >= 90 ? "success" : pct >= 80 ? "" : "warning";
+    return '<span style="display:flex;align-items:center;gap:var(--sp-2);min-width:calc(var(--sp-12) * 3)"><span class="c-progress' + (tipo ? " c-progress--" + tipo : "") +
+      '" style="flex:1" role="progressbar" aria-label="Cobertura" aria-valuenow="' + pct + '" aria-valuemin="0" aria-valuemax="100"><span style="width:' + pct + '%"></span></span>' +
+      (fuerte ? "<strong>" + f.porcentaje(pct) + "</strong>" : f.porcentaje(pct)) + "</span>";
+  }
+  function seleccionar(id) {
+    var chip = document.querySelector('#filtro-municipio [data-filter="' + id + '"]');
+    if (chip && chip.getAttribute("aria-pressed") !== "true") chip.click();
+    document.querySelectorAll("[data-municipio-btn]").forEach(function (b) {
+      if (b.getAttribute("data-municipio-btn") === id) b.setAttribute("aria-current", "true"); else b.removeAttribute("aria-current");
+    });
+  }
+
+  // ---------- Zonas tarifarias (solo apariencia) ----------
+  var precios = TAD.tarifas.precios;
+  document.getElementById("zonas").innerHTML = TAD.tarifas.zonas.map(function (z) {
+    var muns = TAD.municipios.filter(function (m) { return m.zona === z.id; });
+    return '<div><div style="display:flex;justify-content:space-between;align-items:baseline;gap:var(--sp-2)"><strong>' + h(z.nombre) + '</strong><span class="u-small u-muted">' +
+      f.euros(precios[0].importe) + " dentro de la zona</span></div>" +
+      '<p class="u-small u-muted" style="margin:var(--sp-1) 0 var(--sp-2)">' + h(z.descripcion) + "</p>" +
+      '<div class="c-chip-group" role="group" aria-label="Municipios de la ' + h(z.nombre) + '">' + muns.map(function (m) {
+        return '<button class="c-chip" type="button" aria-pressed="true" data-toast="Arrastra el municipio a otra zona o usa el selector de abajo." data-toast-title="' + h(m.nombre) + '">' + h(m.nombre) + "</button>";
+      }).join("") + "</div></div>";
+  }).join("") + '<p class="u-small" style="margin:0">Viaje entre zonas: <strong>' + f.euros(precios[1].importe) + "</strong></p>";
+  document.getElementById("z-municipio").innerHTML = TAD.municipios.map(function (m) { return "<option>" + h(m.nombre) + " (zona " + m.zona + ")</option>"; }).join("");
+  document.getElementById("z-zona").innerHTML = TAD.tarifas.zonas.map(function (z) { return "<option>" + h(z.nombre) + "</option>"; }).join("") + "<option>Nueva zona C</option>";
+
+  // ---------- Informes programados ----------
+  document.getElementById("programados").innerHTML = TAD.informesProgramados.map(function (p, i) {
+    return '<li class="c-list__item"><div class="c-list__button" style="cursor:default"><span class="c-avatar c-avatar--sm c-avatar--purple" aria-hidden="true">{{i:documento}}</span>' +
+      '<span><span class="c-list__title">' + h(p.nombre) + '</span><span class="c-list__meta">' + h(p.frecuencia) + " · " + h(p.destinatarios) + " · " + p.formato + "</span></span>" +
+      '<label class="c-switch"><input type="checkbox" role="switch" checked id="prog-' + i + '"><span class="u-visually-hidden">Activo: ' + h(p.nombre) + "</span></label></div></li>";
+  }).join("");
+  document.getElementById("p-plantilla").innerHTML = TAD.adminBI.plantillas.map(function (p) { return "<option>" + p.id + "</option>"; }).join("");
+  document.getElementById("p-destino").innerHTML = TAD.adminBI.destinatarios.map(function (d) { return "<option>" + h(d) + "</option>"; }).join("");
+});
+<!--FIN-->

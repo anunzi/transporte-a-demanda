@@ -1,0 +1,198 @@
+<!--SIN-MAPA-->
+<!--ACCIONES-->
+<span class="c-badge c-badge--neutral c-badge--plain" style="font-size:var(--fs-14);padding:var(--sp-2) var(--sp-3)">{{i:calendario}} <span id="periodo"></span></span>
+<a class="c-btn c-btn--secondary" href="../bi/dashboard.html">{{i:grafico}} Ver análisis detallado</a>
+<button class="c-btn c-btn--primary" type="button" data-open="modal-informe">{{i:documento}} Generar informe mensual</button>
+<!--MAIN-->
+<section aria-labelledby="t-kpis">
+  <h2 class="u-visually-hidden" id="t-kpis">Indicadores de los últimos 30 días</h2>
+  <div class="bo-grid bo-grid--3" id="kpis"></div>
+  <p class="u-small u-muted" style="margin:var(--sp-2) 0 0" id="kpis-nota"></p>
+</section>
+
+<div class="bo-grid bo-grid--2" style="margin-top:var(--sp-6)">
+  <section class="c-card" aria-labelledby="t-evolucion">
+    <div class="c-card__header">
+      <h2 class="c-card__title" id="t-evolucion">{{i:grafico}} Evolución mensual</h2>
+      <span class="u-small u-muted" id="evolucion-rango"></span>
+    </div>
+    <div class="c-card__body">
+      <div id="graf-evolucion"></div>
+      <dl class="c-datalist" style="margin-top:var(--sp-4)" id="evolucion-resumen"></dl>
+    </div>
+  </section>
+
+  <section class="c-card" aria-labelledby="t-sla">
+    <div class="c-card__header">
+      <h2 class="c-card__title" id="t-sla">{{i:check}} Cumplimiento de SLA</h2>
+      <span id="sla-resumen"></span>
+    </div>
+    <ul class="c-list" id="sla"></ul>
+    <div class="c-card__footer">
+      <span class="u-small u-muted">Acuerdos de nivel de servicio del contrato con el operador.</span>
+    </div>
+  </section>
+</div>
+
+<section aria-labelledby="t-municipios" style="margin-top:var(--sp-6)">
+  <div class="bo-toolbar">
+    <h2 id="t-municipios" style="margin:0">Datos por municipio</h2>
+    <span class="bo-toolbar__spacer"></span>
+    <a class="u-small" href="territorio.html">{{i:mapa}} Ver en el mapa del territorio</a>
+    <button class="c-btn c-btn--secondary c-btn--sm" type="button" data-toast="La tabla por municipio se ha descargado en Excel." data-toast-title="Exportación lista">{{i:descargar}} Exportar</button>
+  </div>
+  <div class="c-table-wrap">
+    <table class="c-table" data-sortable id="tabla-municipios">
+      <caption class="u-visually-hidden">Viajeros, puntualidad y coste por municipio en los últimos 30 días</caption>
+      <thead><tr>
+        <th scope="col"><button class="c-table__sort" type="button">Municipio {{i:chevron-abajo}}</button></th>
+        <th scope="col" class="is-num"><button class="c-table__sort" type="button">Habitantes {{i:chevron-abajo}}</button></th>
+        <th scope="col" class="is-num"><button class="c-table__sort" type="button">Viajeros {{i:chevron-abajo}}</button></th>
+        <th scope="col" class="is-num"><button class="c-table__sort" type="button">Por 1.000 hab. {{i:chevron-abajo}}</button></th>
+                <th scope="col" class="is-num"><button class="c-table__sort" type="button">Puntualidad {{i:chevron-abajo}}</button></th>
+        <th scope="col" class="is-num"><button class="c-table__sort" type="button">Coste por viajero {{i:chevron-abajo}}</button></th>
+        <th scope="col" class="is-num"><button class="c-table__sort" type="button">CO₂ evitado {{i:chevron-abajo}}</button></th>
+        <th scope="col" class="is-num" id="th-aportacion"></th>
+      </tr></thead>
+      <tbody></tbody>
+      <tfoot></tfoot>
+    </table>
+  </div>
+</section>
+
+<!-- Generar informe mensual -->
+<div class="c-modal" id="modal-informe" role="dialog" aria-modal="true" aria-labelledby="modal-informe-t">
+  <div class="c-modal__dialog">
+    <div class="c-modal__header">
+      <h2 class="c-modal__title" id="modal-informe-t">Generar informe mensual</h2>
+      <button class="c-btn c-btn--ghost c-btn--icon c-btn--sm" type="button" data-close aria-label="Cerrar">{{i:cerrar}}</button>
+    </div>
+    <div class="c-modal__body">
+      <p style="margin-top:0">El informe incluye los indicadores, la evolución mensual, el cumplimiento de SLA y la tabla por municipio.</p>
+      <div class="c-field">
+        <label class="c-field__label" for="inf-periodo">Periodo</label>
+        <select class="c-select" id="inf-periodo"></select>
+      </div>
+      <fieldset class="c-field" style="border:0;padding:0;margin-inline:0">
+        <legend class="c-field__label">Destinatarios</legend>
+        <div style="display:grid;gap:var(--sp-2)" id="inf-destinatarios"></div>
+      </fieldset>
+      <fieldset class="c-field" style="border:0;padding:0;margin-inline:0">
+        <legend class="c-field__label">Formato</legend>
+        <div style="display:flex;gap:var(--sp-5)">
+          <label class="c-radio"><input type="radio" name="inf-formato" checked> PDF</label>
+          <label class="c-radio"><input type="radio" name="inf-formato"> Excel</label>
+        </div>
+      </fieldset>
+    </div>
+    <div class="c-modal__footer">
+      <a class="c-btn c-btn--secondary" href="../bi/informes.html">Abrir el generador completo</a>
+      <button class="c-btn c-btn--primary" type="button" data-toast="El informe mensual se ha generado y se enviará a los destinatarios marcados." data-toast-title="Informe generado" data-toast-close>{{i:documento}} Generar</button>
+    </div>
+  </div>
+</div>
+<script defer src="../js/datos/admin-bi.js"></script>
+<!--SCRIPT-->
+document.addEventListener("DOMContentLoaded", function () {
+  var f = TAD.fmt, h = f.html, A = TAD.analitica;
+  var k = A.indicadores();                       // últimos 30 días: los mismos que en BI
+  var inicio = TAD.mensual[0];                   // primer mes del servicio
+  function diasMes(ym) { var p = ym.split("-"); return new Date(+p[0], +p[1], 0).getDate(); }
+  function signo(n, dec) { return (n > 0 ? "+" : n < 0 ? "−" : "") + f.numero(Math.abs(n), dec); }
+  var periodo = f.fecha(k.desde) + " – " + f.fecha(k.hasta);
+  document.getElementById("periodo").textContent = "Últimos 30 días · " + periodo;
+
+  // ---------- 6 indicadores ----------
+  var mediaDia = k.viajeros / k.dias, mediaInicio = inicio.viajeros / diasMes(inicio.mes);
+  var viajesDia = k.viajes / k.dias, viajesInicio = inicio.viajes / diasMes(inicio.mes);
+  var vsInicio = " vs. " + f.mes(inicio.mes);
+  var serie = A.serie();
+  var acumCo2 = 0, co2Acum = serie.map(function (d) { acumCo2 += d.co2; return acumCo2; });
+  var kpis = [
+    { et: "Viajeros", v: f.numero(k.viajeros), u: "", nota: signo(100 * (mediaDia / mediaInicio - 1), 0) + " % media diaria" + vsInicio, tipo: mediaDia >= mediaInicio ? "up" : "down",
+      spark: serie.map(function (d) { return d.viajeros; }) },
+    { et: "Viajes realizados", v: f.numero(k.viajes), u: "", nota: signo(100 * (viajesDia / viajesInicio - 1), 0) + " % media diaria" + vsInicio, tipo: viajesDia >= viajesInicio ? "up" : "down",
+      spark: serie.map(function (d) { return d.viajes; }) },
+    { et: "Coste por viajero", v: f.numero(k.costePorViajero, 2), u: "€", nota: signo(100 * (k.costePorViajero / inicio.costePorViajero - 1), 0) + " %" + vsInicio,
+      tipo: k.costePorViajero <= inicio.costePorViajero ? "up" : "down", spark: TAD.mensual.map(function (m) { return m.costePorViajero; }).concat([k.costePorViajero]) },
+    { et: "Puntualidad", v: k.puntualidad, u: "%", nota: signo(k.puntualidad - inicio.puntualidad, 0) + " puntos" + vsInicio, tipo: k.puntualidad >= inicio.puntualidad ? "up" : "down",
+      spark: serie.map(function (d) { return d.puntualidad; }) },
+    { et: "Satisfacción", v: f.numero(k.satisfaccion, 1), u: "/ " + TAD.satisfaccion.escala, nota: "NPS " + TAD.satisfaccion.nps + " · " + TAD.satisfaccion.respuestas + " respuestas", tipo: "flat" },
+    { et: "CO₂ evitado", v: f.numero(k.co2), u: "kg", nota: f.numero(k.km) + " km compartidos", tipo: "flat", spark: co2Acum }
+  ];
+  document.getElementById("kpis").innerHTML = kpis.map(function (x, i) {
+    return '<div class="c-kpi c-kpi--lg"><span class="c-kpi__label">' + x.et + '</span><span class="c-kpi__value">' + x.v + (x.u ? ' <span class="c-kpi__unit">' + x.u + "</span>" : "") +
+      '</span><div class="c-kpi__foot"><span class="c-kpi__delta c-kpi__delta--' + x.tipo + '">' + x.nota + '</span><span id="spark-' + i + '"></span></div></div>';
+  }).join("");
+  kpis.forEach(function (x, i) { if (x.spark) TADGrafico.sparkline("#spark-" + i, x.spark, x.tipo === "down" ? "--chart-3" : "--chart-1"); });
+  document.getElementById("kpis-nota").textContent = "Periodo: " + periodo + " (30 días cerrados). La satisfacción sale de las " + TAD.satisfaccion.respuestas +
+    " encuestas recibidas. El CO₂ evitado se calcula frente a hacer los mismos viajes en coche particular.";
+
+  // ---------- Evolución mensual ----------
+  var meses = TAD.mensual;
+  document.getElementById("evolucion-rango").textContent = f.mes(meses[0].mes) + " – " + f.mes(meses[meses.length - 1].mes);
+  TADGrafico.barras("#graf-evolucion", {
+    titulo: "Viajeros y viajes por mes",
+    descripcion: "Viajeros y viajes de " + f.mes(meses[0].mes) + " a " + f.mes(meses[meses.length - 1].mes) + ".",
+    etiquetas: meses.map(function (m) { return f.mesCorto(m.mes); }),
+    series: [
+      { nombre: "Viajeros", valores: meses.map(function (m) { return m.viajeros; }), color: "--chart-1" },
+      { nombre: "Viajes", valores: meses.map(function (m) { return m.viajes; }), color: "--chart-5" }
+    ],
+    alto: 240
+  });
+  var ultimo = meses[meses.length - 1];
+  document.getElementById("evolucion-resumen").innerHTML = [
+    ["Crecimiento de viajeros", signo(100 * (ultimo.viajeros / inicio.viajeros - 1), 0) + " % (" + f.mes(inicio.mes) + " → " + f.mes(ultimo.mes) + ")"],
+    ["Coste por viajero", f.euros(inicio.costePorViajero) + " → " + f.euros(ultimo.costePorViajero)],
+    ["Ocupación media", f.porcentaje(inicio.ocupacion) + " → " + f.porcentaje(ultimo.ocupacion)]
+  ].map(function (x) { return "<dt>" + x[0] + "</dt><dd>" + h(x[1]) + "</dd>"; }).join("");
+
+  // ---------- SLA ----------
+  var sla = TAD.adminBI.sla, cumplen = sla.filter(A.cumpleSla).length;
+  document.getElementById("sla-resumen").innerHTML = '<span class="c-badge c-badge--' + (cumplen === sla.length ? "success" : "warning") + '">' + cumplen + " de " + sla.length + " cumplidos</span>";
+  document.getElementById("sla").innerHTML = sla.map(function (s) {
+    var v = A.valorSla(s), ok = A.cumpleSla(s);
+    var ancho = s.sentido === "menor" ? Math.round(100 * v / s.objetivo) : v;
+    var unidad = s.unidad === "%" ? " %" : " " + s.unidad;
+    return '<li class="c-list__item"><div class="c-list__button" style="cursor:default;display:block">' +
+      '<div style="display:flex;justify-content:space-between;gap:var(--sp-3);align-items:baseline">' +
+      '<span><span class="c-list__title">' + h(s.nombre) + '</span><span class="c-list__meta">' + h(s.nota) + "</span></span>" +
+      '<span style="text-align:right;white-space:nowrap"><strong style="font-size:var(--fs-22)">' + f.numero(v, s.decimales) + unidad + "</strong>" +
+      '<span class="c-list__meta">Objetivo ' + (s.sentido === "menor" ? "≤ " : "≥ ") + f.numero(s.objetivo) + unidad + "</span></span></div>" +
+      '<div style="display:flex;align-items:center;gap:var(--sp-3);margin-top:var(--sp-2)">' +
+      '<span class="c-progress c-progress--' + (ok ? "success" : "danger") + '" style="flex:1" role="progressbar" aria-label="' + h(s.nombre) + '" aria-valuenow="' + v +
+      '" aria-valuemin="0" aria-valuemax="' + (s.sentido === "menor" ? s.objetivo : 100) + '"><span style="width:' + Math.min(100, ancho) + '%"></span></span>' +
+      '<span class="c-badge c-badge--' + (ok ? "success" : "danger") + '">' + (ok ? "Cumple" : "No cumple") + "</span></div></div></li>";
+  }).join("");
+
+  // ---------- Tabla por municipio ----------
+  var filas = A.porMunicipio(), liq = TAD.liquidacion;
+  document.getElementById("th-aportacion").innerHTML = '<button class="c-table__sort" type="button">Aportación ' + h(f.mesCorto(liq.mes)) + '. {{i:chevron-abajo}}</button>';
+  function aportacion(id) { return liq.desglose.filter(function (d) { return d.municipio === id; })[0].aportacion; }
+  document.querySelector("#tabla-municipios tbody").innerHTML = filas.map(function (r) {
+    var m = r.municipio;
+    return "<tr><td><strong>" + h(m.nombre) + '</strong><span class="c-list__meta">Zona ' + m.zona + (m.cabecera ? " · cabecera de comarca" : "") + "</span></td>" +
+      '<td class="is-num" data-value="' + m.habitantes + '">' + f.numero(m.habitantes) + "</td>" +
+      '<td class="is-num" data-value="' + r.viajeros + '">' + f.numero(r.viajeros) + "</td>" +
+      '<td class="is-num" data-value="' + r.porMil.toFixed(1) + '">' + f.numero(r.porMil, 0) + "</td>" +
+      '<td class="is-num" data-value="' + r.puntualidad + '">' + f.porcentaje(r.puntualidad) + "</td>" +
+      '<td class="is-num" data-value="' + r.costePorViajero + '">' + f.euros(r.costePorViajero) + "</td>" +
+      '<td class="is-num" data-value="' + r.co2 + '">' + f.numero(r.co2) + " kg</td>" +
+      '<td class="is-num" data-value="' + aportacion(m.id) + '">' + f.euros(aportacion(m.id)) + "</td></tr>";
+  }).join("");
+  var hab = TAD.municipios.reduce(function (a, m) { return a + m.habitantes; }, 0);
+  document.querySelector("#tabla-municipios tfoot").innerHTML = '<tr><th scope="row">Comarca</th>' +
+    '<td class="is-num"><strong>' + f.numero(hab) + '</strong></td><td class="is-num"><strong>' + f.numero(k.viajeros) + "</strong></td>" +
+    '<td class="is-num"><strong>' + f.numero(k.viajeros / hab * 1000, 0) + "</strong></td>" +
+    '<td class="is-num"><strong>' + f.porcentaje(k.puntualidad) + '</strong></td><td class="is-num"><strong>' + f.euros(k.costePorViajero) + "</strong></td>" +
+    '<td class="is-num"><strong>' + f.numero(k.co2) + ' kg</strong></td><td class="is-num"><strong>' + f.euros(liq.aportacionMunicipal) + "</strong></td></tr>";
+
+  // ---------- Modal del informe ----------
+  document.getElementById("inf-periodo").innerHTML = "<option>Últimos 30 días (" + periodo + ")</option>" +
+    meses.slice().reverse().map(function (m) { return "<option>" + h(f.mes(m.mes).replace(/^./, function (c) { return c.toUpperCase(); })) + "</option>"; }).join("");
+  document.getElementById("inf-destinatarios").innerHTML = TAD.adminBI.destinatarios.slice(0, 3).map(function (d, i) {
+    return '<label class="c-checkbox"><input type="checkbox"' + (i < 2 ? " checked" : "") + "> " + h(d) + "</label>";
+  }).join("");
+});
+<!--FIN-->

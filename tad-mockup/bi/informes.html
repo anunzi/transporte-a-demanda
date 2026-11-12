@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Informes · Plataforma Digital TAD</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap">
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/layout-backoffice.css">
+<script defer src="../js/data.js"></script>
+<script defer src="../js/ui.js"></script>
+<script defer src="../js/nav.js"></script>
+<script defer src="../js/charts.js"></script>
+</head>
+<body class="bo-body" data-module="bi" data-page="bi-informes">
+<a class="c-skip-link" href="#contenido">Saltar al contenido</a>
+<div class="bo">
+  <aside class="bo-sidebar" aria-label="Menú principal">
+    <a class="bo-sidebar__brand" href="../control/mapa.html" aria-label="Plataforma Digital TAD, centro de control"><svg class="bo-sidebar__logo bo-sidebar__logo--full" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 40"><g style="fill:var(--logo-route);stroke:var(--logo-route)"><path d="M4 34.5h32" fill="none" stroke-width="2.6" stroke-linecap="round"/><circle cx="4.5" cy="34.5" r="3.2"/><circle cx="35.5" cy="34.5" r="3.2"/></g><g fill="currentColor"><path fill-rule="evenodd" d="M6 10.5a2.5 2.5 0 0 1 2.5-2.5H24l8 8v7.5a1.5 1.5 0 0 1-1.5 1.5H7.5A1.5 1.5 0 0 1 6 23.5zM9 11h7v5H9zM18.5 11h4.3l5 5h-9.3z"/><circle cx="12" cy="25.5" r="3.6"/><circle cx="26" cy="25.5" r="3.6"/></g><circle cx="12" cy="25.5" r="1.4" style="fill:var(--logo-bg)"/><circle cx="26" cy="25.5" r="1.4" style="fill:var(--logo-bg)"/><g fill="currentColor"><g transform="translate(50 9)"><path d="M0 0h17v5h-6v17H6V5H0z"/></g><g transform="translate(70 9)"><path fill-rule="evenodd" d="M7 0h5.4l7.3 22h-5.3l-1.3-4.2H6.3L5 22H-.3zM9.7 6.6 7.6 13.4h4.3z"/></g><g transform="translate(93 9)"><path fill-rule="evenodd" d="M0 0h7.5a11 11 0 0 1 0 22H0zM5 5v12h2.3a6 6 0 0 0 0-12z"/></g></g><path d="M121 6v28" style="stroke:var(--logo-route)" stroke-width="2" stroke-linecap="round"/><text x="131" y="18" fill="currentColor" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="600" letter-spacing=".3">Plataforma Digital</text><text x="131" y="33" fill="currentColor" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="400">Personas que nos mueven</text></svg><svg class="bo-sidebar__logo bo-sidebar__logo--compact" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 113 40"><g style="fill:var(--logo-route);stroke:var(--logo-route)"><path d="M4 34.5h32" fill="none" stroke-width="2.6" stroke-linecap="round"/><circle cx="4.5" cy="34.5" r="3.2"/><circle cx="35.5" cy="34.5" r="3.2"/></g><g fill="currentColor"><path fill-rule="evenodd" d="M6 10.5a2.5 2.5 0 0 1 2.5-2.5H24l8 8v7.5a1.5 1.5 0 0 1-1.5 1.5H7.5A1.5 1.5 0 0 1 6 23.5zM9 11h7v5H9zM18.5 11h4.3l5 5h-9.3z"/><circle cx="12" cy="25.5" r="3.6"/><circle cx="26" cy="25.5" r="3.6"/></g><circle cx="12" cy="25.5" r="1.4" style="fill:var(--logo-bg)"/><circle cx="26" cy="25.5" r="1.4" style="fill:var(--logo-bg)"/><g fill="currentColor"><g transform="translate(50 9)"><path d="M0 0h17v5h-6v17H6V5H0z"/></g><g transform="translate(70 9)"><path fill-rule="evenodd" d="M7 0h5.4l7.3 22h-5.3l-1.3-4.2H6.3L5 22H-.3zM9.7 6.6 7.6 13.4h4.3z"/></g><g transform="translate(93 9)"><path fill-rule="evenodd" d="M0 0h7.5a11 11 0 0 1 0 22H0zM5 5v12h2.3a6 6 0 0 0 0-12z"/></g></g></svg></a>
+    <nav class="bo-nav" aria-label="Módulos">
+      <div class="bo-nav__group">
+        <p class="bo-nav__title">Operación</p>
+        <ul class="bo-nav__list">
+          <li><a class="bo-nav__link" href="../control/mapa.html" data-page="control-mapa"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6.5 9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20z"/><path d="M9 4v13.5M15 6.5V20"/></svg><span class="bo-nav__label">Centro de control</span></a></li>
+          <li><a class="bo-nav__link" href="../control/incidencias.html" data-page="control-incidencias"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9.8 4h4.4l4 15H5.8z"/><path d="M8 11h8M6.9 15.2h10.2M3.5 19.5h17"/></svg><span class="bo-nav__label">Incidencias</span></a></li>
+        </ul>
+      </div>
+      <div class="bo-nav__group">
+        <p class="bo-nav__title">Planificación</p>
+        <ul class="bo-nav__list">
+          <li><a class="bo-nav__link" href="../motor/rutas.html" data-page="motor-rutas"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="18" r="2.25"/><circle cx="18" cy="6" r="2.25"/><path d="M8.25 18H15a3 3 0 0 0 0-6H9a3 3 0 0 1 0-6h6.75"/></svg><span class="bo-nav__label">Rutas del día</span></a></li>
+          <li><a class="bo-nav__link" href="../motor/reglas.html" data-page="motor-reglas"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h9M17 7h3M4 17h3M11 17h9"/><circle cx="15" cy="7" r="2"/><circle cx="9" cy="17" r="2"/></svg><span class="bo-nav__label">Reglas operativas</span></a></li>
+        </ul>
+      </div>
+      <div class="bo-nav__group">
+        <p class="bo-nav__title">Atención ciudadana</p>
+        <ul class="bo-nav__list">
+          <li><a class="bo-nav__link" href="../crm/bandeja.html" data-page="crm-bandeja"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H9.5L4 20z"/><path d="M8 9.5h8M8 12.5h5"/></svg><span class="bo-nav__label">Bandeja</span></a></li>
+          <li><a class="bo-nav__link" href="../crm/usuario.html" data-page="crm-usuario"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0"/></svg><span class="bo-nav__label">Ficha de usuario</span></a></li>
+        </ul>
+      </div>
+      <div class="bo-nav__group">
+        <p class="bo-nav__title">Flota</p>
+        <ul class="bo-nav__list">
+          <li><a class="bo-nav__link" href="../flota/vehiculos.html" data-page="flota-vehiculos"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 17H9.5M5 17H3.5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1H15l4.5 4.5H20a1.5 1.5 0 0 1 1.5 1.5v4a1 1 0 0 1-1 1H19"/><path d="M15 6v4.5h4.5M2.5 11H15"/><circle cx="7" cy="17.5" r="2"/><circle cx="17" cy="17.5" r="2"/></svg><span class="bo-nav__label">Vehículos</span></a></li>
+          <li><a class="bo-nav__link" href="../flota/vehiculo.html" data-page="flota-vehiculo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2"/><path d="M3.3 10.5 10 12M20.7 10.5 14 12M12 14v7"/></svg><span class="bo-nav__label">Ficha de vehículo</span></a></li>
+        </ul>
+      </div>
+      <div class="bo-nav__group">
+        <p class="bo-nav__title">Económica</p>
+        <ul class="bo-nav__list">
+          <li><a class="bo-nav__link" href="../economica/tarifas.html" data-page="economica-tarifas"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 6.8a7 7 0 1 0 0 10.4"/><path d="M4 10h9M4 14h9"/></svg><span class="bo-nav__label">Tarifas</span></a></li>
+          <li><a class="bo-nav__link" href="../economica/facturacion.html" data-page="economica-facturacion"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg><span class="bo-nav__label">Facturación</span></a></li>
+        </ul>
+      </div>
+      <div class="bo-nav__group">
+        <p class="bo-nav__title">Administración</p>
+        <ul class="bo-nav__list">
+          <li><a class="bo-nav__link" href="../admin/cuadro-mando.html" data-page="admin-cuadro-mando"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.5V20h5v-6h3v6h5V9.5"/></svg><span class="bo-nav__label">Cuadro de mando</span></a></li>
+          <li><a class="bo-nav__link" href="../admin/territorio.html" data-page="admin-territorio"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6.5-5.8-6.5-11a6.5 6.5 0 0 1 13 0c0 5.2-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.5"/></svg><span class="bo-nav__label">Territorio</span></a></li>
+        </ul>
+      </div>
+      <div class="bo-nav__group">
+        <p class="bo-nav__title">Análisis</p>
+        <ul class="bo-nav__list">
+          <li><a class="bo-nav__link" href="../bi/dashboard.html" data-page="bi-dashboard"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v16h16"/><path d="m7.5 14.5 3.5-4 3 2.5 5-6"/></svg><span class="bo-nav__label">Dashboard</span></a></li>
+          <li><a class="bo-nav__link" href="../bi/informes.html" data-page="bi-informes"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10.5l5 5 5-5M5 20h14"/></svg><span class="bo-nav__label">Informes</span></a></li>
+        </ul>
+      </div>
+    </nav>
+    <button class="bo-sidebar__toggle" type="button" aria-label="Plegar el menú"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
+    <div class="bo-sidebar__user">
+      <span class="c-avatar c-avatar--sm" aria-hidden="true" data-tad-usuario-iniciales></span>
+      <span class="bo-sidebar__user-text"><span class="bo-sidebar__user-name" data-tad-usuario-nombre></span><span class="bo-sidebar__user-role" data-tad-usuario-cargo></span></span>
+    </div>
+  </aside>
+
+  <div class="bo-main">
+    <header class="bo-topbar">
+      <nav class="c-breadcrumb bo-topbar__crumbs" aria-label="Migas de pan" data-breadcrumb></nav>
+      <div class="bo-topbar__search c-input-group"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.4-4.4"/></svg><input class="c-input" type="search" aria-label="Buscar en la plataforma" placeholder="Buscar viajero, reserva o matrícula"></div>
+      <div class="bo-topbar__actions">
+        <select class="c-select bo-topbar__territory" aria-label="Territorio"><option>Comarca de la Sierra Norte</option></select>
+        <div class="c-dropdown">
+          <button class="c-btn c-btn--ghost c-btn--icon bo-bell" type="button" data-dropdown aria-controls="menu-avisos" data-tad-avisos-boton aria-label="Notificaciones"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16v-5a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 0 0 4 0"/></svg><span class="bo-bell__count" aria-hidden="true" data-tad-avisos-n></span></button>
+          <div class="c-dropdown__menu" id="menu-avisos" data-tad-avisos></div>
+        </div>
+        <span class="c-avatar c-avatar--sm" aria-hidden="true" data-tad-usuario-iniciales></span>
+        <a class="c-index-link" href="../index.html"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg> Índice del mockup</a>
+      </div>
+    </header>
+
+    <main class="bo-content" id="contenido">
+      <header class="bo-pagehead">
+        <div>
+          <span class="bo-pagehead__module"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v16h16"/><path d="m7.5 14.5 3.5-4 3 2.5 5-6"/></svg> Business Intelligence</span>
+          <h1 class="bo-pagehead__title">Informes</h1>
+          <p class="bo-pagehead__desc"><span data-tad-fecha="larga"></span> · <span data-tad-hora></span></p>
+        </div>
+        <div class="bo-pagehead__actions"><a class="c-btn c-btn--secondary" href="dashboard.html"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v16h16"/><path d="m7.5 14.5 3.5-4 3 2.5 5-6"/></svg> Dashboard</a>
+<a class="c-btn c-btn--secondary" href="../admin/territorio.html"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg> Informes programados</a></div>
+      </header>
+
+<div class="bo-grid" style="grid-template-columns:minmax(0,1fr) minmax(0,2fr);align-items:start">
+  <section class="c-card bo-sticky" aria-labelledby="t-generador">
+    <div class="c-card__header"><h2 class="c-card__title" id="t-generador"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h9M17 7h3M4 17h3M11 17h9"/><circle cx="15" cy="7" r="2"/><circle cx="9" cy="17" r="2"/></svg> Generador de informes</h2></div>
+    <form class="c-card__body" id="generador" style="display:grid;gap:var(--sp-4)" onsubmit="return false">
+      <fieldset class="c-field" style="border:0;padding:0;margin:0">
+        <legend class="c-field__label">Plantilla</legend>
+        <div style="display:grid;gap:var(--sp-2)" id="g-plantillas"></div>
+      </fieldset>
+      <div class="c-field" style="margin:0">
+        <label class="c-field__label" for="g-periodo">Periodo</label>
+        <select class="c-select" id="g-periodo"></select>
+      </div>
+      <fieldset class="c-field" style="border:0;padding:0;margin:0">
+        <legend class="c-field__label">Destinatarios</legend>
+        <div style="display:grid;gap:var(--sp-2)" id="g-destinatarios"></div>
+      </fieldset>
+      <fieldset class="c-field" style="border:0;padding:0;margin:0">
+        <legend class="c-field__label">Formato</legend>
+        <div style="display:flex;gap:var(--sp-5)">
+          <label class="c-radio"><input type="radio" name="g-formato" value="PDF" checked> PDF</label>
+          <label class="c-radio"><input type="radio" name="g-formato" value="Excel"> Excel</label>
+        </div>
+      </fieldset>
+    </form>
+    <div class="c-card__footer" style="display:grid;gap:var(--sp-2)">
+      <button class="c-btn c-btn--primary c-btn--block" type="button" id="b-generar" data-toast="" data-toast-title="Informe generado"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg> Generar informe</button>
+      <button class="c-btn c-btn--secondary c-btn--block" type="button" data-toast="Recibirás una copia en tu correo para revisarla antes de enviarla." data-toast-title="Copia de prueba enviada"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5.5" width="18" height="13" rx="2"/><path d="m3.5 7 8.5 6 8.5-6"/></svg> Enviarme una copia de prueba</button>
+    </div>
+  </section>
+
+  <section class="c-card" aria-labelledby="t-vista">
+    <div class="c-card__header">
+      <h2 class="c-card__title" id="t-vista"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg> Vista previa</h2>
+      <span id="v-etiquetas"></span>
+    </div>
+    <div class="c-card__body" style="background:var(--color-bg);display:grid;grid-template-columns:minmax(0,1fr);gap:var(--sp-4)" aria-live="polite">
+      <!-- Portada -->
+      <article style="background:var(--color-surface);border:var(--bw) solid var(--color-border);border-radius:var(--r-md);padding:var(--sp-8) var(--sp-8) var(--sp-6)" aria-labelledby="v-titulo">
+        <img src="../assets/logo-tad.svg" alt="Plataforma Digital TAD" style="height:var(--sp-10);width:auto">
+        <p class="u-small u-muted" style="margin:var(--sp-8) 0 var(--sp-1)" id="v-territorio"></p>
+        <h3 style="margin:0;font-size:var(--fs-28)" id="v-titulo"></h3>
+        <p style="margin:var(--sp-2) 0 0;font-size:var(--fs-18)" id="v-periodo"></p>
+        <dl class="c-datalist" style="margin-top:var(--sp-6)" id="v-portada"></dl>
+      </article>
+
+      <!-- Resumen y gráficos -->
+      <article style="background:var(--color-surface);border:var(--bw) solid var(--color-border);border-radius:var(--r-md);padding:var(--sp-6)" aria-labelledby="v-resumen-t">
+        <h3 style="margin:0 0 var(--sp-3)" id="v-resumen-t">1. Resumen</h3>
+        <div class="bo-grid" style="grid-template-columns:repeat(auto-fit,minmax(calc(var(--sp-12) * 2.5),1fr));gap:var(--sp-3)" id="v-kpis"></div>
+        <p style="margin:var(--sp-4) 0 0" id="v-texto"></p>
+        <div style="display:grid;gap:var(--sp-5);margin-top:var(--sp-5)">
+          <div><h4 style="margin:0 0 var(--sp-2)" id="v-graf1-t"></h4><div id="v-graf1"></div></div>
+          <div><h4 style="margin:0 0 var(--sp-2)">Viajeros por municipio</h4><div id="v-graf2"></div></div>
+        </div>
+      </article>
+
+      <!-- Tabla -->
+      <article style="background:var(--color-surface);border:var(--bw) solid var(--color-border);border-radius:var(--r-md);padding:var(--sp-6)" aria-labelledby="v-tabla-t">
+        <h3 style="margin:0 0 var(--sp-3)" id="v-tabla-t">2. Datos por municipio</h3>
+        <div class="c-table-wrap">
+          <table class="c-table" id="v-tabla">
+            <caption class="u-visually-hidden">Viajeros por municipio en el periodo del informe</caption>
+            <thead><tr>
+              <th scope="col">Municipio</th>
+              <th scope="col" class="is-num">Viajeros</th>
+              <th scope="col" class="is-num">% del total</th>
+              <th scope="col" class="is-num">Por 1.000 hab.</th>
+              <th scope="col" class="is-num">CO₂ evitado</th>
+            </tr></thead>
+            <tbody></tbody>
+            <tfoot></tfoot>
+          </table>
+        </div>
+        <p class="u-small u-muted" style="margin:var(--sp-3) 0 0" id="v-pie"></p>
+      </article>
+    </div>
+  </section>
+</div>
+
+<section aria-labelledby="t-generados" style="margin-top:var(--sp-6)">
+  <div class="bo-toolbar">
+    <h2 id="t-generados" style="margin:0">Informes generados</h2>
+    <span class="bo-toolbar__spacer"></span>
+    <div class="c-chip-group" role="group" aria-label="Filtrar por plantilla" data-filter-target="tabla-informes" data-filter-key="plantilla" id="filtro-plantilla"></div>
+  </div>
+  <div class="c-table-wrap">
+    <table class="c-table" data-sortable id="tabla-informes">
+      <caption class="u-visually-hidden">Informes generados</caption>
+      <thead><tr>
+        <th scope="col" class="is-wide">Informe</th>
+        <th scope="col"><button class="c-table__sort" type="button">Plantilla <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button></th>
+        <th scope="col"><button class="c-table__sort" type="button">Fecha <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button></th>
+        <th scope="col">Formato</th>
+        <th scope="col">Destinatarios</th>
+        <th scope="col" class="c-table__actions"><span class="u-visually-hidden">Acciones</span></th>
+      </tr></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</section>
+<script defer src="../js/datos/admin-bi.js"></script>
+    </main>
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var f = TAD.fmt, h = f.html, A = TAD.analitica, ADM = TAD.adminBI;
+  function mayus(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+  function diasMes(ym) { var p = ym.split("-"); return new Date(+p[0], +p[1], 0).getDate(); }
+
+  // ---------- Periodos de cada plantilla ----------
+  // Por días (historial de 30 días) o por meses (serie mensual).
+  var hist = TAD.historial, meses = TAD.mensual;
+  var PERIODOS = {
+    Diario: hist.slice(-7).reverse().map(function (d, i) { return { tipo: "dias", n: 1, saltar: i, texto: mayus(f.fechaLarga(d.fecha)) }; }),
+    Semanal: [0, 7, 14].map(function (s) {
+      var dd = A.serie(7, null, s);
+      return { tipo: "dias", n: 7, saltar: s, texto: "Del " + f.fecha(dd[0].fecha) + " al " + f.fecha(dd[dd.length - 1].fecha) };
+    }),
+    Mensual: [{ tipo: "dias", n: 30, saltar: 0, texto: "Últimos 30 días (" + f.fecha(hist[0].fecha) + " – " + f.fecha(hist[hist.length - 1].fecha) + ")" }]
+      .concat(meses.slice().reverse().map(function (m) { return { tipo: "meses", meses: [m], texto: mayus(f.mes(m.mes)) }; })),
+    Anual: [{ tipo: "meses", meses: meses, texto: "Desde el inicio del servicio (" + f.mes(meses[0].mes) + " – " + f.mes(meses[meses.length - 1].mes) + ")" }],
+    Impacto: [{ tipo: "meses", meses: meses, texto: "Desde el inicio del servicio (" + f.mes(meses[0].mes) + " – " + f.mes(meses[meses.length - 1].mes) + ")" },
+      { tipo: "meses", meses: meses.slice(-3), texto: "Primer trimestre de " + meses[meses.length - 1].mes.slice(0, 4) }]
+  };
+  var DESTINO = { Diario: [3], Semanal: [1], Mensual: [0, 2], Anual: [0, 1], Impacto: [4] };
+
+  // ---------- Generador ----------
+  document.getElementById("g-plantillas").innerHTML = ADM.plantillas.map(function (p) {
+    return '<label class="c-radio"><input type="radio" name="g-plantilla" value="' + p.id + '"' + (p.id === "Mensual" ? " checked" : "") + "> <span><strong>" + p.id +
+      '</strong> <span class="u-small u-muted">· ' + h(p.descripcion) + "</span></span></label>";
+  }).join("");
+  document.getElementById("g-destinatarios").innerHTML = ADM.destinatarios.map(function (d, i) {
+    return '<label class="c-checkbox"><input type="checkbox" value="' + i + '"> ' + h(d) + "</label>";
+  }).join("");
+  var selPeriodo = document.getElementById("g-periodo");
+  function plantilla() { return document.querySelector('input[name="g-plantilla"]:checked').value; }
+  function formato() { return document.querySelector('input[name="g-formato"]:checked').value; }
+  function cambiarPlantilla() {
+    var p = plantilla();
+    selPeriodo.innerHTML = PERIODOS[p].map(function (x, i) { return '<option value="' + i + '">' + h(x.texto) + "</option>"; }).join("");
+    document.querySelectorAll("#g-destinatarios input").forEach(function (c) { c.checked = DESTINO[p].indexOf(+c.value) !== -1; });
+    pintar();
+  }
+
+  // ---------- Datos de un periodo ----------
+  function datos(per) {
+    var d = { municipios: [] };
+    if (per.tipo === "dias") {
+      var k = A.indicadores(per.n, null, per.saltar);
+      d.k = k; d.desde = k.desde; d.hasta = k.hasta;
+      A.porMunicipio(per.n, per.saltar).forEach(function (r) { d.municipios.push({ m: r.municipio, viajeros: r.viajeros, co2: r.co2 }); });
+      if (per.n === 1) {
+        var fr = A.franjas();
+        d.graf1 = { tipo: "barras", titulo: "Ocupación por franja horaria", etiquetas: fr.map(function (x) { return x.franja; }), unidad: " %", max: 100,
+          series: [{ nombre: "Ocupación", valores: fr.map(function (x) { return x.ocupacion; }), color: "--chart-1" }] };
+      } else {
+        var s = A.serie(per.n, null, per.saltar);
+        d.graf1 = { tipo: "linea", titulo: "Viajeros por día", etiquetas: s.map(function (x) { return f.fechaCorta(x.fecha); }),
+          series: [{ nombre: "Viajeros", valores: s.map(function (x) { return x.viajeros; }), color: "--chart-1" }] };
+      }
+    } else {
+      var t = { viajes: 0, viajeros: 0, km: 0, co2: 0, p: 0, o: 0, c: 0 };
+      per.meses.forEach(function (m) {
+        t.viajes += m.viajes; t.viajeros += m.viajeros; t.km += m.km; t.co2 += m.co2;
+        t.p += m.puntualidad * m.viajes; t.o += m.ocupacion * m.viajes; t.c += m.costePorViajero * m.viajeros;
+      });
+      var ult = per.meses[per.meses.length - 1].mes;
+      d.k = { dias: per.meses.reduce(function (a, m) { return a + diasMes(m.mes); }, 0), viajes: t.viajes, viajeros: t.viajeros, km: t.km, co2: t.co2,
+        puntualidad: Math.round(t.p / t.viajes), ocupacion: Math.round(t.o / t.viajes), costePorViajero: Math.round(t.c / t.viajeros * 100) / 100 };
+      d.desde = per.meses[0].mes + "-01"; d.hasta = ult + "-" + diasMes(ult);
+      var vs = A.repartir(t.viajeros), cs = A.repartir(t.co2);
+      TAD.municipios.forEach(function (m) { d.municipios.push({ m: m, viajeros: vs[m.id], co2: cs[m.id] }); });
+      if (plantilla() === "Impacto") {
+        var ac = 0;
+        d.graf1 = { tipo: "area", titulo: "CO₂ evitado acumulado (kg)", etiquetas: per.meses.map(function (m) { return f.mesCorto(m.mes); }),
+          series: [{ nombre: "CO₂ evitado", valores: per.meses.map(function (m) { ac += m.co2; return ac; }), color: "--chart-2" }] };
+      } else {
+        d.graf1 = { tipo: "barras", titulo: "Viajeros por mes", etiquetas: per.meses.map(function (m) { return f.mesCorto(m.mes); }),
+          series: [{ nombre: "Viajeros", valores: per.meses.map(function (m) { return m.viajeros; }), color: "--chart-1" }] };
+      }
+    }
+    return d;
+  }
+
+  // ---------- Vista previa ----------
+  function pintar() {
+    var p = plantilla(), per = PERIODOS[p][+selPeriodo.value || 0], d = datos(per), k = d.k;
+    var dest = Array.prototype.filter.call(document.querySelectorAll("#g-destinatarios input"), function (c) { return c.checked; })
+      .map(function (c) { return ADM.destinatarios[+c.value]; });
+    var titulo = p === "Impacto" ? "Informe de impacto social y ambiental" : "Informe " + p.toLowerCase() + " del servicio";
+    document.getElementById("v-etiquetas").innerHTML = '<span class="c-badge c-badge--neutral">' + formato() + '</span> <span class="c-badge c-badge--info">' + p + "</span>";
+    document.getElementById("v-territorio").textContent = TAD.meta.nombre + " · " + TAD.meta.territorio;
+    document.getElementById("v-titulo").textContent = titulo;
+    document.getElementById("v-periodo").textContent = per.texto;
+    document.getElementById("v-portada").innerHTML = [
+      ["Fecha de emisión", f.fecha(TAD.fecha)],
+      ["Destinatarios", dest.length ? dest.join(", ") : "Sin destinatarios"],
+      ["Formato", formato() === "PDF" ? "PDF · 3 páginas" : "Excel · 3 hojas"]
+    ].map(function (x) { return "<dt>" + x[0] + "</dt><dd>" + h(x[1]) + "</dd>"; }).join("");
+
+    var kpis = [["Viajeros", f.numero(k.viajeros), ""], ["Viajes", f.numero(k.viajes), ""], ["Puntualidad", k.puntualidad, "%"], ["CO₂ evitado", f.numero(k.co2), "kg"]];
+    if (p === "Impacto") kpis = [["CO₂ evitado", f.numero(k.co2), "kg"], ["Km compartidos", f.numero(k.km), ""], ["Viajeros", f.numero(k.viajeros), ""], ["Coste por viajero", f.numero(k.costePorViajero, 2), "€"]];
+    document.getElementById("v-kpis").innerHTML = kpis.map(function (x) {
+      return '<div class="c-kpi"><span class="c-kpi__label">' + x[0] + '</span><span class="c-kpi__value">' + x[1] + (x[2] ? ' <span class="c-kpi__unit">' + x[2] + "</span>" : "") + "</span></div>";
+    }).join("");
+
+    var top = d.municipios.slice().sort(function (a, b) { return b.viajeros / b.m.habitantes - a.viajeros / a.m.habitantes; })[0];
+    var texto = "En el periodo se realizaron " + f.numero(k.viajes) + " viajes con " + f.numero(k.viajeros) + " viajeros" +
+      (k.dias > 1 ? " (" + f.numero(k.viajeros / k.dias, 1) + " al día de media)" : "") + ". La puntualidad fue del " + f.porcentaje(k.puntualidad) +
+      " y la ocupación media del " + f.porcentaje(k.ocupacion) + ". " + top.m.nombre + " es el municipio con más uso por habitante.";
+    if (p === "Impacto") texto = "Al compartir vehículo, el servicio ha evitado " + f.numero(k.co2) + " kg de CO₂ frente a hacer los mismos viajes en coche particular. " +
+      "El coste por viajero ha bajado de " + f.euros(per.meses[0].costePorViajero) + " a " + f.euros(per.meses[per.meses.length - 1].costePorViajero) +
+      " y la satisfacción media es de " + f.numero(TAD.satisfaccion.media, 1) + " sobre " + TAD.satisfaccion.escala + ".";
+    document.getElementById("v-texto").textContent = texto;
+
+    document.getElementById("v-graf1-t").textContent = d.graf1.titulo;
+    var op1 = { titulo: d.graf1.titulo, etiquetas: d.graf1.etiquetas, series: d.graf1.series, unidad: d.graf1.unidad, max: d.graf1.max, alto: 220, maxEtiquetas: 8 };
+    TADGrafico[d.graf1.tipo]("#v-graf1", op1);
+    TADGrafico.barras("#v-graf2", {
+      titulo: "Viajeros por municipio", alto: 220, valores: true,
+      etiquetas: d.municipios.map(function (x) { return TAD.nucleo(x.m.id).nombre; }),
+      series: [{ nombre: "Viajeros", valores: d.municipios.map(function (x) { return x.viajeros; }), color: "--chart-5" }]
+    });
+
+    document.querySelector("#v-tabla tbody").innerHTML = d.municipios.map(function (x) {
+      return "<tr><td>" + h(x.m.nombre) + '</td><td class="is-num">' + f.numero(x.viajeros) + '</td><td class="is-num">' + f.porcentaje(100 * x.viajeros / k.viajeros, 1) +
+        '</td><td class="is-num">' + f.numero(1000 * x.viajeros / x.m.habitantes, 0) + '</td><td class="is-num">' + f.numero(x.co2) + " kg</td></tr>";
+    }).join("");
+    var hab = TAD.municipios.reduce(function (a, m) { return a + m.habitantes; }, 0);
+    document.querySelector("#v-tabla tfoot").innerHTML = '<tr><th scope="row">Comarca</th><td class="is-num"><strong>' + f.numero(k.viajeros) +
+      '</strong></td><td class="is-num"><strong>100 %</strong></td><td class="is-num"><strong>' + f.numero(1000 * k.viajeros / hab, 0) +
+      '</strong></td><td class="is-num"><strong>' + f.numero(k.co2) + " kg</strong></td></tr>";
+    document.getElementById("v-pie").textContent = "Periodo: " + f.fecha(d.desde) + " – " + f.fecha(d.hasta) +
+      ". Reparto por municipio según el origen de los viajes. Datos ficticios de la maqueta.";
+
+    document.getElementById("b-generar").setAttribute("data-toast", "«" + titulo + "» (" + formato() + ") se ha generado" +
+      (dest.length ? " y se enviará a: " + dest.join(", ") + "." : ". No has elegido destinatarios: queda guardado en la lista."));
+  }
+
+  document.getElementById("generador").addEventListener("change", function (e) {
+    if (e.target.name === "g-plantilla") cambiarPlantilla(); else pintar();
+  });
+
+  // ---------- Informes generados ----------
+  var lista = TAD.informes.slice().sort(function (a, b) { return b.fecha.localeCompare(a.fecha); });
+  var usadas = ADM.plantillas.map(function (p) { return p.id; }).filter(function (id) { return lista.some(function (i) { return i.plantilla === id; }); });
+  document.getElementById("filtro-plantilla").innerHTML = '<button class="c-chip" type="button" data-filter="" aria-pressed="true">Todas</button>' +
+    usadas.map(function (id) { return '<button class="c-chip" type="button" data-filter="' + id + '" aria-pressed="false">' + id + "</button>"; }).join("");
+  document.querySelector("#tabla-informes tbody").innerHTML = lista.map(function (i) {
+    return '<tr data-plantilla="' + i.plantilla + '"><td><strong>' + h(i.nombre) + "</strong></td>" +
+      '<td><span class="c-badge c-badge--info">' + i.plantilla + "</span></td>" +
+      '<td class="is-nowrap" data-value="' + i.fecha.replace(/-/g, "") + '">' + f.fecha(i.fecha) + "</td>" +
+      '<td><span class="c-badge c-badge--neutral">' + i.formato + "</span></td><td>" + h(i.destinatarios) + "</td>" +
+      '<td class="c-table__actions" style="white-space:nowrap"><button class="c-btn c-btn--ghost c-btn--sm" type="button" data-ver="' + i.plantilla + '">Ver</button> ' +
+      '<button class="c-btn c-btn--ghost c-btn--sm" type="button" data-toast="Descargando «' + h(i.nombre) + '» (' + i.formato + ')." data-toast-title="Descarga iniciada" aria-label="Descargar ' + h(i.nombre) + '"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10.5l5 5 5-5M5 20h14"/></svg></button></td></tr>';
+  }).join("");
+  document.querySelector("#tabla-informes tbody").addEventListener("click", function (e) {
+    var b = e.target.closest("[data-ver]");
+    if (!b) return;
+    var r = document.querySelector('input[name="g-plantilla"][value="' + b.getAttribute("data-ver") + '"]');
+    r.checked = true;
+    cambiarPlantilla();
+    document.getElementById("t-vista").scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+
+  cambiarPlantilla();
+});
+</script>
+</body>
+</html>
