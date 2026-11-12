@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Plataforma Digital TAD · Transporte a demanda</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/layout-public.css">
+<script defer src="js/data.js"></script>
+<script defer src="js/ui.js"></script>
+<style>
+  /* Solo maquetación de la landing: sin colores propios */
+  .ld-hero { background: var(--color-surface); border-bottom: var(--bw) solid var(--color-border); }
+  .ld-hero__inner { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); align-items: center; gap: var(--sp-10); padding-top: var(--sp-12); padding-bottom: var(--sp-12); }
+  .ld-hero h1 { font-size: 3rem; line-height: 1.1; color: var(--tad-blue-900); margin-bottom: var(--sp-4); }
+  .ld-hero .pub-lead { margin-bottom: var(--sp-6); }
+  .ld-acciones { display: flex; flex-wrap: wrap; gap: var(--sp-3); }
+  .ld-ilustracion { width: 100%; height: auto; border-radius: var(--r-lg); }
+  .ld-section { padding: var(--sp-12) 0; }
+  .ld-section--alt { background: var(--surface-alt); }
+  .ld-section h2 { font-size: var(--fs-28); color: var(--tad-blue-900); }
+  .ld-intro { max-width: 60ch; color: var(--color-text-muted); margin-bottom: var(--sp-8); }
+  .ld-publicos { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--sp-4); }
+  .ld-publico { display: flex; gap: var(--sp-4); padding: var(--sp-5); }
+  .ld-icono { display: inline-flex; flex: none; align-items: center; justify-content: center; width: var(--control-h-lg); height: var(--control-h-lg); border-radius: var(--r-md); background: var(--tad-blue-100); color: var(--tad-blue-800); }
+  .ld-icono--verde { background: var(--tad-green-100); color: var(--tad-green-800); }
+  .ld-publico h3, .ld-paso h3 { margin: 0 0 var(--sp-1); font-size: var(--fs-16); }
+  .ld-publico p, .ld-paso p { margin: 0; color: var(--color-text-muted); font-size: var(--fs-14); }
+  .ld-pasos { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--sp-5); margin: 0; padding: 0; list-style: none; counter-reset: paso; }
+  .ld-paso { counter-increment: paso; padding: var(--sp-5); }
+  .ld-paso::before { content: counter(paso); display: inline-flex; align-items: center; justify-content: center; width: var(--control-h); height: var(--control-h); margin-bottom: var(--sp-3); border-radius: 50%; background: var(--color-primary); color: var(--surface); font-weight: var(--fw-bold); }
+  .ld-cifras { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--sp-4); }
+  .ld-cifras .c-kpi__value { font-size: var(--fs-36); color: var(--tad-blue-900); }
+  .ld-admin { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: var(--sp-8); align-items: center; padding: var(--sp-8); background: var(--tad-blue-900); border-radius: var(--r-lg); color: var(--surface); --focus-color: var(--focus-color-on-dark); }
+  .ld-admin h2 { color: var(--surface); }
+  .ld-admin p { color: var(--ink-100); }
+  .ld-admin ul { margin: 0; padding: 0; list-style: none; display: grid; gap: var(--sp-2); color: var(--ink-100); }
+  .ld-admin li { display: flex; gap: var(--sp-2); align-items: flex-start; }
+  .ld-admin .c-btn--secondary { background: var(--surface); }
+  @media (max-width: 960px) {
+    .ld-hero__inner, .ld-admin { grid-template-columns: minmax(0, 1fr); }
+    .ld-publicos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .ld-pasos, .ld-cifras { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 600px) {
+    .ld-hero h1 { font-size: var(--fs-36); }
+    .ld-publicos, .ld-pasos, .ld-cifras { grid-template-columns: minmax(0, 1fr); }
+    .ld-section { padding: var(--sp-10) 0; }
+  }
+</style>
+</head>
+<body class="pub-body" data-module="viajero" data-page="landing">
+<a class="c-skip-link" href="#contenido">Saltar al contenido</a>
+<div class="pub-mockbar"><a class="c-index-link" href="index.html"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg> Índice del mockup</a></div>
+<header class="pub-header">
+  <div class="pub-wrap pub-header__inner">
+    <a class="pub-header__brand" href="landing.html" aria-label="Plataforma Digital TAD, inicio"><svg class="pub-header__logo" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 40"><g style="fill:var(--logo-route);stroke:var(--logo-route)"><path d="M4 34.5h32" fill="none" stroke-width="2.6" stroke-linecap="round"/><circle cx="4.5" cy="34.5" r="3.2"/><circle cx="35.5" cy="34.5" r="3.2"/></g><g fill="currentColor"><path fill-rule="evenodd" d="M6 10.5a2.5 2.5 0 0 1 2.5-2.5H24l8 8v7.5a1.5 1.5 0 0 1-1.5 1.5H7.5A1.5 1.5 0 0 1 6 23.5zM9 11h7v5H9zM18.5 11h4.3l5 5h-9.3z"/><circle cx="12" cy="25.5" r="3.6"/><circle cx="26" cy="25.5" r="3.6"/></g><circle cx="12" cy="25.5" r="1.4" style="fill:var(--logo-bg)"/><circle cx="26" cy="25.5" r="1.4" style="fill:var(--logo-bg)"/><g fill="currentColor"><g transform="translate(50 9)"><path d="M0 0h17v5h-6v17H6V5H0z"/></g><g transform="translate(70 9)"><path fill-rule="evenodd" d="M7 0h5.4l7.3 22h-5.3l-1.3-4.2H6.3L5 22H-.3zM9.7 6.6 7.6 13.4h4.3z"/></g><g transform="translate(93 9)"><path fill-rule="evenodd" d="M0 0h7.5a11 11 0 0 1 0 22H0zM5 5v12h2.3a6 6 0 0 0 0-12z"/></g></g><path d="M121 6v28" style="stroke:var(--logo-route)" stroke-width="2" stroke-linecap="round"/><text x="131" y="18" fill="currentColor" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="600" letter-spacing=".3">Plataforma Digital</text><text x="131" y="33" fill="currentColor" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="400">Personas que nos mueven</text></svg></a>
+    <nav class="pub-nav" aria-label="Menú principal">
+      <ul class="pub-nav__list">
+        <li><a class="pub-nav__link" href="landing.html" aria-current="page">Inicio</a></li>
+        <li><a class="pub-nav__link" href="#como-funciona">Cómo funciona</a></li>
+        <li><a class="pub-nav__link" href="#administraciones">Para administraciones</a></li>
+        <li><a class="pub-nav__link" href="viajero/home.html#ayuda">Ayuda</a></li>
+      </ul>
+    </nav>
+    <a class="c-btn c-btn--secondary pub-header__account" href="login.html"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0"/></svg> Acceder</a>
+  </div>
+</header>
+
+<main id="contenido">
+  <section class="ld-hero" aria-labelledby="t-hero">
+    <div class="pub-wrap ld-hero__inner">
+      <div>
+        <span class="c-badge c-badge--success c-badge--plain" style="margin-bottom:var(--sp-4)">Servicio público de transporte · Comarca de la Sierra Norte</span>
+        <h1 id="t-hero">Personas que nos mueven</h1>
+        <p class="pub-lead">Transporte a demanda para que ningún pueblo se quede atrás. Reserva por teléfono, por WhatsApp o desde la app, y un vehículo adaptado te recoge cerca de casa.</p>
+        <div class="ld-acciones">
+          <a class="c-btn c-btn--primary c-btn--lg" href="login.html"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg> Reservar un viaje</a>
+          <a class="c-btn c-btn--secondary c-btn--lg" href="#como-funciona">Cómo funciona</a>
+        </div>
+      </div>
+      <svg class="ld-ilustracion" viewBox="0 0 560 380" role="img" aria-label="Ilustración: una furgoneta adaptada recorre una carretera entre pueblos de montaña">
+        <rect width="560" height="380" style="fill:var(--tad-blue-100)"/>
+        <circle cx="440" cy="86" r="34" style="fill:var(--tad-yellow-100)"/>
+        <path d="M0 230 L90 140 L160 200 L250 110 L360 210 L450 150 L560 230 V380 H0Z" style="fill:var(--tad-green-100)"/>
+        <path d="M0 270 C120 230 220 250 300 270 S470 300 560 260 V380 H0Z" style="fill:var(--tad-green-700);fill-opacity:.35"/>
+        <path d="M-10 360 C120 320 240 300 330 300 S500 290 570 250" style="fill:none;stroke:var(--ink-700);stroke-width:34;stroke-linecap:round"/>
+        <path d="M-10 360 C120 320 240 300 330 300 S500 290 570 250" style="fill:none;stroke:var(--surface);stroke-width:3;stroke-dasharray:16 14"/>
+        <g style="fill:var(--surface);stroke:var(--tad-blue-900);stroke-width:3">
+          <rect x="70" y="196" width="46" height="36" rx="3"/><path d="M64 198 L93 174 L122 198Z"/>
+          <rect x="128" y="206" width="38" height="28" rx="3"/><path d="M123 208 L147 188 L171 208Z"/>
+          <rect x="420" y="190" width="44" height="34" rx="3"/><path d="M414 192 L442 168 L470 192Z"/>
+          <rect x="474" y="178" width="20" height="46"/><path d="M470 180 L484 160 L498 180Z"/>
+        </g>
+        <g transform="translate(232 238)">
+          <path d="M0 40 V12 a8 8 0 0 1 8 -8 H70 l26 22 h8 a6 6 0 0 1 6 6 V40 a4 4 0 0 1 -4 4 H4 a4 4 0 0 1 -4 -4z" style="fill:var(--tad-blue-700)"/>
+          <path d="M70 8 l20 17 H70z" style="fill:var(--tad-blue-100)"/>
+          <rect x="10" y="10" width="20" height="14" rx="2" style="fill:var(--tad-blue-100)"/><rect x="36" y="10" width="24" height="14" rx="2" style="fill:var(--tad-blue-100)"/>
+          <circle cx="24" cy="46" r="9" style="fill:var(--ink-900)"/><circle cx="86" cy="46" r="9" style="fill:var(--ink-900)"/>
+          <circle cx="24" cy="46" r="3" style="fill:var(--surface)"/><circle cx="86" cy="46" r="3" style="fill:var(--surface)"/>
+        </g>
+        <g style="fill:var(--tad-green-700)"><circle cx="150" cy="316" r="9"/><circle cx="430" cy="276" r="9"/></g>
+      </svg>
+    </div>
+  </section>
+
+  <section class="ld-section" aria-labelledby="t-publicos">
+    <div class="pub-wrap">
+      <h2 id="t-publicos">Un servicio pensado para toda la comarca</h2>
+      <p class="ld-intro">Conecta los pueblos pequeños con los servicios que hay en la cabecera comarcal, con horarios que se adaptan a quien viaja.</p>
+      <div class="ld-publicos">
+        <div class="c-card ld-publico"><span class="ld-icono" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6.5 9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20z"/><path d="M9 4v13.5M15 6.5V20"/></svg></span><div><h3>Áreas rurales</h3><p>Pueblos y núcleos sin línea regular de autobús.</p></div></div>
+        <div class="c-card ld-publico"><span class="ld-icono" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="18" r="2.25"/><circle cx="18" cy="6" r="2.25"/><path d="M8.25 18H15a3 3 0 0 0 0-6H9a3 3 0 0 1 0-6h6.75"/></svg></span><div><h3>Movilidad municipal</h3><p>Gestiones en el ayuntamiento, el mercado y los comercios.</p></div></div>
+        <div class="c-card ld-publico"><span class="ld-icono" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></span><div><h3>Transporte social y sanitario</h3><p>Citas en el centro de salud y el centro de día.</p></div></div>
+        <div class="c-card ld-publico"><span class="ld-icono" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg></span><div><h3>Estudiantes</h3><p>Ida y vuelta al instituto, con bonificación del 40 %.</p></div></div>
+        <div class="c-card ld-publico"><span class="ld-icono" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="4.5" r="1.75"/><path d="m5 8.5 7 1.5 7-1.5M12 10v4.5l-3.5 6M12 14.5l3.5 6"/></svg></span><div><h3>Mayores y PMR</h3><p>Vehículos con rampa o elevador y ayuda para subir.</p></div></div>
+        <div class="c-card ld-publico"><span class="ld-icono" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 17H9.5M5 17H3.5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1H15l4.5 4.5H20a1.5 1.5 0 0 1 1.5 1.5v4a1 1 0 0 1-1 1H19"/><path d="M15 6v4.5h4.5M2.5 11H15"/><circle cx="7" cy="17.5" r="2"/><circle cx="17" cy="17.5" r="2"/></svg></span><div><h3>Conexión rural-urbano</h3><p>Enlace con la estación de autobuses hacia la ciudad.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ld-section ld-section--alt" id="como-funciona" aria-labelledby="t-como">
+    <div class="pub-wrap">
+      <h2 id="t-como">Cómo funciona</h2>
+      <p class="ld-intro">No hay que conocer horarios ni líneas: dices dónde y cuándo, y el sistema agrupa los viajes de los vecinos en rutas compartidas.</p>
+      <ol class="ld-pasos">
+        <li class="c-card ld-paso"><h3>Reserva</h3><p>Por teléfono, WhatsApp, la web o la app, hasta una hora antes.</p></li>
+        <li class="c-card ld-paso"><h3>Confirmación</h3><p>Recibes un SMS con la hora y la parada de recogida.</p></li>
+        <li class="c-card ld-paso"><h3>Recogida</h3><p>Sigue el vehículo en el mapa y te avisamos si hay retrasos.</p></li>
+        <li class="c-card ld-paso"><h3>Llegada</h3><p>Pagas con tarjeta, Bizum o a bordo, con tu bonificación aplicada.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="ld-section" aria-labelledby="t-cifras">
+    <div class="pub-wrap">
+      <h2 id="t-cifras">Resultados del servicio</h2>
+      <p class="ld-intro" id="cifras-periodo"></p>
+      <div class="ld-cifras" id="cifras"></div>
+    </div>
+  </section>
+
+  <section class="ld-section ld-section--alt" id="administraciones" aria-labelledby="t-admin">
+    <div class="pub-wrap">
+      <div class="ld-admin">
+        <div>
+          <h2 id="t-admin">Para administraciones</h2>
+          <p>Una plataforma para planificar, operar y evaluar el transporte a demanda de varios municipios a la vez.</p>
+          <ul>
+            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg> Centro de control con los vehículos en tiempo real.</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg> Planificación automática de rutas con criterios de IA responsable.</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg> Cuadro de mando, informes periódicos y liquidación por municipio.</li>
+          </ul>
+        </div>
+        <div class="ld-acciones">
+          <a class="c-btn c-btn--secondary c-btn--lg" href="login.html"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0"/></svg> Acceso para administraciones</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="pub-footer">
+  <div class="pub-wrap">
+    <div class="pub-footer__inner">
+      <div class="pub-footer__brand"><svg role="img" aria-label="Plataforma Digital TAD" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 40"><g style="fill:var(--logo-route);stroke:var(--logo-route)"><path d="M4 34.5h32" fill="none" stroke-width="2.6" stroke-linecap="round"/><circle cx="4.5" cy="34.5" r="3.2"/><circle cx="35.5" cy="34.5" r="3.2"/></g><g fill="currentColor"><path fill-rule="evenodd" d="M6 10.5a2.5 2.5 0 0 1 2.5-2.5H24l8 8v7.5a1.5 1.5 0 0 1-1.5 1.5H7.5A1.5 1.5 0 0 1 6 23.5zM9 11h7v5H9zM18.5 11h4.3l5 5h-9.3z"/><circle cx="12" cy="25.5" r="3.6"/><circle cx="26" cy="25.5" r="3.6"/></g><circle cx="12" cy="25.5" r="1.4" style="fill:var(--logo-bg)"/><circle cx="26" cy="25.5" r="1.4" style="fill:var(--logo-bg)"/><g fill="currentColor"><g transform="translate(50 9)"><path d="M0 0h17v5h-6v17H6V5H0z"/></g><g transform="translate(70 9)"><path fill-rule="evenodd" d="M7 0h5.4l7.3 22h-5.3l-1.3-4.2H6.3L5 22H-.3zM9.7 6.6 7.6 13.4h4.3z"/></g><g transform="translate(93 9)"><path fill-rule="evenodd" d="M0 0h7.5a11 11 0 0 1 0 22H0zM5 5v12h2.3a6 6 0 0 0 0-12z"/></g></g><path d="M121 6v28" style="stroke:var(--logo-route)" stroke-width="2" stroke-linecap="round"/><text x="131" y="18" fill="currentColor" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="600" letter-spacing=".3">Plataforma Digital</text><text x="131" y="33" fill="currentColor" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="400">Personas que nos mueven</text></svg><p class="pub-footer__claim">Transporte a demanda para que ningún pueblo se quede atrás.</p></div>
+      <div class="pub-seals">
+        <div class="pub-seal">
+          <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 14 18 6l14 8M6 14h24M8 14v13M14 14v13M22 14v13M28 14v13M5 27h26M3 31h30"/></svg>
+          <span class="pub-seal__text"><span class="pub-seal__small">Con la colaboración del</span><span class="pub-seal__name">Ayuntamiento</span></span>
+        </div>
+        <div class="pub-seal">
+          <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="5" width="24" height="22" rx="4"/><path d="M6 17h24M10 11h16"/><circle cx="12" cy="22" r="1.5"/><circle cx="24" cy="22" r="1.5"/><path d="M10 27v3M26 27v3"/></svg>
+          <span class="pub-seal__text"><span class="pub-seal__small">Servicio integrado en el</span><span class="pub-seal__name">Consorcio de Transportes</span></span>
+        </div>
+        <div class="pub-seal">
+          <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="8" width="28" height="20" rx="2"/><path d="M12 18h12M18 12v12"/></svg>
+          <span class="pub-seal__text"><span class="pub-seal__small">Proyecto</span><span class="pub-seal__name">Cofinanciado por la Unión Europea</span></span>
+        </div>
+      </div>
+    </div>
+    <div class="pub-footer__legal">
+      <span>Plataforma Digital TAD · Maqueta de demostración con datos ficticios</span>
+      <ul class="pub-footer__links"><li><a href="#contenido">Aviso legal</a></li><li><a href="#contenido">Privacidad</a></li><li><a href="#contenido">Accesibilidad</a></li></ul>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var f = TAD.fmt;
+  var mes = TAD.mensual[TAD.mensual.length - 1];
+  var s = TAD.satisfaccion;
+  document.getElementById("cifras-periodo").textContent = "Datos de " + f.mes(mes.mes) + ", el último mes cerrado.";
+  var cifras = [
+    [f.numero(mes.viajes), "viajes al mes", f.numero(mes.viajeros) + " viajeros"],
+    [String(TAD.municipios.length), "municipios conectados", TAD.nucleos.length + " núcleos y " + TAD.paradas.length + " paradas"],
+    [f.numero(s.media, 1) + " / " + s.escala, "satisfacción", s.respuestas + " encuestas respondidas"],
+    [f.numero(mes.co2) + " kg", "de CO₂ evitados", "frente al coche particular"]
+  ];
+  document.getElementById("cifras").innerHTML = cifras.map(function (c) {
+    return '<div class="c-kpi"><span class="c-kpi__value">' + c[0] + '</span><span class="c-kpi__label">' + c[1] + '</span><span class="c-kpi__delta c-kpi__delta--flat">' + c[2] + "</span></div>";
+  }).join("");
+});
+</script>
+</body>
+</html>
