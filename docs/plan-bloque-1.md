@@ -71,7 +71,7 @@ Solución (sin cambiar cómo se ve la paleta; se **agregan** tonos, no se reempl
 - Tipografía: `--font-sans`; escala `--fs-12 … --fs-36` (12/14/16/18/22/28/36); pesos; interlineados 1.5 y 1.2.
 - Espaciado `--sp-1` (4 px) … `--sp-8` (32 px), `--sp-10`, `--sp-12`. Radios `--r-sm/md/lg/pill`. Sombras `--shadow-1` y `--shadow-2`, nada más.
 - Medidas de armazón: `--sidebar-w: 256px`, `--sidebar-w-collapsed: 72px`, `--topbar-h: 64px`, `--phone-w: 390px`, `--phone-h: 844px`.
-- Acento por módulo con `body[data-module="…"]` que fija `--accent` y `--on-accent`. Valores de `data-module`: `viajero`, `motor`, `control`, `conductor`, `crm`, `flota`, `economica`, `admin`, `bi`. («IA responsable» queda fuera por ahora: pendiente de decisión.)
+- Acento por módulo con `body[data-module="…"]` que fija `--accent` y `--on-accent`. Valores de `data-module`: `viajero`, `motor`, `control`, `conductor`, `crm`, `flota`, `economica`, `admin`, `bi`. («IA responsable» queda fuera: no es un módulo con pantalla propia.)
 
 ## `components.css`
 

@@ -23,7 +23,7 @@ Es la más importante: fija el armazón que copian las otras doce.
    - Económica: Tarifas (`economica/tarifas.html`), Facturación (`economica/facturacion.html`)
    - Administración: Cuadro de mando (`admin/cuadro-mando.html`), Territorio (`admin/territorio.html`)
    - Análisis: Dashboard (`bi/dashboard.html`), Informes (`bi/informes.html`)
-   - «IA responsable» no va en el menú salvo que Matías diga lo contrario (ver `CLAUDE.md`).
+   - «IA responsable» **no va en el menú** (decidido por Matías, ver `CLAUDE.md`).
    - Usuario del pie del menú: una operadora ficticia (por ejemplo «Marta Iglesias · Operadora»), agregada a `data.js`.
 2. Guardar el armazón vacío como `tad-mockup/control/_plantilla.html` para que las siguientes sesiones lo copien. (Se borra en el bloque 7.)
 3. `control/mapa.html`: mapa al 65 % con 5 vehículos, 4 rutas, 18 paradas y la zona de obras; panel derecho con los 4 indicadores (4 · 23 · 94 % · 61 %), lista de vehículos y filtros; reloj «14/04/2026 09:40». Al pulsar un vehículo en la lista, el mapa lo centra.

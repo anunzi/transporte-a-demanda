@@ -67,6 +67,5 @@ Las de marca, publicación, mapa, vehículo 9951 KZD y Cl@ve están en `CLAUDE.m
 
 ## Pendiente de Matías
 
-- **«IA responsable»**: ¿va en el menú lateral? Hay que decidirlo antes de la sesión 3a, que es donde se arma el menú. Por defecto, no va.
 - **Logo de Cl@ve**: para el bloque 6 hace falta el archivo del logo, o el OK para redibujarlo.
 - **OK de publicación**: en el bloque 7.
