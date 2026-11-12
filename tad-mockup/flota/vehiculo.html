@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Ficha de vehículo · Plataforma Digital TAD</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/layout-backoffice.css">
+<script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script defer src="../js/data.js"></script>
+<script defer src="../js/ui.js"></script>
+<script defer src="../js/nav.js"></script>
+<script defer src="../js/maps.js"></script>
+<script defer src="../js/charts.js"></script>
+</head>
+<body class="bo-body" data-module="flota" data-page="flota-vehiculo">
+<a class="c-skip-link" href="#contenido">Saltar al contenido</a>
+<div class="bo">
+  <aside class="bo-sidebar" aria-label="Menú principal">
+    <a class="bo-sidebar__brand" href="../control/mapa.html" aria-label="Plataforma Digital TAD, centro de control"><svg class="bo-sidebar__logo bo-sidebar__logo--full" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 40"><g style="fill:var(--logo-route);stroke:var(--logo-route)"><path d="M4 34.5h32" fill="none" stroke-width="2.6" stroke-linecap="round"/><circle cx="4.5" cy="34.5" r="3.2"/><circle cx="35.5" cy="34.5" r="3.2"/></g><g fill="currentColor"><path fill-rule="evenodd" d="M6 10.5a2.5 2.5 0 0 1 2.5-2.5H24l8 8v7.5a1.5 1.5 0 0 1-1.5 1.5H7.5A1.5 1.5 0 0 1 6 23.5zM9 11h7v5H9zM18.5 11h4.3l5 5h-9.3z"/><circle cx="12" cy="25.5" r="3.6"/><circle cx="26" cy="25.5" r="3.6"/></g><circle cx="12" cy="25.5" r="1.4" style="fill:var(--logo-bg)"/><circle cx="26" cy="25.5" r="1.4" style="fill:var(--logo-bg)"/><g fill="currentColor"><g transform="translate(50 9)"><path d="M0 0h17v5h-6v17H6V5H0z"/></g><g transform="translate(70 9)"><path fill-rule="evenodd" d="M7 0h5.4l7.3 22h-5.3l-1.3-4.2H6.3L5 22H-.3zM9.7 6.6 7.6 13.4h4.3z"/></g><g transform="translate(93 9)"><path fill-rule="evenodd" d="M0 0h7.5a11 11 0 0 1 0 22H0zM5 5v12h2.3a6 6 0 0 0 0-12z"/></g></g><path d="M121 6v28" style="stroke:var(--logo-route)" stroke-width="2" stroke-linecap="round"/><text x="131" y="18" fill="currentColor" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="600" letter-spacing=".3">Plataforma Digital</text><text x="131" y="33" fill="currentColor" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="400">Personas que nos mueven</text></svg><svg class="bo-sidebar__logo bo-sidebar__logo--compact" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 113 40"><g style="fill:var(--logo-route);stroke:var(--logo-route)"><path d="M4 34.5h32" fill="none" stroke-width="2.6" stroke-linecap="round"/><circle cx="4.5" cy="34.5" r="3.2"/><circle cx="35.5" cy="34.5" r="3.2"/></g><g fill="currentColor"><path fill-rule="evenodd" d="M6 10.5a2.5 2.5 0 0 1 2.5-2.5H24l8 8v7.5a1.5 1.5 0 0 1-1.5 1.5H7.5A1.5 1.5 0 0 1 6 23.5zM9 11h7v5H9zM18.5 11h4.3l5 5h-9.3z"/><circle cx="12" cy="25.5" r="3.6"/><circle cx="26" cy="25.5" r="3.6"/></g><circle cx="12" cy="25.5" r="1.4" style="fill:var(--logo-bg)"/><circle cx="26" cy="25.5" r="1.4" style="fill:var(--logo-bg)"/><g fill="currentColor"><g transform="translate(50 9)"><path d="M0 0h17v5h-6v17H6V5H0z"/></g><g transform="translate(70 9)"><path fill-rule="evenodd" d="M7 0h5.4l7.3 22h-5.3l-1.3-4.2H6.3L5 22H-.3zM9.7 6.6 7.6 13.4h4.3z"/></g><g transform="translate(93 9)"><path fill-rule="evenodd" d="M0 0h7.5a11 11 0 0 1 0 22H0zM5 5v12h2.3a6 6 0 0 0 0-12z"/></g></g></svg></a>
+    <nav class="bo-nav" aria-label="Módulos">
+      <div class="bo-nav__group">
+        <p class="bo-nav__title">Operación</p>
+        <ul class="bo-nav__list">
+          <li><a class="bo-nav__link" href="../control/mapa.html" data-page="control-mapa"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6.5 9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20z"/><path d="M9 4v13.5M15 6.5V20"/></svg><span class="bo-nav__label">Centro de control</span></a></li>
+          <li><a class="bo-nav__link" href="../control/incidencias.html" data-page="control-incidencias"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9.8 4h4.4l4 15H5.8z"/><path d="M8 11h8M6.9 15.2h10.2M3.5 19.5h17"/></svg><span class="bo-nav__label">Incidencias</span></a></li>
+        </ul>
+      </div>
+      <div class="bo-nav__group">
+        <p class="bo-nav__title">Planificación</p>
+        <ul class="bo-nav__list">
+          <li><a class="bo-nav__link" href="../motor/rutas.html" data-page="motor-rutas"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="18" r="2.25"/><circle cx="18" cy="6" r="2.25"/><path d="M8.25 18H15a3 3 0 0 0 0-6H9a3 3 0 0 1 0-6h6.75"/></svg><span class="bo-nav__label">Rutas del día</span></a></li>
+          <li><a class="bo-nav__link" href="../motor/reglas.html" data-page="motor-reglas"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h9M17 7h3M4 17h3M11 17h9"/><circle cx="15" cy="7" r="2"/><circle cx="9" cy="17" r="2"/></svg><span class="bo-nav__label">Reglas operativas</span></a></li>
+        </ul>
+      </div>
+      <div class="bo-nav__group">
+        <p class="bo-nav__title">Atención ciudadana</p>
+        <ul class="bo-nav__list">
+          <li><a class="bo-nav__link" href="../crm/bandeja.html" data-page="crm-bandeja"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H9.5L4 20z"/><path d="M8 9.5h8M8 12.5h5"/></svg><span class="bo-nav__label">Bandeja</span></a></li>
+          <li><a class="bo-nav__link" href="../crm/usuario.html" data-page="crm-usuario"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0"/></svg><span class="bo-nav__label">Ficha de usuario</span></a></li>
+        </ul>
+      </div>
+      <div class="bo-nav__group">
+        <p class="bo-nav__title">Flota</p>
+        <ul class="bo-nav__list">
+          <li><a class="bo-nav__link" href="../flota/vehiculos.html" data-page="flota-vehiculos"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 17H9.5M5 17H3.5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1H15l4.5 4.5H20a1.5 1.5 0 0 1 1.5 1.5v4a1 1 0 0 1-1 1H19"/><path d="M15 6v4.5h4.5M2.5 11H15"/><circle cx="7" cy="17.5" r="2"/><circle cx="17" cy="17.5" r="2"/></svg><span class="bo-nav__label">Vehículos</span></a></li>
+          <li><a class="bo-nav__link" href="../flota/vehiculo.html" data-page="flota-vehiculo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2"/><path d="M3.3 10.5 10 12M20.7 10.5 14 12M12 14v7"/></svg><span class="bo-nav__label">Ficha de vehículo</span></a></li>
+        </ul>
+      </div>
+      <div class="bo-nav__group">
+        <p class="bo-nav__title">Económica</p>
+        <ul class="bo-nav__list">
+          <li><a class="bo-nav__link" href="../economica/tarifas.html" data-page="economica-tarifas"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 6.8a7 7 0 1 0 0 10.4"/><path d="M4 10h9M4 14h9"/></svg><span class="bo-nav__label">Tarifas</span></a></li>
+          <li><a class="bo-nav__link" href="../economica/facturacion.html" data-page="economica-facturacion"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg><span class="bo-nav__label">Facturación</span></a></li>
+        </ul>
+      </div>
+      <div class="bo-nav__group">
+        <p class="bo-nav__title">Administración</p>
+        <ul class="bo-nav__list">
+          <li><a class="bo-nav__link" href="../admin/cuadro-mando.html" data-page="admin-cuadro-mando"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.5V20h5v-6h3v6h5V9.5"/></svg><span class="bo-nav__label">Cuadro de mando</span></a></li>
+          <li><a class="bo-nav__link" href="../admin/territorio.html" data-page="admin-territorio"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6.5-5.8-6.5-11a6.5 6.5 0 0 1 13 0c0 5.2-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.5"/></svg><span class="bo-nav__label">Territorio</span></a></li>
+        </ul>
+      </div>
+      <div class="bo-nav__group">
+        <p class="bo-nav__title">Análisis</p>
+        <ul class="bo-nav__list">
+          <li><a class="bo-nav__link" href="../bi/dashboard.html" data-page="bi-dashboard"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v16h16"/><path d="m7.5 14.5 3.5-4 3 2.5 5-6"/></svg><span class="bo-nav__label">Dashboard</span></a></li>
+          <li><a class="bo-nav__link" href="../bi/informes.html" data-page="bi-informes"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10.5l5 5 5-5M5 20h14"/></svg><span class="bo-nav__label">Informes</span></a></li>
+        </ul>
+      </div>
+    </nav>
+    <button class="bo-sidebar__toggle" type="button" aria-label="Plegar el menú"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
+    <div class="bo-sidebar__user">
+      <span class="c-avatar c-avatar--sm" aria-hidden="true" data-tad-usuario-iniciales></span>
+      <span class="bo-sidebar__user-text"><span class="bo-sidebar__user-name" data-tad-usuario-nombre></span><span class="bo-sidebar__user-role" data-tad-usuario-cargo></span></span>
+    </div>
+  </aside>
+
+  <div class="bo-main">
+    <header class="bo-topbar">
+      <nav class="c-breadcrumb bo-topbar__crumbs" aria-label="Migas de pan" data-breadcrumb></nav>
+      <div class="bo-topbar__search c-input-group"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.4-4.4"/></svg><input class="c-input" type="search" aria-label="Buscar en la plataforma" placeholder="Buscar viajero, reserva o matrícula"></div>
+      <div class="bo-topbar__actions">
+        <select class="c-select bo-topbar__territory" aria-label="Territorio"><option>Comarca de la Sierra Norte</option></select>
+        <div class="c-dropdown">
+          <button class="c-btn c-btn--ghost c-btn--icon bo-bell" type="button" data-dropdown aria-controls="menu-avisos" data-tad-avisos-boton aria-label="Notificaciones"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16v-5a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 0 0 4 0"/></svg><span class="bo-bell__count" aria-hidden="true" data-tad-avisos-n></span></button>
+          <div class="c-dropdown__menu" id="menu-avisos" data-tad-avisos></div>
+        </div>
+        <span class="c-avatar c-avatar--sm" aria-hidden="true" data-tad-usuario-iniciales></span>
+        <a class="c-index-link" href="../index.html"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg> Índice del mockup</a>
+      </div>
+    </header>
+
+    <main class="bo-content" id="contenido">
+      <header class="bo-pagehead">
+        <div>
+          <span class="bo-pagehead__module"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 17H9.5M5 17H3.5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1H15l4.5 4.5H20a1.5 1.5 0 0 1 1.5 1.5v4a1 1 0 0 1-1 1H19"/><path d="M15 6v4.5h4.5M2.5 11H15"/><circle cx="7" cy="17.5" r="2"/><circle cx="17" cy="17.5" r="2"/></svg> Gestión de flota</span>
+          <h1 class="bo-pagehead__title">Ficha de vehículo</h1>
+          <p class="bo-pagehead__desc"><span data-tad-fecha="larga"></span> · <span data-tad-hora></span></p>
+        </div>
+        <div class="bo-pagehead__actions"><a class="c-btn c-btn--secondary" href="vehiculos.html"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg> Todos los vehículos</a>
+<a class="c-btn c-btn--secondary" href="../control/incidencias.html"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9.8 4h4.4l4 15H5.8z"/><path d="M8 11h8M6.9 15.2h10.2M3.5 19.5h17"/></svg> Incidencias</a>
+<button class="c-btn c-btn--primary" type="button" data-open="modal-mantenimiento"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg> Programar mantenimiento</button></div>
+      </header>
+
+<div class="bo-grid bo-grid--2" style="align-items:start">
+  <section class="c-card" aria-labelledby="t-datos">
+    <div class="c-card__header">
+      <div style="display:flex;align-items:center;gap:var(--sp-3)">
+        <span class="c-avatar c-avatar--lg c-avatar--green" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon c-icon--lg" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 17H9.5M5 17H3.5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1H15l4.5 4.5H20a1.5 1.5 0 0 1 1.5 1.5v4a1 1 0 0 1-1 1H19"/><path d="M15 6v4.5h4.5M2.5 11H15"/><circle cx="7" cy="17.5" r="2"/><circle cx="17" cy="17.5" r="2"/></svg></span>
+        <div>
+          <h2 class="c-card__title" id="t-datos"></h2>
+          <span class="u-small u-muted" id="datos-sub"></span>
+        </div>
+      </div>
+      <span id="datos-badges"></span>
+    </div>
+    <div class="c-card__body"><dl class="c-datalist" id="datos"></dl></div>
+  </section>
+
+  <section class="c-card" aria-labelledby="t-telemetria">
+    <div class="c-card__header">
+      <h2 class="c-card__title" id="t-telemetria">Telemetría en vivo</h2>
+      <span class="c-badge c-badge--success c-badge--plain" id="senal"></span>
+    </div>
+    <div class="c-card__body">
+      <div class="bo-grid bo-grid--3" style="gap:var(--sp-3)" id="telemetria"></div>
+      <div class="c-map" id="minimapa" style="--map-h:calc(var(--sp-12) * 5);margin-top:var(--sp-4)">
+        <div class="c-map__canvas"></div>
+        <div class="c-map__fallback"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon c-icon--lg" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6.5 9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20z"/><path d="M9 4v13.5M15 6.5V20"/></svg><span>Mapa no disponible</span></div>
+      </div>
+      <p class="u-small u-muted" style="margin:var(--sp-2) 0 0" id="posicion"></p>
+    </div>
+  </section>
+</div>
+
+<section class="c-card" style="margin-top:var(--sp-6)" aria-labelledby="t-consumo">
+  <div class="c-card__header">
+    <h2 class="c-card__title" id="t-consumo">Consumo de los últimos 30 días</h2>
+    <span class="u-small u-muted" id="consumo-periodo"></span>
+  </div>
+  <div class="c-card__body">
+    <div class="bo-grid bo-grid--kpis" style="gap:var(--sp-3);margin-bottom:var(--sp-4)" id="consumo-kpis"></div>
+    <div id="grafico-consumo"></div>
+  </div>
+</section>
+
+<div class="bo-grid bo-grid--3" style="margin-top:var(--sp-6);align-items:start">
+  <section class="c-card" aria-labelledby="t-mant">
+    <div class="c-card__header"><h2 class="c-card__title" id="t-mant"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg> Calendario de mantenimiento</h2></div>
+    <div class="c-card__body">
+      <div class="c-chip-group" role="group" aria-label="Tipo de mantenimiento" id="f-mant" style="margin-bottom:var(--sp-4)"></div>
+      <ol class="c-timeline" id="mantenimientos"></ol>
+    </div>
+  </section>
+
+  <section class="c-card" aria-labelledby="t-docs">
+    <div class="c-card__header"><h2 class="c-card__title" id="t-docs"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg> Documentos</h2>
+      <button class="c-btn c-btn--ghost c-btn--sm" type="button" data-toast="Elige el archivo PDF y el tipo de documento. Te avisaremos antes de que caduque." data-toast-title="Subir documento"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg> Subir</button></div>
+    <ul class="c-list" id="documentos"></ul>
+  </section>
+
+  <section class="c-card" aria-labelledby="t-inc">
+    <div class="c-card__header"><h2 class="c-card__title" id="t-inc"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9.8 4h4.4l4 15H5.8z"/><path d="M8 11h8M6.9 15.2h10.2M3.5 19.5h17"/></svg> Historial de incidencias</h2><a class="u-small" href="../control/incidencias.html">Ver todas</a></div>
+    <ul class="c-list" id="incidencias"></ul>
+  </section>
+</div>
+
+<!-- Programar mantenimiento -->
+<div class="c-modal" id="modal-mantenimiento" role="dialog" aria-modal="true" aria-labelledby="modal-mantenimiento-t">
+  <div class="c-modal__dialog">
+    <div class="c-modal__header">
+      <h2 class="c-modal__title" id="modal-mantenimiento-t">Programar mantenimiento</h2>
+      <button class="c-btn c-btn--ghost c-btn--icon c-btn--sm" type="button" data-close aria-label="Cerrar"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    </div>
+    <div class="c-modal__body">
+      <div class="bo-grid bo-grid--2" style="gap:var(--sp-3)">
+        <div class="c-field"><label class="c-field__label" for="m-tipo">Tipo</label>
+          <select class="c-select" id="m-tipo"><option>Preventivo</option><option>Correctivo</option><option>ITV</option></select></div>
+        <div class="c-field"><label class="c-field__label" for="m-fecha">Fecha</label><input class="c-input" id="m-fecha" type="date"></div>
+        <div class="c-field"><label class="c-field__label" for="m-taller">Taller</label><select class="c-select" id="m-taller"></select></div>
+        <div class="c-field"><label class="c-field__label" for="m-hora">Hora de entrega</label><input class="c-input" id="m-hora" type="time"></div>
+      </div>
+      <div class="c-field"><label class="c-field__label" for="m-notas">Qué hay que revisar</label><textarea class="c-textarea" id="m-notas"></textarea></div>
+      <label class="c-checkbox"><input type="checkbox" checked> Reservar un vehículo de sustitución para ese día</label>
+    </div>
+    <div class="c-modal__footer">
+      <button class="c-btn c-btn--secondary" type="button" data-close>Cancelar</button>
+      <button class="c-btn c-btn--primary" type="button" data-toast="La cita queda en el calendario y el motor no asignará este vehículo ese día." data-toast-title="Mantenimiento programado" data-toast-close>Programar</button>
+    </div>
+  </div>
+</div>
+<script defer src="../js/datos/flota-motor.js"></script>
+    </main>
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var f = TAD.fmt, h = f.html, ahora = TAD.momento();
+  var MATRICULA = "4521 LKT";
+  var v = TAD.vehiculo(MATRICULA), F = TAD.fichaVehiculo(MATRICULA), T = F.telemetria;
+  var r = v.rutaHoy ? TAD.ruta(v.rutaHoy) : null, c = v.conductorHoy ? TAD.conductor(v.conductorHoy) : null;
+  var dec1 = function (n) { return f.numero(n, 1); };
+
+  // ---------- Datos del vehículo ----------
+  document.getElementById("t-datos").textContent = v.matricula;
+  document.getElementById("datos-sub").textContent = v.modelo + " · " + v.plazas + " plazas · " + F.combustible.toLowerCase();
+  document.getElementById("datos-badges").innerHTML = f.badge(TAD.estadoVehiculo(v)) + (v.pmr ? ' <span class="c-badge c-badge--info"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="4.5" r="1.75"/><path d="m5 8.5 7 1.5 7-1.5M12 10v4.5l-3.5 6M12 14.5l3.5 6"/></svg> ' + h(v.accesibilidad) + " PMR</span>" : "");
+  document.getElementById("datos").innerHTML = [
+    ["Ruta de hoy", r ? r.id + " · " + r.nombre : "Sin ruta"],
+    ["Conductor hoy", c ? c.nombre + " · turno de " + c.turno.toLowerCase() : "—"],
+    ["Kilómetros", f.km(v.km)],
+    ["Consumo medio", dec1(v.consumo) + " l/100 km"],
+    ["Matriculación", f.fecha(F.matriculacion)],
+    ["Base", F.base],
+    ["Último mantenimiento", f.fecha(v.ultimoMantenimiento)],
+    ["Próxima ITV", f.fecha(v.itv) + " (en " + TAD.diasHasta(v.itv) + " días)"],
+    ["Seguro", v.seguro.compania + " · póliza " + v.seguro.poliza],
+    ["Seguro vence", f.fecha(v.seguro.vence)]
+  ].map(function (x) { return "<dt>" + x[0] + "</dt><dd>" + h(x[1]) + "</dd>"; }).join("");
+
+  // ---------- Telemetría ----------
+  document.getElementById("senal").textContent = "Última señal " + T.ultimaSenal;
+  var abordo = r ? TAD.aBordo(r.id) : 0;
+  var tele = [
+    ["Velocidad", v.velocidad, "km/h", "Últimos 30 min", "spark"],
+    ["Consumo ahora", dec1(T.consumoInstantaneo), "l/100 km", "Media: " + dec1(v.consumo)],
+    ["Km de hoy", v.kmHoy, "km", "desde las " + (r ? r.servicios[0].inicio : "—")],
+    ["Ocupación", abordo, "/ " + v.plazas, Math.round(100 * abordo / v.plazas) + " % de las plazas"],
+    ["Combustible", T.combustiblePct, "%", "Autonomía " + f.km(T.autonomiaKm)],
+    ["Motor", T.temperaturaMotor, "°C", "Temperatura normal"]
+  ];
+  document.getElementById("telemetria").innerHTML = tele.map(function (k) {
+    var pie = '<span class="c-kpi__delta c-kpi__delta--flat">' + h(k[3]) + "</span>";
+    return '<div class="c-kpi"><span class="c-kpi__label">' + k[0] + '</span><span class="c-kpi__value">' + k[1] + ' <span class="c-kpi__unit">' + k[2] + "</span></span>" +
+      (k[4] ? '<div class="c-kpi__foot">' + pie + '<span id="spark-velocidad"></span></div>' : pie) + "</div>";
+  }).join("");
+  // Velocidad cada pocos minutos hasta ahora (el último valor es la velocidad actual)
+  TADGrafico.sparkline("#spark-velocidad", T.velocidades.slice(0, -1).concat([v.velocidad]), "--chart-1");
+  var prox = r ? TAD.parada(r.proximaParada) : null;
+  document.getElementById("posicion").innerHTML = (prox ? "A " + r.minutosProxima + " min de " + h(prox.nombre) + " · " : "") +
+    "Rampa: " + h(T.rampa.toLowerCase()) + " · Puertas: " + h(T.puertas.toLowerCase()) + " · Neumáticos: " + h(T.neumaticos.toLowerCase()) +
+    " · " + f.numero(v.posicion[0], 5) + ", " + f.numero(v.posicion[1], 5);
+
+  var mini = TADMapa.crear("#minimapa", { zoomControl: true });
+  mini.obras();
+  if (r) mini.rutas({ ids: [r.id] }).paradas({ soloRuta: r.id, resaltar: r.proximaParada });
+  mini.vehiculos({ ids: [v.matricula], seleccionar: v.matricula }).centrarEn(v.matricula, 13);
+
+  // ---------- Consumo de 30 días ----------
+  var dias = F.consumo, km30 = 0, litros30 = 0;
+  dias.forEach(function (d) { km30 += d.km; litros30 += d.litros; });
+  var media = 100 * litros30 / km30;
+  document.getElementById("consumo-periodo").textContent = f.fecha(dias[0].fecha) + " – " + f.fecha(dias[dias.length - 1].fecha);
+  var max = dias.reduce(function (a, d) { return d.l100 > a.l100 ? d : a; });
+  document.getElementById("consumo-kpis").innerHTML = [
+    ["Consumo medio", dec1(media), "l/100 km", "ponderado por kilómetro"],
+    ["Kilómetros", f.numero(km30), "km", "en " + dias.filter(function (d) { return d.km; }).length + " días de servicio"],
+    ["Combustible", f.numero(litros30), "litros", "≈ " + dec1(litros30 / dias.length) + " litros al día"],
+    ["Día de más consumo", dec1(max.l100), "l/100 km", f.fechaLarga(max.fecha)]
+  ].map(function (k) {
+    return '<div class="c-kpi"><span class="c-kpi__label">' + k[0] + '</span><span class="c-kpi__value">' + k[1] + ' <span class="c-kpi__unit">' + k[2] + '</span></span><span class="c-kpi__delta c-kpi__delta--flat">' + h(k[3]) + "</span></div>";
+  }).join("");
+  TADGrafico.linea("#grafico-consumo", {
+    titulo: "Consumo diario del " + v.matricula + " (l/100 km)",
+    descripcion: "Consumo de cada día de los últimos 30 días comparado con la media del vehículo.",
+    etiquetas: dias.map(function (d) { return f.fechaCorta(d.fecha); }),
+    series: [
+      { nombre: "Consumo del día", valores: dias.map(function (d) { return d.l100; }), color: "--chart-1" },
+      { nombre: "Media del vehículo", valores: dias.map(function () { return v.consumo; }), color: "--chart-3", discontinua: true }
+    ],
+    unidad: " l/100 km", alto: 240, min: 8, max: 12
+  });
+
+  // ---------- Calendario de mantenimiento ----------
+  var CLASE_TIPO = { Preventivo: "info", Correctivo: "warning", ITV: "accent", Seguro: "neutral" };
+  var proximo = F.mantenimientos.filter(function (m) { return m.fecha >= TAD.fecha; })[0];
+  var tipos = ["Todos"].concat(Object.keys(CLASE_TIPO).filter(function (t) { return F.mantenimientos.some(function (m) { return m.tipo === t; }); }));
+  var tipoSel = "Todos";
+  var fMant = document.getElementById("f-mant");
+  function pintarMant() {
+    fMant.innerHTML = tipos.map(function (t) { return '<button class="c-chip" type="button" data-tipo="' + t + '" aria-pressed="' + (t === tipoSel) + '">' + t + "</button>"; }).join("");
+    document.getElementById("mantenimientos").innerHTML = F.mantenimientos.filter(function (m) { return tipoSel === "Todos" || m.tipo === tipoSel; }).map(function (m) {
+      var hecho = m.estado === "Hecho", dias = TAD.diasHasta(m.fecha);
+      return '<li class="c-timeline__item ' + (hecho ? "is-done" : m === proximo ? "is-current" : "") + '"><span class="c-timeline__time">' + f.fechaCorta(m.fecha) +
+        '</span><div class="c-timeline__content"><span class="c-timeline__title">' + h(m.titulo) + '</span><span class="c-timeline__desc">' +
+        '<span class="c-badge c-badge--' + CLASE_TIPO[m.tipo] + '">' + m.tipo + "</span> " + f.fecha(m.fecha) + " · " + h(m.taller) +
+        (hecho ? "" : " · " + (dias === 0 ? "hoy" : "en " + dias + " días")) +
+        (m.incidencia ? ' · <a href="../control/incidencias.html#' + m.incidencia + '">' + m.incidencia + "</a>" : "") + "</span></div></li>";
+    }).join("");
+  }
+  fMant.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-tipo]");
+    if (b) { tipoSel = b.getAttribute("data-tipo"); pintarMant(); fMant.querySelector('[data-tipo="' + tipoSel + '"]').focus(); }
+  });
+  pintarMant();
+
+  // ---------- Documentos ----------
+  document.getElementById("documentos").innerHTML = F.documentos.map(function (d) {
+    var dias = d.vence ? TAD.diasHasta(d.vence) : null;
+    var est = dias === null ? ["success", "Vigente"] : dias < 0 ? ["danger", "Caducado"] : dias <= 90 ? ["warning", "Caduca en " + dias + " días"] : ["success", "Vigente hasta " + f.fecha(d.vence)];
+    return '<li class="c-list__item"><div class="c-list__button" style="cursor:default"><span class="c-avatar c-avatar--sm" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg></span>' +
+      '<span><span class="c-list__title">' + h(d.nombre) + '</span><span class="c-list__meta">' + h(d.detalle) + " · " + h(d.formato) + "</span></span>" +
+      '<button class="c-btn c-btn--ghost c-btn--icon c-btn--sm" type="button" aria-label="Descargar ' + h(d.nombre) + '" data-toast="' + h(d.nombre) + ' (' + h(d.formato) + ') preparado para descargar." data-toast-title="Descarga"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10.5l5 5 5-5M5 20h14"/></svg></button>' +
+      '<span class="c-list__wide"><span class="c-badge c-badge--' + est[0] + '">' + est[1] + "</span></span></div></li>";
+  }).join("");
+
+  // ---------- Incidencias del vehículo ----------
+  var inc = TAD.incidencias.filter(function (i) { return i.vehiculo === v.matricula; });
+  document.getElementById("incidencias").innerHTML = inc.length ? inc.map(function (i) {
+    return '<li class="c-list__item"><a class="c-list__button" href="../control/incidencias.html#' + i.id + '"><span class="c-avatar c-avatar--sm' + (i.estado === "Abierta" ? " c-avatar--orange" : "") + '" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9.8 4h4.4l4 15H5.8z"/><path d="M8 11h8M6.9 15.2h10.2M3.5 19.5h17"/></svg></span>' +
+      '<span><span class="c-list__title">' + h(i.titulo) + '</span><span class="c-list__meta">' + i.id + " · " + f.fecha(i.fecha) + " · " + i.hora + " · " + h(i.tipo) + "</span></span>" + f.badge(i.estado) + "</a></li>";
+  }).join("") : '<li class="c-list__item"><div class="c-empty-state"><p>Este vehículo no tiene incidencias.</p></div></li>';
+
+  // ---------- Formulario de mantenimiento ----------
+  var talleres = {};
+  F.mantenimientos.forEach(function (m) { if (m.tipo !== "Seguro") talleres[m.taller] = true; });
+  document.getElementById("m-taller").innerHTML = Object.keys(talleres).map(function (t) { return "<option>" + h(t) + "</option>"; }).join("");
+  if (proximo) document.getElementById("m-fecha").value = proximo.fecha;
+});
+</script>
+</body>
+</html>

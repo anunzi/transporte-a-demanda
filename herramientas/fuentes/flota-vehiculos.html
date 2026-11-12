@@ -1,0 +1,147 @@
+<!--SIN-MAPA-->
+<!--ACCIONES-->
+<a class="c-btn c-btn--secondary" href="../control/mapa.html">{{i:mapa}} Ver en el mapa</a>
+<button class="c-btn c-btn--primary" type="button" data-open="modal-nuevo">{{i:mas}} Añadir vehículo</button>
+<!--MAIN-->
+<section aria-labelledby="t-kpis">
+  <h2 class="u-visually-hidden" id="t-kpis">Resumen de la flota</h2>
+  <div class="bo-grid bo-grid--kpis" id="kpis"></div>
+</section>
+
+<section style="margin-top:var(--sp-6)" aria-labelledby="t-tabla">
+  <div class="bo-toolbar">
+    <h2 id="t-tabla" style="margin:0">Vehículos</h2>
+    <span class="bo-toolbar__spacer"></span>
+    <div class="c-input-group">{{i:buscar}}<input class="c-input" type="search" id="f-buscar" aria-label="Buscar por matrícula o modelo" placeholder="Matrícula o modelo"></div>
+    <div class="c-chip-group" role="group" aria-label="Filtrar por estado" id="f-estado"></div>
+    <label class="c-checkbox"><input type="checkbox" id="f-pmr"> Solo adaptados PMR</label>
+  </div>
+  <div class="c-table-wrap">
+    <table class="c-table" data-sortable id="tabla-vehiculos">
+      <caption class="u-visually-hidden">Vehículos de la flota</caption>
+      <thead><tr>
+        <th scope="col"><button class="c-table__sort" type="button">Vehículo {{i:chevron-abajo}}</button></th>
+        <th scope="col" class="is-num"><button class="c-table__sort" type="button">Plazas {{i:chevron-abajo}}</button></th>
+        <th scope="col">PMR</th>
+        <th scope="col"><button class="c-table__sort" type="button">Estado {{i:chevron-abajo}}</button></th>
+        <th scope="col">Conductor hoy</th>
+        <th scope="col" class="is-num"><button class="c-table__sort" type="button">Km {{i:chevron-abajo}}</button></th>
+        <th scope="col"><button class="c-table__sort" type="button">Próxima ITV {{i:chevron-abajo}}</button></th>
+        <th scope="col">Alertas</th>
+      </tr></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+  <p class="u-small u-muted" id="n-visibles" aria-live="polite"></p>
+</section>
+
+<!-- Añadir vehículo -->
+<div class="c-modal" id="modal-nuevo" role="dialog" aria-modal="true" aria-labelledby="modal-nuevo-t">
+  <div class="c-modal__dialog">
+    <div class="c-modal__header">
+      <h2 class="c-modal__title" id="modal-nuevo-t">Añadir vehículo</h2>
+      <button class="c-btn c-btn--ghost c-btn--icon c-btn--sm" type="button" data-close aria-label="Cerrar">{{i:cerrar}}</button>
+    </div>
+    <div class="c-modal__body">
+      <div class="bo-grid bo-grid--2" style="gap:var(--sp-3)">
+        <div class="c-field"><label class="c-field__label" for="n-matricula">Matrícula <span class="c-field__required" aria-hidden="true">*</span></label><input class="c-input" id="n-matricula" required placeholder="0000 XXX" autocomplete="off"></div>
+        <div class="c-field"><label class="c-field__label" for="n-modelo">Marca y modelo <span class="c-field__required" aria-hidden="true">*</span></label><input class="c-input" id="n-modelo" required></div>
+        <div class="c-field"><label class="c-field__label" for="n-plazas">Plazas</label><input class="c-input" id="n-plazas" type="number" min="4" max="30"></div>
+        <div class="c-field"><label class="c-field__label" for="n-accesibilidad">Accesibilidad PMR</label>
+          <select class="c-select" id="n-accesibilidad"><option>Sin adaptación</option><option>Rampa</option><option>Elevador</option></select></div>
+        <div class="c-field"><label class="c-field__label" for="n-km">Kilómetros actuales</label><input class="c-input" id="n-km" type="number" min="0"></div>
+        <div class="c-field"><label class="c-field__label" for="n-itv">Próxima ITV</label><input class="c-input" id="n-itv" type="date"></div>
+        <div class="c-field"><label class="c-field__label" for="n-seguro">Aseguradora</label><select class="c-select" id="n-seguro"></select></div>
+        <div class="c-field"><label class="c-field__label" for="n-base">Base</label><select class="c-select" id="n-base"></select></div>
+      </div>
+      <p class="u-small u-muted" style="margin:0">Podrás subir la ficha técnica y la póliza desde la ficha del vehículo.</p>
+    </div>
+    <div class="c-modal__footer">
+      <button class="c-btn c-btn--secondary" type="button" data-close>Cancelar</button>
+      <button class="c-btn c-btn--primary" type="button" data-toast="El vehículo queda dado de alta como «En reserva» hasta que subas su documentación." data-toast-title="Vehículo añadido" data-toast-close>Añadir vehículo</button>
+    </div>
+  </div>
+</div>
+<script defer src="../js/datos/flota-motor.js"></script>
+<!--SCRIPT-->
+document.addEventListener("DOMContentLoaded", function () {
+  var f = TAD.fmt, h = f.html, F = TAD.flota();
+
+  // ---------- Indicadores (salen de TAD.flota()) ----------
+  var sust = TAD.vehiculos.filter(function (v) { return v.subestado; })[0];
+  var kpis = [
+    ["Vehículos", F.total, "en la flota"],
+    ["En servicio", F.enServicio, sust ? "incluido el " + sust.matricula + " (" + sust.subestado.toLowerCase() + ")" : "hoy"],
+    ["En mantenimiento", F.mantenimiento, TAD.vehiculos.filter(function (v) { return v.estado === "Mantenimiento"; }).map(function (v) { return v.matricula; }).join(", ") || "ninguno"],
+    ["En reserva", F.reserva, F.reserva ? "listos para salir" : "toda la reserva está en uso"],
+    ["Adaptados PMR", F.pmr, "con rampa o elevador"]
+  ];
+  document.getElementById("kpis").innerHTML = kpis.map(function (k) {
+    return '<div class="c-kpi"><span class="c-kpi__label">' + k[0] + '</span><span class="c-kpi__value">' + k[1] + '</span><span class="c-kpi__delta c-kpi__delta--flat">' + h(k[2]) + "</span></div>";
+  }).join("");
+
+  // ---------- Alertas de cada vehículo ----------
+  function alertas(v) {
+    var a = [];
+    var dItv = TAD.diasHasta(v.itv), dSeg = TAD.diasHasta(v.seguro.vence);
+    if (v.estado === "Mantenimiento") a.push(["danger", "En taller" + (v.ubicacion ? ": " + v.ubicacion : "")]);
+    if (dItv <= 60) a.push(["warning", "ITV en " + dItv + " días"]);
+    if (dSeg <= 60) a.push(["warning", "Seguro vence en " + dSeg + " días"]);
+    if (v.subestado) a.push(["info", v.nota]);
+    TAD.incidencias.forEach(function (i) { if (i.estado === "Abierta" && i.vehiculo === v.matricula) a.push(["warning", i.titulo]); });
+    return a;
+  }
+
+  // ---------- Tabla ----------
+  var cuerpo = document.querySelector("#tabla-vehiculos tbody");
+  cuerpo.innerHTML = TAD.vehiculos.map(function (v) {
+    var c = v.conductorHoy ? TAD.conductor(v.conductorHoy) : null, al = alertas(v), ficha = TAD.fichaVehiculo(v.matricula);
+    return '<tr data-estado="' + v.estado + '" data-pmr="' + (v.pmr ? "si" : "no") + '" data-texto="' + h((v.matricula + " " + v.modelo).toLowerCase()) + '">' +
+      '<td class="is-nowrap"><strong>' + (ficha ? '<a href="vehiculo.html" title="Ver la ficha">' + v.matricula + "</a>" : v.matricula) + '</strong><span class="c-list__meta">' + h(v.modelo) + "</span></td>" +
+      '<td class="is-num">' + v.plazas + "</td>" +
+      "<td>" + (v.pmr ? '<span class="c-badge c-badge--info">{{i:accesibilidad}} ' + h(v.accesibilidad) + "</span>" : '<span class="u-muted">No</span>') + "</td>" +
+      '<td data-value="' + v.estado + '">' + f.badge(TAD.estadoVehiculo(v)) + "</td>" +
+      "<td>" + (c ? h(c.nombre) + '<span class="c-list__meta">Ruta ' + v.rutaHoy + "</span>" : '<span class="u-muted">' + h(v.ubicacion || "Sin asignar") + "</span>") + "</td>" +
+      '<td class="is-num" data-value="' + v.km + '">' + f.numero(v.km) + "</td>" +
+      '<td class="is-nowrap" data-value="' + v.itv.replace(/-/g, "") + '">' + f.fecha(v.itv) + "</td>" +
+      "<td>" + (al.length ? al.map(function (x) { return '<span class="c-badge c-badge--' + x[0] + '" style="margin:0 var(--sp-1) var(--sp-1) 0;white-space:normal">' + h(x[1]) + "</span>"; }).join("") : '<span class="u-muted">Sin alertas</span>') + "</td></tr>";
+  }).join("");
+
+  // ---------- Filtros (estado, PMR y texto) ----------
+  var estados = [["", "Todos"], ["En servicio", "En servicio"], ["Mantenimiento", "Mantenimiento"], ["Reserva", "En reserva"]];
+  var filtro = { estado: "", pmr: false, texto: "" };
+  var grupo = document.getElementById("f-estado");
+  grupo.innerHTML = estados.map(function (e, i) {
+    var n = e[0] ? TAD.vehiculos.filter(function (v) { return v.estado === e[0]; }).length : TAD.vehiculos.length;
+    return '<button class="c-chip" type="button" data-valor="' + e[0] + '" aria-pressed="' + (i === 0) + '">' + e[1] + " (" + n + ")</button>";
+  }).join("");
+  function aplicar() {
+    var n = 0;
+    cuerpo.querySelectorAll("tr").forEach(function (tr) {
+      var ok = (!filtro.estado || tr.getAttribute("data-estado") === filtro.estado) && (!filtro.pmr || tr.getAttribute("data-pmr") === "si") &&
+        (!filtro.texto || tr.getAttribute("data-texto").indexOf(filtro.texto) !== -1);
+      tr.classList.toggle("is-filtered-out", !ok);
+      if (ok) n++;
+    });
+    document.getElementById("n-visibles").textContent = n === TAD.vehiculos.length ? "Mostrando los " + n + " vehículos." : "Mostrando " + n + " de " + TAD.vehiculos.length + " vehículos.";
+  }
+  grupo.addEventListener("click", function (e) {
+    var c = e.target.closest(".c-chip");
+    if (!c) return;
+    grupo.querySelectorAll(".c-chip").forEach(function (x) { x.setAttribute("aria-pressed", x === c ? "true" : "false"); });
+    filtro.estado = c.getAttribute("data-valor");
+    aplicar();
+  });
+  document.getElementById("f-pmr").addEventListener("change", function () { filtro.pmr = this.checked; aplicar(); });
+  document.getElementById("f-buscar").addEventListener("input", function () { filtro.texto = this.value.trim().toLowerCase(); aplicar(); });
+  aplicar();
+
+  // ---------- Formulario de alta ----------
+  var aseguradoras = {};
+  TAD.vehiculos.forEach(function (v) { aseguradoras[v.seguro.compania] = true; });
+  document.getElementById("n-seguro").innerHTML = Object.keys(aseguradoras).map(function (a) { return "<option>" + h(a) + "</option>"; }).join("") + "<option>Otra</option>";
+  var bases = {};
+  TAD.vehiculos.forEach(function (v) { if (v.ubicacion && v.estado === "En servicio") bases[v.ubicacion] = true; });
+  document.getElementById("n-base").innerHTML = Object.keys(bases).map(function (b) { return "<option>" + h(b) + "</option>"; }).join("");
+});
+<!--FIN-->

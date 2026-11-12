@@ -1,0 +1,253 @@
+<!--SIN-MAPA-->
+<!--ACCIONES-->
+<a class="c-btn c-btn--secondary" href="rutas.html">{{i:ruta}} Rutas del día</a>
+<button class="c-btn c-btn--primary" type="button" data-toast="Las nuevas reglas se aplicarán a partir de la próxima planificación." data-toast-title="Reglas guardadas">{{i:check}} Guardar cambios</button>
+<!--MAIN-->
+<div class="bo-grid bo-grid--main-side" style="align-items:start">
+  <form class="bo-stack" id="form-reglas" aria-label="Reglas operativas" onsubmit="return false">
+    <section class="c-card" aria-labelledby="t-ambito">
+      <div class="c-card__header"><h2 class="c-card__title" id="t-ambito">{{i:mapa}} Ámbito de las reglas</h2></div>
+      <div class="c-card__body bo-grid bo-grid--2" style="gap:var(--sp-4)">
+        <div class="c-field" style="margin:0">
+          <label class="c-field__label" for="r-territorio">Territorio</label>
+          <select class="c-select" id="r-territorio"></select>
+          <span class="c-field__help">Las reglas de un municipio prevalecen sobre las de la comarca.</span>
+        </div>
+        <div class="c-field" style="margin:0">
+          <span class="c-field__label" id="l-dias">Días de servicio</span>
+          <div class="c-chip-group" role="group" aria-labelledby="l-dias" id="r-dias" style="margin-top:var(--sp-1)"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="c-card" aria-labelledby="t-franjas">
+      <div class="c-card__header"><h2 class="c-card__title" id="t-franjas">{{i:reloj}} Horarios de servicio por franja</h2>
+        <button class="c-btn c-btn--ghost c-btn--sm" type="button" data-toast="Se ha añadido una franja nueva sin horario. Complétala antes de guardar." data-toast-title="Franja añadida">{{i:mas}} Añadir franja</button></div>
+      <div class="c-table-wrap">
+        <table class="c-table" id="tabla-franjas">
+          <caption class="u-visually-hidden">Franjas horarias de servicio</caption>
+          <thead><tr><th scope="col">Franja</th><th scope="col">Desde</th><th scope="col">Hasta</th><th scope="col" class="is-num">Reservas hoy</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="c-card" aria-labelledby="t-capacidad">
+      <div class="c-card__header"><h2 class="c-card__title" id="t-capacidad">{{i:furgoneta}} Capacidad y tipos de vehículo</h2></div>
+      <div class="c-card__body">
+        <div class="bo-grid bo-grid--2" style="gap:var(--sp-4)">
+          <div class="c-field" style="margin:0">
+            <label class="c-field__label" for="r-ocupacion">Ocupación máxima objetivo (%)</label>
+            <input class="c-input" id="r-ocupacion" type="number" min="50" max="100" step="5">
+            <span class="c-field__help">Por encima de este valor, el motor busca otro vehículo.</span>
+          </div>
+          <div class="c-field" style="margin:0">
+            <label class="c-field__label" for="r-pmr">Plazas reservadas para PMR por vehículo adaptado</label>
+            <input class="c-input" id="r-pmr" type="number" min="0" max="4">
+          </div>
+        </div>
+        <fieldset style="border:0;margin:var(--sp-4) 0 0;padding:0">
+          <legend class="c-field__label">Vehículos que puede usar el motor</legend>
+          <div class="bo-grid bo-grid--2" style="gap:var(--sp-2);margin-top:var(--sp-2)" id="r-vehiculos"></div>
+        </fieldset>
+      </div>
+    </section>
+
+    <section class="c-card" aria-labelledby="t-ventanas">
+      <div class="c-card__header"><h2 class="c-card__title" id="t-ventanas">{{i:calendario}} Ventanas de tiempo máximas</h2></div>
+      <div class="c-card__body">
+        <div class="bo-grid bo-grid--2" style="gap:var(--sp-4)">
+          <div class="c-field" style="margin:0"><label class="c-field__label" for="r-antes">Recogida antes de la hora pedida (min)</label><input class="c-input" id="r-antes" type="number" min="0" max="30"></div>
+          <div class="c-field" style="margin:0"><label class="c-field__label" for="r-despues">Recogida después de la hora pedida (min)</label><input class="c-input" id="r-despues" type="number" min="0" max="30"></div>
+          <div class="c-field" style="margin:0"><label class="c-field__label" for="r-viaje">Tiempo máximo a bordo (min)</label><input class="c-input" id="r-viaje" type="number" min="15" max="120" step="5"></div>
+          <div class="c-field" style="margin:0"><label class="c-field__label" for="r-espera">Espera máxima en parada (min)</label><input class="c-input" id="r-espera" type="number" min="0" max="15"></div>
+        </div>
+        <p class="u-small u-muted" style="margin:var(--sp-3) 0 0" id="r-ventana-ejemplo"></p>
+      </div>
+    </section>
+
+    <section class="c-card" aria-labelledby="t-prioridades">
+      <div class="c-card__header"><h2 class="c-card__title" id="t-prioridades">{{i:accesibilidad}} Prioridades</h2><span class="u-small u-muted">De mayor a menor</span></div>
+      <ol class="c-list" id="r-prioridades" style="margin:0;padding:0"></ol>
+    </section>
+
+    <section class="c-card" aria-labelledby="t-paradas">
+      <div class="c-card__header"><h2 class="c-card__title" id="t-paradas">{{i:parada}} Paradas virtuales y antelación</h2></div>
+      <div class="c-card__body bo-grid bo-grid--2" style="gap:var(--sp-4)">
+        <div class="c-field" style="margin:0">
+          <label class="c-field__label" for="r-radio">Radio de parada virtual (metros)</label>
+          <input class="c-input" id="r-radio" type="number" min="100" max="1000" step="50">
+          <span class="c-field__help" id="r-radio-ayuda"></span>
+        </div>
+        <div class="c-field" style="margin:0">
+          <label class="c-field__label" for="r-antelacion">Antelación mínima de reserva</label>
+          <select class="c-select" id="r-antelacion"></select>
+          <span class="c-field__help" id="r-antelacion-ayuda"></span>
+        </div>
+      </div>
+      <div class="c-card__footer" style="display:flex;justify-content:flex-end;gap:var(--sp-2)">
+        <button class="c-btn c-btn--secondary" type="button" data-toast="Se han recuperado las reglas guardadas." data-toast-title="Cambios descartados">Descartar cambios</button>
+        <button class="c-btn c-btn--primary" type="button" data-toast="Las nuevas reglas se aplicarán a partir de la próxima planificación." data-toast-title="Reglas guardadas">{{i:check}} Guardar cambios</button>
+      </div>
+    </section>
+  </form>
+
+  <div class="bo-stack bo-sticky">
+    <section class="c-card" aria-labelledby="t-ia">
+      <div class="c-card__header"><h2 class="c-card__title" id="t-ia">{{i:grafico}} IA responsable</h2></div>
+      <div class="c-card__body">
+        <p style="margin-top:0" class="u-small">Funciones de apoyo a la planificación. Ninguna toma decisiones sola: proponen y una persona revisa.</p>
+        <div style="display:grid;gap:var(--sp-4)" id="ia-interruptores"></div>
+      </div>
+      <div class="c-card__footer">
+        <button class="c-btn c-btn--secondary c-btn--sm c-btn--block" type="button" data-open="modal-explicacion">{{i:documento}} Ver explicación de la última planificación</button>
+      </div>
+    </section>
+
+    <section class="c-card" aria-labelledby="t-ultima">
+      <div class="c-card__header"><h2 class="c-card__title" id="t-ultima">Última planificación</h2></div>
+      <div class="c-card__body"><dl class="c-datalist" id="ultima"></dl></div>
+    </section>
+  </div>
+</div>
+
+<!-- Explicación de la última planificación -->
+<div class="c-modal" id="modal-explicacion" role="dialog" aria-modal="true" aria-labelledby="modal-explicacion-t">
+  <div class="c-modal__dialog">
+    <div class="c-modal__header">
+      <h2 class="c-modal__title" id="modal-explicacion-t">Por qué se agruparon así las reservas</h2>
+      <button class="c-btn c-btn--ghost c-btn--icon c-btn--sm" type="button" data-close aria-label="Cerrar">{{i:cerrar}}</button>
+    </div>
+    <div class="c-modal__body">
+      <p style="margin-top:0" id="explicacion-intro"></p>
+      <ol class="c-timeline" id="explicacion-lista"></ol>
+      <p class="u-small u-muted" style="margin-bottom:0" id="explicacion-pie"></p>
+    </div>
+    <div class="c-modal__footer">
+      <a class="c-btn c-btn--secondary" href="rutas.html">{{i:ruta}} Ver las rutas</a>
+      <button class="c-btn c-btn--primary" type="button" data-close>Entendido</button>
+    </div>
+  </div>
+</div>
+<script defer src="../js/datos/flota-motor.js"></script>
+<!--SCRIPT-->
+document.addEventListener("DOMContentLoaded", function () {
+  var f = TAD.fmt, h = f.html, R = TAD.reglas, M = TAD.reglasMotor, o = TAD.optimizacion;
+
+  // ---------- Ámbito ----------
+  document.getElementById("r-territorio").innerHTML = "<option>" + h(TAD.meta.territorio) + " (toda la comarca)</option>" +
+    TAD.municipios.map(function (m) { return "<option>" + h(m.nombre) + "</option>"; }).join("");
+  var DIAS = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"];
+  document.getElementById("r-dias").innerHTML = DIAS.map(function (d) {
+    return '<button class="c-chip" type="button" aria-pressed="' + (M.diasServicio.indexOf(d) !== -1) + '">' + d + "</button>";
+  }).join("");
+  document.getElementById("r-dias").addEventListener("click", function (e) {
+    var c = e.target.closest(".c-chip");
+    if (c) c.setAttribute("aria-pressed", c.getAttribute("aria-pressed") === "true" ? "false" : "true");
+  });
+
+  // ---------- Franjas ----------
+  var enFranja = function (fr) {
+    return TAD.reservas.filter(function (r) { var t = TAD.minutos(r.horaPrevista); return t >= TAD.minutos(fr.desde) && t < TAD.minutos(fr.hasta); }).length;
+  };
+  document.querySelector("#tabla-franjas tbody").innerHTML = R.franjas.map(function (fr, i) {
+    return '<tr><td><label class="u-visually-hidden" for="fr-n' + i + '">Nombre de la franja ' + (i + 1) + '</label><input class="c-input" id="fr-n' + i + '" value="' + h(fr.nombre) + '"></td>' +
+      '<td><label class="u-visually-hidden" for="fr-d' + i + '">Desde (' + h(fr.nombre) + ')</label><input class="c-input" type="time" id="fr-d' + i + '" value="' + fr.desde + '"></td>' +
+      '<td><label class="u-visually-hidden" for="fr-h' + i + '">Hasta (' + h(fr.nombre) + ')</label><input class="c-input" type="time" id="fr-h' + i + '" value="' + fr.hasta + '"></td>' +
+      '<td class="is-num">' + enFranja(fr) + "</td></tr>";
+  }).join("");
+
+  // ---------- Capacidad ----------
+  document.getElementById("r-ocupacion").value = M.ocupacionObjetivoPct;
+  document.getElementById("r-pmr").value = M.plazasPmrReservadas;
+  document.getElementById("r-vehiculos").innerHTML = TAD.vehiculos.map(function (v) {
+    var fuera = v.estado !== "En servicio";
+    return '<label class="c-checkbox"><input type="checkbox"' + (fuera ? "" : " checked") + "> " + v.matricula + " · " + h(v.modelo) + " · " + v.plazas + " plazas" +
+      (v.pmr ? " · " + v.accesibilidad.toLowerCase() + " PMR" : "") + (fuera ? " (" + v.estado.toLowerCase() + ")" : "") + "</label>";
+  }).join("");
+
+  // ---------- Ventanas ----------
+  document.getElementById("r-antes").value = R.ventanaAntes;
+  document.getElementById("r-despues").value = R.ventanaDespues;
+  document.getElementById("r-viaje").value = M.tiempoMaximoViajeMin;
+  document.getElementById("r-espera").value = M.esperaMaximaMin;
+  function ejemplo() {
+    var ref = TAD.reservaReferencia(), t = TAD.minutos(ref.horaPrevista);
+    var a = +document.getElementById("r-antes").value || 0, d = +document.getElementById("r-despues").value || 0;
+    document.getElementById("r-ventana-ejemplo").textContent = "Ejemplo: quien pide las " + ref.horaPrevista + " puede ser recogido entre las " +
+      f.hora(t - a) + " y las " + f.hora(t + d) + ".";
+  }
+  ["r-antes", "r-despues"].forEach(function (id) { document.getElementById(id).addEventListener("input", ejemplo); });
+  ejemplo();
+
+  // ---------- Prioridades ----------
+  var DESC = {
+    PMR: "Vehículo con rampa o elevador y plaza reservada.",
+    Sanitario: "Citas médicas: se garantiza la hora de llegada.",
+    Escolar: "Llegada antes de que empiecen las clases.",
+    General: "Resto de viajes, por orden de reserva."
+  };
+  var orden = R.prioridades.slice();
+  var listaPrio = document.getElementById("r-prioridades");
+  function pintarPrioridades() {
+    listaPrio.innerHTML = orden.map(function (p, i) {
+      return '<li class="c-list__item"><div class="c-list__button" style="cursor:default"><span class="c-avatar c-avatar--sm" aria-hidden="true">' + (i + 1) + "</span>" +
+        '<span><span class="c-list__title">' + h(p) + '</span><span class="c-list__meta">' + h(DESC[p] || "") + "</span></span>" +
+        '<span style="display:flex;gap:var(--sp-1)">' +
+        '<button class="c-btn c-btn--ghost c-btn--sm" type="button" data-mover="-1" data-i="' + i + '"' + (i === 0 ? " disabled" : "") + ' aria-label="Subir ' + h(p) + '">Subir</button>' +
+        '<button class="c-btn c-btn--ghost c-btn--sm" type="button" data-mover="1" data-i="' + i + '"' + (i === orden.length - 1 ? " disabled" : "") + ' aria-label="Bajar ' + h(p) + '">Bajar</button>' +
+        "</span></div></li>";
+    }).join("");
+  }
+  listaPrio.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-mover]");
+    if (!b) return;
+    var i = +b.getAttribute("data-i"), j = i + +b.getAttribute("data-mover");
+    var x = orden[i]; orden[i] = orden[j]; orden[j] = x;
+    pintarPrioridades();
+  });
+  pintarPrioridades();
+
+  // ---------- Paradas virtuales y antelación ----------
+  document.getElementById("r-radio").value = R.radioParadaVirtualM;
+  var virtuales = TAD.paradas.filter(function (p) { return p.tipo === "virtual"; }).length;
+  document.getElementById("r-radio-ayuda").textContent = "Distancia máxima a pie hasta el punto de recogida. Hay " + virtuales + " paradas virtuales en el territorio.";
+  var opciones = [30, 60, 120, 240, 1440];
+  document.getElementById("r-antelacion").innerHTML = opciones.map(function (m) {
+    return "<option" + (m === R.antelacionMinimaMin ? " selected" : "") + ">" + (m < 60 ? m + " minutos" : m === 60 ? "1 hora" : m < 1440 ? m / 60 + " horas" : "1 día") + "</option>";
+  }).join("");
+  document.getElementById("r-antelacion-ayuda").textContent = "Se puede reservar con hasta " + R.antelacionMaximaDias + " días de antelación.";
+
+  // ---------- IA responsable ----------
+  var cont = document.getElementById("ia-interruptores");
+  cont.innerHTML = M.ia.map(function (x) {
+    return '<div><label class="c-switch"><input type="checkbox" role="switch" id="ia-' + x.id + '" aria-describedby="ia-' + x.id + '-d"' + (x.activo ? " checked" : "") + "> " + h(x.nombre) + "</label>" +
+      '<span class="c-field__help" style="display:block;margin-top:var(--sp-1)" id="ia-' + x.id + '-d">' + h(x.texto) + "</span></div>";
+  }).join("");
+  cont.addEventListener("change", function (e) {
+    var i = e.target;
+    if (!i.matches('[role="switch"]')) return;
+    var nombre = i.closest("label").textContent.trim();
+    TADUI.toast(nombre + (i.checked ? " queda activada." : " queda desactivada. El motor seguirá funcionando con las reglas fijas."), { titulo: i.checked ? "Función activada" : "Función desactivada" });
+  });
+
+  // ---------- Última planificación ----------
+  var U = M.ultimaPlanificacion, resp = TAD.persona(U.responsable);
+  document.getElementById("ultima").innerHTML = [
+    ["Fecha", f.fecha(TAD.fecha) + " a las " + U.hora],
+    ["Motivo", U.motivo],
+    ["Revisada por", resp.nombre],
+    ["Resultado", o.reservas + " reservas en " + o.rutas + " rutas"],
+    ["Km", f.km(o.kmRutas) + " (−" + f.porcentaje(o.reduccionKm) + ")"],
+    ["Ocupación media", f.porcentaje(o.ocupacionMedia)]
+  ].map(function (x) { return "<dt>" + x[0] + "</dt><dd>" + h(x[1]) + "</dd>"; }).join("");
+
+  // ---------- Explicación ----------
+  document.getElementById("explicacion-intro").textContent = "Planificación de hoy a las " + U.hora + ": " + o.reservas + " reservas agrupadas en " + o.rutas +
+    " rutas. Se recorren " + f.km(o.kmRutas) + " en lugar de " + f.km(o.kmIndividual) + " y se evitan " + o.co2Evitado + " kg de CO₂.";
+  document.getElementById("explicacion-lista").innerHTML = o.explicacion.map(function (t, i) {
+    return '<li class="c-timeline__item is-done"><span class="c-timeline__time">' + (i + 1) + '</span><div class="c-timeline__content"><span class="c-timeline__title">' + h(t) + "</span></div></li>";
+  }).join("");
+  document.getElementById("explicacion-pie").textContent = "El motor propone y la persona decide: " + resp.nombre + " revisó y aprobó esta planificación. Cualquier asignación se puede cambiar a mano.";
+});
+<!--FIN-->

@@ -1,0 +1,246 @@
+<!--ACCIONES-->
+<span class="c-badge c-badge--neutral c-badge--plain" style="font-size:var(--fs-14);padding:var(--sp-2) var(--sp-3)">{{i:reloj}} <span data-tad-reloj></span></span>
+<a class="c-btn c-btn--secondary" href="reglas.html">{{i:ajustes}} Reglas operativas</a>
+<button class="c-btn c-btn--primary" type="button" data-open="modal-replanificar">{{i:ruta}} Replanificar</button>
+<!--MAIN-->
+<section class="c-card" aria-labelledby="t-optimizacion">
+  <div class="c-card__header">
+    <h2 class="c-card__title" id="t-optimizacion">{{i:grafico}} Resultado de la optimización de hoy</h2>
+    <button class="c-btn c-btn--ghost c-btn--sm" type="button" data-open="modal-explicacion">¿Por qué se agruparon así?</button>
+  </div>
+  <div class="c-card__body">
+    <p style="margin:0 0 var(--sp-4)" id="resumen-optimizacion"></p>
+    <div class="bo-grid bo-grid--kpis" id="kpis" style="gap:var(--sp-3)"></div>
+  </div>
+</section>
+
+<div class="bo-grid" style="grid-template-columns:minmax(0,1fr) minmax(0,2fr);align-items:start;margin-top:var(--sp-6)">
+  <section class="c-card" aria-labelledby="t-rutas">
+    <div class="c-card__header"><h2 class="c-card__title" id="t-rutas">Rutas planificadas</h2><span class="u-muted u-small" id="n-rutas"></span></div>
+    <ul class="c-list" id="lista-rutas" aria-label="Elige una ruta para ver su recorrido"></ul>
+  </section>
+
+  <div class="bo-stack">
+    <section aria-labelledby="t-mapa">
+      <div class="bo-toolbar">
+        <h2 id="t-mapa" style="margin:0"></h2>
+        <span class="bo-toolbar__spacer"></span>
+        <span id="ruta-badges"></span>
+      </div>
+      <div class="c-map" id="mapa">
+        <div class="c-map__canvas"></div>
+        <div class="c-map__fallback">{{i:mapa:lg}}<span>Mapa no disponible</span></div>
+        <div class="c-map__legend" aria-label="Leyenda del mapa">
+          <span class="c-map__legend-item"><span class="c-map__swatch c-map__swatch--servicio"></span>En servicio</span>
+          <span class="c-map__legend-item"><span class="c-map__swatch c-map__swatch--retraso"></span>Con retraso</span>
+          <span class="c-map__legend-item"><span class="c-map__swatch c-map__swatch--parada"></span>Parada</span>
+          <span class="c-map__legend-item"><span class="c-map__swatch c-map__swatch--obras"></span>Obras</span>
+          <span class="c-map__legend-item" id="leyenda-ruta"></span>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<section class="c-card" style="margin-top:var(--sp-6)" aria-labelledby="t-secuencia">
+  <div class="c-card__header">
+    <h2 class="c-card__title" id="t-secuencia">Secuencia de paradas</h2>
+    <div class="c-chip-group" role="group" aria-label="Servicio de la ruta" id="servicios"></div>
+  </div>
+  <div class="c-table-wrap">
+    <table class="c-table" id="tabla-secuencia">
+      <caption class="u-visually-hidden" id="cap-secuencia"></caption>
+      <thead><tr>
+        <th scope="col">Hora</th>
+        <th scope="col" class="is-wide">Parada</th>
+        <th scope="col" class="is-num">Suben</th>
+        <th scope="col" class="is-num">Bajan</th>
+        <th scope="col">Ocupación</th>
+        <th scope="col">Estado</th>
+      </tr></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+  <div class="c-card__footer u-small u-muted" id="pie-secuencia"></div>
+</section>
+
+<!-- Replanificar -->
+<div class="c-modal" id="modal-replanificar" role="dialog" aria-modal="true" aria-labelledby="modal-replanificar-t">
+  <div class="c-modal__dialog">
+    <div class="c-modal__header">
+      <h2 class="c-modal__title" id="modal-replanificar-t">Replanificar las rutas de hoy</h2>
+      <button class="c-btn c-btn--ghost c-btn--icon c-btn--sm" type="button" data-close aria-label="Cerrar">{{i:cerrar}}</button>
+    </div>
+    <div class="c-modal__body">
+      <p style="margin-top:0" id="replan-texto"></p>
+      <fieldset style="border:0;margin:0 0 var(--sp-4);padding:0">
+        <legend class="c-field__label">Qué rutas se recalculan</legend>
+        <div style="display:grid;gap:var(--sp-2);margin-top:var(--sp-2)" id="replan-alcance"></div>
+      </fieldset>
+      <div style="display:grid;gap:var(--sp-2)">
+        <label class="c-checkbox"><input type="checkbox" checked> Evitar el tramo en obras mientras siga cortado</label>
+        <label class="c-checkbox"><input type="checkbox" checked> Avisar a los viajeros si cambia su hora de recogida</label>
+        <label class="c-checkbox"><input type="checkbox" checked> Mantener el mismo conductor en cada ruta</label>
+      </div>
+      <div class="c-alert c-alert--warning" style="margin-top:var(--sp-4)">{{i:alerta}}<div class="c-alert__body">Los servicios en curso no cambian de vehículo ni de conductor. Verás la propuesta antes de aplicarla.</div></div>
+    </div>
+    <div class="c-modal__footer">
+      <button class="c-btn c-btn--secondary" type="button" data-close>Cancelar</button>
+      <button class="c-btn c-btn--primary" type="button" data-toast="El motor ha calculado una nueva propuesta. Revísala antes de enviarla a los conductores." data-toast-title="Propuesta lista" data-toast-close>{{i:ruta}} Replanificar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Explicación de la planificación -->
+<div class="c-modal" id="modal-explicacion" role="dialog" aria-modal="true" aria-labelledby="modal-explicacion-t">
+  <div class="c-modal__dialog">
+    <div class="c-modal__header">
+      <h2 class="c-modal__title" id="modal-explicacion-t">Por qué se agruparon así las reservas</h2>
+      <button class="c-btn c-btn--ghost c-btn--icon c-btn--sm" type="button" data-close aria-label="Cerrar">{{i:cerrar}}</button>
+    </div>
+    <div class="c-modal__body">
+      <p style="margin-top:0" id="explicacion-intro"></p>
+      <ol class="c-timeline" id="explicacion-lista"></ol>
+      <p class="u-small u-muted" style="margin-bottom:0">El motor propone y la operadora decide. Cualquier asignación se puede cambiar a mano.</p>
+    </div>
+    <div class="c-modal__footer">
+      <a class="c-btn c-btn--secondary" href="reglas.html">{{i:ajustes}} Ver reglas</a>
+      <button class="c-btn c-btn--primary" type="button" data-close>Entendido</button>
+    </div>
+  </div>
+</div>
+<!--SCRIPT-->
+document.addEventListener("DOMContentLoaded", function () {
+  var f = TAD.fmt, h = f.html, o = TAD.optimizacion, ahora = TAD.momento();
+  var ICONO_RETRASO = '{{i:reloj}}';
+
+  // ---------- Resumen de la optimización ----------
+  document.getElementById("resumen-optimizacion").innerHTML = "<strong>Agrupación:</strong> " + o.reservas + " reservas → " + o.rutas + " rutas · −" +
+    f.porcentaje(o.reduccionKm) + " km frente a servicio individual · ocupación media " + f.porcentaje(o.ocupacionMedia) + " · " + f.numero(o.co2Evitado) + " kg CO₂ evitados";
+  var kpis = [
+    ["Reservas agrupadas", o.reservas, "", "en " + o.rutas + " rutas", "flat"],
+    ["Kilómetros", "−" + o.reduccionKm, "%", f.km(o.kmRutas) + " en lugar de " + f.km(o.kmIndividual), "up"],
+    ["Ocupación media", o.ocupacionMedia, "%", "plazas ocupadas por trayecto", "flat"],
+    ["CO₂ evitado", o.co2Evitado, "kg", "frente a un coche por reserva", "up"]
+  ];
+  document.getElementById("kpis").innerHTML = kpis.map(function (k) {
+    return '<div class="c-kpi"><span class="c-kpi__label">' + k[0] + '</span><span class="c-kpi__value">' + k[1] + (k[2] ? ' <span class="c-kpi__unit">' + k[2] + "</span>" : "") +
+      '</span><span class="c-kpi__delta c-kpi__delta--' + k[4] + '">' + h(k[3]) + "</span></div>";
+  }).join("");
+
+  // ---------- Datos de cada ruta ----------
+  function duracion(r) { return r.servicios.reduce(function (a, s) { return a + TAD.minutos(s.fin) - TAD.minutos(s.inicio); }, 0); }
+  function paradasDistintas(r) {
+    var m = {};
+    r.servicios.forEach(function (s) { s.paradas.forEach(function (p) { m[p.parada] = true; }); });
+    return Object.keys(m).length;
+  }
+  function textoDuracion(min) { return Math.floor(min / 60) ? Math.floor(min / 60) + " h " + (min % 60) + " min" : min + " min"; }
+
+  var rutaSel = "R2", servicioSel = TAD.servicioActual(rutaSel).id;
+
+  // ---------- Lista de rutas ----------
+  var lista = document.getElementById("lista-rutas");
+  function pintarLista() {
+    lista.innerHTML = TAD.rutas.map(function (r) {
+      var v = TAD.vehiculo(r.vehiculo), c = TAD.conductor(r.conductor), sel = r.id === rutaSel;
+      var viajeros = TAD.suma(TAD.reservasDeRuta(r.id));
+      return '<li class="c-list__item"><button class="c-list__button" type="button" data-ruta="' + r.id + '" aria-pressed="' + sel + '">' +
+        '<span class="c-map__swatch c-map__swatch--line c-map__swatch--' + r.id.toLowerCase() + '" aria-hidden="true"></span>' +
+        '<span><span class="c-list__title">Ruta ' + r.id + " · " + h(r.nombre) + '</span><span class="c-list__meta">' +
+        v.matricula + " · " + h(c.nombre) + (r.relevo ? " (relevo a las " + r.relevo.desde + ")" : "") + "</span></span>" +
+        (r.retrasoMin ? '<span class="c-badge c-badge--warning">+' + r.retrasoMin + " min</span>" : '<span class="c-badge c-badge--success">En hora</span>') +
+        '<span class="c-list__wide"><span class="c-list__meta" style="display:flex;flex-wrap:wrap;gap:var(--sp-1) var(--sp-4)">' +
+        "<span><strong>" + paradasDistintas(r) + "</strong> paradas</span><span><strong>" + viajeros + "</strong> viajeros</span><span><strong>" + r.km +
+        "</strong> km</span><span><strong>" + textoDuracion(duracion(r)) + "</strong> en servicio</span></span></span>" +
+        "</button></li>";
+    }).join("");
+    document.getElementById("n-rutas").textContent = TAD.rutas.length + " rutas · " + f.km(o.kmRutas);
+  }
+  lista.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-ruta]");
+    if (!b) return;
+    rutaSel = b.getAttribute("data-ruta");
+    servicioSel = TAD.servicioActual(rutaSel).id;
+    pintarTodo();
+  });
+
+  // ---------- Mapa ----------
+  var mapa = TADMapa.crear("#mapa");
+  function pintarMapa() {
+    var r = TAD.ruta(rutaSel), s = TAD.servicio(servicioSel);
+    mapa.limpiar().obras().rutas({ ids: [r.id], todas: true })
+      .paradas({ ids: s.paradas.map(function (p) { return p.parada; }), etiquetas: true })
+      .vehiculos({ ids: [r.vehiculo], seleccionar: r.vehiculo }).encuadrar(40);
+    document.getElementById("leyenda-ruta").innerHTML = '<span class="c-map__swatch c-map__swatch--line c-map__swatch--' + r.id.toLowerCase() + '"></span>Ruta ' + r.id;
+  }
+
+  // ---------- Cabecera de la ruta seleccionada ----------
+  function pintarCabecera() {
+    var r = TAD.ruta(rutaSel), v = TAD.vehiculo(r.vehiculo), c = TAD.conductor(r.conductor);
+    document.getElementById("t-mapa").textContent = "Ruta " + r.id + " · " + r.nombre;
+    document.getElementById("ruta-badges").innerHTML = '<span class="c-badge c-badge--neutral">' + v.matricula + " · " + v.plazas + " plazas" + (v.pmr ? " · PMR" : "") + "</span> " +
+      '<span class="c-badge c-badge--neutral">' + h(c.nombre) + "</span>";
+  }
+
+  // ---------- Servicios de la ruta (chips) ----------
+  var grupoServicios = document.getElementById("servicios");
+  function pintarServicios() {
+    var r = TAD.ruta(rutaSel);
+    grupoServicios.innerHTML = r.servicios.map(function (s) {
+      return '<button class="c-chip" type="button" data-servicio="' + s.id + '" aria-pressed="' + (s.id === servicioSel) + '">' + s.inicio + " · " + h(s.nombre) + "</button>";
+    }).join("");
+  }
+  grupoServicios.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-servicio]");
+    if (!b) return;
+    servicioSel = b.getAttribute("data-servicio");
+    pintarServicios(); pintarSecuencia(); pintarMapa();
+  });
+
+  // ---------- Secuencia de paradas ----------
+  var ESTADO = { realizada: ["Realizada", "success"], proxima: ["Próxima", "info"], pendiente: ["Pendiente", "neutral"] };
+  function pintarSecuencia() {
+    var r = TAD.ruta(rutaSel), s = TAD.servicio(servicioSel), v = TAD.vehiculo(r.vehiculo), aBordo = 0;
+    var terminado = TAD.minutos(s.fin) < TAD.minutos(ahora);
+    document.getElementById("cap-secuencia").textContent = "Paradas del servicio " + s.nombre + " de la ruta " + r.id;
+    document.querySelector("#tabla-secuencia tbody").innerHTML = s.paradas.map(function (p, i) {
+      var par = TAD.parada(p.parada);
+      var suben = TAD.suma(p.suben.map(TAD.reserva)), bajan = TAD.suma(p.bajan.map(TAD.reserva));
+      aBordo += suben - bajan;
+      var pct = Math.round(100 * aBordo / v.plazas);
+      var est = ESTADO[TAD.estadoParada(s, i, ahora)];
+      return '<tr' + (est[0] === "Próxima" ? ' class="is-selected"' : "") + ">" +
+        '<td class="is-nowrap"><strong>' + p.prevista + "</strong>" + (p.retraso ? '<span class="c-list__meta">' + ICONO_RETRASO + " Estimada " + p.estimada + " (+" + p.retraso + " min)</span>" : "") + "</td>" +
+        "<td>" + h(par.nombre) + '<span class="c-list__meta">' + h(TAD.municipio(par.municipio).nombre) + (par.tipo !== "fija" ? " · parada " + par.tipo : "") + "</span></td>" +
+        '<td class="is-num">' + (suben || "—") + '</td><td class="is-num">' + (bajan || "—") + "</td>" +
+        '<td style="min-width:var(--sp-12)"><span class="u-small">' + aBordo + "/" + v.plazas + '</span><span class="c-progress' + (pct > 85 ? " c-progress--warning" : "") +
+        '" role="progressbar" aria-label="Ocupación tras ' + h(par.nombre) + '" aria-valuenow="' + pct + '" aria-valuemin="0" aria-valuemax="100"><span style="width:' + pct + '%"></span></span></td>' +
+        '<td><span class="c-badge c-badge--' + est[1] + '">' + est[0] + "</span></td></tr>";
+    }).join("");
+    var reservas = TAD.reservasDeRuta(s.id);
+    document.getElementById("pie-secuencia").textContent = s.paradas.length + " paradas · " + reservas.length + " reservas · " + TAD.suma(reservas) + " viajeros · de " +
+      s.inicio + " a " + s.fin + (terminado ? " · servicio terminado" : "");
+  }
+
+  function pintarTodo() { pintarLista(); pintarCabecera(); pintarServicios(); pintarSecuencia(); pintarMapa(); }
+  pintarTodo();
+
+  // ---------- Modal de replanificar ----------
+  var pend = TAD.reservas.filter(function (r) { return r.estado === "Confirmada" || r.estado === "Pendiente"; });
+  var conRetraso = TAD.rutas.filter(function (r) { return r.retrasoMin > 0; });
+  document.getElementById("replan-texto").textContent = "El motor recalculará el resto del día con las " + pend.length +
+    " reservas que aún no han empezado, respetando las reglas operativas y las ventanas de recogida (" + TAD.reglas.ventanaAntes + " min antes, " + TAD.reglas.ventanaDespues + " min después).";
+  document.getElementById("replan-alcance").innerHTML =
+    '<label class="c-radio"><input type="radio" name="alcance" checked> Solo rutas con incidencias (' + conRetraso.map(function (r) { return r.id; }).join(", ") + ")</label>" +
+    '<label class="c-radio"><input type="radio" name="alcance"> Todas las rutas pendientes de hoy (' + TAD.rutas.length + ")</label>";
+
+  // ---------- Explicación ----------
+  document.getElementById("explicacion-intro").textContent = "Resumen de las decisiones del motor para las " + o.reservas + " reservas de hoy. Se ahorran " +
+    f.km(o.kmIndividual - o.kmRutas) + " frente a atender cada reserva por separado.";
+  document.getElementById("explicacion-lista").innerHTML = o.explicacion.map(function (t, i) {
+    return '<li class="c-timeline__item is-done"><span class="c-timeline__time">' + (i + 1) + '</span><div class="c-timeline__content"><span class="c-timeline__title">' + h(t) + "</span></div></li>";
+  }).join("");
+});
+<!--FIN-->

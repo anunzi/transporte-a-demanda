@@ -1,0 +1,218 @@
+<!--ACCIONES-->
+<a class="c-btn c-btn--secondary" href="vehiculos.html">{{i:flecha-izquierda}} Todos los vehículos</a>
+<a class="c-btn c-btn--secondary" href="../control/incidencias.html">{{i:incidencia}} Incidencias</a>
+<button class="c-btn c-btn--primary" type="button" data-open="modal-mantenimiento">{{i:calendario}} Programar mantenimiento</button>
+<!--MAIN-->
+<div class="bo-grid bo-grid--2" style="align-items:start">
+  <section class="c-card" aria-labelledby="t-datos">
+    <div class="c-card__header">
+      <div style="display:flex;align-items:center;gap:var(--sp-3)">
+        <span class="c-avatar c-avatar--lg c-avatar--green" aria-hidden="true">{{i:furgoneta:lg}}</span>
+        <div>
+          <h2 class="c-card__title" id="t-datos"></h2>
+          <span class="u-small u-muted" id="datos-sub"></span>
+        </div>
+      </div>
+      <span id="datos-badges"></span>
+    </div>
+    <div class="c-card__body"><dl class="c-datalist" id="datos"></dl></div>
+  </section>
+
+  <section class="c-card" aria-labelledby="t-telemetria">
+    <div class="c-card__header">
+      <h2 class="c-card__title" id="t-telemetria">Telemetría en vivo</h2>
+      <span class="c-badge c-badge--success c-badge--plain" id="senal"></span>
+    </div>
+    <div class="c-card__body">
+      <div class="bo-grid bo-grid--3" style="gap:var(--sp-3)" id="telemetria"></div>
+      <div class="c-map" id="minimapa" style="--map-h:calc(var(--sp-12) * 5);margin-top:var(--sp-4)">
+        <div class="c-map__canvas"></div>
+        <div class="c-map__fallback">{{i:mapa:lg}}<span>Mapa no disponible</span></div>
+      </div>
+      <p class="u-small u-muted" style="margin:var(--sp-2) 0 0" id="posicion"></p>
+    </div>
+  </section>
+</div>
+
+<section class="c-card" style="margin-top:var(--sp-6)" aria-labelledby="t-consumo">
+  <div class="c-card__header">
+    <h2 class="c-card__title" id="t-consumo">Consumo de los últimos 30 días</h2>
+    <span class="u-small u-muted" id="consumo-periodo"></span>
+  </div>
+  <div class="c-card__body">
+    <div class="bo-grid bo-grid--kpis" style="gap:var(--sp-3);margin-bottom:var(--sp-4)" id="consumo-kpis"></div>
+    <div id="grafico-consumo"></div>
+  </div>
+</section>
+
+<div class="bo-grid bo-grid--3" style="margin-top:var(--sp-6);align-items:start">
+  <section class="c-card" aria-labelledby="t-mant">
+    <div class="c-card__header"><h2 class="c-card__title" id="t-mant">{{i:calendario}} Calendario de mantenimiento</h2></div>
+    <div class="c-card__body">
+      <div class="c-chip-group" role="group" aria-label="Tipo de mantenimiento" id="f-mant" style="margin-bottom:var(--sp-4)"></div>
+      <ol class="c-timeline" id="mantenimientos"></ol>
+    </div>
+  </section>
+
+  <section class="c-card" aria-labelledby="t-docs">
+    <div class="c-card__header"><h2 class="c-card__title" id="t-docs">{{i:documento}} Documentos</h2>
+      <button class="c-btn c-btn--ghost c-btn--sm" type="button" data-toast="Elige el archivo PDF y el tipo de documento. Te avisaremos antes de que caduque." data-toast-title="Subir documento">{{i:mas}} Subir</button></div>
+    <ul class="c-list" id="documentos"></ul>
+  </section>
+
+  <section class="c-card" aria-labelledby="t-inc">
+    <div class="c-card__header"><h2 class="c-card__title" id="t-inc">{{i:incidencia}} Historial de incidencias</h2><a class="u-small" href="../control/incidencias.html">Ver todas</a></div>
+    <ul class="c-list" id="incidencias"></ul>
+  </section>
+</div>
+
+<!-- Programar mantenimiento -->
+<div class="c-modal" id="modal-mantenimiento" role="dialog" aria-modal="true" aria-labelledby="modal-mantenimiento-t">
+  <div class="c-modal__dialog">
+    <div class="c-modal__header">
+      <h2 class="c-modal__title" id="modal-mantenimiento-t">Programar mantenimiento</h2>
+      <button class="c-btn c-btn--ghost c-btn--icon c-btn--sm" type="button" data-close aria-label="Cerrar">{{i:cerrar}}</button>
+    </div>
+    <div class="c-modal__body">
+      <div class="bo-grid bo-grid--2" style="gap:var(--sp-3)">
+        <div class="c-field"><label class="c-field__label" for="m-tipo">Tipo</label>
+          <select class="c-select" id="m-tipo"><option>Preventivo</option><option>Correctivo</option><option>ITV</option></select></div>
+        <div class="c-field"><label class="c-field__label" for="m-fecha">Fecha</label><input class="c-input" id="m-fecha" type="date"></div>
+        <div class="c-field"><label class="c-field__label" for="m-taller">Taller</label><select class="c-select" id="m-taller"></select></div>
+        <div class="c-field"><label class="c-field__label" for="m-hora">Hora de entrega</label><input class="c-input" id="m-hora" type="time"></div>
+      </div>
+      <div class="c-field"><label class="c-field__label" for="m-notas">Qué hay que revisar</label><textarea class="c-textarea" id="m-notas"></textarea></div>
+      <label class="c-checkbox"><input type="checkbox" checked> Reservar un vehículo de sustitución para ese día</label>
+    </div>
+    <div class="c-modal__footer">
+      <button class="c-btn c-btn--secondary" type="button" data-close>Cancelar</button>
+      <button class="c-btn c-btn--primary" type="button" data-toast="La cita queda en el calendario y el motor no asignará este vehículo ese día." data-toast-title="Mantenimiento programado" data-toast-close>Programar</button>
+    </div>
+  </div>
+</div>
+<script defer src="../js/datos/flota-motor.js"></script>
+<!--SCRIPT-->
+document.addEventListener("DOMContentLoaded", function () {
+  var f = TAD.fmt, h = f.html, ahora = TAD.momento();
+  var MATRICULA = "4521 LKT";
+  var v = TAD.vehiculo(MATRICULA), F = TAD.fichaVehiculo(MATRICULA), T = F.telemetria;
+  var r = v.rutaHoy ? TAD.ruta(v.rutaHoy) : null, c = v.conductorHoy ? TAD.conductor(v.conductorHoy) : null;
+  var dec1 = function (n) { return f.numero(n, 1); };
+
+  // ---------- Datos del vehículo ----------
+  document.getElementById("t-datos").textContent = v.matricula;
+  document.getElementById("datos-sub").textContent = v.modelo + " · " + v.plazas + " plazas · " + F.combustible.toLowerCase();
+  document.getElementById("datos-badges").innerHTML = f.badge(TAD.estadoVehiculo(v)) + (v.pmr ? ' <span class="c-badge c-badge--info">{{i:accesibilidad}} ' + h(v.accesibilidad) + " PMR</span>" : "");
+  document.getElementById("datos").innerHTML = [
+    ["Ruta de hoy", r ? r.id + " · " + r.nombre : "Sin ruta"],
+    ["Conductor hoy", c ? c.nombre + " · turno de " + c.turno.toLowerCase() : "—"],
+    ["Kilómetros", f.km(v.km)],
+    ["Consumo medio", dec1(v.consumo) + " l/100 km"],
+    ["Matriculación", f.fecha(F.matriculacion)],
+    ["Base", F.base],
+    ["Último mantenimiento", f.fecha(v.ultimoMantenimiento)],
+    ["Próxima ITV", f.fecha(v.itv) + " (en " + TAD.diasHasta(v.itv) + " días)"],
+    ["Seguro", v.seguro.compania + " · póliza " + v.seguro.poliza],
+    ["Seguro vence", f.fecha(v.seguro.vence)]
+  ].map(function (x) { return "<dt>" + x[0] + "</dt><dd>" + h(x[1]) + "</dd>"; }).join("");
+
+  // ---------- Telemetría ----------
+  document.getElementById("senal").textContent = "Última señal " + T.ultimaSenal;
+  var abordo = r ? TAD.aBordo(r.id) : 0;
+  var tele = [
+    ["Velocidad", v.velocidad, "km/h", "Últimos 30 min", "spark"],
+    ["Consumo ahora", dec1(T.consumoInstantaneo), "l/100 km", "Media: " + dec1(v.consumo)],
+    ["Km de hoy", v.kmHoy, "km", "desde las " + (r ? r.servicios[0].inicio : "—")],
+    ["Ocupación", abordo, "/ " + v.plazas, Math.round(100 * abordo / v.plazas) + " % de las plazas"],
+    ["Combustible", T.combustiblePct, "%", "Autonomía " + f.km(T.autonomiaKm)],
+    ["Motor", T.temperaturaMotor, "°C", "Temperatura normal"]
+  ];
+  document.getElementById("telemetria").innerHTML = tele.map(function (k) {
+    var pie = '<span class="c-kpi__delta c-kpi__delta--flat">' + h(k[3]) + "</span>";
+    return '<div class="c-kpi"><span class="c-kpi__label">' + k[0] + '</span><span class="c-kpi__value">' + k[1] + ' <span class="c-kpi__unit">' + k[2] + "</span></span>" +
+      (k[4] ? '<div class="c-kpi__foot">' + pie + '<span id="spark-velocidad"></span></div>' : pie) + "</div>";
+  }).join("");
+  // Velocidad cada pocos minutos hasta ahora (el último valor es la velocidad actual)
+  TADGrafico.sparkline("#spark-velocidad", T.velocidades.slice(0, -1).concat([v.velocidad]), "--chart-1");
+  var prox = r ? TAD.parada(r.proximaParada) : null;
+  document.getElementById("posicion").innerHTML = (prox ? "A " + r.minutosProxima + " min de " + h(prox.nombre) + " · " : "") +
+    "Rampa: " + h(T.rampa.toLowerCase()) + " · Puertas: " + h(T.puertas.toLowerCase()) + " · Neumáticos: " + h(T.neumaticos.toLowerCase()) +
+    " · " + f.numero(v.posicion[0], 5) + ", " + f.numero(v.posicion[1], 5);
+
+  var mini = TADMapa.crear("#minimapa", { zoomControl: true });
+  mini.obras();
+  if (r) mini.rutas({ ids: [r.id] }).paradas({ soloRuta: r.id, resaltar: r.proximaParada });
+  mini.vehiculos({ ids: [v.matricula], seleccionar: v.matricula }).centrarEn(v.matricula, 13);
+
+  // ---------- Consumo de 30 días ----------
+  var dias = F.consumo, km30 = 0, litros30 = 0;
+  dias.forEach(function (d) { km30 += d.km; litros30 += d.litros; });
+  var media = 100 * litros30 / km30;
+  document.getElementById("consumo-periodo").textContent = f.fecha(dias[0].fecha) + " – " + f.fecha(dias[dias.length - 1].fecha);
+  var max = dias.reduce(function (a, d) { return d.l100 > a.l100 ? d : a; });
+  document.getElementById("consumo-kpis").innerHTML = [
+    ["Consumo medio", dec1(media), "l/100 km", "ponderado por kilómetro"],
+    ["Kilómetros", f.numero(km30), "km", "en " + dias.filter(function (d) { return d.km; }).length + " días de servicio"],
+    ["Combustible", f.numero(litros30), "litros", "≈ " + dec1(litros30 / dias.length) + " litros al día"],
+    ["Día de más consumo", dec1(max.l100), "l/100 km", f.fechaLarga(max.fecha)]
+  ].map(function (k) {
+    return '<div class="c-kpi"><span class="c-kpi__label">' + k[0] + '</span><span class="c-kpi__value">' + k[1] + ' <span class="c-kpi__unit">' + k[2] + '</span></span><span class="c-kpi__delta c-kpi__delta--flat">' + h(k[3]) + "</span></div>";
+  }).join("");
+  TADGrafico.linea("#grafico-consumo", {
+    titulo: "Consumo diario del " + v.matricula + " (l/100 km)",
+    descripcion: "Consumo de cada día de los últimos 30 días comparado con la media del vehículo.",
+    etiquetas: dias.map(function (d) { return f.fechaCorta(d.fecha); }),
+    series: [
+      { nombre: "Consumo del día", valores: dias.map(function (d) { return d.l100; }), color: "--chart-1" },
+      { nombre: "Media del vehículo", valores: dias.map(function () { return v.consumo; }), color: "--chart-3", discontinua: true }
+    ],
+    unidad: " l/100 km", alto: 240, min: 8, max: 12
+  });
+
+  // ---------- Calendario de mantenimiento ----------
+  var CLASE_TIPO = { Preventivo: "info", Correctivo: "warning", ITV: "accent", Seguro: "neutral" };
+  var proximo = F.mantenimientos.filter(function (m) { return m.fecha >= TAD.fecha; })[0];
+  var tipos = ["Todos"].concat(Object.keys(CLASE_TIPO).filter(function (t) { return F.mantenimientos.some(function (m) { return m.tipo === t; }); }));
+  var tipoSel = "Todos";
+  var fMant = document.getElementById("f-mant");
+  function pintarMant() {
+    fMant.innerHTML = tipos.map(function (t) { return '<button class="c-chip" type="button" data-tipo="' + t + '" aria-pressed="' + (t === tipoSel) + '">' + t + "</button>"; }).join("");
+    document.getElementById("mantenimientos").innerHTML = F.mantenimientos.filter(function (m) { return tipoSel === "Todos" || m.tipo === tipoSel; }).map(function (m) {
+      var hecho = m.estado === "Hecho", dias = TAD.diasHasta(m.fecha);
+      return '<li class="c-timeline__item ' + (hecho ? "is-done" : m === proximo ? "is-current" : "") + '"><span class="c-timeline__time">' + f.fechaCorta(m.fecha) +
+        '</span><div class="c-timeline__content"><span class="c-timeline__title">' + h(m.titulo) + '</span><span class="c-timeline__desc">' +
+        '<span class="c-badge c-badge--' + CLASE_TIPO[m.tipo] + '">' + m.tipo + "</span> " + f.fecha(m.fecha) + " · " + h(m.taller) +
+        (hecho ? "" : " · " + (dias === 0 ? "hoy" : "en " + dias + " días")) +
+        (m.incidencia ? ' · <a href="../control/incidencias.html#' + m.incidencia + '">' + m.incidencia + "</a>" : "") + "</span></div></li>";
+    }).join("");
+  }
+  fMant.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-tipo]");
+    if (b) { tipoSel = b.getAttribute("data-tipo"); pintarMant(); fMant.querySelector('[data-tipo="' + tipoSel + '"]').focus(); }
+  });
+  pintarMant();
+
+  // ---------- Documentos ----------
+  document.getElementById("documentos").innerHTML = F.documentos.map(function (d) {
+    var dias = d.vence ? TAD.diasHasta(d.vence) : null;
+    var est = dias === null ? ["success", "Vigente"] : dias < 0 ? ["danger", "Caducado"] : dias <= 90 ? ["warning", "Caduca en " + dias + " días"] : ["success", "Vigente hasta " + f.fecha(d.vence)];
+    return '<li class="c-list__item"><div class="c-list__button" style="cursor:default"><span class="c-avatar c-avatar--sm" aria-hidden="true">{{i:documento}}</span>' +
+      '<span><span class="c-list__title">' + h(d.nombre) + '</span><span class="c-list__meta">' + h(d.detalle) + " · " + h(d.formato) + "</span></span>" +
+      '<button class="c-btn c-btn--ghost c-btn--icon c-btn--sm" type="button" aria-label="Descargar ' + h(d.nombre) + '" data-toast="' + h(d.nombre) + ' (' + h(d.formato) + ') preparado para descargar." data-toast-title="Descarga">{{i:descargar}}</button>' +
+      '<span class="c-list__wide"><span class="c-badge c-badge--' + est[0] + '">' + est[1] + "</span></span></div></li>";
+  }).join("");
+
+  // ---------- Incidencias del vehículo ----------
+  var inc = TAD.incidencias.filter(function (i) { return i.vehiculo === v.matricula; });
+  document.getElementById("incidencias").innerHTML = inc.length ? inc.map(function (i) {
+    return '<li class="c-list__item"><a class="c-list__button" href="../control/incidencias.html#' + i.id + '"><span class="c-avatar c-avatar--sm' + (i.estado === "Abierta" ? " c-avatar--orange" : "") + '" aria-hidden="true">{{i:incidencia}}</span>' +
+      '<span><span class="c-list__title">' + h(i.titulo) + '</span><span class="c-list__meta">' + i.id + " · " + f.fecha(i.fecha) + " · " + i.hora + " · " + h(i.tipo) + "</span></span>" + f.badge(i.estado) + "</a></li>";
+  }).join("") : '<li class="c-list__item"><div class="c-empty-state"><p>Este vehículo no tiene incidencias.</p></div></li>';
+
+  // ---------- Formulario de mantenimiento ----------
+  var talleres = {};
+  F.mantenimientos.forEach(function (m) { if (m.tipo !== "Seguro") talleres[m.taller] = true; });
+  document.getElementById("m-taller").innerHTML = Object.keys(talleres).map(function (t) { return "<option>" + h(t) + "</option>"; }).join("");
+  if (proximo) document.getElementById("m-fecha").value = proximo.fecha;
+});
+<!--FIN-->

@@ -1371,7 +1371,7 @@
     "kmRutas": 154,
     "kmIndividual": 248,
     "explicacion": [
-      "Se agruparon en la ruta R2 las 4 reservas con destino al Centro de Salud de Valdecerro entre las 10:15 y las 10:45.",
+      "Se agruparon en la ruta R2 las 3 reservas con destino al Centro de Salud de Valdecerro (llegada prevista a las 10:29) y el grupo de Fuentelviejo que va a la Plaza Mayor.",
       "La reserva PMR de Ana Ruiz exige un vehículo con rampa: se asignó el 4521 LKT.",
       "El grupo del centro de día (9 personas) necesita un vehículo grande: se asignó el 9951 KZD, que además sustituye al 6604 LBC.",
       "La ventana de recogida de Josefa Martín (10:00, ±15 min) permite pasar antes por Santa Olalla sin superar el tiempo máximo de viaje."
