@@ -1,0 +1,282 @@
+<!--SIN-MAPA-->
+<!--ACCIONES-->
+<a class="c-btn c-btn--secondary" href="bandeja.html">{{i:mensaje}} Bandeja</a>
+<button class="c-btn c-btn--secondary" type="button" id="btn-llamar">{{i:telefono}} Llamar</button>
+<button class="c-btn c-btn--primary" type="button" data-open="modal-reserva">{{i:calendario}} Crear reserva</button>
+<!--MAIN-->
+<div class="bo-grid bo-grid--main-side">
+  <div class="bo-stack">
+    <section class="c-card" aria-labelledby="u-nombre">
+      <div class="c-card__body" style="display:flex;flex-wrap:wrap;gap:var(--sp-5);align-items:flex-start">
+        <span class="c-avatar c-avatar--lg" aria-hidden="true" id="u-avatar"></span>
+        <div style="flex:1 1 var(--sidebar-w);min-width:0">
+          <h2 id="u-nombre" style="margin:0"></h2>
+          <p class="u-muted" id="u-sub" style="margin:var(--sp-1) 0 var(--sp-3)"></p>
+          <div style="display:flex;flex-wrap:wrap;gap:var(--sp-2)" id="u-badges"></div>
+        </div>
+        <dl class="c-datalist" id="u-datos" style="flex:1 1 var(--sidebar-w)"></dl>
+      </div>
+      <div class="c-card__footer">
+        <button class="c-btn c-btn--ghost c-btn--sm" type="button" data-open="modal-editar">{{i:editar}} Editar datos</button>
+      </div>
+    </section>
+
+    <section class="c-card" aria-labelledby="t-historial">
+      <h2 class="u-visually-hidden" id="t-historial">Historial del ciudadano</h2>
+      <div class="c-card__header" style="padding-bottom:0;border-bottom:0">
+        <div class="c-tabs" role="tablist" aria-label="Historial del ciudadano" style="width:100%">
+          <button class="c-tabs__tab" role="tab" type="button" aria-selected="true" aria-controls="panel-viajes" id="tab-viajes">Viajes <span class="c-tabs__count" id="n-viajes"></span></button>
+          <button class="c-tabs__tab" role="tab" type="button" aria-selected="false" tabindex="-1" aria-controls="panel-reclamaciones" id="tab-reclamaciones">Reclamaciones <span class="c-tabs__count" id="n-reclamaciones"></span></button>
+          <button class="c-tabs__tab" role="tab" type="button" aria-selected="false" tabindex="-1" aria-controls="panel-encuestas" id="tab-encuestas">Encuestas <span class="c-tabs__count" id="n-encuestas"></span></button>
+          <button class="c-tabs__tab" role="tab" type="button" aria-selected="false" tabindex="-1" aria-controls="panel-notas" id="tab-notas">Notas <span class="c-tabs__count" id="n-notas"></span></button>
+        </div>
+      </div>
+
+      <div class="c-tabpanel" role="tabpanel" id="panel-viajes" aria-labelledby="tab-viajes">
+        <div class="c-card__body" style="padding-bottom:0">
+          <p class="u-muted u-small" id="resumen-viajes" style="margin:0"></p>
+        </div>
+        <div class="c-table-wrap" style="border:0;border-radius:0">
+          <table class="c-table" data-sortable id="tabla-viajes">
+            <caption class="u-visually-hidden">Historial de viajes</caption>
+            <thead><tr>
+              <th scope="col"><button class="c-table__sort" type="button">Fecha {{i:chevron-abajo}}</button></th>
+              <th scope="col">Reserva</th>
+              <th scope="col">Trayecto</th>
+              <th scope="col" class="is-num"><button class="c-table__sort" type="button">Importe {{i:chevron-abajo}}</button></th>
+            </tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="c-tabpanel" role="tabpanel" id="panel-reclamaciones" aria-labelledby="tab-reclamaciones" hidden>
+        <div class="c-card__body" id="lista-reclamaciones" style="display:grid;gap:var(--sp-5)"></div>
+      </div>
+
+      <div class="c-tabpanel" role="tabpanel" id="panel-encuestas" aria-labelledby="tab-encuestas" hidden>
+        <div class="c-card__body">
+          <div class="bo-grid bo-grid--3" id="lista-encuestas" style="gap:var(--sp-4)"></div>
+          <p class="u-muted u-small" id="encuestas-nota" style="margin:var(--sp-4) 0 0"></p>
+        </div>
+      </div>
+
+      <div class="c-tabpanel" role="tabpanel" id="panel-notas" aria-labelledby="tab-notas" hidden>
+        <div class="c-card__body">
+          <ol class="c-timeline" id="lista-notas"></ol>
+          <div class="c-field" style="margin:var(--sp-5) 0 0">
+            <label class="c-field__label" for="nota-nueva">Añadir nota interna</label>
+            <textarea class="c-textarea" id="nota-nueva" rows="2" placeholder="Solo la ve el equipo de atención"></textarea>
+          </div>
+          <div style="display:flex;justify-content:flex-end;margin-top:var(--sp-3)">
+            <button class="c-btn c-btn--primary c-btn--sm" type="button" data-toast="La nota queda guardada en la ficha." data-toast-title="Nota añadida">{{i:editar}} Guardar nota</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <aside class="bo-stack" aria-label="Resumen del ciudadano">
+    <section class="c-card" aria-labelledby="t-proximo">
+      <div class="c-card__header"><h2 class="c-card__title" id="t-proximo">Próximo viaje</h2><span id="proximo-estado"></span></div>
+      <div class="c-card__body" id="proximo"></div>
+    </section>
+    <section class="c-card" aria-labelledby="t-perfil">
+      <div class="c-card__header"><h2 class="c-card__title" id="t-perfil">{{i:accesibilidad}} Perfil especial</h2></div>
+      <div class="c-card__body" style="display:grid;gap:var(--sp-3)">
+        <dl class="c-datalist" id="perfil-datos"></dl>
+        <div id="perfil-necesidades" style="display:flex;flex-wrap:wrap;gap:var(--sp-2)"></div>
+      </div>
+    </section>
+    <section class="c-card" aria-labelledby="t-canal">
+      <div class="c-card__header"><h2 class="c-card__title" id="t-canal">Preferencias de contacto</h2></div>
+      <div class="c-card__body" style="display:grid;gap:var(--sp-3)">
+        <fieldset style="border:0;margin:0;padding:0;display:grid;gap:var(--sp-2)" id="canales">
+          <legend class="c-field__label">Avisos y confirmaciones</legend>
+        </fieldset>
+        <dl class="c-datalist" id="canal-datos"></dl>
+      </div>
+    </section>
+  </aside>
+</div>
+
+<!-- Crear reserva -->
+<div class="c-modal" id="modal-reserva" role="dialog" aria-modal="true" aria-labelledby="modal-reserva-t">
+  <div class="c-modal__dialog">
+    <div class="c-modal__header">
+      <h2 class="c-modal__title" id="modal-reserva-t">Crear reserva</h2>
+      <button class="c-btn c-btn--ghost c-btn--icon c-btn--sm" type="button" data-close aria-label="Cerrar">{{i:cerrar}}</button>
+    </div>
+    <div class="c-modal__body">
+      <div class="bo-grid bo-grid--2" style="gap:var(--sp-3)">
+        <div class="c-field"><label class="c-field__label" for="r-origen">Recogida</label><select class="c-select" id="r-origen"></select></div>
+        <div class="c-field"><label class="c-field__label" for="r-destino">Destino</label><select class="c-select" id="r-destino"></select></div>
+        <div class="c-field"><label class="c-field__label" for="r-fecha">Día</label><input class="c-input" id="r-fecha" type="date"></div>
+        <div class="c-field"><label class="c-field__label" for="r-hora">Hora de llegada deseada</label><input class="c-input" id="r-hora" type="time" value="12:00"></div>
+      </div>
+    </div>
+    <div class="c-modal__footer">
+      <button class="c-btn c-btn--secondary" type="button" data-close>Cancelar</button>
+      <button class="c-btn c-btn--primary" type="button" data-toast="La reserva queda confirmada y se envía un SMS con la hora de recogida." data-toast-title="Reserva creada" data-toast-close>Confirmar reserva</button>
+    </div>
+  </div>
+</div>
+
+<!-- Editar datos -->
+<div class="c-modal" id="modal-editar" role="dialog" aria-modal="true" aria-labelledby="modal-editar-t">
+  <div class="c-modal__dialog">
+    <div class="c-modal__header">
+      <h2 class="c-modal__title" id="modal-editar-t">Editar datos de contacto</h2>
+      <button class="c-btn c-btn--ghost c-btn--icon c-btn--sm" type="button" data-close aria-label="Cerrar">{{i:cerrar}}</button>
+    </div>
+    <div class="c-modal__body">
+      <div class="c-field"><label class="c-field__label" for="e-telefono">Teléfono</label><input class="c-input" id="e-telefono" type="tel"></div>
+      <div class="c-field"><label class="c-field__label" for="e-contacto">Persona de contacto</label><input class="c-input" id="e-contacto" type="text"></div>
+      <div class="c-field"><label class="c-field__label" for="e-horario">Mejor horario para llamar</label><input class="c-input" id="e-horario" type="text"></div>
+    </div>
+    <div class="c-modal__footer">
+      <button class="c-btn c-btn--secondary" type="button" data-close>Cancelar</button>
+      <button class="c-btn c-btn--primary" type="button" data-toast="Los datos de contacto se han actualizado." data-toast-title="Ficha actualizada" data-toast-close>Guardar</button>
+    </div>
+  </div>
+</div>
+<script defer src="../js/datos/crm-economica.js"></script>
+<!--SCRIPT-->
+document.addEventListener("DOMContentLoaded", function () {
+  var f = TAD.fmt, h = f.html;
+  // Por defecto, la ficha de la reserva de referencia (Josefa). Con #u08 se abre otra.
+  var u = (location.hash && TAD.usuario(location.hash.slice(1))) || TAD.usuario(TAD.reservaReferencia().usuario);
+  var m = TAD.municipio(u.municipio), n = TAD.nucleo(u.nucleo);
+  var pref = TAD.preferenciasUsuarios[u.id];
+  var bon = TAD.tarifas.bonificaciones.filter(function (b) { return b.perfil === u.bonificacion; })[0];
+  var CANAL = { "teléfono": "Teléfono", "WhatsApp": "WhatsApp", "email": "Correo", "chat web": "Chat web", "app": "App" };
+  function parada(id) { return TAD.parada(id).nombre; }
+
+  // ---------- Cabecera de la ficha ----------
+  document.title = u.nombre + " · Ficha de usuario · Plataforma Digital TAD";
+  document.getElementById("u-avatar").textContent = u.iniciales;
+  document.getElementById("u-nombre").textContent = u.nombre;
+  document.getElementById("u-sub").textContent = u.edad + " años · " + (n && n.id !== m.id ? n.nombre + ", " : "") + m.nombre + " · Zona " + m.zona;
+  document.getElementById("u-badges").innerHTML =
+    (bon ? '<span class="c-badge c-badge--info">' + h(bon.nombre) + " · −" + bon.pct + " %</span>" : '<span class="c-badge c-badge--neutral">Tarifa general</span>') +
+    '<span class="c-badge c-badge--neutral">Canal habitual: ' + h(CANAL[u.canal] || u.canal) + "</span>" +
+    (pref && pref.necesidades.length ? '<span class="c-badge c-badge--info">Necesita vehículo adaptado</span>' : "");
+  document.getElementById("u-datos").innerHTML = [
+    ["DNI", u.dni], ["Teléfono", u.telefono], ["Contacto", pref ? pref.contacto : "—"],
+    ["Alta en el servicio", pref ? f.fecha(pref.alta) : "—"]
+  ].map(function (x) { return "<dt>" + x[0] + "</dt><dd>" + h(x[1]) + "</dd>"; }).join("");
+  document.getElementById("btn-llamar").setAttribute("data-toast", "Llamando al " + u.telefono + " desde la centralita del servicio.");
+  document.getElementById("btn-llamar").setAttribute("data-toast-title", "Llamada en curso");
+
+  // ---------- Viajes (hoy + anteriores) ----------
+  var hoy = TAD.reservasDe(u.id).map(function (r) {
+    return { codigo: r.codigo, fecha: r.fecha, hora: r.horaPrevista, origen: r.origen, destino: r.destino, ruta: r.ruta, pago: r.pago, importe: r.importe, estado: r.estado, viajeros: r.viajeros, perfil: r.perfil, hoy: true };
+  });
+  var antes = TAD.viajesAnteriores.filter(function (v) { return v.usuario === u.id; }).map(function (v) {
+    var t = TAD.tarifa(v.origen, v.destino, v.perfil);
+    return { codigo: v.codigo, fecha: v.fecha, hora: v.hora, origen: v.origen, destino: v.destino, ruta: v.ruta, pago: v.abonado ? "Abonado" : v.pago,
+      importe: v.abonado ? 0 : Math.round(t.importe * v.viajeros * 100) / 100, estado: v.estado, viajeros: v.viajeros, retraso: v.retraso, reclamacion: v.reclamacion };
+  });
+  var viajes = hoy.concat(antes).sort(function (a, b) { return (b.fecha + b.hora).localeCompare(a.fecha + a.hora); });
+  var referencia = TAD.reservaReferencia().codigo;
+  document.getElementById("n-viajes").textContent = viajes.length;
+  var gastado = viajes.reduce(function (a, v) { return a + (v.estado === "Cancelada" ? 0 : v.importe); }, 0);
+  var ahorro = viajes.reduce(function (a, v) { return a + (v.estado === "Cancelada" ? 0 : TAD.tarifa(v.origen, v.destino, "general").importe * v.viajeros); }, 0) - gastado;
+  document.getElementById("resumen-viajes").textContent = viajes.length + " viajes desde el alta · " + f.euros(gastado) + " pagados · " +
+    f.euros(ahorro) + " de bonificación y abonos";
+  document.querySelector("#tabla-viajes tbody").innerHTML = viajes.map(function (v) {
+    var esRef = v.codigo === referencia;
+    return "<tr" + (esRef ? ' style="background:var(--tad-blue-100)"' : "") + ">" +
+      '<td class="is-nowrap" data-value="' + v.fecha.replace(/-/g, "") + v.hora.replace(":", "") + '">' + f.fecha(v.fecha) + '<span class="c-list__meta">' + v.hora + "</span></td>" +
+      '<td><strong class="is-nowrap">' + v.codigo + '</strong><span class="c-list__meta">Ruta ' + (v.ruta || "—") + "</span>" +
+      '<span style="display:flex;flex-wrap:wrap;gap:var(--sp-1);margin-top:var(--sp-1)">' + f.badge(v.estado) + (v.hoy ? '<span class="c-badge c-badge--info">Hoy</span>' : "") + "</span></td>" +
+      "<td>" + h(parada(v.origen)) + " → " + h(parada(v.destino)) +
+      (v.retraso ? '<span class="c-list__meta">Llegó con ' + v.retraso + " min de retraso" + (v.reclamacion ? " · reclamación " + v.reclamacion : "") + "</span>" : "") + "</td>" +
+      '<td class="is-num is-nowrap" data-value="' + v.importe + '">' + f.euros(v.importe) + '<span class="c-list__meta">' + h(v.pago) + "</span></td></tr>";
+  }).join("");
+
+  // ---------- Reclamaciones ----------
+  var recs = TAD.reclamaciones.filter(function (r) { return r.usuario === u.id; });
+  document.getElementById("n-reclamaciones").textContent = recs.length;
+  document.getElementById("lista-reclamaciones").innerHTML = recs.length ? recs.map(function (r) {
+    var viaje = antes.filter(function (v) { return v.reclamacion === r.id; })[0];
+    var dias = Math.round((new Date(r.resolucion) - new Date(r.fecha)) / 86400000);
+    return '<article><div style="display:flex;flex-wrap:wrap;gap:var(--sp-2);align-items:center;justify-content:space-between">' +
+      "<h3 style=\"margin:0\">" + r.id + " · " + h(r.tipo) + "</h3>" + f.badge(r.estado) + "</div>" +
+      '<p class="u-muted u-small" style="margin:var(--sp-1) 0 var(--sp-4)">Abierta el ' + f.fecha(r.fecha) + (viaje ? " · viaje " + viaje.codigo : "") +
+      (r.resolucion ? " · resuelta en " + dias + " días" : "") + "</p>" +
+      '<ol class="c-timeline">' +
+      '<li class="c-timeline__item is-done"><span class="c-timeline__time">' + f.fechaCorta(r.fecha) + '</span><div class="c-timeline__content"><span class="c-timeline__title">Reclamación presentada</span><span class="c-timeline__desc">«' + h(r.texto) + "»</span></div></li>" +
+      (r.resolucion ? '<li class="c-timeline__item is-done"><span class="c-timeline__time">' + f.fechaCorta(r.resolucion) + '</span><div class="c-timeline__content"><span class="c-timeline__title">Respuesta y cierre</span><span class="c-timeline__desc">' + h(r.respuesta) + "</span></div></li>" : "") +
+      "</ol></article>";
+  }).join("") : '<div class="c-empty-state"><span class="c-empty-state__icon">{{i:check:lg}}</span><h3 class="c-empty-state__title">Sin reclamaciones</h3><p>Este ciudadano no ha presentado ninguna reclamación.</p></div>';
+
+  // ---------- Encuestas ----------
+  var enc = TAD.encuestas.filter(function (e) { return e.usuario === u.id; });
+  document.getElementById("n-encuestas").textContent = enc.length;
+  document.getElementById("lista-encuestas").innerHTML = enc.map(function (e) {
+    var pct = Math.round(e.valor / e.escala * 100);
+    var tipo = pct >= 80 ? "success" : pct >= 60 ? "warning" : "danger";
+    return '<div class="c-kpi"><span class="c-kpi__label">' + h(e.tipo) + '</span><span class="c-kpi__value">' + e.valor + ' <span class="c-kpi__unit">/ ' + e.escala + "</span></span>" +
+      '<div class="c-progress c-progress--' + tipo + '" role="progressbar" aria-label="' + h(e.tipo) + '" aria-valuemin="0" aria-valuemax="' + e.escala + '" aria-valuenow="' + e.valor + '" style="margin:var(--sp-2) 0"><span style="width:' + pct + '%"></span></div>' +
+      '<span class="c-kpi__delta c-kpi__delta--flat">' + h(e.pregunta) + "</span></div>";
+  }).join("");
+  document.getElementById("encuestas-nota").textContent = enc.length ? "Respondidas el " + f.fecha(enc[0].fecha) + " tras el viaje al centro de salud. Media del servicio: " +
+    f.numero(TAD.satisfaccion.media, 1) + " / " + TAD.satisfaccion.escala + " y NPS " + TAD.satisfaccion.nps + " (" + TAD.satisfaccion.respuestas + " respuestas)." : "No ha respondido encuestas.";
+
+  // ---------- Notas internas ----------
+  var notas = TAD.notasUsuarios.filter(function (x) { return x.usuario === u.id; });
+  document.getElementById("n-notas").textContent = notas.length;
+  document.getElementById("lista-notas").innerHTML = notas.map(function (x) {
+    var p = TAD.persona(x.autor);
+    return '<li class="c-timeline__item is-done"><span class="c-timeline__time">' + f.fechaCorta(x.fecha) + " · " + x.hora + '</span><div class="c-timeline__content">' +
+      '<span class="c-timeline__title">' + h(p ? p.nombre : x.autor) + '</span><span class="c-timeline__desc">' + h(x.texto) + "</span></div></li>";
+  }).join("");
+
+  // ---------- Lateral ----------
+  var prox = hoy.filter(function (v) { return v.estado === "Confirmada" || v.estado === "En curso"; })[0];
+  document.getElementById("proximo-estado").innerHTML = prox ? f.badge(prox.estado) : "";
+  if (prox) {
+    var r = TAD.reserva(prox.codigo), v = TAD.ruta(r.ruta) ? TAD.vehiculo(TAD.ruta(r.ruta).vehiculo) : null;
+    var conv = TAD.conversaciones.filter(function (c) { return c.reserva === r.codigo; })[0];
+    document.getElementById("proximo").innerHTML = '<p style="margin:0 0 var(--sp-3)"><strong>' + r.codigo + "</strong></p>" +
+      '<dl class="c-datalist">' + [
+        ["Día", f.fecha(r.fecha)], ["Recogida", r.horaPrevista + " · " + parada(r.origen)], ["Llegada", (r.horaLlegadaPrevista || "—") + " · " + parada(r.destino)],
+        ["Ruta", r.ruta + (v ? " · " + v.matricula + (v.pmr ? " (con rampa)" : "") : "")], ["Importe", f.euros(r.importe) + " · " + r.pago]
+      ].map(function (x) { return "<dt>" + x[0] + "</dt><dd>" + h(x[1]) + "</dd>"; }).join("") + "</dl>" +
+      (r.nota ? '<p class="u-small u-muted" style="margin:var(--sp-3) 0 0">' + h(r.nota) + "</p>" : "") +
+      (conv ? '<p class="u-small" style="margin:var(--sp-3) 0 0"><a href="bandeja.html#' + conv.id + '">Ver la conversación en la bandeja</a></p>' : "");
+  } else {
+    document.getElementById("proximo").innerHTML = '<p class="u-muted" style="margin:0">Sin viajes pendientes.</p>';
+  }
+
+  document.getElementById("perfil-datos").innerHTML = [
+    ["Perfil", u.perfil === "mayor" ? "Mayor de 65 años" : u.perfil === "PMR" ? "Movilidad reducida" : u.perfil.charAt(0).toUpperCase() + u.perfil.slice(1)],
+    ["Bonificación", bon ? bon.pct + " % · " + bon.nombre.toLowerCase() : "Ninguna"],
+    ["La financia", bon ? bon.financia : "—"]
+  ].map(function (x) { return "<dt>" + x[0] + "</dt><dd>" + h(x[1]) + "</dd>"; }).join("");
+  document.getElementById("perfil-necesidades").innerHTML = pref ? pref.necesidades.map(function (x) { return '<span class="c-badge c-badge--neutral">' + h(x) + "</span>"; }).join("") : "";
+
+  document.getElementById("canales").insertAdjacentHTML("beforeend", (pref ? pref.canales : []).map(function (c, i) {
+    return '<label class="c-switch"><input type="checkbox" role="switch" data-canal-pref="' + h(c.canal) + '"' + (c.activo ? " checked" : "") + "> " + h(c.canal) + "</label>";
+  }).join(""));
+  document.getElementById("canales").addEventListener("change", function (e) {
+    var c = e.target.getAttribute("data-canal-pref");
+    if (c) TADUI.toast((e.target.checked ? "Activado: " : "Desactivado: ") + c.toLowerCase() + ". Se aplicará en el próximo aviso.", { titulo: "Preferencia de contacto" });
+  });
+  document.getElementById("canal-datos").innerHTML = pref ? [["Horario", pref.horario], ["Idioma", pref.idioma], ["Consentimiento", pref.consentimiento]]
+    .map(function (x) { return "<dt>" + x[0] + "</dt><dd>" + h(x[1]) + "</dd>"; }).join("") : "";
+
+  // ---------- Formularios ----------
+  function opciones(sel) {
+    return TAD.paradas.map(function (p) { return '<option value="' + p.id + '"' + (p.id === sel ? " selected" : "") + ">" + h(p.nombre) + "</option>"; }).join("");
+  }
+  var habitual = viajes.length ? viajes[viajes.length - 1] : null;
+  document.getElementById("r-origen").innerHTML = opciones(habitual ? habitual.origen : "P01");
+  document.getElementById("r-destino").innerHTML = opciones(habitual ? habitual.destino : "P02");
+  document.getElementById("r-fecha").value = TAD.fecha;
+  document.getElementById("e-telefono").value = u.telefono;
+  document.getElementById("e-contacto").value = pref ? pref.contacto : "";
+  document.getElementById("e-horario").value = pref ? pref.horario : "";
+});
+<!--FIN-->

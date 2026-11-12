@@ -1,0 +1,224 @@
+<!--SIN-MAPA-->
+<!--ACCIONES-->
+<button class="c-btn c-btn--secondary" type="button" data-toast="Se ha descargado la tabla de tarifas y bonificaciones en formato hoja de cálculo." data-toast-title="Tabla exportada">{{i:descargar}} Exportar</button>
+<button class="c-btn c-btn--primary" type="button" data-open="modal-guardar">{{i:check}} Guardar cambios</button>
+<!--MAIN-->
+<section aria-labelledby="t-kpis">
+  <h2 class="u-visually-hidden" id="t-kpis">Resumen de tarifas</h2>
+  <div class="bo-grid bo-grid--kpis" id="kpis"></div>
+</section>
+
+<div class="bo-grid bo-grid--main-side" style="margin-top:var(--sp-6);align-items:start">
+  <div class="bo-stack">
+    <section class="c-card" aria-labelledby="t-tarifas">
+      <div class="c-card__header"><h2 class="c-card__title" id="t-tarifas">Tarifas por zona y tipo de viajero</h2><span class="u-muted u-small" id="vigencia"></span></div>
+      <div class="c-card__body" style="padding-bottom:0"><p class="u-small u-muted" id="zonas" style="margin:0"></p></div>
+      <div class="c-table-wrap" style="border:0;border-radius:0">
+        <table class="c-table" id="tabla-tarifas">
+          <caption class="u-visually-hidden">Precio de un trayecto según zona y perfil del viajero</caption>
+          <thead><tr id="cabecera-tarifas"></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <div class="c-card__footer" style="justify-content:flex-start">
+        <span class="u-small u-muted">Precio por persona y trayecto. Es el mismo cálculo que se aplica al hacer una reserva.</span>
+      </div>
+    </section>
+
+    <section class="c-card" aria-labelledby="t-bonif">
+      <div class="c-card__header"><h2 class="c-card__title" id="t-bonif">Bonificaciones por perfil</h2>
+        <button class="c-btn c-btn--ghost c-btn--sm" type="button" data-open="modal-bonificacion">{{i:mas}} Nueva bonificación</button></div>
+      <div class="c-table-wrap" style="border:0;border-radius:0">
+        <table class="c-table" data-sortable id="tabla-bonif">
+          <caption class="u-visually-hidden">Bonificaciones, quién las financia y lo subvencionado hoy</caption>
+          <thead><tr>
+            <th scope="col">Perfil</th>
+            <th scope="col" class="is-num"><button class="c-table__sort" type="button">Descuento {{i:chevron-abajo}}</button></th>
+            <th scope="col" class="is-num"><button class="c-table__sort" type="button">Subvencionado hoy {{i:chevron-abajo}}</button></th>
+            <th scope="col" class="c-table__actions"><span class="u-visually-hidden">Acciones</span></th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="c-card" aria-labelledby="t-pagos">
+      <div class="c-card__header"><h2 class="c-card__title" id="t-pagos">Métodos de pago</h2></div>
+      <ul class="c-list" id="pagos"></ul>
+    </section>
+  </div>
+
+  <aside class="bo-sticky" aria-labelledby="t-simulador">
+    <section class="c-card">
+      <div class="c-card__header"><h2 class="c-card__title" id="t-simulador">{{i:euro}} Simulador de tarifa</h2></div>
+      <form class="c-card__body" id="simulador" style="display:grid;gap:var(--sp-3)">
+        <div class="c-field" style="margin:0"><label class="c-field__label" for="s-origen">Origen</label><select class="c-select" id="s-origen"></select></div>
+        <div class="c-field" style="margin:0"><label class="c-field__label" for="s-destino">Destino</label><select class="c-select" id="s-destino"></select></div>
+        <div class="c-field" style="margin:0"><label class="c-field__label" for="s-perfil">Perfil del viajero</label><select class="c-select" id="s-perfil"></select></div>
+        <div class="c-field" style="margin:0"><label class="c-field__label" for="s-viajeros">Viajeros</label><input class="c-input" id="s-viajeros" type="number" min="1" max="9" value="1" inputmode="numeric"></div>
+      </form>
+      <div class="c-card__body" style="border-top:var(--bw) solid var(--color-border)" aria-live="polite">
+        <div class="c-kpi" style="border:0;padding:0;box-shadow:none">
+          <span class="c-kpi__label">Importe del viaje</span>
+          <span class="c-kpi__value" id="s-importe"></span>
+          <span class="c-kpi__delta c-kpi__delta--flat" id="s-resumen"></span>
+        </div>
+        <dl class="c-datalist" id="s-desglose" style="margin-top:var(--sp-4)"></dl>
+      </div>
+      <div class="c-card__footer" style="justify-content:space-between">
+        <button class="c-btn c-btn--ghost c-btn--sm" type="button" id="s-ejemplo">Probar el viaje de ejemplo</button>
+      </div>
+    </section>
+  </aside>
+</div>
+
+<!-- Guardar cambios -->
+<div class="c-modal" id="modal-guardar" role="dialog" aria-modal="true" aria-labelledby="modal-guardar-t">
+  <div class="c-modal__dialog">
+    <div class="c-modal__header">
+      <h2 class="c-modal__title" id="modal-guardar-t">Guardar cambios de tarifas</h2>
+      <button class="c-btn c-btn--ghost c-btn--icon c-btn--sm" type="button" data-close aria-label="Cerrar">{{i:cerrar}}</button>
+    </div>
+    <div class="c-modal__body">
+      <p style="margin-top:0">Los cambios en precios y bonificaciones necesitan la aprobación del Consorcio de Transportes antes de aplicarse.</p>
+      <div class="c-field"><label class="c-field__label" for="g-desde">Aplicar a partir del</label><input class="c-input" id="g-desde" type="date"></div>
+      <div class="c-field"><label class="c-field__label" for="g-motivo">Motivo del cambio</label><textarea class="c-textarea" id="g-motivo" placeholder="Por ejemplo: actualización anual aprobada en asamblea"></textarea></div>
+    </div>
+    <div class="c-modal__footer">
+      <button class="c-btn c-btn--secondary" type="button" data-close>Cancelar</button>
+      <button class="c-btn c-btn--primary" type="button" data-toast="Los cambios quedan pendientes de aprobación. Te avisaremos cuando el Consorcio los apruebe." data-toast-title="Enviado a aprobación" data-toast-close>Enviar a aprobación</button>
+    </div>
+  </div>
+</div>
+
+<!-- Nueva bonificación -->
+<div class="c-modal" id="modal-bonificacion" role="dialog" aria-modal="true" aria-labelledby="modal-bonificacion-t">
+  <div class="c-modal__dialog">
+    <div class="c-modal__header">
+      <h2 class="c-modal__title" id="modal-bonificacion-t">Nueva bonificación</h2>
+      <button class="c-btn c-btn--ghost c-btn--icon c-btn--sm" type="button" data-close aria-label="Cerrar">{{i:cerrar}}</button>
+    </div>
+    <div class="c-modal__body">
+      <div class="c-field"><label class="c-field__label" for="b-nombre">Perfil</label><input class="c-input" id="b-nombre" type="text" placeholder="Por ejemplo: personas desempleadas"></div>
+      <div class="bo-grid bo-grid--2" style="gap:var(--sp-3)">
+        <div class="c-field"><label class="c-field__label" for="b-pct">Descuento (%)</label><input class="c-input" id="b-pct" type="number" min="0" max="100" value="30"></div>
+        <div class="c-field"><label class="c-field__label" for="b-financia">La financia</label><select class="c-select" id="b-financia"></select></div>
+      </div>
+    </div>
+    <div class="c-modal__footer">
+      <button class="c-btn c-btn--secondary" type="button" data-close>Cancelar</button>
+      <button class="c-btn c-btn--primary" type="button" data-toast="La bonificación queda pendiente de aprobación por el Consorcio." data-toast-title="Bonificación creada" data-toast-close>Crear bonificación</button>
+    </div>
+  </div>
+</div>
+<script defer src="../js/datos/crm-economica.js"></script>
+<!--SCRIPT-->
+document.addEventListener("DOMContentLoaded", function () {
+  var f = TAD.fmt, h = f.html, T = TAD.tarifas;
+  var perfiles = [{ perfil: "general", nombre: "General", pct: 0 }].concat(T.bonificaciones);
+  var activas = TAD.reservas.filter(function (r) { return r.estado !== "Cancelada"; });
+
+  // ---------- Indicadores ----------
+  var recaudado = activas.reduce(function (a, r) { return a + r.importe; }, 0);
+  var subvencionado = activas.reduce(function (a, r) { return a + subv(r); }, 0);
+  var conBonif = activas.filter(function (r) { return pctDe(r.perfil) > 0; });
+  function subv(r) { return (TAD.tarifa(r.origen, r.destino, "general").importe - r.tarifaUnitaria) * r.viajeros; }
+  function pctDe(perfil) { var p = perfiles.filter(function (x) { return x.perfil === perfil; })[0]; return p ? p.pct : 0; }
+  var kpis = [
+    ["Tarifa general", f.euros(T.precios[0].importe), "", T.precios[0].tipo],
+    ["Tarifa interzona", f.euros(T.precios[1].importe), "", "Entre la Zona A y la Zona B"],
+    ["Viajeros bonificados hoy", f.porcentaje(Math.round(TAD.suma(conBonif) / TAD.suma(activas) * 100)), "", TAD.suma(conBonif) + " de " + TAD.suma(activas) + " viajeros"],
+    ["Recaudado hoy", f.euros(recaudado), "", f.euros(subvencionado) + " más en bonificaciones"]
+  ];
+  document.getElementById("kpis").innerHTML = kpis.map(function (k) {
+    return '<div class="c-kpi"><span class="c-kpi__label">' + k[0] + '</span><span class="c-kpi__value">' + k[1] + '</span><span class="c-kpi__delta c-kpi__delta--flat">' + k[3] + "</span></div>";
+  }).join("");
+
+  // ---------- Tabla de tarifas (calculada con TAD.tarifa) ----------
+  var V = TAD.tarifasVigencia;
+  document.getElementById("vigencia").textContent = "Vigentes desde el " + f.fecha(V.desde);
+  document.getElementById("zonas").innerHTML = T.zonas.map(function (z) { return "<strong>" + h(z.nombre) + ":</strong> " + h(z.descripcion); }).join(" · ") +
+    ". Aprobadas en la " + h(V.aprobacion) + ".";
+  document.getElementById("cabecera-tarifas").innerHTML = '<th scope="col">Perfil del viajero</th>' + V.ejemplos.map(function (e) {
+    return '<th scope="col" class="is-num"><abbr title="' + h(e.tipo) + '" style="text-decoration:none">' + h(e.corto) + "</abbr></th>";
+  }).join("");
+  document.querySelector("#tabla-tarifas tbody").innerHTML = perfiles.map(function (p) {
+    return '<tr><th scope="row">' + h(p.nombre) + (p.pct ? '<span class="c-list__meta">−' + p.pct + " % sobre la tarifa</span>" : '<span class="c-list__meta">Sin bonificación</span>') + "</th>" +
+      V.ejemplos.map(function (e) {
+        var t = TAD.tarifa(e.origen, e.destino, p.perfil);
+        return '<td class="is-num is-nowrap">' + (p.pct ? f.euros(t.importe) : "<strong>" + f.euros(t.importe) + "</strong>") + "</td>";
+      }).join("") + "</tr>";
+  }).join("");
+
+  // ---------- Bonificaciones ----------
+  document.querySelector("#tabla-bonif tbody").innerHTML = T.bonificaciones.map(function (b) {
+    var rs = activas.filter(function (r) { return r.perfil === b.perfil; });
+    var sub = rs.reduce(function (a, r) { return a + subv(r); }, 0);
+    return "<tr><td><strong>" + h(b.nombre) + '</strong><span class="c-list__meta">La financia: ' + h(b.financia.charAt(0).toLowerCase() + b.financia.slice(1)) + "</span></td>" +
+      '<td class="is-num" data-value="' + b.pct + '">' + b.pct + " %</td>" +
+      '<td class="is-num is-nowrap" data-value="' + sub.toFixed(2) + '">' + f.euros(sub) + '<span class="c-list__meta">' + TAD.suma(rs) + (TAD.suma(rs) === 1 ? " viajero" : " viajeros") + "</span></td>" +
+      '<td class="c-table__actions"><button class="c-btn c-btn--ghost c-btn--sm" type="button" data-open="modal-bonificacion" aria-label="Editar ' + h(b.nombre) + '">{{i:editar}}</button></td></tr>';
+  }).join("");
+  var financiadores = [];
+  T.bonificaciones.forEach(function (b) { if (financiadores.indexOf(b.financia) === -1) financiadores.push(b.financia); });
+  document.getElementById("b-financia").innerHTML = financiadores.map(function (x) { return "<option>" + h(x) + "</option>"; }).join("");
+  document.getElementById("g-desde").value = TAD.fecha;
+
+  // ---------- Métodos de pago ----------
+  document.getElementById("pagos").innerHTML = T.pagos.map(function (p) {
+    var rs = activas.filter(function (r) { return r.pago === p.nombre; });
+    return '<li class="c-list__item"><div class="c-list__button" style="cursor:default">' +
+      '<span class="c-avatar c-avatar--sm" aria-hidden="true">' + (p.id === "bordo" ? '{{i:furgoneta}}' : '{{i:euro}}') + "</span>" +
+      '<span><span class="c-list__title">' + h(p.nombre) + '</span><span class="c-list__meta">' + rs.length + " reservas hoy · " + f.euros(rs.reduce(function (a, r) { return a + r.importe; }, 0)) + "</span></span>" +
+      '<label class="c-switch"><input type="checkbox" role="switch" data-pago="' + h(p.nombre) + '"' + (p.activo ? " checked" : "") + '><span class="u-visually-hidden">' + h(p.nombre) + " activo</span></label></div></li>";
+  }).join("");
+  document.getElementById("pagos").addEventListener("change", function (e) {
+    var p = e.target.getAttribute("data-pago");
+    if (!p) return;
+    TADUI.toast(e.target.checked ? p + " vuelve a estar disponible para los viajeros." : p + " deja de ofrecerse en las nuevas reservas. Las ya hechas no cambian.",
+      { titulo: e.target.checked ? "Método de pago activado" : "Método de pago desactivado" });
+  });
+
+  // ---------- Simulador (calcula de verdad con TAD.tarifa) ----------
+  var grupos = TAD.municipios.map(function (m) {
+    return '<optgroup label="' + h(m.nombre) + " · Zona " + m.zona + '">' + TAD.paradas.filter(function (p) { return p.municipio === m.id; }).map(function (p) {
+      return '<option value="' + p.id + '">' + h(p.nombre) + "</option>";
+    }).join("") + "</optgroup>";
+  }).join("");
+  var sO = document.getElementById("s-origen"), sD = document.getElementById("s-destino"), sP = document.getElementById("s-perfil"), sV = document.getElementById("s-viajeros");
+  sO.innerHTML = grupos; sD.innerHTML = grupos;
+  sP.innerHTML = perfiles.map(function (p) { return '<option value="' + p.perfil + '">' + h(p.nombre) + (p.pct ? " (−" + p.pct + " %)" : "") + "</option>"; }).join("");
+
+  function calcular() {
+    var n = Math.max(1, Math.min(9, parseInt(sV.value, 10) || 1));
+    var o = TAD.parada(sO.value), d = TAD.parada(sD.value);
+    if (o.id === d.id) {
+      document.getElementById("s-importe").textContent = "—";
+      document.getElementById("s-resumen").textContent = "El origen y el destino tienen que ser distintos.";
+      document.getElementById("s-desglose").innerHTML = "";
+      return;
+    }
+    var t = TAD.tarifa(o.id, d.id, sP.value);
+    var b = T.bonificaciones.filter(function (x) { return x.perfil === sP.value; })[0];
+    var total = Math.round(t.importe * n * 100) / 100, descuento = Math.round((t.base - t.importe) * n * 100) / 100;
+    document.getElementById("s-importe").textContent = f.euros(total);
+    document.getElementById("s-resumen").textContent = (t.interzona ? "Interzona: Zona " + o.zona + " → Zona " + d.zona : "Misma zona: Zona " + o.zona) +
+      (n > 1 ? " · " + f.euros(t.importe) + " por persona" : "");
+    document.getElementById("s-desglose").innerHTML = [
+      ["Tarifa base", f.euros(t.base) + (n > 1 ? " × " + n : "")],
+      ["Bonificación", t.pct ? "−" + t.pct + " % (−" + f.euros(descuento) + ")" : "Sin bonificación"],
+      ["La paga", b ? f.euros(descuento) + " · " + b.financia : "—"],
+      ["Paga el viajero", f.euros(total)]
+    ].map(function (x) { return "<dt>" + x[0] + "</dt><dd>" + h(x[1]) + "</dd>"; }).join("");
+  }
+  function ejemplo() {
+    var r = TAD.reservaReferencia();
+    sO.value = r.origen; sD.value = r.destino; sP.value = r.perfil; sV.value = r.viajeros;
+    calcular();
+  }
+  [sO, sD, sP, sV].forEach(function (el) { el.addEventListener("change", calcular); el.addEventListener("input", calcular); });
+  document.getElementById("simulador").addEventListener("submit", function (e) { e.preventDefault(); calcular(); });
+  document.getElementById("s-ejemplo").addEventListener("click", ejemplo);
+  ejemplo();
+});
+<!--FIN-->

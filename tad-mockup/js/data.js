@@ -2160,15 +2160,22 @@
   function dosDig(n) { return (n < 10 ? "0" : "") + n; }
   function aFecha(iso) { var p = iso.split("-"); return new Date(+p[0], +p[1] - 1, +(p[2] || 1)); }
 
+  /* Número con coma decimal y punto de miles también en 4 cifras (2.912,40), para que
+     las cifras de una misma tabla se lean igual. No depende del navegador. */
+  function conMiles(n, minDec, maxDec) {
+    var v = Number(n), neg = v < 0;
+    var t = Math.abs(v).toFixed(maxDec);
+    if (maxDec > minDec) t = t.replace(new RegExp("0{1," + (maxDec - minDec) + "}$"), "").replace(/\.$/, "");
+    var partes = t.split(".");
+    partes[0] = partes[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    return (neg ? "−" : "") + partes.join(",");
+  }
+
   var fmt = {
-    /** 1.1 → "1,10 €" */
-    euros: function (n) {
-      return Number(n).toLocaleString("es-ES", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " €";
-    },
-    /** 4800 → "4.800" ; 4.6 → "4,6" */
-    numero: function (n, dec) {
-      return Number(n).toLocaleString("es-ES", { minimumFractionDigits: dec || 0, maximumFractionDigits: dec || 0, useGrouping: true });
-    },
+    /** 1.1 → "1,10 €" ; 2912.4 → "2.912,40 €" */
+    euros: function (n) { return conMiles(n, 2, 2) + " €"; },
+    /** 4800 → "4.800" ; 4.6 → "4,6" (con dec=1) */
+    numero: function (n, dec) { return conMiles(n, dec || 0, dec || 0); },
     /** 94 → "94 %" (con espacio, como en España) */
     porcentaje: function (n, dec) { return fmt.numero(n, dec) + " %"; },
     /** "09:40" → "09:40" ; 580 → "09:40" */

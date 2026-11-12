@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Ficha de usuario · Plataforma Digital TAD</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap">
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/layout-backoffice.css">
+<script defer src="../js/data.js"></script>
+<script defer src="../js/ui.js"></script>
+<script defer src="../js/nav.js"></script>
+<script defer src="../js/charts.js"></script>
+</head>
+<body class="bo-body" data-module="crm" data-page="crm-usuario">
+<a class="c-skip-link" href="#contenido">Saltar al contenido</a>
+<div class="bo">
+  <aside class="bo-sidebar" aria-label="Menú principal">
+    <a class="bo-sidebar__brand" href="../control/mapa.html" aria-label="Plataforma Digital TAD, centro de control"><svg class="bo-sidebar__logo bo-sidebar__logo--full" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 40"><g style="fill:var(--logo-route);stroke:var(--logo-route)"><path d="M4 34.5h32" fill="none" stroke-width="2.6" stroke-linecap="round"/><circle cx="4.5" cy="34.5" r="3.2"/><circle cx="35.5" cy="34.5" r="3.2"/></g><g fill="currentColor"><path fill-rule="evenodd" d="M6 10.5a2.5 2.5 0 0 1 2.5-2.5H24l8 8v7.5a1.5 1.5 0 0 1-1.5 1.5H7.5A1.5 1.5 0 0 1 6 23.5zM9 11h7v5H9zM18.5 11h4.3l5 5h-9.3z"/><circle cx="12" cy="25.5" r="3.6"/><circle cx="26" cy="25.5" r="3.6"/></g><circle cx="12" cy="25.5" r="1.4" style="fill:var(--logo-bg)"/><circle cx="26" cy="25.5" r="1.4" style="fill:var(--logo-bg)"/><g fill="currentColor"><g transform="translate(50 9)"><path d="M0 0h17v5h-6v17H6V5H0z"/></g><g transform="translate(70 9)"><path fill-rule="evenodd" d="M7 0h5.4l7.3 22h-5.3l-1.3-4.2H6.3L5 22H-.3zM9.7 6.6 7.6 13.4h4.3z"/></g><g transform="translate(93 9)"><path fill-rule="evenodd" d="M0 0h7.5a11 11 0 0 1 0 22H0zM5 5v12h2.3a6 6 0 0 0 0-12z"/></g></g><path d="M121 6v28" style="stroke:var(--logo-route)" stroke-width="2" stroke-linecap="round"/><text x="131" y="18" fill="currentColor" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="600" letter-spacing=".3">Plataforma Digital</text><text x="131" y="33" fill="currentColor" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="400">Personas que nos mueven</text></svg><svg class="bo-sidebar__logo bo-sidebar__logo--compact" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 113 40"><g style="fill:var(--logo-route);stroke:var(--logo-route)"><path d="M4 34.5h32" fill="none" stroke-width="2.6" stroke-linecap="round"/><circle cx="4.5" cy="34.5" r="3.2"/><circle cx="35.5" cy="34.5" r="3.2"/></g><g fill="currentColor"><path fill-rule="evenodd" d="M6 10.5a2.5 2.5 0 0 1 2.5-2.5H24l8 8v7.5a1.5 1.5 0 0 1-1.5 1.5H7.5A1.5 1.5 0 0 1 6 23.5zM9 11h7v5H9zM18.5 11h4.3l5 5h-9.3z"/><circle cx="12" cy="25.5" r="3.6"/><circle cx="26" cy="25.5" r="3.6"/></g><circle cx="12" cy="25.5" r="1.4" style="fill:var(--logo-bg)"/><circle cx="26" cy="25.5" r="1.4" style="fill:var(--logo-bg)"/><g fill="currentColor"><g transform="translate(50 9)"><path d="M0 0h17v5h-6v17H6V5H0z"/></g><g transform="translate(70 9)"><path fill-rule="evenodd" d="M7 0h5.4l7.3 22h-5.3l-1.3-4.2H6.3L5 22H-.3zM9.7 6.6 7.6 13.4h4.3z"/></g><g transform="translate(93 9)"><path fill-rule="evenodd" d="M0 0h7.5a11 11 0 0 1 0 22H0zM5 5v12h2.3a6 6 0 0 0 0-12z"/></g></g></svg></a>
+    <nav class="bo-nav" aria-label="Módulos">
+      <div class="bo-nav__group">
+        <p class="bo-nav__title">Operación</p>
+        <ul class="bo-nav__list">
+          <li><a class="bo-nav__link" href="../control/mapa.html" data-page="control-mapa"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6.5 9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20z"/><path d="M9 4v13.5M15 6.5V20"/></svg><span class="bo-nav__label">Centro de control</span></a></li>
+          <li><a class="bo-nav__link" href="../control/incidencias.html" data-page="control-incidencias"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9.8 4h4.4l4 15H5.8z"/><path d="M8 11h8M6.9 15.2h10.2M3.5 19.5h17"/></svg><span class="bo-nav__label">Incidencias</span></a></li>
+        </ul>
+      </div>
+      <div class="bo-nav__group">
+        <p class="bo-nav__title">Planificación</p>
+        <ul class="bo-nav__list">
+          <li><a class="bo-nav__link" href="../motor/rutas.html" data-page="motor-rutas"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="18" r="2.25"/><circle cx="18" cy="6" r="2.25"/><path d="M8.25 18H15a3 3 0 0 0 0-6H9a3 3 0 0 1 0-6h6.75"/></svg><span class="bo-nav__label">Rutas del día</span></a></li>
+          <li><a class="bo-nav__link" href="../motor/reglas.html" data-page="motor-reglas"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h9M17 7h3M4 17h3M11 17h9"/><circle cx="15" cy="7" r="2"/><circle cx="9" cy="17" r="2"/></svg><span class="bo-nav__label">Reglas operativas</span></a></li>
+        </ul>
+      </div>
+      <div class="bo-nav__group">
+        <p class="bo-nav__title">Atención ciudadana</p>
+        <ul class="bo-nav__list">
+          <li><a class="bo-nav__link" href="../crm/bandeja.html" data-page="crm-bandeja"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H9.5L4 20z"/><path d="M8 9.5h8M8 12.5h5"/></svg><span class="bo-nav__label">Bandeja</span></a></li>
+          <li><a class="bo-nav__link" href="../crm/usuario.html" data-page="crm-usuario"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0"/></svg><span class="bo-nav__label">Ficha de usuario</span></a></li>
+        </ul>
+      </div>
+      <div class="bo-nav__group">
+        <p class="bo-nav__title">Flota</p>
+        <ul class="bo-nav__list">
+          <li><a class="bo-nav__link" href="../flota/vehiculos.html" data-page="flota-vehiculos"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 17H9.5M5 17H3.5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1H15l4.5 4.5H20a1.5 1.5 0 0 1 1.5 1.5v4a1 1 0 0 1-1 1H19"/><path d="M15 6v4.5h4.5M2.5 11H15"/><circle cx="7" cy="17.5" r="2"/><circle cx="17" cy="17.5" r="2"/></svg><span class="bo-nav__label">Vehículos</span></a></li>
+          <li><a class="bo-nav__link" href="../flota/vehiculo.html" data-page="flota-vehiculo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2"/><path d="M3.3 10.5 10 12M20.7 10.5 14 12M12 14v7"/></svg><span class="bo-nav__label">Ficha de vehículo</span></a></li>
+        </ul>
+      </div>
+      <div class="bo-nav__group">
+        <p class="bo-nav__title">Económica</p>
+        <ul class="bo-nav__list">
+          <li><a class="bo-nav__link" href="../economica/tarifas.html" data-page="economica-tarifas"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 6.8a7 7 0 1 0 0 10.4"/><path d="M4 10h9M4 14h9"/></svg><span class="bo-nav__label">Tarifas</span></a></li>
+          <li><a class="bo-nav__link" href="../economica/facturacion.html" data-page="economica-facturacion"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg><span class="bo-nav__label">Facturación</span></a></li>
+        </ul>
+      </div>
+      <div class="bo-nav__group">
+        <p class="bo-nav__title">Administración</p>
+        <ul class="bo-nav__list">
+          <li><a class="bo-nav__link" href="../admin/cuadro-mando.html" data-page="admin-cuadro-mando"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.5V20h5v-6h3v6h5V9.5"/></svg><span class="bo-nav__label">Cuadro de mando</span></a></li>
+          <li><a class="bo-nav__link" href="../admin/territorio.html" data-page="admin-territorio"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6.5-5.8-6.5-11a6.5 6.5 0 0 1 13 0c0 5.2-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.5"/></svg><span class="bo-nav__label">Territorio</span></a></li>
+        </ul>
+      </div>
+      <div class="bo-nav__group">
+        <p class="bo-nav__title">Análisis</p>
+        <ul class="bo-nav__list">
+          <li><a class="bo-nav__link" href="../bi/dashboard.html" data-page="bi-dashboard"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v16h16"/><path d="m7.5 14.5 3.5-4 3 2.5 5-6"/></svg><span class="bo-nav__label">Dashboard</span></a></li>
+          <li><a class="bo-nav__link" href="../bi/informes.html" data-page="bi-informes"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10.5l5 5 5-5M5 20h14"/></svg><span class="bo-nav__label">Informes</span></a></li>
+        </ul>
+      </div>
+    </nav>
+    <button class="bo-sidebar__toggle" type="button" aria-label="Plegar el menú"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
+    <div class="bo-sidebar__user">
+      <span class="c-avatar c-avatar--sm" aria-hidden="true" data-tad-usuario-iniciales></span>
+      <span class="bo-sidebar__user-text"><span class="bo-sidebar__user-name" data-tad-usuario-nombre></span><span class="bo-sidebar__user-role" data-tad-usuario-cargo></span></span>
+    </div>
+  </aside>
+
+  <div class="bo-main">
+    <header class="bo-topbar">
+      <nav class="c-breadcrumb bo-topbar__crumbs" aria-label="Migas de pan" data-breadcrumb></nav>
+      <div class="bo-topbar__search c-input-group"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.4-4.4"/></svg><input class="c-input" type="search" aria-label="Buscar en la plataforma" placeholder="Buscar viajero, reserva o matrícula"></div>
+      <div class="bo-topbar__actions">
+        <select class="c-select bo-topbar__territory" aria-label="Territorio"><option>Comarca de la Sierra Norte</option></select>
+        <div class="c-dropdown">
+          <button class="c-btn c-btn--ghost c-btn--icon bo-bell" type="button" data-dropdown aria-controls="menu-avisos" data-tad-avisos-boton aria-label="Notificaciones"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16v-5a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 0 0 4 0"/></svg><span class="bo-bell__count" aria-hidden="true" data-tad-avisos-n></span></button>
+          <div class="c-dropdown__menu" id="menu-avisos" data-tad-avisos></div>
+        </div>
+        <span class="c-avatar c-avatar--sm" aria-hidden="true" data-tad-usuario-iniciales></span>
+        <a class="c-index-link" href="../index.html"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg> Índice del mockup</a>
+      </div>
+    </header>
+
+    <main class="bo-content" id="contenido">
+      <header class="bo-pagehead">
+        <div>
+          <span class="bo-pagehead__module"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H9.5L4 20z"/><path d="M8 9.5h8M8 12.5h5"/></svg> CRM y atención ciudadana</span>
+          <h1 class="bo-pagehead__title">Ficha de usuario</h1>
+          <p class="bo-pagehead__desc"><span data-tad-fecha="larga"></span> · <span data-tad-hora></span></p>
+        </div>
+        <div class="bo-pagehead__actions"><a class="c-btn c-btn--secondary" href="bandeja.html"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H9.5L4 20z"/><path d="M8 9.5h8M8 12.5h5"/></svg> Bandeja</a>
+<button class="c-btn c-btn--secondary" type="button" id="btn-llamar"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5.2 4h3.3l1.6 4.4-2.1 1.4a11.5 11.5 0 0 0 6.2 6.2l1.4-2.1 4.4 1.6v3.3a1.6 1.6 0 0 1-1.7 1.6A16 16 0 0 1 3.6 5.7 1.6 1.6 0 0 1 5.2 4z"/></svg> Llamar</button>
+<button class="c-btn c-btn--primary" type="button" data-open="modal-reserva"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg> Crear reserva</button></div>
+      </header>
+
+<div class="bo-grid bo-grid--main-side">
+  <div class="bo-stack">
+    <section class="c-card" aria-labelledby="u-nombre">
+      <div class="c-card__body" style="display:flex;flex-wrap:wrap;gap:var(--sp-5);align-items:flex-start">
+        <span class="c-avatar c-avatar--lg" aria-hidden="true" id="u-avatar"></span>
+        <div style="flex:1 1 var(--sidebar-w);min-width:0">
+          <h2 id="u-nombre" style="margin:0"></h2>
+          <p class="u-muted" id="u-sub" style="margin:var(--sp-1) 0 var(--sp-3)"></p>
+          <div style="display:flex;flex-wrap:wrap;gap:var(--sp-2)" id="u-badges"></div>
+        </div>
+        <dl class="c-datalist" id="u-datos" style="flex:1 1 var(--sidebar-w)"></dl>
+      </div>
+      <div class="c-card__footer">
+        <button class="c-btn c-btn--ghost c-btn--sm" type="button" data-open="modal-editar"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="m13.5 6.5 4 4"/></svg> Editar datos</button>
+      </div>
+    </section>
+
+    <section class="c-card" aria-labelledby="t-historial">
+      <h2 class="u-visually-hidden" id="t-historial">Historial del ciudadano</h2>
+      <div class="c-card__header" style="padding-bottom:0;border-bottom:0">
+        <div class="c-tabs" role="tablist" aria-label="Historial del ciudadano" style="width:100%">
+          <button class="c-tabs__tab" role="tab" type="button" aria-selected="true" aria-controls="panel-viajes" id="tab-viajes">Viajes <span class="c-tabs__count" id="n-viajes"></span></button>
+          <button class="c-tabs__tab" role="tab" type="button" aria-selected="false" tabindex="-1" aria-controls="panel-reclamaciones" id="tab-reclamaciones">Reclamaciones <span class="c-tabs__count" id="n-reclamaciones"></span></button>
+          <button class="c-tabs__tab" role="tab" type="button" aria-selected="false" tabindex="-1" aria-controls="panel-encuestas" id="tab-encuestas">Encuestas <span class="c-tabs__count" id="n-encuestas"></span></button>
+          <button class="c-tabs__tab" role="tab" type="button" aria-selected="false" tabindex="-1" aria-controls="panel-notas" id="tab-notas">Notas <span class="c-tabs__count" id="n-notas"></span></button>
+        </div>
+      </div>
+
+      <div class="c-tabpanel" role="tabpanel" id="panel-viajes" aria-labelledby="tab-viajes">
+        <div class="c-card__body" style="padding-bottom:0">
+          <p class="u-muted u-small" id="resumen-viajes" style="margin:0"></p>
+        </div>
+        <div class="c-table-wrap" style="border:0;border-radius:0">
+          <table class="c-table" data-sortable id="tabla-viajes">
+            <caption class="u-visually-hidden">Historial de viajes</caption>
+            <thead><tr>
+              <th scope="col"><button class="c-table__sort" type="button">Fecha <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button></th>
+              <th scope="col">Reserva</th>
+              <th scope="col">Trayecto</th>
+              <th scope="col" class="is-num"><button class="c-table__sort" type="button">Importe <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button></th>
+            </tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="c-tabpanel" role="tabpanel" id="panel-reclamaciones" aria-labelledby="tab-reclamaciones" hidden>
+        <div class="c-card__body" id="lista-reclamaciones" style="display:grid;gap:var(--sp-5)"></div>
+      </div>
+
+      <div class="c-tabpanel" role="tabpanel" id="panel-encuestas" aria-labelledby="tab-encuestas" hidden>
+        <div class="c-card__body">
+          <div class="bo-grid bo-grid--3" id="lista-encuestas" style="gap:var(--sp-4)"></div>
+          <p class="u-muted u-small" id="encuestas-nota" style="margin:var(--sp-4) 0 0"></p>
+        </div>
+      </div>
+
+      <div class="c-tabpanel" role="tabpanel" id="panel-notas" aria-labelledby="tab-notas" hidden>
+        <div class="c-card__body">
+          <ol class="c-timeline" id="lista-notas"></ol>
+          <div class="c-field" style="margin:var(--sp-5) 0 0">
+            <label class="c-field__label" for="nota-nueva">Añadir nota interna</label>
+            <textarea class="c-textarea" id="nota-nueva" rows="2" placeholder="Solo la ve el equipo de atención"></textarea>
+          </div>
+          <div style="display:flex;justify-content:flex-end;margin-top:var(--sp-3)">
+            <button class="c-btn c-btn--primary c-btn--sm" type="button" data-toast="La nota queda guardada en la ficha." data-toast-title="Nota añadida"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="m13.5 6.5 4 4"/></svg> Guardar nota</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <aside class="bo-stack" aria-label="Resumen del ciudadano">
+    <section class="c-card" aria-labelledby="t-proximo">
+      <div class="c-card__header"><h2 class="c-card__title" id="t-proximo">Próximo viaje</h2><span id="proximo-estado"></span></div>
+      <div class="c-card__body" id="proximo"></div>
+    </section>
+    <section class="c-card" aria-labelledby="t-perfil">
+      <div class="c-card__header"><h2 class="c-card__title" id="t-perfil"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="4.5" r="1.75"/><path d="m5 8.5 7 1.5 7-1.5M12 10v4.5l-3.5 6M12 14.5l3.5 6"/></svg> Perfil especial</h2></div>
+      <div class="c-card__body" style="display:grid;gap:var(--sp-3)">
+        <dl class="c-datalist" id="perfil-datos"></dl>
+        <div id="perfil-necesidades" style="display:flex;flex-wrap:wrap;gap:var(--sp-2)"></div>
+      </div>
+    </section>
+    <section class="c-card" aria-labelledby="t-canal">
+      <div class="c-card__header"><h2 class="c-card__title" id="t-canal">Preferencias de contacto</h2></div>
+      <div class="c-card__body" style="display:grid;gap:var(--sp-3)">
+        <fieldset style="border:0;margin:0;padding:0;display:grid;gap:var(--sp-2)" id="canales">
+          <legend class="c-field__label">Avisos y confirmaciones</legend>
+        </fieldset>
+        <dl class="c-datalist" id="canal-datos"></dl>
+      </div>
+    </section>
+  </aside>
+</div>
+
+<!-- Crear reserva -->
+<div class="c-modal" id="modal-reserva" role="dialog" aria-modal="true" aria-labelledby="modal-reserva-t">
+  <div class="c-modal__dialog">
+    <div class="c-modal__header">
+      <h2 class="c-modal__title" id="modal-reserva-t">Crear reserva</h2>
+      <button class="c-btn c-btn--ghost c-btn--icon c-btn--sm" type="button" data-close aria-label="Cerrar"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    </div>
+    <div class="c-modal__body">
+      <div class="bo-grid bo-grid--2" style="gap:var(--sp-3)">
+        <div class="c-field"><label class="c-field__label" for="r-origen">Recogida</label><select class="c-select" id="r-origen"></select></div>
+        <div class="c-field"><label class="c-field__label" for="r-destino">Destino</label><select class="c-select" id="r-destino"></select></div>
+        <div class="c-field"><label class="c-field__label" for="r-fecha">Día</label><input class="c-input" id="r-fecha" type="date"></div>
+        <div class="c-field"><label class="c-field__label" for="r-hora">Hora de llegada deseada</label><input class="c-input" id="r-hora" type="time" value="12:00"></div>
+      </div>
+    </div>
+    <div class="c-modal__footer">
+      <button class="c-btn c-btn--secondary" type="button" data-close>Cancelar</button>
+      <button class="c-btn c-btn--primary" type="button" data-toast="La reserva queda confirmada y se envía un SMS con la hora de recogida." data-toast-title="Reserva creada" data-toast-close>Confirmar reserva</button>
+    </div>
+  </div>
+</div>
+
+<!-- Editar datos -->
+<div class="c-modal" id="modal-editar" role="dialog" aria-modal="true" aria-labelledby="modal-editar-t">
+  <div class="c-modal__dialog">
+    <div class="c-modal__header">
+      <h2 class="c-modal__title" id="modal-editar-t">Editar datos de contacto</h2>
+      <button class="c-btn c-btn--ghost c-btn--icon c-btn--sm" type="button" data-close aria-label="Cerrar"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    </div>
+    <div class="c-modal__body">
+      <div class="c-field"><label class="c-field__label" for="e-telefono">Teléfono</label><input class="c-input" id="e-telefono" type="tel"></div>
+      <div class="c-field"><label class="c-field__label" for="e-contacto">Persona de contacto</label><input class="c-input" id="e-contacto" type="text"></div>
+      <div class="c-field"><label class="c-field__label" for="e-horario">Mejor horario para llamar</label><input class="c-input" id="e-horario" type="text"></div>
+    </div>
+    <div class="c-modal__footer">
+      <button class="c-btn c-btn--secondary" type="button" data-close>Cancelar</button>
+      <button class="c-btn c-btn--primary" type="button" data-toast="Los datos de contacto se han actualizado." data-toast-title="Ficha actualizada" data-toast-close>Guardar</button>
+    </div>
+  </div>
+</div>
+<script defer src="../js/datos/crm-economica.js"></script>
+    </main>
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var f = TAD.fmt, h = f.html;
+  // Por defecto, la ficha de la reserva de referencia (Josefa). Con #u08 se abre otra.
+  var u = (location.hash && TAD.usuario(location.hash.slice(1))) || TAD.usuario(TAD.reservaReferencia().usuario);
+  var m = TAD.municipio(u.municipio), n = TAD.nucleo(u.nucleo);
+  var pref = TAD.preferenciasUsuarios[u.id];
+  var bon = TAD.tarifas.bonificaciones.filter(function (b) { return b.perfil === u.bonificacion; })[0];
+  var CANAL = { "teléfono": "Teléfono", "WhatsApp": "WhatsApp", "email": "Correo", "chat web": "Chat web", "app": "App" };
+  function parada(id) { return TAD.parada(id).nombre; }
+
+  // ---------- Cabecera de la ficha ----------
+  document.title = u.nombre + " · Ficha de usuario · Plataforma Digital TAD";
+  document.getElementById("u-avatar").textContent = u.iniciales;
+  document.getElementById("u-nombre").textContent = u.nombre;
+  document.getElementById("u-sub").textContent = u.edad + " años · " + (n && n.id !== m.id ? n.nombre + ", " : "") + m.nombre + " · Zona " + m.zona;
+  document.getElementById("u-badges").innerHTML =
+    (bon ? '<span class="c-badge c-badge--info">' + h(bon.nombre) + " · −" + bon.pct + " %</span>" : '<span class="c-badge c-badge--neutral">Tarifa general</span>') +
+    '<span class="c-badge c-badge--neutral">Canal habitual: ' + h(CANAL[u.canal] || u.canal) + "</span>" +
+    (pref && pref.necesidades.length ? '<span class="c-badge c-badge--info">Necesita vehículo adaptado</span>' : "");
+  document.getElementById("u-datos").innerHTML = [
+    ["DNI", u.dni], ["Teléfono", u.telefono], ["Contacto", pref ? pref.contacto : "—"],
+    ["Alta en el servicio", pref ? f.fecha(pref.alta) : "—"]
+  ].map(function (x) { return "<dt>" + x[0] + "</dt><dd>" + h(x[1]) + "</dd>"; }).join("");
+  document.getElementById("btn-llamar").setAttribute("data-toast", "Llamando al " + u.telefono + " desde la centralita del servicio.");
+  document.getElementById("btn-llamar").setAttribute("data-toast-title", "Llamada en curso");
+
+  // ---------- Viajes (hoy + anteriores) ----------
+  var hoy = TAD.reservasDe(u.id).map(function (r) {
+    return { codigo: r.codigo, fecha: r.fecha, hora: r.horaPrevista, origen: r.origen, destino: r.destino, ruta: r.ruta, pago: r.pago, importe: r.importe, estado: r.estado, viajeros: r.viajeros, perfil: r.perfil, hoy: true };
+  });
+  var antes = TAD.viajesAnteriores.filter(function (v) { return v.usuario === u.id; }).map(function (v) {
+    var t = TAD.tarifa(v.origen, v.destino, v.perfil);
+    return { codigo: v.codigo, fecha: v.fecha, hora: v.hora, origen: v.origen, destino: v.destino, ruta: v.ruta, pago: v.abonado ? "Abonado" : v.pago,
+      importe: v.abonado ? 0 : Math.round(t.importe * v.viajeros * 100) / 100, estado: v.estado, viajeros: v.viajeros, retraso: v.retraso, reclamacion: v.reclamacion };
+  });
+  var viajes = hoy.concat(antes).sort(function (a, b) { return (b.fecha + b.hora).localeCompare(a.fecha + a.hora); });
+  var referencia = TAD.reservaReferencia().codigo;
+  document.getElementById("n-viajes").textContent = viajes.length;
+  var gastado = viajes.reduce(function (a, v) { return a + (v.estado === "Cancelada" ? 0 : v.importe); }, 0);
+  var ahorro = viajes.reduce(function (a, v) { return a + (v.estado === "Cancelada" ? 0 : TAD.tarifa(v.origen, v.destino, "general").importe * v.viajeros); }, 0) - gastado;
+  document.getElementById("resumen-viajes").textContent = viajes.length + " viajes desde el alta · " + f.euros(gastado) + " pagados · " +
+    f.euros(ahorro) + " de bonificación y abonos";
+  document.querySelector("#tabla-viajes tbody").innerHTML = viajes.map(function (v) {
+    var esRef = v.codigo === referencia;
+    return "<tr" + (esRef ? ' style="background:var(--tad-blue-100)"' : "") + ">" +
+      '<td class="is-nowrap" data-value="' + v.fecha.replace(/-/g, "") + v.hora.replace(":", "") + '">' + f.fecha(v.fecha) + '<span class="c-list__meta">' + v.hora + "</span></td>" +
+      '<td><strong class="is-nowrap">' + v.codigo + '</strong><span class="c-list__meta">Ruta ' + (v.ruta || "—") + "</span>" +
+      '<span style="display:flex;flex-wrap:wrap;gap:var(--sp-1);margin-top:var(--sp-1)">' + f.badge(v.estado) + (v.hoy ? '<span class="c-badge c-badge--info">Hoy</span>' : "") + "</span></td>" +
+      "<td>" + h(parada(v.origen)) + " → " + h(parada(v.destino)) +
+      (v.retraso ? '<span class="c-list__meta">Llegó con ' + v.retraso + " min de retraso" + (v.reclamacion ? " · reclamación " + v.reclamacion : "") + "</span>" : "") + "</td>" +
+      '<td class="is-num is-nowrap" data-value="' + v.importe + '">' + f.euros(v.importe) + '<span class="c-list__meta">' + h(v.pago) + "</span></td></tr>";
+  }).join("");
+
+  // ---------- Reclamaciones ----------
+  var recs = TAD.reclamaciones.filter(function (r) { return r.usuario === u.id; });
+  document.getElementById("n-reclamaciones").textContent = recs.length;
+  document.getElementById("lista-reclamaciones").innerHTML = recs.length ? recs.map(function (r) {
+    var viaje = antes.filter(function (v) { return v.reclamacion === r.id; })[0];
+    var dias = Math.round((new Date(r.resolucion) - new Date(r.fecha)) / 86400000);
+    return '<article><div style="display:flex;flex-wrap:wrap;gap:var(--sp-2);align-items:center;justify-content:space-between">' +
+      "<h3 style=\"margin:0\">" + r.id + " · " + h(r.tipo) + "</h3>" + f.badge(r.estado) + "</div>" +
+      '<p class="u-muted u-small" style="margin:var(--sp-1) 0 var(--sp-4)">Abierta el ' + f.fecha(r.fecha) + (viaje ? " · viaje " + viaje.codigo : "") +
+      (r.resolucion ? " · resuelta en " + dias + " días" : "") + "</p>" +
+      '<ol class="c-timeline">' +
+      '<li class="c-timeline__item is-done"><span class="c-timeline__time">' + f.fechaCorta(r.fecha) + '</span><div class="c-timeline__content"><span class="c-timeline__title">Reclamación presentada</span><span class="c-timeline__desc">«' + h(r.texto) + "»</span></div></li>" +
+      (r.resolucion ? '<li class="c-timeline__item is-done"><span class="c-timeline__time">' + f.fechaCorta(r.resolucion) + '</span><div class="c-timeline__content"><span class="c-timeline__title">Respuesta y cierre</span><span class="c-timeline__desc">' + h(r.respuesta) + "</span></div></li>" : "") +
+      "</ol></article>";
+  }).join("") : '<div class="c-empty-state"><span class="c-empty-state__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="c-icon c-icon--lg" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span><h3 class="c-empty-state__title">Sin reclamaciones</h3><p>Este ciudadano no ha presentado ninguna reclamación.</p></div>';
+
+  // ---------- Encuestas ----------
+  var enc = TAD.encuestas.filter(function (e) { return e.usuario === u.id; });
+  document.getElementById("n-encuestas").textContent = enc.length;
+  document.getElementById("lista-encuestas").innerHTML = enc.map(function (e) {
+    var pct = Math.round(e.valor / e.escala * 100);
+    var tipo = pct >= 80 ? "success" : pct >= 60 ? "warning" : "danger";
+    return '<div class="c-kpi"><span class="c-kpi__label">' + h(e.tipo) + '</span><span class="c-kpi__value">' + e.valor + ' <span class="c-kpi__unit">/ ' + e.escala + "</span></span>" +
+      '<div class="c-progress c-progress--' + tipo + '" role="progressbar" aria-label="' + h(e.tipo) + '" aria-valuemin="0" aria-valuemax="' + e.escala + '" aria-valuenow="' + e.valor + '" style="margin:var(--sp-2) 0"><span style="width:' + pct + '%"></span></div>' +
+      '<span class="c-kpi__delta c-kpi__delta--flat">' + h(e.pregunta) + "</span></div>";
+  }).join("");
+  document.getElementById("encuestas-nota").textContent = enc.length ? "Respondidas el " + f.fecha(enc[0].fecha) + " tras el viaje al centro de salud. Media del servicio: " +
+    f.numero(TAD.satisfaccion.media, 1) + " / " + TAD.satisfaccion.escala + " y NPS " + TAD.satisfaccion.nps + " (" + TAD.satisfaccion.respuestas + " respuestas)." : "No ha respondido encuestas.";
+
+  // ---------- Notas internas ----------
+  var notas = TAD.notasUsuarios.filter(function (x) { return x.usuario === u.id; });
+  document.getElementById("n-notas").textContent = notas.length;
+  document.getElementById("lista-notas").innerHTML = notas.map(function (x) {
+    var p = TAD.persona(x.autor);
+    return '<li class="c-timeline__item is-done"><span class="c-timeline__time">' + f.fechaCorta(x.fecha) + " · " + x.hora + '</span><div class="c-timeline__content">' +
+      '<span class="c-timeline__title">' + h(p ? p.nombre : x.autor) + '</span><span class="c-timeline__desc">' + h(x.texto) + "</span></div></li>";
+  }).join("");
+
+  // ---------- Lateral ----------
+  var prox = hoy.filter(function (v) { return v.estado === "Confirmada" || v.estado === "En curso"; })[0];
+  document.getElementById("proximo-estado").innerHTML = prox ? f.badge(prox.estado) : "";
+  if (prox) {
+    var r = TAD.reserva(prox.codigo), v = TAD.ruta(r.ruta) ? TAD.vehiculo(TAD.ruta(r.ruta).vehiculo) : null;
+    var conv = TAD.conversaciones.filter(function (c) { return c.reserva === r.codigo; })[0];
+    document.getElementById("proximo").innerHTML = '<p style="margin:0 0 var(--sp-3)"><strong>' + r.codigo + "</strong></p>" +
+      '<dl class="c-datalist">' + [
+        ["Día", f.fecha(r.fecha)], ["Recogida", r.horaPrevista + " · " + parada(r.origen)], ["Llegada", (r.horaLlegadaPrevista || "—") + " · " + parada(r.destino)],
+        ["Ruta", r.ruta + (v ? " · " + v.matricula + (v.pmr ? " (con rampa)" : "") : "")], ["Importe", f.euros(r.importe) + " · " + r.pago]
+      ].map(function (x) { return "<dt>" + x[0] + "</dt><dd>" + h(x[1]) + "</dd>"; }).join("") + "</dl>" +
+      (r.nota ? '<p class="u-small u-muted" style="margin:var(--sp-3) 0 0">' + h(r.nota) + "</p>" : "") +
+      (conv ? '<p class="u-small" style="margin:var(--sp-3) 0 0"><a href="bandeja.html#' + conv.id + '">Ver la conversación en la bandeja</a></p>' : "");
+  } else {
+    document.getElementById("proximo").innerHTML = '<p class="u-muted" style="margin:0">Sin viajes pendientes.</p>';
+  }
+
+  document.getElementById("perfil-datos").innerHTML = [
+    ["Perfil", u.perfil === "mayor" ? "Mayor de 65 años" : u.perfil === "PMR" ? "Movilidad reducida" : u.perfil.charAt(0).toUpperCase() + u.perfil.slice(1)],
+    ["Bonificación", bon ? bon.pct + " % · " + bon.nombre.toLowerCase() : "Ninguna"],
+    ["La financia", bon ? bon.financia : "—"]
+  ].map(function (x) { return "<dt>" + x[0] + "</dt><dd>" + h(x[1]) + "</dd>"; }).join("");
+  document.getElementById("perfil-necesidades").innerHTML = pref ? pref.necesidades.map(function (x) { return '<span class="c-badge c-badge--neutral">' + h(x) + "</span>"; }).join("") : "";
+
+  document.getElementById("canales").insertAdjacentHTML("beforeend", (pref ? pref.canales : []).map(function (c, i) {
+    return '<label class="c-switch"><input type="checkbox" role="switch" data-canal-pref="' + h(c.canal) + '"' + (c.activo ? " checked" : "") + "> " + h(c.canal) + "</label>";
+  }).join(""));
+  document.getElementById("canales").addEventListener("change", function (e) {
+    var c = e.target.getAttribute("data-canal-pref");
+    if (c) TADUI.toast((e.target.checked ? "Activado: " : "Desactivado: ") + c.toLowerCase() + ". Se aplicará en el próximo aviso.", { titulo: "Preferencia de contacto" });
+  });
+  document.getElementById("canal-datos").innerHTML = pref ? [["Horario", pref.horario], ["Idioma", pref.idioma], ["Consentimiento", pref.consentimiento]]
+    .map(function (x) { return "<dt>" + x[0] + "</dt><dd>" + h(x[1]) + "</dd>"; }).join("") : "";
+
+  // ---------- Formularios ----------
+  function opciones(sel) {
+    return TAD.paradas.map(function (p) { return '<option value="' + p.id + '"' + (p.id === sel ? " selected" : "") + ">" + h(p.nombre) + "</option>"; }).join("");
+  }
+  var habitual = viajes.length ? viajes[viajes.length - 1] : null;
+  document.getElementById("r-origen").innerHTML = opciones(habitual ? habitual.origen : "P01");
+  document.getElementById("r-destino").innerHTML = opciones(habitual ? habitual.destino : "P02");
+  document.getElementById("r-fecha").value = TAD.fecha;
+  document.getElementById("e-telefono").value = u.telefono;
+  document.getElementById("e-contacto").value = pref ? pref.contacto : "";
+  document.getElementById("e-horario").value = pref ? pref.horario : "";
+});
+</script>
+</body>
+</html>

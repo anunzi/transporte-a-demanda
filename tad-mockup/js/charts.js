@@ -23,7 +23,14 @@
 
   function el(x) { return typeof x === "string" ? document.querySelector(x) : x; }
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
-  function num(n, dec) { return Number(n).toLocaleString("es-ES", { maximumFractionDigits: dec == null ? 1 : dec }); }
+  /* Coma decimal y punto de miles también en 4 cifras (1.939), igual que TAD.fmt */
+  function num(n, dec) {
+    var max = dec == null ? 1 : dec, v = Number(n), t = Math.abs(v).toFixed(max);
+    if (max > 0) t = t.replace(/0+$/, "").replace(/\.$/, "");
+    var p = t.split(".");
+    p[0] = p[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    return (v < 0 ? "−" : "") + p.join(",");
+  }
   function color(c) { return "var(" + (c || "--chart-1") + ")"; }
   function redondo(max) {
     if (max <= 0) return 1;

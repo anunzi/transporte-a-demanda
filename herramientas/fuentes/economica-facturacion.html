@@ -1,0 +1,244 @@
+<!--SIN-MAPA-->
+<!--ACCIONES-->
+<button class="c-btn c-btn--secondary" type="button" data-toast="Se ha descargado el listado de facturas del mes en formato hoja de cálculo." data-toast-title="Facturas exportadas">{{i:descargar}} Exportar</button>
+<button class="c-btn c-btn--primary" type="button" data-open="modal-emitir">{{i:documento}} Emitir facturas del mes</button>
+<!--MAIN-->
+<section aria-labelledby="t-kpis">
+  <h2 class="u-visually-hidden" id="t-kpis">Indicadores del mes</h2>
+  <div class="bo-grid bo-grid--kpis" id="kpis"></div>
+</section>
+
+<div style="display:flex;flex-wrap:wrap;align-items:flex-start;gap:var(--sp-5);margin-top:var(--sp-6)">
+  <section class="c-card" aria-labelledby="t-facturas" style="flex:3 1 calc(var(--drawer-w) * 1.5);min-width:0">
+    <div class="c-card__header"><h2 class="c-card__title" id="t-facturas">Facturas y liquidaciones</h2><span class="u-muted u-small" id="facturas-periodo"></span></div>
+    <div class="c-card__header" style="padding-bottom:0;border-bottom:0">
+      <div class="c-tabs" role="tablist" aria-label="Tipo de factura" id="pestanas" style="width:100%"></div>
+    </div>
+    <div id="paneles"></div>
+  </section>
+
+  <aside class="bo-stack" aria-label="Liquidación del mes" style="flex:1 1 var(--search-w);min-width:0">
+    <section class="c-card" aria-labelledby="t-liq">
+      <div class="c-card__header"><h2 class="c-card__title" id="t-liq"></h2><span id="liq-estado"></span></div>
+      <div class="c-card__body" style="display:flex;flex-wrap:wrap;gap:var(--sp-4);align-items:flex-start">
+        <dl class="c-datalist" id="liq-resumen" style="flex:1 1 var(--sidebar-w)"></dl>
+        <div class="c-table-wrap" style="flex:1 1 var(--sidebar-w)">
+          <table class="c-table" id="tabla-liq">
+            <caption class="u-visually-hidden">Desglose de la liquidación por municipio</caption>
+            <thead><tr><th scope="col" style="padding-right:0">Municipio</th><th scope="col" class="is-num">Viajeros</th><th scope="col" class="is-num">Total</th></tr></thead>
+            <tbody></tbody>
+            <tfoot></tfoot>
+          </table>
+        </div>
+        <p class="u-small u-muted" id="liq-nota" style="margin:0;flex:1 1 100%"></p>
+      </div>
+      <div class="c-card__footer">
+        <button class="c-btn c-btn--secondary c-btn--sm" type="button" data-open="modal-liquidacion">Ver detalle</button>
+        <button class="c-btn c-btn--primary c-btn--sm" type="button" data-toast="Se ha descargado la liquidación con el desglose por municipio, lista para enviar a los ayuntamientos." data-toast-title="Liquidación exportada">{{i:descargar}} Exportar</button>
+      </div>
+    </section>
+  </aside>
+</div>
+
+<!-- Recibo de un viajero -->
+<div class="c-modal" id="modal-recibo" role="dialog" aria-modal="true" aria-labelledby="modal-recibo-t">
+  <div class="c-modal__dialog">
+    <div class="c-modal__header">
+      <h2 class="c-modal__title" id="modal-recibo-t"></h2>
+      <button class="c-btn c-btn--ghost c-btn--icon c-btn--sm" type="button" data-close aria-label="Cerrar">{{i:cerrar}}</button>
+    </div>
+    <div class="c-modal__body">
+      <dl class="c-datalist" id="recibo-datos"></dl>
+      <h3 style="margin:var(--sp-5) 0 var(--sp-3)">Cálculo del importe</h3>
+      <dl class="c-datalist" id="recibo-calculo"></dl>
+    </div>
+    <div class="c-modal__footer">
+      <button class="c-btn c-btn--secondary" type="button" data-toast="Se ha reenviado el recibo por SMS al viajero." data-toast-title="Recibo reenviado" data-toast-close>Reenviar al viajero</button>
+      <button class="c-btn c-btn--primary" type="button" data-toast="Se ha descargado el recibo en PDF." data-toast-title="Recibo descargado" data-toast-close>{{i:descargar}} Descargar PDF</button>
+    </div>
+  </div>
+</div>
+
+<!-- Detalle de la liquidación -->
+<div class="c-modal" id="modal-liquidacion" role="dialog" aria-modal="true" aria-labelledby="modal-liquidacion-t">
+  <div class="c-modal__dialog">
+    <div class="c-modal__header">
+      <h2 class="c-modal__title" id="modal-liquidacion-t"></h2>
+      <button class="c-btn c-btn--ghost c-btn--icon c-btn--sm" type="button" data-close aria-label="Cerrar">{{i:cerrar}}</button>
+    </div>
+    <div class="c-modal__body">
+      <div class="c-table-wrap">
+        <table class="c-table" id="tabla-liq-detalle">
+          <caption class="u-visually-hidden">Desglose completo por municipio</caption>
+          <thead><tr><th scope="col">Municipio</th><th scope="col" class="is-num">Viajeros</th><th scope="col" class="is-num">Recaudación</th><th scope="col" class="is-num">Bonificaciones</th><th scope="col" class="is-num">Aportación</th><th scope="col" class="is-num">Total</th></tr></thead>
+          <tbody></tbody>
+          <tfoot></tfoot>
+        </table>
+      </div>
+    </div>
+    <div class="c-modal__footer">
+      <button class="c-btn c-btn--secondary" type="button" data-close>Cerrar</button>
+      <button class="c-btn c-btn--primary" type="button" data-toast="La liquidación queda aprobada y se envía a los ayuntamientos y al Consorcio." data-toast-title="Liquidación aprobada" data-toast-close>{{i:check}} Aprobar liquidación</button>
+    </div>
+  </div>
+</div>
+
+<!-- Emitir facturas -->
+<div class="c-modal" id="modal-emitir" role="dialog" aria-modal="true" aria-labelledby="modal-emitir-t">
+  <div class="c-modal__dialog">
+    <div class="c-modal__header">
+      <h2 class="c-modal__title" id="modal-emitir-t">Emitir facturas del mes</h2>
+      <button class="c-btn c-btn--ghost c-btn--icon c-btn--sm" type="button" data-close aria-label="Cerrar">{{i:cerrar}}</button>
+    </div>
+    <div class="c-modal__body">
+      <p style="margin-top:0" id="emitir-texto"></p>
+      <div class="c-field"><label class="c-field__label" for="emitir-mes">Mes</label><select class="c-select" id="emitir-mes"></select></div>
+      <label class="c-checkbox"><input type="checkbox" checked> Enviar por correo a cada destinatario</label>
+    </div>
+    <div class="c-modal__footer">
+      <button class="c-btn c-btn--secondary" type="button" data-close>Cancelar</button>
+      <button class="c-btn c-btn--primary" type="button" data-toast="Las facturas se han generado y se envían a ayuntamientos, Consorcio y operadores." data-toast-title="Facturas emitidas" data-toast-close>Emitir</button>
+    </div>
+  </div>
+</div>
+<script defer src="../js/datos/crm-economica.js"></script>
+<!--SCRIPT-->
+document.addEventListener("DOMContentLoaded", function () {
+  var f = TAD.fmt, h = f.html, L = TAD.liquidacion;
+  var referencia = TAD.reservaReferencia();
+  var facturas = TAD.facturas;
+  var abierta = function (x) { return x.estado === "Pendiente" || x.estado === "Vencida"; };
+
+  // ---------- Indicadores del mes (marzo, el último liquidado) ----------
+  var instituciones = facturas.filter(function (x) { return x.tipo === "ayuntamiento"; });
+  var pendiente = instituciones.filter(abierta).reduce(function (a, x) { return a + x.importe; }, 0);
+  var vencidas = facturas.filter(function (x) { return x.estado === "Vencida"; });
+  var anterior = TAD.liquidaciones.filter(function (x) { return x.mes < L.mes; }).slice(-1)[0];
+  var dif = anterior ? (L.ingresos - anterior.importe) / anterior.importe * 100 : 0;
+  var EUR = ' <span class="c-kpi__unit">€</span>';
+  var kpis = [
+    { et: "Ingresos de " + f.mes(L.mes), v: f.numero(L.ingresos) + EUR, n: (dif >= 0 ? "↑ " : "↓ ") + f.porcentaje(Math.abs(dif), 1) + " frente a " + f.mes(anterior.mes), t: dif >= 0 ? "up" : "down" },
+    { et: "Bonificaciones subvencionadas", v: f.numero(L.bonificacionesSubvencionadas) + EUR, n: "Pagan ayuntamientos y Consorcio", t: "flat" },
+    { et: "Pendiente de cobro", v: f.numero(pendiente) + EUR, n: instituciones.filter(abierta).length + " facturas a instituciones", t: "flat" },
+    { et: "Facturas vencidas", v: vencidas.length, n: vencidas.map(function (x) { return x.destinatario.replace("Ayuntamiento de ", ""); }).join(", ") || "Ninguna", t: vencidas.length ? "down" : "flat" }
+  ];
+  document.getElementById("kpis").innerHTML = kpis.map(function (k) {
+    return '<div class="c-kpi"><span class="c-kpi__label">' + k.et + '</span><span class="c-kpi__value">' + k.v + '</span><span class="c-kpi__delta c-kpi__delta--' + k.t + '">' + h(k.n) + "</span></div>";
+  }).join("");
+
+  // ---------- Pestañas ----------
+  var PESTANAS = [
+    { id: "usuarios", nombre: "Facturas a usuarios", corto: "Usuarios", lista: facturas.filter(function (x) { return x.tipo === "usuario"; }).sort(function (a, b) { return b.numero.localeCompare(a.numero); }) },
+    { id: "ayuntamientos", nombre: "Facturas a ayuntamientos", corto: "Ayuntamientos", lista: instituciones },
+    { id: "operadores", nombre: "Facturas a operadores", corto: "Operadores", lista: facturas.filter(function (x) { return x.tipo === "operador"; }) },
+    { id: "liquidaciones", nombre: "Liquidaciones", corto: "Liquidaciones", lista: TAD.liquidaciones }
+  ];
+  document.getElementById("pestanas").innerHTML = PESTANAS.map(function (p, i) {
+    return '<button class="c-tabs__tab" role="tab" type="button" id="tab-' + p.id + '" aria-controls="panel-' + p.id + '" aria-selected="' + (i === 0) + '"' + (i ? ' tabindex="-1"' : "") + ">" +
+      '<span aria-hidden="true">' + p.corto + '</span><span class="u-visually-hidden">' + p.nombre + '</span> <span class="c-tabs__count">' + p.lista.length + "</span></button>";
+  }).join("");
+
+  function cabecera(cols) {
+    return "<thead><tr>" + cols.map(function (c) {
+      return '<th scope="col"' + (c[1] ? ' class="' + c[1] + '"' : "") + ">" + (c[2] ? '<button class="c-table__sort" type="button">' + c[0] + ' {{i:chevron-abajo}}</button>' : c[0]) + "</th>";
+    }).join("") + "</tr></thead>";
+  }
+  function chips(id) {
+    return '<div class="bo-toolbar" style="padding:var(--sp-4) var(--sp-5) 0;margin-bottom:var(--sp-3)"><div class="c-chip-group" role="group" aria-label="Filtrar por estado" data-filter-target="tabla-' + id + '" data-filter-key="estado">' +
+      ["", "Pagada", "Pendiente", "Vencida"].map(function (e, i) { return '<button class="c-chip" type="button" data-filter="' + e + '" aria-pressed="' + (i === 0) + '">' + (e || "Todas") + "</button>"; }).join("") +
+      '</div><span class="bo-toolbar__spacer"></span><span class="u-small u-muted" id="suma-' + id + '"></span></div>';
+  }
+  function filaFactura(x) {
+    var esRef = x.reserva === referencia.codigo;
+    return '<tr data-estado="' + x.estado + '"' + (esRef ? ' id="recibo-referencia" style="background:var(--tad-blue-100)"' : "") + ">" +
+      '<td class="is-nowrap" data-value="' + x.fecha.replace(/-/g, "") + x.numero + '"><strong>' + x.numero + '</strong><span class="c-list__meta">' + f.fecha(x.fecha) + "</span></td>" +
+      "<td>" + h(x.destinatario) + '<span class="c-list__meta">' + h(x.concepto) + "</span></td>" +
+      (x.vence ? '<td class="is-nowrap" data-value="' + x.vence.replace(/-/g, "") + '">' + f.fecha(x.vence) + "</td>" : "") +
+      '<td class="is-num is-nowrap" data-value="' + x.importe + '">' + f.euros(x.importe) + "</td>" +
+      "<td>" + f.badge(x.estado) + "</td>" +
+      '<td class="c-table__actions">' + (x.tipo === "usuario" ?
+        '<button class="c-btn c-btn--ghost c-btn--sm" type="button" data-recibo="' + x.numero + '">Ver recibo</button>' :
+        '<button class="c-btn c-btn--ghost c-btn--sm" type="button" data-toast="Se ha descargado la factura ' + x.numero + ' en PDF." data-toast-title="Factura descargada">{{i:descargar}}<span class="u-visually-hidden">Descargar ' + x.numero + "</span></button>") +
+      "</td></tr>";
+  }
+  document.getElementById("paneles").innerHTML = PESTANAS.map(function (p, i) {
+    var cuerpo;
+    if (p.id === "liquidaciones") {
+      cuerpo = '<div class="c-table-wrap" style="border:0;border-radius:0"><table class="c-table" id="tabla-liquidaciones"><caption class="u-visually-hidden">Liquidaciones mensuales</caption>' +
+        cabecera([["Mes"], ["Importe", "is-num"], ["Estado"], ['<span class="u-visually-hidden">Acciones</span>', "c-table__actions"]]) + "<tbody>" +
+        p.lista.slice().reverse().map(function (x) {
+          return "<tr><td><strong>" + h(f.mes(x.mes).charAt(0).toUpperCase() + f.mes(x.mes).slice(1)) + '</strong></td><td class="is-num">' + f.euros(x.importe) + "</td><td>" + f.badge(x.estado) + "</td>" +
+            '<td class="c-table__actions">' + (x.mes === L.mes ? '<button class="c-btn c-btn--ghost c-btn--sm" type="button" data-open="modal-liquidacion">Ver detalle</button>' :
+              '<button class="c-btn c-btn--ghost c-btn--sm" type="button" data-toast="Se ha descargado la liquidación de ' + f.mes(x.mes) + '." data-toast-title="Liquidación descargada">{{i:descargar}}<span class="u-visually-hidden">Descargar</span></button>') + "</td></tr>";
+        }).join("") + "</tbody></table></div>";
+    } else {
+      var conVence = p.lista.some(function (x) { return x.vence; });
+      cuerpo = chips(p.id) + '<div class="c-table-wrap" style="border:0;border-radius:0"><table class="c-table" data-sortable id="tabla-' + p.id + '"><caption class="u-visually-hidden">' + p.nombre + "</caption>" +
+        cabecera([["Número", "", true], ["Destinatario"]].concat(conVence ? [["Vence", "", true]] : []).concat([["Importe", "is-num", true], ["Estado", "", true], ['<span class="u-visually-hidden">Acciones</span>', "c-table__actions"]])) +
+        "<tbody>" + p.lista.map(filaFactura).join("") + "</tbody></table></div>";
+    }
+    return '<div class="c-tabpanel" role="tabpanel" id="panel-' + p.id + '" aria-labelledby="tab-' + p.id + '"' + (i ? " hidden" : "") + ">" + cuerpo + "</div>";
+  }).join("");
+  PESTANAS.forEach(function (p) {
+    var el = document.getElementById("suma-" + p.id);
+    if (el) el.textContent = p.lista.length + " documentos · " + f.euros(p.lista.reduce(function (a, x) { return a + x.importe; }, 0));
+  });
+
+  // ---------- Recibo ----------
+  function abrirRecibo(numero, desde) {
+    var x = facturas.filter(function (y) { return y.numero === numero; })[0];
+    var r = TAD.reserva(x.reserva);
+    document.getElementById("modal-recibo-t").textContent = "Recibo " + x.numero;
+    document.getElementById("recibo-datos").innerHTML = [
+      ["Viajero", x.destinatario], ["Reserva", r.codigo], ["Fecha", f.fecha(r.fecha) + " · " + r.horaPrevista],
+      ["Trayecto", TAD.parada(r.origen).nombre + " → " + TAD.parada(r.destino).nombre], ["Forma de pago", r.pago], ["Estado", x.estado]
+    ].map(function (d) { return "<dt>" + d[0] + "</dt><dd>" + h(d[1]) + "</dd>"; }).join("");
+    var t = TAD.tarifa(r.origen, r.destino, r.perfil);
+    var b = TAD.tarifas.bonificaciones.filter(function (y) { return y.perfil === r.perfil; })[0];
+    document.getElementById("recibo-calculo").innerHTML = [
+      ["Tarifa", f.euros(t.base) + (t.interzona ? " (interzona)" : " (misma zona)") + (r.viajeros > 1 ? " × " + r.viajeros : "")],
+      ["Bonificación", b ? b.nombre + " −" + b.pct + " % · la paga " + b.financia.charAt(0).toLowerCase() + b.financia.slice(1) : "Ninguna"],
+      ["Total pagado", f.euros(x.importe)]
+    ].map(function (d) { return "<dt>" + d[0] + "</dt><dd>" + h(d[1]) + "</dd>"; }).join("");
+    TADUI.abrir("modal-recibo", desde);
+  }
+  document.getElementById("paneles").addEventListener("click", function (e) {
+    var b = e.target.closest("[data-recibo]");
+    if (b) abrirRecibo(b.getAttribute("data-recibo"), b);
+  });
+
+  // ---------- Liquidación de marzo ----------
+  document.getElementById("t-liq").textContent = L.nombre;
+  document.getElementById("modal-liquidacion-t").textContent = L.nombre + " · desglose por municipio";
+  var est = TAD.liquidaciones.filter(function (x) { return x.mes === L.mes; })[0];
+  document.getElementById("liq-estado").innerHTML = est ? f.badge(est.estado) : "";
+  document.getElementById("liq-resumen").innerHTML = [
+    ["Viajeros", f.numero(L.viajeros)], ["Recaudación de usuarios", f.euros(L.recaudacionUsuarios)], ["Bonificaciones subvencionadas", f.euros(L.bonificacionesSubvencionadas)],
+    ["Aportación municipal", f.euros(L.aportacionMunicipal)], ["Aportación del Consorcio", f.euros(L.aportacionConsorcio)], ["Ingresos totales", f.euros(L.ingresos)],
+    ["Coste de operación", f.euros(L.costeOperacion)]
+  ].map(function (d) { return "<dt>" + d[0] + "</dt><dd>" + d[1] + "</dd>"; }).join("");
+  var sum = { viajeros: 0, recaudacion: 0, bonificaciones: 0, aportacion: 0, total: 0 };
+  L.desglose.forEach(function (d) { Object.keys(sum).forEach(function (k) { sum[k] += d[k]; }); });
+  document.querySelector("#tabla-liq tbody").innerHTML = L.desglose.map(function (d) {
+    return '<tr><td style="padding-right:0">' + h(TAD.municipio(d.municipio).nombre) + '</td><td class="is-num">' + f.numero(d.viajeros) + '</td><td class="is-num is-nowrap">' + f.euros(d.total) + "</td></tr>";
+  }).join("");
+  document.querySelector("#tabla-liq tfoot").innerHTML = '<tr><th scope="row" style="padding-right:0">Municipios</th><td class="is-num"><strong>' + f.numero(sum.viajeros) + '</strong></td><td class="is-num is-nowrap"><strong>' + f.euros(sum.total) + "</strong></td></tr>";
+  document.getElementById("liq-nota").textContent = "Más " + f.euros(L.aportacionConsorcio) + " del Consorcio = " + f.euros(sum.total + L.aportacionConsorcio) +
+    ". Saldo frente al coste de operación: " + f.euros(L.ingresos - L.costeOperacion) + ".";
+  document.querySelector("#tabla-liq-detalle tbody").innerHTML = L.desglose.map(function (d) {
+    return "<tr><td>" + h(TAD.municipio(d.municipio).nombre) + '</td><td class="is-num">' + f.numero(d.viajeros) + '</td><td class="is-num">' + f.euros(d.recaudacion) +
+      '</td><td class="is-num">' + f.euros(d.bonificaciones) + '</td><td class="is-num">' + f.euros(d.aportacion) + '</td><td class="is-num"><strong>' + f.euros(d.total) + "</strong></td></tr>";
+  }).join("");
+  document.querySelector("#tabla-liq-detalle tfoot").innerHTML = '<tr><th scope="row">Total municipios</th><td class="is-num">' + f.numero(sum.viajeros) + '</td><td class="is-num">' + f.euros(sum.recaudacion) +
+    '</td><td class="is-num">' + f.euros(sum.bonificaciones) + '</td><td class="is-num">' + f.euros(sum.aportacion) + '</td><td class="is-num"><strong>' + f.euros(sum.total) + "</strong></td></tr>";
+
+  // ---------- Emitir ----------
+  var siguiente = TAD.fecha.slice(0, 7);
+  document.getElementById("emitir-mes").innerHTML = [siguiente, L.mes].map(function (m) { return '<option value="' + m + '">' + f.mes(m) + "</option>"; }).join("");
+  document.getElementById("emitir-texto").textContent = "Se generarán las facturas a los " + TAD.municipios.length + " ayuntamientos, al Consorcio y a los operadores con los datos de la liquidación del mes elegido.";
+
+  // Recibo de la reserva de referencia: visible y a mano
+  document.getElementById("facturas-periodo").textContent = "Emitidas en " + f.mes(TAD.fecha.slice(0, 7));
+  if (location.hash === "#recibo") abrirRecibo(facturas.filter(function (x) { return x.reserva === referencia.codigo; })[0].numero);
+});
+<!--FIN-->

@@ -1,0 +1,281 @@
+<!--SIN-MAPA-->
+<!--ACCIONES-->
+<span class="c-badge c-badge--neutral c-badge--plain" style="font-size:var(--fs-14);padding:var(--sp-2) var(--sp-3)">{{i:reloj}} <span data-tad-reloj></span></span>
+<button class="c-btn c-btn--primary" type="button" data-open="modal-reserva">{{i:mas}} Nueva reserva</button>
+<!--MAIN-->
+<section aria-labelledby="t-kpis">
+  <h2 class="u-visually-hidden" id="t-kpis">Resumen de la atención</h2>
+  <div class="bo-grid bo-grid--kpis" id="kpis"></div>
+</section>
+
+<div style="display:flex;flex-wrap:wrap;align-items:flex-start;gap:var(--sp-5);margin-top:var(--sp-6)">
+  <!-- Columna 1: conversaciones -->
+  <section class="c-card" aria-labelledby="t-lista" style="flex:1 1 var(--sidebar-w);min-width:0">
+    <div class="c-card__header"><h2 class="c-card__title" id="t-lista">Conversaciones</h2><span class="u-muted u-small" id="n-conversaciones"></span></div>
+    <div style="padding:var(--sp-3) var(--sp-4);border-bottom:var(--bw) solid var(--color-border)">
+      <div class="c-chip-group" role="group" aria-label="Filtrar por canal" data-filter-target="lista-conversaciones" data-filter-key="canal" id="f-canal"></div>
+    </div>
+    <ul class="c-list" id="lista-conversaciones"></ul>
+  </section>
+
+  <!-- Columna 2: hilo seleccionado -->
+  <section class="c-card" aria-labelledby="hilo-t" style="flex:3 1 var(--drawer-w);min-width:0">
+    <div class="c-card__header" style="align-items:flex-start;gap:var(--sp-3)">
+      <div style="display:flex;gap:var(--sp-3);align-items:center;min-width:0">
+        <span class="c-avatar" aria-hidden="true" id="hilo-avatar"></span>
+        <div style="min-width:0">
+          <h2 class="c-card__title" id="hilo-t"></h2>
+          <span class="u-muted u-small" id="hilo-meta"></span>
+        </div>
+      </div>
+      <span id="hilo-estado"></span>
+    </div>
+    <div class="c-card__body" style="display:grid;gap:var(--sp-4)">
+      <div id="hilo-resumen"></div>
+      <div>
+        <h3 class="u-small u-muted" id="hilo-subtitulo" style="margin:0 0 var(--sp-3)"></h3>
+        <ol id="hilo-mensajes" style="list-style:none;margin:0;padding:0;display:grid;gap:var(--sp-3)"></ol>
+      </div>
+      <div id="hilo-reserva"></div>
+    </div>
+    <div class="c-card__footer" style="display:block">
+      <div class="c-field" style="margin:0">
+        <label class="c-field__label" for="respuesta" id="respuesta-label"></label>
+        <textarea class="c-textarea" id="respuesta" rows="2"></textarea>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:var(--sp-2);margin-top:var(--sp-3)" id="hilo-acciones"></div>
+    </div>
+  </section>
+
+  <!-- Columna 3: ficha rápida del ciudadano -->
+  <aside class="bo-stack" aria-label="Ficha rápida del ciudadano" style="flex:1 1 var(--sidebar-w);min-width:0">
+    <section class="c-card" aria-labelledby="ficha-t">
+      <div class="c-card__header"><h2 class="c-card__title" id="ficha-t">Ficha rápida</h2><a class="u-small" id="ficha-enlace" href="usuario.html">Ver ficha completa</a></div>
+      <div class="c-card__body">
+        <div style="display:flex;gap:var(--sp-3);align-items:center;margin-bottom:var(--sp-4)">
+          <span class="c-avatar c-avatar--lg" aria-hidden="true" id="ficha-avatar"></span>
+          <div><strong id="ficha-nombre"></strong><span class="c-list__meta" id="ficha-sub"></span><span id="ficha-badges"></span></div>
+        </div>
+        <dl class="c-datalist" id="ficha-datos"></dl>
+      </div>
+    </section>
+    <section class="c-card" aria-labelledby="t-reservas">
+      <div class="c-card__header"><h2 class="c-card__title" id="t-reservas">Reservas de hoy</h2></div>
+      <ul class="c-list" id="ficha-reservas"></ul>
+    </section>
+    <section class="c-card" aria-labelledby="t-acciones">
+      <div class="c-card__header"><h2 class="c-card__title" id="t-acciones">Acciones</h2></div>
+      <div class="c-card__body" style="display:grid;gap:var(--sp-2)">
+        <button class="c-btn c-btn--primary c-btn--block" type="button" data-open="modal-reserva">{{i:calendario}} Crear reserva</button>
+        <button class="c-btn c-btn--secondary c-btn--block" type="button" data-open="modal-reclamacion">{{i:documento}} Abrir reclamación</button>
+        <button class="c-btn c-btn--secondary c-btn--block" type="button" data-toast="Le llegará una encuesta corta de tres preguntas por su canal preferido." data-toast-title="Encuesta enviada">{{i:check}} Enviar encuesta</button>
+      </div>
+    </section>
+  </aside>
+</div>
+
+<!-- Crear reserva -->
+<div class="c-modal" id="modal-reserva" role="dialog" aria-modal="true" aria-labelledby="modal-reserva-t">
+  <div class="c-modal__dialog">
+    <div class="c-modal__header">
+      <h2 class="c-modal__title" id="modal-reserva-t">Crear reserva</h2>
+      <button class="c-btn c-btn--ghost c-btn--icon c-btn--sm" type="button" data-close aria-label="Cerrar">{{i:cerrar}}</button>
+    </div>
+    <div class="c-modal__body">
+      <p class="u-muted u-small" id="reserva-para" style="margin-top:0"></p>
+      <div class="bo-grid bo-grid--2" style="gap:var(--sp-3)">
+        <div class="c-field"><label class="c-field__label" for="r-origen">Recogida</label><select class="c-select" id="r-origen"></select></div>
+        <div class="c-field"><label class="c-field__label" for="r-destino">Destino</label><select class="c-select" id="r-destino"></select></div>
+        <div class="c-field"><label class="c-field__label" for="r-fecha">Día</label><input class="c-input" id="r-fecha" type="date"></div>
+        <div class="c-field"><label class="c-field__label" for="r-hora">Hora de llegada deseada</label><input class="c-input" id="r-hora" type="time" value="12:00"></div>
+      </div>
+      <p class="u-small" id="r-precio" style="margin-bottom:0"></p>
+    </div>
+    <div class="c-modal__footer">
+      <button class="c-btn c-btn--secondary" type="button" data-close>Cancelar</button>
+      <button class="c-btn c-btn--primary" type="button" data-toast="La reserva queda confirmada y se envía un SMS con la hora de recogida." data-toast-title="Reserva creada" data-toast-close>Confirmar reserva</button>
+    </div>
+  </div>
+</div>
+
+<!-- Abrir reclamación -->
+<div class="c-modal" id="modal-reclamacion" role="dialog" aria-modal="true" aria-labelledby="modal-reclamacion-t">
+  <div class="c-modal__dialog">
+    <div class="c-modal__header">
+      <h2 class="c-modal__title" id="modal-reclamacion-t">Abrir reclamación</h2>
+      <button class="c-btn c-btn--ghost c-btn--icon c-btn--sm" type="button" data-close aria-label="Cerrar">{{i:cerrar}}</button>
+    </div>
+    <div class="c-modal__body">
+      <div class="bo-grid bo-grid--2" style="gap:var(--sp-3)">
+        <div class="c-field"><label class="c-field__label" for="rc-tipo">Motivo</label>
+          <select class="c-select" id="rc-tipo"><option>Puntualidad</option><option>Trato del personal</option><option>Vehículo</option><option>Cobro</option><option>Otro</option></select></div>
+        <div class="c-field"><label class="c-field__label" for="rc-reserva">Reserva relacionada</label><select class="c-select" id="rc-reserva"></select></div>
+      </div>
+      <div class="c-field"><label class="c-field__label" for="rc-texto">Qué ha pasado</label><textarea class="c-textarea" id="rc-texto" placeholder="Con las palabras del ciudadano"></textarea></div>
+    </div>
+    <div class="c-modal__footer">
+      <button class="c-btn c-btn--secondary" type="button" data-close>Cancelar</button>
+      <button class="c-btn c-btn--primary" type="button" data-toast="La reclamación queda registrada. El ciudadano recibirá respuesta en un plazo máximo de 10 días." data-toast-title="Reclamación abierta" data-toast-close>Registrar reclamación</button>
+    </div>
+  </div>
+</div>
+<script defer src="../js/datos/crm-economica.js"></script>
+<!--SCRIPT-->
+document.addEventListener("DOMContentLoaded", function () {
+  var f = TAD.fmt, h = f.html;
+  var CANAL = {
+    "teléfono": { nombre: "Llamada", icono: '{{i:telefono}}', avatar: "" },
+    "WhatsApp": { nombre: "WhatsApp", icono: '{{i:mensaje}}', avatar: " c-avatar--green" },
+    "email": { nombre: "Correo", icono: '{{i:correo}}', avatar: " c-avatar--orange" },
+    "chat web": { nombre: "Chat web", icono: '{{i:mensaje}}', avatar: " c-avatar--purple" }
+  };
+  var AUTOR = { ciudadano: null, asistente: "Asistente", operador: "Operadora", sistema: "Sistema" };
+  var lista = TAD.conversaciones.slice().sort(function (a, b) {
+    var ha = a.hora.indexOf(":") > 0 ? a.hora : "00:00", hb = b.hora.indexOf(":") > 0 ? b.hora : "00:00";
+    return hb.localeCompare(ha);
+  });
+  var referencia = TAD.reservaReferencia();
+  var porDefecto = TAD.conversaciones.filter(function (c) { return c.reserva === referencia.codigo; })[0];
+  var actual = null;
+
+  function nombreParada(id) { return TAD.parada(id).nombre; }
+  function esHoy(c) { return c.hora.indexOf(":") > 0; }
+
+  // ---------- Indicadores ----------
+  var hoy = lista.filter(esHoy);
+  var conAsistente = hoy.filter(function (c) { return c.mensajes.some(function (m) { return m.de === "asistente"; }); });
+  var kpis = [
+    ["Conversaciones hoy", hoy.length, "", lista.length - hoy.length + " de ayer en la bandeja"],
+    ["Sin resolver", lista.filter(function (c) { return c.estado !== "Resuelta"; }).length, "", "Pendientes o abiertas"],
+    ["Atendidas por el asistente", conAsistente.length, "de " + hoy.length, TAD.bandeja.resueltasAsistentePct + " % se resuelven sin pasar a una persona"],
+    ["Tiempo medio de respuesta", f.numero(TAD.bandeja.tiempoMedioRespuesta, 1), "min", "Satisfacción media " + f.numero(TAD.satisfaccion.media, 1) + " / " + TAD.satisfaccion.escala]
+  ];
+  document.getElementById("kpis").innerHTML = kpis.map(function (k) {
+    return '<div class="c-kpi"><span class="c-kpi__label">' + k[0] + '</span><span class="c-kpi__value">' + k[1] + (k[2] ? ' <span class="c-kpi__unit">' + k[2] + "</span>" : "") +
+      '</span><span class="c-kpi__delta c-kpi__delta--flat">' + k[3] + "</span></div>";
+  }).join("");
+
+  // ---------- Filtro por canal ----------
+  var canales = [];
+  lista.forEach(function (c) { if (canales.indexOf(c.canal) === -1) canales.push(c.canal); });
+  document.getElementById("f-canal").innerHTML = '<button class="c-chip" type="button" data-filter="" aria-pressed="true">Todos</button>' +
+    canales.map(function (c) { return '<button class="c-chip" type="button" data-filter="' + c + '" aria-pressed="false">' + CANAL[c].nombre + "</button>"; }).join("");
+  document.getElementById("n-conversaciones").textContent = lista.length + " en total";
+
+  // ---------- Lista de conversaciones ----------
+  document.getElementById("lista-conversaciones").innerHTML = lista.map(function (c) {
+    var u = TAD.usuario(c.usuario), ultimo = c.mensajes[c.mensajes.length - 1];
+    return '<li class="c-list__item" data-canal="' + c.canal + '"><button class="c-list__button" type="button" data-conversacion="' + c.id + '" aria-pressed="false">' +
+      '<span class="c-avatar c-avatar--sm' + CANAL[c.canal].avatar + '" aria-hidden="true">' + CANAL[c.canal].icono + "</span>" +
+      '<span style="min-width:0"><span class="c-list__title">' + h(u.nombre) + '</span><span class="c-list__meta">' + CANAL[c.canal].nombre + " · " + h(c.asunto) + "</span></span>" +
+      '<span class="u-small u-muted">' + h(c.hora) + "</span>" +
+      '<span class="c-list__wide u-small u-muted" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">' + h(ultimo.texto) + "</span>" +
+      '<span class="c-list__wide">' + f.badge(c.estado) + "</span></button></li>";
+  }).join("");
+
+  // ---------- Hilo ----------
+  function burbuja(m, u) {
+    if (m.de === "sistema") {
+      return '<li style="display:flex;gap:var(--sp-2);align-items:center;justify-content:center;color:var(--color-text-muted);font-size:var(--fs-12);text-align:center">' +
+        '{{i:check}}<span>' + h(m.hora) + " · " + h(m.texto) + "</span></li>";
+    }
+    var propio = m.de !== "ciudadano";
+    var quien = propio ? AUTOR[m.de] : u.nombre.split(" ")[0];
+    return '<li style="display:flex;flex-direction:column;align-items:' + (propio ? "flex-end" : "flex-start") + '">' +
+      '<span class="u-small u-muted" style="margin-bottom:var(--sp-1)">' + h(quien) + " · " + h(m.hora) + "</span>" +
+      '<span style="max-width:85%;padding:var(--sp-3) var(--sp-4);border-radius:var(--r-md);background:' + (propio ? "var(--tad-blue-100)" : "var(--surface-alt)") +
+      ';border:var(--bw) solid var(--color-border)">' + h(m.texto) + "</span></li>";
+  }
+
+  function pintarHilo(c) {
+    var u = TAD.usuario(c.usuario), canal = CANAL[c.canal], esLlamada = c.canal === "teléfono";
+    actual = c;
+    var av = document.getElementById("hilo-avatar");
+    av.className = "c-avatar" + canal.avatar; av.innerHTML = canal.icono;
+    document.getElementById("hilo-t").textContent = (esLlamada ? "Llamada de " : "Conversación con ") + u.nombre;
+    document.getElementById("hilo-meta").textContent = [canal.nombre, c.asunto, c.hora.indexOf(":") > 0 ? "hoy a las " + c.hora : c.hora.toLowerCase(),
+      c.duracion ? "duración " + c.duracion : "", c.atendidaPor ? "atendida por el " + c.atendidaPor.toLowerCase() : ""].filter(Boolean).join(" · ");
+    document.getElementById("hilo-estado").innerHTML = f.badge(c.estado);
+    document.getElementById("hilo-resumen").innerHTML = c.resumen ?
+      '<div class="c-alert" role="note">{{i:documento}}<div class="c-alert__body"><strong class="c-alert__title">Resumen de la llamada</strong>' + h(c.resumen) + "</div></div>" : "";
+    document.getElementById("hilo-subtitulo").textContent = esLlamada ? "Transcripción resumida" : "Mensajes";
+    document.getElementById("hilo-mensajes").innerHTML = c.mensajes.map(function (m) { return burbuja(m, u); }).join("");
+
+    var r = c.reserva && TAD.reserva(c.reserva);
+    document.getElementById("hilo-reserva").innerHTML = r ?
+      '<div class="c-card" style="background:var(--surface-alt)"><div class="c-card__body" style="display:grid;gap:var(--sp-2)">' +
+      '<div style="display:flex;justify-content:space-between;gap:var(--sp-3);align-items:center"><strong>{{i:calendario}} Reserva ' + r.codigo + "</strong>" + f.badge(r.estado) + "</div>" +
+      '<span class="u-small">' + h(nombreParada(r.origen)) + " → " + h(nombreParada(r.destino)) + "</span>" +
+      '<span class="u-small u-muted">' + f.fecha(r.fecha) + (r.estado === "Pendiente" ? " · hora pedida " : " · recogida ") + r.horaPrevista + (r.horaLlegadaPrevista ? " · llegada " + r.horaLlegadaPrevista : "") + " · " +
+      r.viajeros + (r.viajeros > 1 ? " viajeros" : " viajero") + " · " + f.euros(r.importe) + (r.ruta ? " · ruta " + r.ruta : "") + "</span>" +
+      (r.nota ? '<span class="u-small u-muted">' + h(r.nota) + "</span>" : "") + "</div></div>" : "";
+
+    document.getElementById("respuesta-label").textContent = esLlamada ? "Nota interna sobre la llamada" : "Responder por " + canal.nombre;
+    document.getElementById("respuesta").placeholder = esLlamada ? "Solo la ve el equipo" : "Escribe una respuesta";
+    document.getElementById("hilo-acciones").innerHTML = esLlamada ?
+      '<button class="c-btn c-btn--secondary c-btn--sm" type="button" data-toast="La nota queda guardada en la ficha del ciudadano." data-toast-title="Nota añadida">{{i:editar}} Guardar nota</button>' +
+      '<button class="c-btn c-btn--secondary c-btn--sm" type="button" data-toast="Llamando al ' + h(u.telefono) + ' desde la centralita del servicio." data-toast-title="Devolviendo la llamada">{{i:telefono}} Devolver la llamada</button>' +
+      '<button class="c-btn c-btn--ghost c-btn--sm" type="button" data-toast="Puedes escuchar la grabación completa en la ficha (se guarda 30 días)." data-toast-title="Grabación">{{i:reloj}} Escuchar grabación</button>' :
+      '<button class="c-btn c-btn--primary c-btn--sm" type="button" data-toast="El mensaje se ha enviado por ' + h(canal.nombre) + '." data-toast-title="Respuesta enviada">{{i:flecha-derecha}} Enviar</button>' +
+      '<button class="c-btn c-btn--secondary c-btn--sm" type="button" data-toast="La conversación pasa a resuelta. Si el ciudadano vuelve a escribir, se reabre sola." data-toast-title="Conversación resuelta">{{i:check}} Marcar como resuelta</button>';
+
+    pintarFicha(u);
+    Array.prototype.forEach.call(document.querySelectorAll("[data-conversacion]"), function (b) {
+      b.setAttribute("aria-pressed", b.getAttribute("data-conversacion") === c.id ? "true" : "false");
+    });
+    if (history.replaceState) history.replaceState(null, "", "#" + c.id);
+  }
+
+  // ---------- Ficha rápida ----------
+  function pintarFicha(u) {
+    var m = TAD.municipio(u.municipio), n = TAD.nucleo(u.nucleo);
+    var bon = TAD.tarifas.bonificaciones.filter(function (b) { return b.perfil === u.bonificacion; })[0];
+    document.getElementById("ficha-avatar").textContent = u.iniciales;
+    document.getElementById("ficha-nombre").textContent = u.nombre;
+    document.getElementById("ficha-sub").textContent = u.edad + " años · " + (n && n.id !== m.id ? n.nombre + " (" + m.nombre + ")" : m.nombre);
+    document.getElementById("ficha-badges").innerHTML = '<span style="display:flex;flex-wrap:wrap;gap:var(--sp-1);margin-top:var(--sp-1)">' +
+      (bon ? '<span class="c-badge c-badge--info">' + h(bon.nombre) + " · −" + bon.pct + " %</span>" : '<span class="c-badge c-badge--neutral">Tarifa general</span>') + "</span>";
+    document.getElementById("ficha-datos").innerHTML = [
+      ["Teléfono", u.telefono], ["Canal habitual", CANAL[u.canal] ? CANAL[u.canal].nombre : u.canal.charAt(0).toUpperCase() + u.canal.slice(1)],
+      ["Reclamaciones", TAD.reclamaciones.filter(function (x) { return x.usuario === u.id; }).length || "Ninguna"],
+      ["Zona", "Zona " + m.zona]
+    ].map(function (x) { return "<dt>" + x[0] + "</dt><dd>" + h(x[1]) + "</dd>"; }).join("");
+    document.getElementById("ficha-enlace").href = "usuario.html#" + u.id;
+    var rs = TAD.reservasDe(u.id);
+    document.getElementById("ficha-reservas").innerHTML = rs.length ? rs.map(function (r) {
+      return '<li class="c-list__item"><div class="c-list__button" style="cursor:default"><span class="c-avatar c-avatar--sm" aria-hidden="true">{{i:calendario}}</span>' +
+        '<span style="min-width:0"><span class="c-list__title">' + r.horaPrevista + " · " + h(nombreParada(r.origen)) + '</span><span class="c-list__meta">' + r.codigo + " → " + h(nombreParada(r.destino)) + "</span></span>" +
+        f.badge(r.estado) + "</div></li>";
+    }).join("") : '<li class="c-list__item"><p class="u-muted u-small" style="margin:0;padding:var(--sp-4)">Sin reservas para hoy.</p></li>';
+    // Formularios de los modales
+    document.getElementById("reserva-para").textContent = "Para " + u.nombre + " · " + (bon ? bon.nombre.toLowerCase() + " (−" + bon.pct + " %)" : "tarifa general");
+    var origenHab = rs.length ? rs[0].origen : TAD.paradas.filter(function (p) { return p.municipio === u.municipio; })[0].id;
+    document.getElementById("r-origen").innerHTML = opcionesParadas(origenHab);
+    document.getElementById("r-destino").innerHTML = opcionesParadas(rs.length ? rs[0].destino : "P02");
+    document.getElementById("rc-reserva").innerHTML = rs.map(function (r) { return "<option>" + r.codigo + " · " + r.horaPrevista + "</option>"; }).join("") + "<option>Ninguna</option>";
+    precio();
+  }
+  function opcionesParadas(sel) {
+    return TAD.paradas.map(function (p) { return '<option value="' + p.id + '"' + (p.id === sel ? " selected" : "") + ">" + h(p.nombre) + "</option>"; }).join("");
+  }
+  function precio() {
+    if (!actual) return;
+    var u = TAD.usuario(actual.usuario), o = document.getElementById("r-origen").value, d = document.getElementById("r-destino").value;
+    var t = TAD.tarifa(o, d, u.bonificacion || "general");
+    document.getElementById("r-precio").innerHTML = o === d ? "Elige un destino distinto de la recogida." :
+      "Precio: <strong>" + f.euros(t.importe) + "</strong> (" + (t.interzona ? "interzona" : "misma zona") + ", " + f.euros(t.base) + (t.pct ? " con −" + t.pct + " %" : "") + ")";
+  }
+  document.getElementById("r-origen").addEventListener("change", precio);
+  document.getElementById("r-destino").addEventListener("change", precio);
+  document.getElementById("r-fecha").value = TAD.fecha;
+
+  document.getElementById("lista-conversaciones").addEventListener("click", function (e) {
+    var b = e.target.closest("[data-conversacion]");
+    if (!b) return;
+    pintarHilo(TAD.conversaciones.filter(function (c) { return c.id === b.getAttribute("data-conversacion"); })[0]);
+  });
+
+  var desdeHash = TAD.conversaciones.filter(function (c) { return "#" + c.id === location.hash; })[0];
+  pintarHilo(desdeHash || porDefecto || lista[0]);
+});
+<!--FIN-->
