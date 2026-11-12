@@ -1,0 +1,117 @@
+/* ==========================================================================
+   Layout público: portal web del viajero y landing.
+   Franja del mockup + cabecera blanca + contenido a 1200 px + pie institucional.
+
+   <body data-module="viajero" data-page="viajero-home" class="pub-body">
+     <div class="pub-mockbar"><a class="c-index-link" href="…">← Índice del mockup</a></div>
+     <header class="pub-header">…</header>
+     <main class="pub-main">…</main>
+     <footer class="pub-footer">…</footer>
+   ========================================================================== */
+
+.pub-body { --fs-body: var(--fs-16); font-size: var(--fs-16); background: var(--color-surface); }
+
+/* Franja discreta con el enlace al índice (no forma parte del producto) */
+.pub-mockbar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  min-height: var(--mockbar-h);
+  padding: 0 var(--sp-4);
+  background: var(--ink-100);
+}
+.pub-mockbar .c-index-link { min-height: var(--mockbar-h); }
+
+.pub-wrap { width: 100%; max-width: var(--content-max); margin: 0 auto; padding: 0 var(--sp-6); }
+
+/* ---------- Cabecera ---------- */
+.pub-header { background: var(--color-surface); border-bottom: var(--bw) solid var(--color-border); }
+.pub-header__inner { display: flex; align-items: center; gap: var(--sp-6); min-height: 72px; }
+.pub-header__brand { display: inline-flex; align-items: center; color: var(--logo-ink); text-decoration: none; }
+.pub-header__logo { height: 36px; width: auto; }
+.pub-nav { flex: 1; }
+.pub-nav__list { display: flex; gap: var(--sp-1); margin: 0; padding: 0; list-style: none; }
+.pub-nav__link {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--touch-min);
+  padding: 0 var(--sp-4);
+  border-radius: var(--r-sm);
+  color: var(--ink-700);
+  font-weight: var(--fw-medium);
+  text-decoration: none;
+}
+.pub-nav__link:hover { background: var(--ink-100); color: var(--color-text); }
+.pub-nav__link[aria-current="page"] { color: var(--color-primary); box-shadow: inset 0 calc(var(--bw-strong) * -1.5) 0 var(--color-primary); border-radius: 0; }
+.pub-header__account { flex: none; }
+
+/* ---------- Contenido ---------- */
+.pub-main { padding: var(--sp-10) 0 var(--sp-12); background: var(--surface-alt); min-height: 50vh; }
+.pub-main--white { background: var(--color-surface); }
+.pub-title { font-size: var(--fs-36); font-weight: var(--fw-bold); color: var(--tad-blue-900); }
+.pub-lead { font-size: var(--fs-18); color: var(--color-text-muted); max-width: 60ch; }
+.pub-grid { display: grid; gap: var(--sp-6); }
+.pub-grid--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.pub-grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.pub-grid--main-side { grid-template-columns: minmax(0, 1fr) 360px; }
+
+/* En el portal público, los controles miden al menos 44 px */
+.pub-body .c-btn,
+.pub-body .c-input,
+.pub-body .c-select { min-height: var(--touch-min); font-size: var(--fs-16); }
+.pub-body .c-btn--sm { min-height: var(--control-h-sm); font-size: var(--fs-14); }
+.pub-body .c-btn--icon { width: var(--touch-min); }
+
+/* ---------- Pie institucional ---------- */
+.pub-footer { background: var(--tad-blue-900); color: var(--ink-100); font-size: var(--fs-14); --focus-color: var(--focus-color-on-dark); }
+.pub-footer a { color: var(--surface); }
+.pub-footer a:hover { color: var(--tad-blue-100); }
+.pub-footer__inner { display: grid; grid-template-columns: 1.2fr 2fr; gap: var(--sp-8); padding: var(--sp-10) 0 var(--sp-8); }
+.pub-footer__brand { --logo-ink: var(--logo-ink-on-dark); --logo-route: var(--logo-route-on-dark); --logo-bg: var(--logo-bg-on-dark); color: var(--logo-ink-on-dark); }
+.pub-footer__brand svg { height: 36px; width: auto; }
+.pub-footer__claim { margin-top: var(--sp-3); color: var(--ink-300); }
+.pub-seals { display: flex; flex-wrap: wrap; gap: var(--sp-4); align-items: stretch; }
+.pub-seal {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  flex: 1 1 180px;
+  padding: var(--sp-3) var(--sp-4);
+  border: var(--bw) solid var(--on-dark-line);
+  border-radius: var(--r-md);
+}
+.pub-seal svg { width: 36px; height: 36px; flex: none; color: var(--surface); }
+.pub-seal__text { line-height: var(--lh-title); }
+.pub-seal__small { display: block; font-size: var(--fs-12); color: var(--ink-300); }
+.pub-seal__name { display: block; font-weight: var(--fw-semibold); color: var(--surface); }
+.pub-footer__legal {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  padding: var(--sp-4) 0 var(--sp-6);
+  border-top: var(--bw) solid var(--on-dark-line);
+  color: var(--ink-300);
+  font-size: var(--fs-12);
+}
+.pub-footer__links { display: flex; flex-wrap: wrap; gap: var(--sp-4); margin: 0; padding: 0; list-style: none; }
+
+/* ---------- Tableta ---------- */
+@media (max-width: 960px) {
+  .pub-grid--3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pub-grid--main-side { grid-template-columns: minmax(0, 1fr); }
+  .pub-footer__inner { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* ---------- Móvil: el menú se apila debajo del logo ---------- */
+@media (max-width: 720px) {
+  .pub-wrap { padding: 0 var(--sp-4); }
+  .pub-header__inner { flex-wrap: wrap; gap: var(--sp-2) var(--sp-4); padding: var(--sp-3) 0; }
+  .pub-header__brand { flex: 1; }
+  .pub-nav { order: 3; flex-basis: 100%; }
+  .pub-nav__list { flex-wrap: wrap; }
+  .pub-nav__link { padding: 0 var(--sp-3); }
+  .pub-main { padding: var(--sp-6) 0 var(--sp-10); }
+  .pub-title { font-size: var(--fs-28); }
+  .pub-grid--2, .pub-grid--3 { grid-template-columns: minmax(0, 1fr); }
+}

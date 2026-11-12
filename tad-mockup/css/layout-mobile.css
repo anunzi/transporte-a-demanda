@@ -1,0 +1,124 @@
+/* ==========================================================================
+   Layout de las apps móviles: la pantalla se dibuja dentro de .c-phone-frame,
+   centrado sobre fondo suave, con el nombre de la pantalla debajo.
+
+   <body data-module="viajero" data-page="app-viajero-home" class="mob-body">
+     <a class="c-index-link c-index-link--floating" href="…">← Índice del mockup</a>
+     <main class="mob-stage">
+       <div class="c-phone-frame [app--driver]"> … </div>
+       <p class="mob-caption">App del viajero · Inicio</p>
+     </main>
+
+   Variante del conductor: añadir .app--driver al .c-phone-frame
+   (fondo oscuro, alto contraste, botones grandes, sin barra inferior).
+   ========================================================================== */
+
+.mob-body { --fs-body: var(--fs-16); font-size: var(--fs-16); background: var(--surface-alt); }
+
+.mob-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-4);
+  min-height: 100vh;
+  padding: var(--sp-12) var(--sp-4) var(--sp-8);
+}
+.mob-caption { margin: 0; font-size: var(--fs-14); font-weight: var(--fw-medium); color: var(--color-text-muted); text-align: center; }
+
+/* Si la ventana es más baja o más estrecha que el teléfono, se escala sin cortarse */
+@media (max-height: 940px) {
+  .mob-stage .c-phone-frame { zoom: 0.85; }
+}
+@media (max-height: 800px) {
+  .mob-stage .c-phone-frame { zoom: 0.72; }
+}
+@media (max-width: 430px) {
+  .mob-stage { padding: var(--sp-12) 0 var(--sp-6); }
+  .mob-stage .c-phone-frame { zoom: 0.88; }
+}
+
+/* ---------- Barra superior de la app (56 px) ---------- */
+.app-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  flex: none;
+  height: var(--appbar-h);
+  padding: 0 var(--sp-2) 0 var(--sp-4);
+  background: var(--color-surface);
+  border-bottom: var(--bw) solid var(--color-border);
+}
+.app-bar__title { flex: 1; margin: 0; font-size: var(--fs-18); font-weight: var(--fw-semibold); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.app-bar__back { margin-left: calc(var(--sp-2) * -1); }
+.app-bar--brand { background: var(--tad-blue-900); color: var(--surface); border-bottom: 0; --logo-ink: var(--logo-ink-on-dark); --logo-route: var(--logo-route-on-dark); --logo-bg: var(--logo-bg-on-dark); --focus-color: var(--focus-color-on-dark); color: var(--surface); }
+.app-bar__logo { height: 28px; width: auto; }
+.app-bar--brand .app-bar__title { color: var(--surface); }
+.app-bar--brand .c-btn--ghost { color: var(--surface); }
+.app-bar--brand .c-btn--ghost:hover { background: var(--on-dark-hover); color: var(--surface); }
+
+.app-content { padding: var(--sp-4); }
+.app-section + .app-section { margin-top: var(--sp-5); }
+.app-section__title { margin: 0 0 var(--sp-2); font-size: var(--fs-14); font-weight: var(--fw-semibold); color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.04em; }
+
+/* ---------- Barra inferior de 4 pestañas (app del viajero) ---------- */
+.app-tabbar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  flex: none;
+  height: calc(var(--tabbar-h) + var(--sp-5));
+  padding-bottom: var(--sp-5);
+  background: var(--color-surface);
+  border-top: var(--bw) solid var(--color-border);
+}
+.app-tabbar__tab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  min-height: var(--touch-min);
+  color: var(--ink-600);
+  font-size: var(--fs-12);
+  font-weight: var(--fw-medium);
+  text-decoration: none;
+}
+.app-tabbar__tab:hover { color: var(--color-text); }
+.app-tabbar__tab:focus-visible { outline-offset: calc(var(--focus-width) * -1); }
+.app-tabbar__tab[aria-current="page"] { color: var(--color-primary); font-weight: var(--fw-semibold); }
+.app-tabbar__tab .c-icon { width: var(--icon-size-lg); height: var(--icon-size-lg); }
+
+/* ---------- Variante conductor: alto contraste ---------- */
+.app--driver {
+  --status-bg: var(--tad-blue-900);
+  --status-fg: var(--surface);
+  --home-indicator: var(--surface);
+  --focus-color: var(--focus-color-on-dark);
+  --color-text: var(--surface);
+  --color-text-muted: var(--ink-300);
+  --color-surface: var(--ink-800);
+  --color-border: var(--ink-700);
+  font-size: var(--fs-18);
+}
+.app--driver .c-phone-frame__screen { background: var(--ink-900); color: var(--surface); }
+.app--driver .app-bar { height: 64px; background: var(--tad-blue-900); border-bottom: 0; color: var(--surface); }
+.app--driver .app-bar__title { font-size: var(--fs-18); color: var(--surface); }
+.app--driver .c-card { background: var(--ink-800); border-color: var(--ink-700); box-shadow: none; color: var(--surface); }
+.app--driver .c-btn { min-height: var(--driver-touch); font-size: var(--fs-18); font-weight: var(--fw-bold); border-radius: var(--r-md); }
+/* Acción principal del conductor: amarillo con texto oscuro (9:1) */
+.app--driver .c-btn--primary { background: var(--tad-yellow-500); color: var(--ink-900); }
+.app--driver .c-btn--primary:hover { background: var(--tad-yellow-100); color: var(--ink-900); }
+.app--driver .c-btn--secondary { background: transparent; color: var(--surface); border: var(--bw-strong) solid var(--surface); }
+.app--driver .c-btn--secondary:hover { background: var(--on-dark-hover); color: var(--surface); }
+.app--driver .c-btn--danger { background: var(--tad-red-600); color: var(--surface); }
+.app--driver .c-btn--ghost { color: var(--surface); }
+.app--driver .c-btn--ghost:hover { background: var(--on-dark-hover); color: var(--surface); }
+.app--driver .driver-next {
+  padding: var(--sp-4);
+  border-radius: var(--r-md);
+  background: var(--tad-blue-900);
+  border-left: var(--accent-bar) solid var(--tad-yellow-500);
+}
+.app--driver .driver-next__label { display: block; font-size: var(--fs-14); font-weight: var(--fw-semibold); color: var(--tad-yellow-500); text-transform: uppercase; letter-spacing: 0.04em; }
+.app--driver .driver-next__stop { display: block; font-size: var(--fs-22); font-weight: var(--fw-bold); line-height: var(--lh-title); }
+.app--driver .driver-next__meta { display: block; margin-top: var(--sp-1); font-size: var(--fs-16); color: var(--ink-100); }

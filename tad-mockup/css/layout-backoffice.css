@@ -1,0 +1,208 @@
+/* ==========================================================================
+   Layout del backoffice: menú lateral (256 px) + barra superior (64 px)
+   + contenido. Por debajo de 1200 px el menú se colapsa a iconos (72 px).
+
+   <body data-module="control" data-page="control-mapa" class="bo-body">
+     <div class="bo">
+       <aside class="bo-sidebar">…</aside>
+       <div class="bo-main">
+         <header class="bo-topbar">…</header>
+         <main class="bo-content">
+           <header class="bo-pagehead">…</header>
+           …
+   ========================================================================== */
+
+.bo-body { --fs-body: var(--fs-14); font-size: var(--fs-14); }
+
+.bo {
+  display: grid;
+  grid-template-columns: var(--sidebar-w) minmax(0, 1fr);
+  min-height: 100vh;
+  background: var(--surface-alt);
+}
+
+/* ---------- Menú lateral ---------- */
+.bo-sidebar {
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow-y: auto;
+  background: var(--tad-blue-900);
+  color: var(--ink-100);
+  --focus-color: var(--focus-color-on-dark);
+}
+.bo-sidebar__brand {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  height: var(--topbar-h);
+  flex: none;
+  padding: 0 var(--sp-5);
+  border-bottom: var(--bw) solid var(--on-dark-line);
+  color: var(--logo-ink-on-dark);
+  text-decoration: none;
+  --logo-ink: var(--logo-ink-on-dark);
+  --logo-route: var(--logo-route-on-dark);
+  --logo-bg: var(--logo-bg-on-dark);
+}
+.bo-sidebar__brand:hover { color: var(--logo-ink-on-dark); }
+.bo-sidebar__logo { height: 32px; width: auto; }
+.bo-sidebar__logo--compact { display: none; }
+
+.bo-nav { flex: 1; padding: var(--sp-4) var(--sp-3); }
+.bo-nav__group + .bo-nav__group { margin-top: var(--sp-4); }
+.bo-nav__title {
+  margin: 0 0 var(--sp-1);
+  padding: 0 var(--sp-3);
+  font-size: var(--fs-12);
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-300);
+}
+.bo-nav__list { margin: 0; padding: 0; list-style: none; }
+.bo-nav__link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  min-height: var(--control-h);
+  padding: 0 var(--sp-3);
+  border-radius: var(--r-sm);
+  color: var(--ink-100);
+  font-size: var(--fs-14);
+  font-weight: var(--fw-medium);
+  text-decoration: none;
+  transition: background-color var(--t-fast);
+}
+.bo-nav__link:hover, .bo-nav__link.is-hover { background: var(--on-dark-hover); color: var(--surface); }
+.bo-nav__link:focus-visible { outline: var(--focus-width) solid var(--focus-color-on-dark); outline-offset: 0; }
+/* Ítem activo: fondo con el acento del módulo */
+.bo-nav__link[aria-current="page"] { background: var(--accent); color: var(--on-accent); font-weight: var(--fw-semibold); }
+.bo-nav__label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.bo-sidebar__user {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  flex: none;
+  padding: var(--sp-4) var(--sp-5);
+  border-top: var(--bw) solid var(--on-dark-line);
+  font-size: var(--fs-14);
+}
+.bo-sidebar__user-name { display: block; font-weight: var(--fw-semibold); color: var(--surface); }
+.bo-sidebar__user-role { display: block; font-size: var(--fs-12); color: var(--ink-300); }
+
+.bo-sidebar__toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: var(--control-h);
+  height: var(--control-h);
+  margin: 0 auto var(--sp-3);
+  border: 0;
+  border-radius: var(--r-sm);
+  background: none;
+  color: var(--ink-100);
+  cursor: pointer;
+}
+.bo-sidebar__toggle:hover { background: var(--on-dark-hover); }
+
+/* ---------- Columna principal ---------- */
+.bo-main { display: flex; flex-direction: column; min-width: 0; }
+
+.bo-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+  height: var(--topbar-h);
+  padding: 0 var(--sp-6) 0 var(--sp-8);
+  background: var(--color-surface);
+  border-bottom: var(--bw) solid var(--color-border);
+}
+.bo-topbar__crumbs { flex: 1; min-width: 0; }
+.bo-topbar__crumbs ol { flex-wrap: nowrap; white-space: nowrap; overflow: hidden; }
+.bo-topbar__search { flex: 0 1 var(--search-w); min-width: 160px; }
+.bo-topbar__search .c-input { min-height: var(--control-h-sm); }
+.bo-topbar__actions { display: flex; align-items: center; gap: var(--sp-2); }
+.bo-topbar__territory { min-height: var(--control-h-sm); width: auto; padding-top: 0; padding-bottom: 0; font-weight: var(--fw-medium); }
+.bo-bell { position: relative; }
+.bo-bell__count {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 var(--sp-1);
+  border-radius: var(--r-pill);
+  background: var(--color-danger);
+  color: var(--surface);
+  font-size: 11px;
+  font-weight: var(--fw-bold);
+  line-height: 18px;
+  text-align: center;
+}
+
+.bo-content { flex: 1; padding: var(--sp-8); min-width: 0; }
+
+/* ---------- Cabecera de página con el acento del módulo ---------- */
+.bo-pagehead {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  flex-wrap: wrap;
+  margin-bottom: var(--sp-6);
+  padding-bottom: var(--sp-4);
+  border-bottom: var(--accent-bar) solid var(--accent);
+}
+.bo-pagehead__module {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  margin-bottom: var(--sp-2);
+  padding: 2px var(--sp-3);
+  border-radius: var(--r-pill);
+  background: var(--accent);
+  color: var(--on-accent);
+  font-size: var(--fs-12);
+  font-weight: var(--fw-semibold);
+}
+.bo-pagehead__module .c-icon { width: var(--fs-16); height: var(--fs-16); }
+.bo-pagehead__title { margin: 0; font-size: var(--fs-28); font-weight: var(--fw-bold); color: var(--tad-blue-900); }
+.bo-pagehead__desc { margin: var(--sp-1) 0 0; color: var(--color-text-muted); }
+.bo-pagehead__actions { display: flex; gap: var(--sp-2); flex-wrap: wrap; }
+
+/* Rejillas habituales */
+.bo-grid { display: grid; gap: var(--sp-5); }
+.bo-grid--kpis { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+.bo-grid--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.bo-grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.bo-grid--main-side { grid-template-columns: minmax(0, 1fr) 360px; }
+
+/* ---------- Menú colapsado (< 1200 px) ---------- */
+@media (max-width: 1199.98px) {
+  .bo { grid-template-columns: var(--sidebar-w-collapsed) minmax(0, 1fr); }
+  .bo-sidebar__brand { justify-content: center; padding: 0; }
+  .bo-sidebar__logo--full { display: none; }
+  .bo-sidebar__logo--compact { display: block; height: auto; width: calc(var(--sidebar-w-collapsed) - var(--sp-4)); }
+  .bo-nav { padding: var(--sp-3) var(--sp-2); }
+  .bo-nav__title { height: var(--bw); margin: var(--sp-2) var(--sp-2); padding: 0; overflow: hidden; color: transparent; background: var(--on-dark-line); }
+  .bo-nav__group:first-child .bo-nav__title { display: none; }
+  .bo-nav__link { justify-content: center; padding: 0; min-height: var(--touch-min); }
+  .bo-nav__label {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+  }
+  .bo-sidebar__user { justify-content: center; padding: var(--sp-3) 0; }
+  .bo-sidebar__user-text { display: none; }
+  .bo-topbar { padding: 0 var(--sp-5); }
+  .bo-topbar__search { flex-basis: 200px; }
+  .bo-content { padding: var(--sp-6); }
+  .bo-grid--main-side { grid-template-columns: minmax(0, 1fr) 300px; }
+}
