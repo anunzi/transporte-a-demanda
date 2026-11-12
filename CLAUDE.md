@@ -32,7 +32,7 @@ Es un proyecto **aparte del panel de Anunzi**: no comparte código, base de dato
 
 ## Publicación (definido 2026-11-12)
 - Va en un sitio nuevo de Hostinger, dentro de la misma cuenta de hosting de Anunzi: `dodgerblue-aardvark-898542.hostingersite.com` (dominio provisional).
-- Se llega con el mismo acceso SSH de siempre (`anunzi-hosting`). Carpeta del sitio: `~/domains/dodgerblue-aardvark-898542.hostingersite.com/public_html/`. La maqueta se sube a `public_html/tad/` (queda en `https://dodgerblue-aardvark-898542.hostingersite.com/tad/`).
+- Se llega con el mismo acceso SSH de siempre (`anunzi-hosting`). Carpeta del sitio: `~/domains/dodgerblue-aardvark-898542.hostingersite.com/public_html/`. La maqueta se sube a la **raíz del sitio** (`public_html/`, no a una subcarpeta `tad/`): queda en `https://dodgerblue-aardvark-898542.hostingersite.com/`. Las rutas del código siguen siendo relativas, como pide el brief. En la raíz hay un `default.php` de Hostinger (página de bienvenida) que habrá que reemplazar en la primera subida.
 - **En esa cuenta viven también el panel y los sitios de otros clientes**: solo se escribe dentro de la carpeta de este dominio. Las demás carpetas de `~/domains/` no se tocan nunca.
 - Cada subida necesita el OK de Matías.
 
@@ -40,6 +40,9 @@ Es un proyecto **aparte del panel de Anunzi**: no comparte código, base de dato
 - **Mapa**: se acepta el fondo real con nombres de pueblos reales junto a los ficticios.
 - **Vehículo 9951 KZD**: pasa a «En servicio (sustitución)» porque reemplaza al 6604 LBC; ajustar los conteos de flota (5 en servicio, 1 en mantenimiento, 0 en reserva) en todas las pantallas.
 - **«Acceder con Cl@ve»**: lleva el logo de Cl@ve. Es la única excepción a la regla de «sin logos reales».
+
+## Planes por bloque
+- Bloque 1 (sistema de diseño): `docs/plan-bloque-1.md`.
 
 ## Pendiente de definir
 - **«IA responsable»**: tiene color de módulo en el brief pero no pantalla propia. Si va o no en el menú lateral se decide más adelante; mientras tanto, no ponerla en el menú.

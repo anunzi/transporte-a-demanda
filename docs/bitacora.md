@@ -11,6 +11,9 @@
 - 2026-11-12 · vehículo 9951 KZD · Queda «En servicio (sustitución)»; se ajustan los conteos de flota. Matías.
 - 2026-11-12 · Cl@ve · El enlace «Acceder con Cl@ve» lleva el logo, como excepción a «sin logos reales». Matías.
 
+- 2026-11-12 · publicación · Corrección: la maqueta va en la **raíz** del sitio nuevo, no en una subcarpeta `tad/`. Matías.
+- 2026-11-12 · plan bloque 1 · Escrito `docs/plan-bloque-1.md` (sistema de diseño). Incluye un hallazgo: varios colores del brief no llegan al contraste AA con texto blanco; se resuelve agregando tonos oscuros para texto, sin cambiar la paleta. Matías pidió el plan.
+
 ## Pendientes y dudas abiertas (2026-11-12)
 
 - **«IA responsable»**: tiene color de módulo, pero no pantalla propia. Se ve más adelante; por ahora no va en el menú lateral.
