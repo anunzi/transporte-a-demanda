@@ -28,7 +28,7 @@
 
   /* Notas internas del equipo sobre cada ciudadano. autor: id de TAD.personal o texto. */
   TAD.notasUsuarios = [
-    { usuario: "u01", fecha: "2026-04-14", hora: "08:54", autor: "Asistente de voz", texto: "Ha dicho que viaja con andador. Se le asigna un vehículo con rampa y se avisa al conductor." },
+    { usuario: "u01", fecha: "2026-04-13", hora: "11:14", autor: "Asistente de voz", texto: "Ha dicho que viaja con andador. Se le asigna un vehículo con rampa y se avisa al conductor." },
     { usuario: "u01", fecha: "2026-03-11", hora: "11:20", autor: "op1", texto: "Tras la reclamación de marzo: prioridad en la recogida cuando el viaje es para una cita médica. Llamarla si hay más de 10 minutos de retraso." },
     { usuario: "u01", fecha: "2026-02-16", hora: "17:05", autor: "op1", texto: "Prefiere que la llamen por la mañana. No usa la app; los avisos, por SMS o por llamada." }
   ];

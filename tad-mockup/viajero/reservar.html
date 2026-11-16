@@ -327,10 +327,11 @@ document.addEventListener("DOMContentLoaded", function () {
     return d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2);
   }
   var fechaMax = sumarDias(TAD.fecha, TAD.reglas.antelacionMaximaDias);
-  inFecha.min = TAD.fecha;
+  var fechaMin = sumarDias(TAD.fecha, Math.ceil(TAD.reglas.antelacionMinimaMin / 1440));
+  inFecha.min = fechaMin;
   inFecha.max = fechaMax;
   inFecha.value = ini.fecha;
-  $("fecha-ayuda").textContent = "Puedes reservar desde hoy hasta el " + f.fechaLarga(fechaMax) + ".";
+  $("fecha-ayuda").textContent = "Los viajes se reservan con un día de antelación: desde mañana hasta el " + f.fechaLarga(fechaMax) + ".";
   $("hora-ayuda").textContent = "El vehículo puede llegar entre " + TAD.reglas.ventanaAntes + " minutos antes y " + TAD.reglas.ventanaDespues + " minutos después.";
 
   var franjas = TAD.reglas.franjas;
@@ -400,7 +401,43 @@ document.addEventListener("DOMContentLoaded", function () {
       limpiarError(inFecha); limpiarError(selHora); limpiarError($("dias"));
       var v = inFecha.value;
       if (!v) { errorEn(inFecha, "Escribe el día del viaje."); return inFecha; }
-      if (v < TAD.fecha) { errorEn(inFecha, "Ese día ya ha pasado. Elige hoy o un día posterior."); return inFecha; }
+      if (v < TAD.fecha) { errorEn(inFecha, "Ese día ya ha pasado. Elige mañana o un día posterior."); return inFecha; }
+      if (v < fechaMin) { errorEn(inFecha, "Los viajes se reservan como mínimo con un día de antelación. Elige mañana o un día posterior."); return inFecha; }
+      if (v > fechaMax) { errorEn(inFecha, "Solo se puede reservar hasta el " + f.fecha(fechaMax) + "."); return inFecha; }
+      var rec = document.querySelector('input[name="tipo"]:checked').value === "recurrente";
+      $("dias-campo").hidden = !rec;
+      if (rec) marcarDiaDeLaFecha();
+    });
+  });
+  document.querySelectorAll('input[name="dia"]').forEach(function (c) { c.addEventListener("change", function () { limpiarError($("dias")); }); });
+  inFecha.addEventListener("change", function () { limpiarError(inFecha); limpiarError(selHora); });
+  selHora.addEventListener("change", function () { limpiarError(selHora); });
+
+  // ---------- Paso 3: viajeros ----------
+  var selN = $("viajeros"), selPerfil = $("perfil"), chkPmr = $("pmr"), chkAcomp = $("acompanante");
+  selPerfil.innerHTML = '<option value="general">Sin descuento (tarifa general)</option>' + TAD.tarifas.bonificaciones.map(function (b) {
+    return '<option value="' + h(b.perfil) + '"' + (b.perfil === yo.perfil ? " selected" : "") + ">" + h(b.nombre) + " · " + f.porcentaje(b.pct) + "</option>";
+  }).join("");
+  var miBonif = TAD.tarifas.bonificaciones.filter(function (b) { return b.perfil === yo.perfil; })[0];
+  $("perfil-ayuda").textContent = miBonif ? "Tienes acreditado el descuento «" + miBonif.nombre + "». Si eliges otro, tendrás que acreditarlo al subir." : "Si tienes derecho a descuento, tendrás que acreditarlo al subir.";
+  chkPmr.checked = /andador|rampa|silla/i.test(res.nota || "");
+  selN.value = "1";
+  selN.addEventListener("change", function () { limpiarError(selN); });
+  chkAcomp.addEventListener("change", function () { limpiarError(selN); });
+
+  // ---------- Validación al pulsar «Continuar» ----------
+  var validar = {
+    1: function () {
+      limpiarError(selD);
+      if (selO.value === selD.value) { errorEn(selD, "La parada de llegada tiene que ser distinta de la de salida."); return selD; }
+      return null;
+    },
+    2: function () {
+      limpiarError(inFecha); limpiarError(selHora); limpiarError($("dias"));
+      var v = inFecha.value;
+      if (!v) { errorEn(inFecha, "Escribe el día del viaje."); return inFecha; }
+      if (v < TAD.fecha) { errorEn(inFecha, "Ese día ya ha pasado. Elige mañana o un día posterior."); return inFecha; }
+      if (v < fechaMin) { errorEn(inFecha, "Los viajes se reservan como mínimo con un día de antelación. Elige mañana o un día posterior."); return inFecha; }
       if (v > fechaMax) { errorEn(inFecha, "Solo se puede reservar hasta el " + f.fecha(fechaMax) + "."); return inFecha; }
       if (v === TAD.fecha) {
         var minimo = TAD.minutos(TAD.momento()) + TAD.reglas.antelacionMinimaMin;

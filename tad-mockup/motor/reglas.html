@@ -322,7 +322,7 @@ document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("r-antelacion").innerHTML = opciones.map(function (m) {
     return "<option" + (m === R.antelacionMinimaMin ? " selected" : "") + ">" + (m < 60 ? m + " minutos" : m === 60 ? "1 hora" : m < 1440 ? m / 60 + " horas" : "1 día") + "</option>";
   }).join("");
-  document.getElementById("r-antelacion-ayuda").textContent = "Se puede reservar con hasta " + R.antelacionMaximaDias + " días de antelación.";
+  document.getElementById("r-antelacion-ayuda").textContent = "Mínimo un día antes del viaje. Se puede reservar con hasta " + R.antelacionMaximaDias + " días de antelación.";
 
   // ---------- IA responsable ----------
   var cont = document.getElementById("ia-interruptores");

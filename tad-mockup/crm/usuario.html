@@ -380,7 +380,7 @@ document.addEventListener("DOMContentLoaded", function () {
   var habitual = viajes.length ? viajes[viajes.length - 1] : null;
   document.getElementById("r-origen").innerHTML = opciones(habitual ? habitual.origen : "P01");
   document.getElementById("r-destino").innerHTML = opciones(habitual ? habitual.destino : "P02");
-  document.getElementById("r-fecha").value = TAD.fecha;
+  (function () { var p = TAD.fecha.split("-"), d = new Date(+p[0], +p[1] - 1, +p[2] + 1), iso = d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2); var c = document.getElementById("r-fecha"); c.value = iso; c.min = iso; })(); // reservas con un día de antelación
   document.getElementById("e-telefono").value = u.telefono;
   document.getElementById("e-contacto").value = pref ? pref.contacto : "";
   document.getElementById("e-horario").value = pref ? pref.horario : "";

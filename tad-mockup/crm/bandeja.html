@@ -373,7 +373,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   document.getElementById("r-origen").addEventListener("change", precio);
   document.getElementById("r-destino").addEventListener("change", precio);
-  document.getElementById("r-fecha").value = TAD.fecha;
+  (function () { var p = TAD.fecha.split("-"), d = new Date(+p[0], +p[1] - 1, +p[2] + 1), iso = d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2); var c = document.getElementById("r-fecha"); c.value = iso; c.min = iso; })(); // reservas con un día de antelación
 
   document.getElementById("lista-conversaciones").addEventListener("click", function (e) {
     var b = e.target.closest("[data-conversacion]");

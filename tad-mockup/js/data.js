@@ -1357,7 +1357,7 @@
     "ventanaAntes": 15,
     "ventanaDespues": 10,
     "radioParadaVirtualM": 300,
-    "antelacionMinimaMin": 60,
+    "antelacionMinimaMin": 1440,
     "antelacionMaximaDias": 30,
     "prioridades": ["PMR", "Sanitario", "Escolar", "General"]
   },
@@ -1733,53 +1733,72 @@
   ],
   "conversaciones": [
     {
+      "id": "cv6",
+      "usuario": "u06",
+      "canal": "teléfono",
+      "hora": "09:20",
+      "estado": "Resuelta",
+      "asunto": "Viaje para hoy fuera de plazo",
+      "atendidaPor": "Asistente de voz",
+      "duracion": "1 min 58 s",
+      "reserva": null,
+      "resumen": "Manuel quiere ir esta tarde a Valdecerro. El asistente le explica que las reservas se hacen con un día de antelación y le reserva el viaje para el miércoles por la tarde, con vehículo con rampa.",
+      "mensajes": [
+        {"hora": "09:20", "de": "ciudadano", "texto": "Hola, quería ir esta tarde a la farmacia de Valdecerro."},
+        {"hora": "09:20", "de": "asistente", "texto": "Hola, Manuel. Los viajes se reservan como mínimo con un día de antelación, así que para hoy ya no es posible. ¿Le reservo para mañana, miércoles, por la tarde?"},
+        {"hora": "09:21", "de": "ciudadano", "texto": "Vale, mañana a las cinco."},
+        {"hora": "09:21", "de": "asistente", "texto": "Hecho: recogida mañana a las 17:00 en la Iglesia de Robledillo, con vehículo con rampa. Le envío un SMS con los datos."},
+        {"hora": "09:22", "de": "sistema", "texto": "Reserva para el miércoles 15/04 creada y confirmada. SMS enviado al 6XX XXX 233."}
+      ]
+    },
+    {
       "id": "cv1",
       "usuario": "u01",
       "canal": "teléfono",
-      "hora": "08:52",
+      "hora": "Ayer",
       "estado": "Resuelta",
       "asunto": "Reserva para el centro de salud",
       "atendidaPor": "Asistente de voz",
       "duracion": "2 min 41 s",
       "reserva": "TAD-2026-04187",
-      "resumen": "Josefa llama para ir hoy al Centro de Salud de Valdecerro (cita a las 10:45). El asistente le ofrece la recogida de las 10:00 en la Iglesia de Navalespino, le recuerda la bonificación de mayor (50 %) y confirma la reserva. Se envía SMS de confirmación.",
+      "resumen": "Josefa llama el lunes para ir el martes al Centro de Salud de Valdecerro (cita a las 10:45). El asistente le ofrece la recogida de las 10:00 en la Iglesia de Navalespino, le recuerda la bonificación de mayor (50 %) y confirma la reserva. Se envía SMS de confirmación.",
       "mensajes": [
         {
-          "hora": "08:52",
+          "hora": "Ayer 11:12",
           "de": "ciudadano",
-          "texto": "Buenos días, quería un viaje para hoy al centro de salud de Valdecerro, que tengo cita a las once menos cuarto."
+          "texto": "Buenos días, quería un viaje para mañana al centro de salud de Valdecerro, que tengo cita a las once menos cuarto."
         },
         {
-          "hora": "08:52",
+          "hora": "Ayer 11:12",
           "de": "asistente",
-          "texto": "Buenos días, Josefa. Tengo plaza con recogida a las 10:00 en la parada de la Iglesia de Navalespino. Llegaría al centro de salud sobre las 10:30. ¿Le viene bien?"
+          "texto": "Buenos días, Josefa. Para mañana tengo plaza con recogida a las 10:00 en la parada de la Iglesia de Navalespino. Llegaría al centro de salud sobre las 10:30. ¿Le viene bien?"
         },
-        {"hora": "08:53", "de": "ciudadano", "texto": "Sí, muy bien. Voy con el andador."},
+        {"hora": "Ayer 11:13", "de": "ciudadano", "texto": "Sí, muy bien. Voy con el andador."},
         {
-          "hora": "08:53",
+          "hora": "Ayer 11:13",
           "de": "asistente",
           "texto": "Anotado. Le asignamos un vehículo con rampa. Con su bonificación de mayor, el viaje le cuesta 1,10 euros. Le envío un SMS con los datos. ¿Algo más?"
         },
-        {"hora": "08:54", "de": "ciudadano", "texto": "No, gracias, hija."},
-        {"hora": "08:54", "de": "sistema", "texto": "Reserva TAD-2026-04187 creada y confirmada. SMS enviado al 6XX XXX 123."}
+        {"hora": "Ayer 11:14", "de": "ciudadano", "texto": "No, gracias, hija."},
+        {"hora": "Ayer 11:14", "de": "sistema", "texto": "Reserva TAD-2026-04187 creada y confirmada. SMS enviado al 6XX XXX 123."}
       ]
     },
     {
       "id": "cv2",
       "usuario": "u08",
       "canal": "WhatsApp",
-      "hora": "09:05",
+      "hora": "Ayer",
       "estado": "Pendiente",
       "asunto": "Regreso desde la estación",
       "reserva": "TAD-2026-04212",
       "mensajes": [
-        {"hora": "09:05", "de": "ciudadano", "texto": "Hola, ¿podéis recogerme esta tarde a las 19:30 en la estación de autobuses? Somos tres."},
+        {"hora": "Ayer 09:05", "de": "ciudadano", "texto": "Hola, ¿podéis recogerme mañana por la tarde a las 19:30 en la estación de autobuses? Somos tres."},
         {
-          "hora": "09:06",
+          "hora": "Ayer 09:06",
           "de": "asistente",
           "texto": "Hola, Ramón. A las 19:30 no quedan plazas para tres personas. Te puedo ofrecer las 18:45 desde la Estación de autobuses hasta el Cruce de La Majada. ¿Te reservo esa hora?"
         },
-        {"hora": "09:14", "de": "ciudadano", "texto": "Déjame que lo mire con mi mujer y te digo."}
+        {"hora": "Ayer 09:14", "de": "ciudadano", "texto": "Déjame que lo mire con mi mujer y te digo."}
       ]
     },
     {

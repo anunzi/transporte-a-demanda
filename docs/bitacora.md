@@ -47,3 +47,7 @@
 
 ## 2026-11-16 — Vídeo de presentación (pedido de Matías)
 - Guion, estilo, colores, tipografía y texto de la voz en off en `docs/guion-video.md`. Matías hace el vídeo con Claude y la voz con ElevenLabs; cuando lo pase, se integra en la cabecera de la portada con subtítulos.
+
+## 2026-11-16 — Antelación de reserva: un día (pedido de Matías)
+- Las reservas se hacen como mínimo con un día (24 h) de antelación, no una hora. Cambiado en reglas (`antelacionMinimaMin: 1440`), portada, preguntas frecuentes, formulario de reserva (desde mañana), ventanas de reserva del CRM, app del viajero y guion del vídeo.
+- Historia: la llamada de Josefa (TAD-2026-04187) y el WhatsApp de Ramón pasan al lunes 13/04. Nueva conversación de hoy (Manuel, 09:20): pide un viaje para la tarde y el asistente de voz le explica la regla y le reserva para el miércoles.

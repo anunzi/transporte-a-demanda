@@ -228,7 +228,7 @@ document.addEventListener("DOMContentLoaded", function () {
   var r = TAD.reglas, precios = TAD.tarifas.precios;
   var preguntas = [
     ["¿Cómo reservo un viaje?", "Pulsa «Reservar», elige desde dónde sales, adónde vas, el día y la hora. Antes de confirmar verás el precio. También puedes reservar llamando a la central."],
-    ["¿Con cuánta antelación tengo que reservar?", "Al menos " + r.antelacionMinimaMin + " minutos antes del viaje, y como mucho con " + r.antelacionMaximaDias + " días de antelación."],
+    ["¿Con cuánta antelación tengo que reservar?", "Al menos con un día (" + r.antelacionMinimaMin / 60 + " horas) de antelación, y como mucho con " + r.antelacionMaximaDias + " días de antelación."],
     ["¿Cuánto cuesta el viaje?", precios.map(function (p) { return p.tipo + ": " + f.euros(p.importe); }).join(". ") + ". Hay descuentos: " +
       TAD.tarifas.bonificaciones.map(function (b) { return b.nombre.toLowerCase() + " (" + f.porcentaje(b.pct) + ")"; }).join(", ") + "."],
     ["¿Cuánto tiempo me espera el vehículo?", "Te recogemos entre " + r.ventanaAntes + " minutos antes y " + r.ventanaDespues + " minutos después de la hora reservada. Si hay retraso, te avisamos por SMS."],
