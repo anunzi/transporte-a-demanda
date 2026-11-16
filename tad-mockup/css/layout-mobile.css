@@ -113,6 +113,12 @@
 .app--driver .c-btn--danger { background: var(--tad-red-600); color: var(--surface); }
 .app--driver .c-btn--ghost { color: var(--surface); }
 .app--driver .c-btn--ghost:hover { background: var(--on-dark-hover); color: var(--surface); }
+.app--driver .c-tabs { box-shadow: inset 0 calc(var(--bw) * -1) 0 var(--ink-700); }
+.app--driver .c-tabs__tab { flex: 1; justify-content: center; min-height: var(--driver-touch); font-size: var(--fs-16); color: var(--ink-300); }
+.app--driver .c-tabs__tab:hover { background: var(--on-dark-hover); color: var(--surface); }
+.app--driver .c-tabs__tab[aria-selected="true"] { color: var(--tad-yellow-500); }
+.app--driver .c-tabs__tab[aria-selected="true"]::after { background: var(--tad-yellow-500); }
+.app--driver .c-tabs__count { background: var(--ink-700); color: var(--surface); }
 .app--driver .driver-next {
   padding: var(--sp-4);
   border-radius: var(--r-md);

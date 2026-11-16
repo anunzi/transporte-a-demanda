@@ -46,10 +46,10 @@
     var id = "graf-" + (++cuenta);
     var tabla = "";
     if (filas && filas.length) {
-      tabla = '<table class="u-visually-hidden"><caption>' + esc(op.titulo || "Datos del gráfico") + "</caption><thead><tr>" +
+      tabla = '<div class="u-visually-hidden"><table><caption>' + esc(op.titulo || "Datos del gráfico") + "</caption><thead><tr>" +
         filas[0].map(function (c) { return '<th scope="col">' + esc(c) + "</th>"; }).join("") + "</tr></thead><tbody>" +
         filas.slice(1).map(function (f) { return "<tr>" + f.map(function (c, i) { return i ? "<td>" + esc(c) + "</td>" : '<th scope="row">' + esc(c) + "</th>"; }).join("") + "</tr>"; }).join("") +
-        "</tbody></table>";
+        "</tbody></table></div>";
     }
     cont.innerHTML = '<svg viewBox="0 0 ' + ANCHO + " " + alto + '" role="img" aria-labelledby="' + id + "-t " + id + '-d" preserveAspectRatio="xMidYMid meet">' +
       '<title id="' + id + '-t">' + esc(op.titulo || "Gráfico") + "</title>" +

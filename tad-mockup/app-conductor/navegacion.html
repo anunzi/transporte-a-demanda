@@ -45,10 +45,19 @@
             <span class="driver-next__meta" data-prox-meta></span>
           </div>
 
-          <section aria-labelledby="t-paradas">
-            <h2 class="app-section__title" id="t-paradas" style="color:var(--ink-300)">Paradas del servicio</h2>
-            <ol class="c-card" style="list-style:none;margin:0;padding:0" data-paradas></ol>
-          </section>
+          <div>
+            <div class="c-tabs" role="tablist" aria-label="Servicio en curso">
+              <button class="c-tabs__tab" role="tab" type="button" id="tab-paradas" aria-controls="panel-paradas" aria-selected="true">Paradas</button>
+              <button class="c-tabs__tab" role="tab" type="button" id="tab-viajeros" aria-controls="panel-viajeros" aria-selected="false">Viajeros <span class="c-tabs__count" data-total-viajeros></span></button>
+            </div>
+            <div class="c-tabpanel" role="tabpanel" id="panel-paradas" aria-labelledby="tab-paradas" style="padding-top:var(--sp-3)">
+              <ol class="c-card" style="list-style:none;margin:0;padding:0" data-paradas></ol>
+            </div>
+            <div class="c-tabpanel" role="tabpanel" id="panel-viajeros" aria-labelledby="tab-viajeros" style="padding-top:var(--sp-3)" hidden>
+              <p style="margin:0 0 var(--sp-3);color:var(--ink-100)" data-resumen-viajeros></p>
+              <div style="display:grid;gap:var(--sp-4)" data-viajeros></div>
+            </div>
+          </div>
         </div>
       </div>
       <div style="flex:none;padding:var(--sp-3) var(--sp-4) var(--sp-6);background:var(--ink-900);border-top:var(--bw) solid var(--ink-700)">
@@ -97,6 +106,35 @@ document.addEventListener("DOMContentLoaded", function () {
       (partes.length ? '<span style="display:block;font-size:var(--fs-16);color:' + (realizada ? "var(--ink-300)" : "var(--ink-100)") + '">' + h(partes.join(" · ")) + "</span>" : "") +
       (proxima ? '<span class="c-badge c-badge--warning" style="margin-top:var(--sp-1)">Próxima</span>' : "") +
       "</span></li>";
+  }).join("");
+
+  // Lista de viajeros del servicio, consultable en cualquier momento
+  var reservas = TAD.reservasDeRuta(serv.id).filter(function (r) { return r.estado !== "Cancelada"; });
+  function indice(paradaId) { for (var k = 0; k < serv.paradas.length; k++) if (serv.paradas[k].parada === paradaId) return k; return -1; }
+  var grupos = { bordo: [], recoger: [], bajado: [] };
+  reservas.forEach(function (r) {
+    var io = indice(r.origen), id = indice(r.destino);
+    var g = id > -1 && estados[id] === "realizada" ? "bajado" : (io > -1 && estados[io] === "realizada" ? "bordo" : "recoger");
+    grupos[g].push({ r: r, io: io, id: id });
+  });
+  grupos.recoger.sort(function (a, b) { return a.io - b.io; });
+  grupos.bordo.sort(function (a, b) { return a.id - b.id; });
+  var total = TAD.suma(reservas);
+  function n(lista) { return TAD.suma(lista.map(function (x) { return x.r; })); }
+  $("[data-total-viajeros]").textContent = total;
+  $("[data-resumen-viajeros]").textContent = total + " viajeros en este servicio: " + n(grupos.bordo) + " a bordo, " + n(grupos.recoger) + " por recoger y " + n(grupos.bajado) + " ya se han bajado.";
+  function fila(x, i) {
+    var u = TAD.usuario(x.r.usuario), po = serv.paradas[x.io], pd = serv.paradas[x.id];
+    return '<li style="display:grid;grid-template-columns:auto minmax(0,1fr);gap:var(--sp-1) var(--sp-3);padding:var(--sp-3) var(--sp-4)' + (i ? ";border-top:var(--bw) solid var(--ink-700)" : "") + '">' +
+      '<span class="c-avatar c-avatar--sm" aria-hidden="true">' + h(u.iniciales) + "</span>" +
+      '<span><span style="display:block;font-weight:var(--fw-semibold)">' + h(u.nombre) + (x.r.viajeros > 1 ? " (+" + (x.r.viajeros - 1) + ")" : "") + "</span>" +
+      '<span style="display:block;font-size:var(--fs-16);color:var(--ink-100)">' + (po ? po.estimada + " " : "") + h(TAD.parada(x.r.origen).nombre) + " → " + (pd ? pd.estimada + " " : "") + h(TAD.parada(x.r.destino).nombre) + "</span>" +
+      (x.r.nota ? '<span style="display:block;margin-top:var(--sp-1);font-size:var(--fs-14);color:var(--tad-yellow-500)">' + h(x.r.nota) + "</span>" : "") +
+      "</span></li>";
+  }
+  $("[data-viajeros]").innerHTML = [["recoger", "Por recoger"], ["bordo", "A bordo"], ["bajado", "Ya se han bajado"]].filter(function (g) { return grupos[g[0]].length; }).map(function (g) {
+    return '<section><h2 class="app-section__title" style="color:var(--ink-300)">' + g[1] + " · " + n(grupos[g[0]]) + "</h2>" +
+      '<ul class="c-card" style="list-style:none;margin:0;padding:0">' + grupos[g[0]].map(fila).join("") + "</ul></section>";
   }).join("");
 
   // Mapa con la ruta, las obras, las paradas del servicio y el vehículo
