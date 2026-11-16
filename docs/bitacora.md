@@ -51,3 +51,7 @@
 ## 2026-11-16 — Antelación de reserva: un día (pedido de Matías)
 - Las reservas se hacen como mínimo con un día (24 h) de antelación, no una hora. Cambiado en reglas (`antelacionMinimaMin: 1440`), portada, preguntas frecuentes, formulario de reserva (desde mañana), ventanas de reserva del CRM, app del viajero y guion del vídeo.
 - Historia: la llamada de Josefa (TAD-2026-04187) y el WhatsApp de Ramón pasan al lunes 13/04. Nueva conversación de hoy (Manuel, 09:20): pide un viaje para la tarde y el asistente de voz le explica la regla y le reserva para el miércoles.
+
+## 2026-11-16 — Vídeo en la portada
+- El vídeo de Matías (54 s, 1920×1080, 3,8 MB) va en la cabecera de la portada, en lugar de la ilustración: con controles, sin reproducción automática, con imagen de portada (fotograma de «Transporte a demanda») y subtítulos en castellano (`assets/video/tad-presentacion.vtt`). Si el vídeo no carga, se ve la ilustración.
+- Los tiempos de los subtítulos se ajustaron mirando los cambios de escena, no la voz: pendiente de que Matías confirme que el texto coincide con la locución final.

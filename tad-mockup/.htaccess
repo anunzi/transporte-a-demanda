@@ -8,3 +8,6 @@
 
 # Pantallas que todavía no existen: página amable de «en construcción»
 ErrorDocument 404 /404.html
+
+# Subtítulos del vídeo de la portada
+AddType text/vtt .vtt

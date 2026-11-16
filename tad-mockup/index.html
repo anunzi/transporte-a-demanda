@@ -21,6 +21,9 @@
   .ld-hero .pub-lead { margin-bottom: var(--sp-6); }
   .ld-acciones { display: flex; flex-wrap: wrap; gap: var(--sp-3); }
   .ld-ilustracion { width: 100%; height: auto; border-radius: var(--r-lg); }
+  .ld-video { margin: 0; }
+  .ld-video video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; border-radius: var(--r-lg); background: var(--tad-blue-900); box-shadow: var(--shadow-2); }
+  .ld-video figcaption { margin-top: var(--sp-2); color: var(--color-text-muted); font-size: var(--fs-14); text-align: center; }
   .ld-section { padding: var(--sp-12) 0; }
   .ld-section--alt { background: var(--surface-alt); }
   .ld-section h2 { font-size: var(--fs-28); color: var(--tad-blue-900); }
@@ -83,7 +86,14 @@
           <a class="c-btn c-btn--secondary c-btn--lg" href="#como-funciona">Cómo funciona</a>
         </div>
       </div>
-      <svg class="ld-ilustracion" viewBox="0 0 560 380" role="img" aria-label="Ilustración: una furgoneta adaptada recorre una carretera entre pueblos de montaña">
+      <figure class="ld-video" id="ld-video">
+        <video controls preload="none" playsinline poster="assets/video/tad-presentacion-poster.jpg" aria-label="Vídeo: cómo funciona el transporte a demanda TAD">
+          <source src="assets/video/tad-presentacion.mp4" type="video/mp4">
+          <track kind="captions" srclang="es" label="Español" src="assets/video/tad-presentacion.vtt">
+        </video>
+        <figcaption>Cómo funciona TAD, en menos de un minuto</figcaption>
+      </figure>
+      <svg class="ld-ilustracion" hidden id="ld-ilustracion" viewBox="0 0 560 380" role="img" aria-label="Ilustración: una furgoneta adaptada recorre una carretera entre pueblos de montaña">
         <rect width="560" height="380" style="fill:var(--tad-blue-100)"/>
         <circle cx="440" cy="86" r="34" style="fill:var(--tad-yellow-100)"/>
         <path d="M0 230 L90 140 L160 200 L250 110 L360 210 L450 150 L560 230 V380 H0Z" style="fill:var(--tad-green-100)"/>
@@ -206,6 +216,16 @@ document.addEventListener("DOMContentLoaded", function () {
     return '<div class="c-kpi"><span class="c-kpi__value">' + c[0] + '</span><span class="c-kpi__label">' + c[1] + '</span><span class="c-kpi__delta c-kpi__delta--flat">' + c[2] + "</span></div>";
   }).join("");
 });
+</script>
+<script>
+  // Si el vídeo no se puede cargar, se muestra la ilustración en su lugar
+  (function () {
+    var fuente = document.querySelector("#ld-video source");
+    fuente.addEventListener("error", function () {
+      document.getElementById("ld-video").hidden = true;
+      document.getElementById("ld-ilustracion").hidden = false;
+    });
+  })();
 </script>
 </body>
 </html>

@@ -4,7 +4,8 @@ Uso:  python herramientas/peso.py
 
 Suma el HTML y los CSS, JS e imágenes locales que enlaza (href/src). No cuenta lo que se
 carga de internet (tipografía, librería de mapas, teselas del mapa), que el navegador
-descarga una sola vez y comparte entre páginas. Límite del brief: 1 MB por página.
+descarga una sola vez y comparte entre páginas. Tampoco cuenta el vídeo de la portada
+(.mp4 y .vtt): solo se descarga si la persona le da a reproducir. Límite del brief: 1 MB por página.
 Sale con código 1 si alguna lo supera.
 """
 import re
@@ -26,7 +27,7 @@ def main():
         vistos = set()
         for m in re.finditer(r'(?:href|src)="([^"]+)"', texto):
             url = m.group(1).split("?")[0].split("#")[0]
-            if re.match(r"^(https?:|//|#|mailto:|tel:|data:)", url) or not url or url.endswith(".html") or url.endswith("/"):
+            if re.match(r"^(https?:|//|#|mailto:|tel:|data:)", url) or not url or url.endswith(".html") or url.endswith("/") or url.endswith((".mp4", ".vtt")):
                 continue
             ruta = (RAIZ / url.lstrip("/")) if url.startswith("/") else (html.parent / url)
             ruta = ruta.resolve()
