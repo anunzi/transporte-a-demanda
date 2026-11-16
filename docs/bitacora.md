@@ -44,3 +44,6 @@
 - El antiguo índice pasa a `paginas.html` (menú para el equipo, fuera de la experiencia).
 - La barra de maqueta de cada pantalla dice «← Cambiar de perfil» y lleva al acceso (antes llevaba al índice).
 
+
+## 2026-11-16 — Vídeo de presentación (pedido de Matías)
+- Guion, estilo, colores, tipografía y texto de la voz en off en `docs/guion-video.md`. Matías hace el vídeo con Claude y la voz con ElevenLabs; cuando lo pase, se integra en la cabecera de la portada con subtítulos.
