@@ -55,3 +55,4 @@
 ## 2026-11-16 — Vídeo en la portada
 - El vídeo de Matías (54 s, 1920×1080, 3,8 MB) va en la cabecera de la portada, en lugar de la ilustración: con controles, sin reproducción automática, con imagen de portada (fotograma de «Transporte a demanda») y subtítulos en castellano (`assets/video/tad-presentacion.vtt`). Si el vídeo no carga, se ve la ilustración.
 - Los tiempos de los subtítulos se ajustaron mirando los cambios de escena, no la voz: pendiente de que Matías confirme que el texto coincide con la locución final.
+- 2026-11-16: Matías confirma que el vídeo se ve bien y los subtítulos están sincronizados. Primera entrega enviada a Guillermo para revisión.
